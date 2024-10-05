@@ -1,0 +1,830 @@
+/*  font-family: "Sansita", sans-serif;
+ font-family: "Roboto", sans-serif;
+*/
+
+
+html {
+  scroll-behavior: smooth;
+  /* background: #110033; */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #E8EDFF;
+  font-family: "Roboto", sans-serif !important;
+}
+
+:root {
+  --primary: #030371;
+  --secondary: #006FFD;
+  --secondary-2:#3462FF;
+  --secondary-red: #E31E25;
+  --black:#121212;
+  --white:#ffffff;
+  --primary-lit-1:#63A9CB;
+  --primary-lit-2:#093d4a3f;
+  --golden-yellow:#FFD600;
+  --gradient-1:linear-gradient(to right,  #030371,#005ACD);
+  /* --gradient-2:linear-gradient(to right, #025367 , #018DB0); */
+  --white: #ffffff;
+  --transi: all 0.5s ease;
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-family: "Sansita", sans-serif !important;
+  text-transform: capitalize;
+}
+h1 {
+  font-weight: 700;  
+  font-size: 44px;
+}
+
+h2{
+  font-weight: 500;
+  font-size: 30px;
+  color: var(--primary);
+}
+
+a {
+  text-decoration: none;
+}
+img {
+  width: 100%;
+}
+
+.sec_gapping{
+  padding: 60px 0;
+}
+ul{
+  padding-left: 0;
+}
+ul li{
+  list-style: none;
+}
+
+
+select option, input, table td {
+  text-transform: uppercase !important;
+}
+
+.btn1{
+  background: var(--secondary) !important;
+  border-radius: 4px !important;
+  padding: 8px 20px !important;
+  color: white !important;
+  border: none;
+  text-transform: capitalize;
+  transition: all 0.5s ease-in-out !important;
+  font-family: "Roboto", sans-serif !important;
+  letter-spacing: 0;
+}
+
+.btn1:hover {
+  background-image: var(--gradient-2) !important;
+}
+.listing_table .material-symbols-outlined{
+  cursor: pointer;
+}
+.my_form .example-button-row{
+  text-align: center;
+}
+.my_form .form_control{
+  border: none;
+  padding: 0 0 0 4px;
+  border-radius: 4px !important;
+}
+.form-control::placeholder{
+  text-transform: capitalize;
+}
+.my_form label{
+  text-transform: capitalize;
+  color: var(--black);
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+  margin-bottom: 6px;
+}
+.form-control{
+  width: 100%;
+  margin-bottom: 20px;
+  border: none;
+  padding: 8px;
+  text-transform: capitalize;
+}
+
+.page_heading{
+  padding: 16px 0;
+
+}
+.page_name{
+  display: flex;
+  align-items: center;
+}
+.page_name img{
+  width: 5%;
+  margin-right: 10px;
+}
+.page_top_heading{
+  text-transform: capitalize;
+  background:  var(--gradient-1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 28px !important;
+  line-height: 40px !important;
+}
+.page_search {
+  position: relative;
+}
+.page_search .search_form{
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  padding: 6px 30px 6px 0;
+  border-bottom: 1px solid var(--primary);
+  background: none;
+  position: relative;
+  width: 100%;
+}
+.page_search .search_form:focus-visible {
+  outline: none;
+}
+.page_search .search_btn{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  border: none;
+  background: transparent;
+}
+.page_search .search_btn span{
+  color: var(--secondary-2) ;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+
+.page_info_heading{
+  padding: 6px 14px;
+  border-radius: 4px;
+  border-bottom: 2px dotted var(--secondary-2);
+  text-transform: capitalize;
+  font-family: "Sansita", sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--primary);
+  display: inline-block;
+  background: white;
+}
+
+
+
+
+
+
+
+/***************** LOG IN CSS start  ****************/
+.login_screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../images/sarthakLogin_bg.webp');
+  padding: 40px 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.login_content{
+  /* background-image: url('../images/login_bg.webp'); */
+  padding: 20px 40px;
+  width: 30%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: #ffffffb8;
+
+}
+.login_formDiv{
+  width: 100%;
+}
+.login_content  p{
+ text-align: center;
+ font-size: 26px;
+ font-weight: 500;
+ text-transform: uppercase;
+ margin-bottom: 20px;
+ font-family: "Sansita", sans-serif;
+}
+.login_content .loginLogo_div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login_content .loginLogo_div .logo_img{
+  width: 100%;
+}
+.form_select_div{
+  position: relative;
+}
+.form_select_div select option{
+  background: var(--primary);
+  color: white;
+}
+.form_select_div .form-control{
+  position: relative;
+  cursor: pointer;
+}
+
+.form_select_div .material-symbols-outlined{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+  width: 8%;
+  color: var(--primary);
+}
+.form_nonSelect_div .material-symbols-outlined{
+  left: 10px;
+}
+/* .form_nonSelect_div .form-control{
+  padding: 8px 8px 8px 38px;
+}
+.form_nonSelect_div .view_div {
+  position: relative;
+}
+.form_nonSelect_div .view_div .material-symbols-outlined{
+  margin-left: auto;
+} */
+.view_div{
+  position: relative;
+}
+.view_dropdown_div .form-control {
+  padding: 8px !important;
+}
+.view_div .form-control{
+  padding: 8px 8px 8px 38px;
+  position: relative;
+}
+.view_div  .fa-lock,.view_div .fa-user{
+  font-size: 18px;
+  position: absolute ;
+  color: var(--primary);
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.view_div .fa-eye,.view_div .fa-eye-slash, .view_div .fa-chevron-down{
+  position: absolute ;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+/***************** LOG IN CSS end  ****************/
+
+
+/**************** Header css start ****************/
+
+.top_header{
+  background: var(--primary);
+  padding: 5px 0;
+}
+.top_header p{
+  color: var(--golden-yellow);
+  font-weight: 500;
+  font-size: 15px;
+  text-transform: capitalize;
+  font-family: "Sansita", sans-serif;
+}
+.top_header .top_header_ul{
+  display: flex;
+  justify-content: end;
+  margin-bottom: 0;
+}
+.top_header .top_header_ul li{
+  text-transform: capitalize;
+  color: var(--white);
+  font-weight: 400;
+  font-size: 15px;
+}
+.top_header .top_header_ul li:not(:last-child){
+  margin-right: 24px;
+}
+.top_header .top_header_ul li span{
+  color: var(--golden-yellow);
+}
+nav.navbar .navbar-brand{
+  padding: 0;
+  margin: 0;
+  width: 10%;
+}
+.navbar-collapse .navbar-nav .nav-item{
+  transition: var(--transi);
+}
+.mat-mdc-button{
+  height: 0 !important;
+}
+.navbar-collapse {
+  justify-content: end;
+}
+.navbar-collapse .navbar-nav .nav-item .nav-link.active,.navbar-collapse .navbar-nav .nav-item .nav-link:hover{
+  color: var(--secondary);
+  
+
+}
+.navbar-collapse .navbar-nav .nav-item{
+  margin-right: 30px;
+}
+.navbar-collapse .navbar-nav .nav-item .nav-link{
+  padding: 0;
+  text-transform: capitalize;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: "Sansita", sans-serif;
+  letter-spacing: 0;
+  color: var(--black);
+  cursor: pointer;
+}
+.logOut{
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+  /* margin-left: 60px; */
+  color: var(--white);  
+  font-size: 24px;
+  padding: 0px 10px;
+  position: relative;
+  cursor: pointer;
+}
+.logOut::after{
+  position: absolute;
+  content: "";
+  width: 10px;
+  height: 2px;
+  background: var(--white);
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -6px;
+  transition: var(--transi);
+}
+.logOut span{
+  color: var(--golden-yellow);  
+  margin-left: 22px;
+  position: relative;
+  left: -22px;
+  transition: var(--transi);
+}
+.logOut:hover::after{
+  position: absolute;
+  content: "";
+  width: 100%;
+  background: var(--golden-yellow);
+  bottom: -6px;
+}
+.logOut:hover span{
+  /* padding-left: 16px; */
+  left: 0;
+}
+.mat-mdc-menu-item-text i{
+  color: var(--golden-yellow);
+}
+.mat-mdc-menu-item-text .myProfile{
+  margin-left: 8px;
+}
+.mat-mdc-menu-content{
+  padding: 0 !important;
+}
+.cdk-overlay-connected-position-bounding-box{
+  top: 106px !important;
+  height: auto !important;
+  width: auto !important;
+}
+.mat-mdc-menu-panel{
+  width: auto !important;
+}
+.mat-elevation-z8, .mat-mdc-elevation-specific.mat-elevation-z8{
+  box-shadow: none;
+  background: var(--primary);
+}
+.mat-mdc-menu-content .mat-mdc-menu-item{
+  color: var(--white);
+  text-transform: capitalize;
+  font-size: 16px;
+  min-height: auto !important;
+  padding: 8px 10px;
+}
+/* .mat-mdc-menu-content{
+  padding: 0 !important;
+} */
+/**************** Header css end ****************/
+
+
+
+/************* Dashboard css start ***************/
+.dashboard .dashboard_card{
+  background:var(--gradient-1);
+  border-radius: 8px ;
+  text-align: center;
+  padding: 30px 16px 40px;
+  margin-bottom: 24px;
+  position: relative;
+}
+.dashboard .dashboard_card h1{
+  color: var(--golden-yellow);
+  text-transform: uppercase;
+  margin-bottom: 0;
+  font-size: 22px;
+  font-weight: 500;
+}
+.dashboard .dashboard_card .db_img{
+  display: flex;
+  align-items: center;
+}
+.dashboard .dashboard_card .db_img .db_text{
+  text-align: left;
+}
+.dashboard .dashboard_card .db_img .db_text h1{
+  font-style: italic;
+  margin-bottom: 12px;
+}
+.dashboard .dashboard_card .db_img .db_text p{
+  color: white;
+  text-transform: capitalize;
+  font-size: 18px;
+}
+.dashboard .dashboard_card .db_img img{
+  height: 100px;
+  width: 100px;
+  margin-right: 20px;
+  border-radius: 50%;
+  border: 3px solid var(--secondary-2);
+  margin-bottom: 16px;
+}
+.view_dtls{
+  color: white;
+  text-transform: capitalize;
+  font-family: "Sansita", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  background: #f5deb31a;
+  border-radius: 0 0 8px 8px;
+  cursor: pointer;
+  transition: var(--transi);
+  font-size: 16px;
+}
+.view_dtls:hover{
+  background: #f5deb33d;
+}
+
+.view_dtls span{
+  margin-left: 24px;
+  position: relative;
+  left: -22px;
+  transition: var(--transi);
+}
+.view_dtls:hover span{
+  /* transition: var(--transi); */
+  left: 0;
+}
+.dashboard .dashboard_card .view_dtls{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+/************* Dashboard css end ***************/
+
+/************* Customer page css start ***************/
+.main_body .info_div{
+  border: 1px solid #9DB4FF;
+  border-radius: 6px;
+  padding: 50px 20px 30px;
+  position: relative;
+}
+.main_body .info_div .page_info_heading{
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.product_categoryDiv{
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+}
+.product_categoryDiv .checkbox_div{
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  margin: 7px 0 0 8px;
+}
+.product_categoryDiv .checkbox_div div{
+  margin-right: 20px;
+}
+.product_categoryDiv .checkbox_div div label{
+  line-height: 15px !important;
+}
+.product_categoryDiv .checkbox_div input{
+  margin-right: 6px;
+}
+.product_categoryDiv h6{
+  font-size: 17px;
+  font-weight: 500;
+  margin-bottom: 0;
+  font-family: "Roboto", sans-serif !important;
+}
+
+
+/************* Customer page css end ***************/
+
+/****************** table CSS start ***********/
+.listing_div{
+  padding-bottom: 30px;
+}
+.listing_div table.listing_table {
+  /* font-family: arial, sans-serif; */
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  text-transform: capitalize;
+}
+.listing_div table.listing_table .table_head{
+  background: #3838AA;
+  color: white;
+  text-transform: capitalize;
+}
+.listing_div table.listing_table .table_head th{
+  font-weight: 400;
+  font-size: 15px;
+}
+td, th {
+  /* border: 1px solid #dddddd;
+  text-align: left; */
+  padding: 6px;
+}
+
+tr:nth-child(even),tr:hover {
+  background-color: #d2dbff;
+}
+/****************** table CSS end *************/
+
+
+/************ sales person page css start ***********/
+.sales_edit_view_div{
+  text-align: end;
+  margin-top: 30px;
+}
+.sales_edit_view_div span{
+  margin-left: 20px;
+  cursor: pointer;
+  padding: 4px 8px; 
+  color: white;
+  border-radius: 4px;
+}
+/************ sales person page css end ***********/
+
+
+
+/************ segment page css start ***********/
+.segment_table{
+  width: 75% !important;
+  margin: auto !important;
+}
+.segment_tabs{
+  display: flex;
+}
+.segment_tabs li{
+  background: #3838AA;
+  color: white;
+  text-transform: capitalize;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.segment_tabs li:not(:last-child){
+  margin-right: 10px;
+}
+/************ segment page css end ***********/
+
+
+/*********** presentation page css start *********/
+.presentation_tabs{
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.presentation_tabs li{
+  margin-right: 30px;
+}
+
+.presentation_tabs li{
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-transform: capitalize;
+  background: white;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.presentation_tabs li.active{
+  background: var(--primary);
+  color: white;
+}
+.upload_document_div .upload_document{
+  display: flex;
+  align-items: center;
+  /* position: relative; */
+}
+
+.upload_document_div .upload_document h3{
+  font-size: 17px;
+  margin-right: 20px;
+  font-weight: 500;
+  font-family: "Roboto", sans-serif !important;
+  width: 32%;
+}
+.form_ctrl_file{
+  position: relative;
+}
+.upload_document_div .upload_document .form-control{
+  width: auto !important;
+  position: relative;
+  /* opacity: 0; */
+  /* z-index: 1; */
+}
+.upload_document_div .upload_document p{
+  display: flex;
+  padding: 8px 18px;
+  border-radius: 4px;
+  color: white;
+  background: var(--secondary);
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-bottom: 0;
+}
+.upload_document_div .upload_document p .material-symbols-outlined{
+  color: var(--golden-yellow);
+}
+
+
+
+
+
+
+
+/************ enquiry css start ***********/
+.follow_up{
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: capitalize;
+  background: #D4B408;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***************** masters page css start *********************/
+
+.sec_heading{
+  margin-bottom: 28px;
+}
+.sec_heading .page_heading{
+  display: flex;
+  align-items: center;
+  color: var(--primary);
+  margin-bottom: 0;
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.sec_heading .page_heading span{
+  margin-right: 6px;
+  color: #5AA4C8;
+}
+
+.new_btn_div{
+  display: flex;
+  justify-content: end;
+}
+ .new_btn{
+  padding: 8px;
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: capitalize;
+  background: var(--gradient-1) !important;
+  color: var(--white) !important;
+  border-radius: 4px;
+  letter-spacing: 0 !important;
+    font-family: "Roboto Condensed", sans-serif !important;
+}
+
+.mdc-button__label{
+  display: flex;
+    align-items: center;
+}
+
+.mat-mdc-raised-button{
+  box-shadow: none !important;
+}
+
+/****** company master ******/
+
+.tabel_div{
+  width: 80%;
+  margin: auto;
+}
+.mat-mdc-table thead{
+  background: var(--secondary) !important;
+}
+.mat-mdc-table thead tr{
+  height: 40px !important;
+}
+.mat-mdc-table thead tr th{
+  color: var(--white) !important;
+  font-size: 20px !important;
+  text-align: center !important;
+  text-transform: capitalize;
+  font-family: "Roboto Condensed", sans-serif !important;
+}
+.mat-mdc-table tbody tr td{
+  text-align: center !important;
+  text-transform: capitalize;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: "Roboto Condensed", sans-serif !important;
+}
+.mat-mdc-table tbody tr td .material-symbols-outlined{
+  font-size: 22px;
+}
+.edit{
+  color: #00BF58;
+}
+.delete{
+  color: #A8226A;
+}
+/***************** masters page css end *********************/
+
+
+/*************** details page css start **************/
+.details_div{
+  margin-bottom: 20px;
+  padding: 30px;
+  border-radius: 8px;
+  background: var(--primary);
+}
+.details_div label{
+  color: var(--golden-yellow);
+  font-size: 18px !important;
+  margin-right: 6px;
+  margin-bottom: 4px;
+  text-transform: capitalize;
+}
+.details_div p{
+  color: #ffffffa6;
+  font-size: 16px ;
+  text-transform: capitalize;
+  margin-bottom: 0;
+}
+.details_heading{
+  font-size: 26px !important;
+  color: white;
+  margin-bottom: 30px !important;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #ffffff48;
+}
+.details_content_div{
+  /* display: flex;
+  align-items: center; */
+  margin-bottom: 16px;
+}

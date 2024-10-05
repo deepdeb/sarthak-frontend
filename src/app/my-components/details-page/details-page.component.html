@@ -1,0 +1,284 @@
+<app-header></app-header>
+<div class="pb-3">
+    <div class="container-fluid">
+        <div class="page_heading">
+            <div class="row align-items-center">
+                <div class="col-md-9">
+                    <!-- <div class="page_name" *ngIf="view === 'customer'; else salespersonDetails">
+                        <img src="assets/images/customer.png" alt="" loading="lazy" >
+                        <h1 class="page_top_heading mb-0">customer details</h1>                        
+                    </div>
+                    <ng-template #salespersonDetails>
+                        <div class="page_name">                            
+                            <img src="assets/images/manager.png" alt="" loading="lazy">
+                            <h1 class="page_top_heading mb-0">sales person details</h1>
+                        </div>
+                    </ng-template> -->
+
+
+                    <div class="page_name" *ngIf="view === 'customer'">
+                        <img src="assets/images/customer.png" alt="" loading="lazy" >
+                        <h1 class="page_top_heading mb-0">customer details</h1>                        
+                    </div>
+                    <div class="page_name" *ngIf="view === 'salesperson'">                            
+                        <img src="assets/images/manager.png" alt="" loading="lazy">
+                        <h1 class="page_top_heading mb-0">sales person details</h1>
+                    </div>
+                </div>
+                <!-- <div class="col-md-3 text-end">
+                    <div class="page_search">
+                        <input type="text" class="search_form">
+                        <button type="button" class="search_btn">
+                            <span class="material-symbols-outlined">
+                                search
+                            </span>
+                        </button>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+
+        <div class="details_div">
+            <div class="mb-4">
+                <h4 class="details_heading"  *ngIf="view === 'customer'">
+                    customer info
+                </h4>
+                <h4 class="details_heading"  *ngIf="view === 'salesperson'">
+                    sales person profile info
+                </h4>
+                <h4 class="details_heading"  *ngIf="view === 'enquiry'">
+                   enquiry info
+                </h4>
+
+
+
+
+
+                <div class="row g-2" >
+                    <div class="col-md-3" *ngIf="view === 'customer'">
+                        <div class="details_content_div">
+                            <label>date :</label>
+                            <p class="details_content">{{customer_creation_date}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'salesperson'">
+                        <div class="details_content_div">
+                            <label>function :</label>
+                            <p class="details_content">{{functionName}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="details_content_div">
+                            <label *ngIf="view === 'customer' || view === 'enquiry'">sales incharge :</label>
+                            <label *ngIf="view === 'salesperson'">name :</label>
+                            <p class="details_content">{{salesIncharge}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'customer'">
+                        <div class="details_content_div">
+                            <label>mentor :</label>
+                            <p class="details_content">{{mentorName}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'customer'">
+                        <div class="details_content_div">
+                            <label>customer :</label>
+                            <p class="details_content">{{ customer_Name }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'enquiry'">
+                        <div class="details_content_div">
+                            <label>date :</label>
+                            <p class="details_content">{{enquiryDate}}</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3"  *ngIf="view === 'enquiry'">
+                        <div class="details_content_div">
+                            <label>source of enquiry :</label>
+                            <p class="details_content">{{ enquirySource }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3"  *ngIf="view === 'enquiry'">
+                        <div class="details_content_div">
+                            <label>principal house :</label>
+                            <p class="details_content">{{ principalHouse }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3"  *ngIf="view === 'enquiry'">
+                        <div class="details_content_div">
+                            <label>date of offer :</label>
+                            <p class="details_content">{{ offerDate }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3"  *ngIf="view === 'enquiry'">
+                        <div class="details_content_div">
+                            <label>basic value :</label>
+                            <p class="details_content">{{ basicValue }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3"  *ngIf="view === 'enquiry'">
+                        <div class="details_content_div">
+                            <label>Tentative Date of Finalisation :</label>
+                            <div class="d-flex align-items-center">
+                                <p class="details_content me-2" style="padding: 4px 10px; background: #ffffff2d;border-radius:3px">{{ monthFinal }}</p>
+                                <p style="font-size: 24px; font-weight: 500;margin-right: 8px;"> / </p>
+                                <p class="details_content" style="padding: 4px 10px; background: #ffffff2d;border-radius:3px"> {{ yearFinal }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3"  *ngIf="view === 'enquiry'">
+                        <div class="details_content_div">
+                            <label>status :</label>
+                            <p class="details_content">{{ enquiryStatus }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3"  *ngIf="view === 'enquiry'">
+                        <div class="details_content_div">
+                            <label>remarks :</label>
+                            <p class="details_content">{{ enquiryRemarks }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3"  *ngIf="view === 'enquiry'">
+                        <div class="details_content_div">
+                            <label>support required :</label>
+                            <p class="details_content">{{ enquirySupport }}</p>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                    <div class="col-md-3"  *ngIf="view === 'customer' || view === 'salesperson'">
+                        <div class="details_content_div">
+                            <label>SBU :</label>
+                            <p class="details_content">{{ sbuName }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'customer'">
+                        <div class="details_content_div">
+                            <label>segment :</label>
+                            <p class="details_content">{{ segmentName }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'customer'">
+                        <div class="details_content_div">
+                            <label>sub-segment :</label>
+                            <p class="details_content">{{ subSegmentName }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'customer'">
+                        <div class="details_content_div">
+                            <label>name :</label>
+                            <p class="details_content">{{ contactPersonName }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'customer' || view === 'salesperson'">
+                        <div class="details_content_div">
+                            <label>designation :</label>
+                            <p class="details_content">{{ designationName }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'customer'">
+                        <div class="details_content_div">
+                            <label>department :</label>
+                            <p class="details_content">{{ departmentName }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'customer' || view === 'salesperson'">
+                        <div class="details_content_div">
+                            <label>mobile no. :</label>
+                            <p class="details_content">{{ mobileNumber }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'customer' || view === 'salesperson'">
+                        <div class="details_content_div">
+                            <label>DOB :</label>
+                            <p class="details_content">{{ DOB }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'customer' || view === 'salesperson'">
+                        <div class="details_content_div">
+                            <label>email id :</label>
+                            <p class="details_content text-lowercase">{{ emailAdderss }}</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mb-4" *ngIf="view === 'customer'">
+                <h4 class="details_heading">
+                    address info
+                </h4>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="details_content_div">
+                            <label>street no :</label>
+                            <p class="details_content">{{ streetNumber }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="details_content_div">
+                            <label>street name :</label>
+                            <p class="details_content">{{ streetName }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="details_content_div">
+                            <label>area :</label>
+                            <p class="details_content">{{ areaName }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="details_content_div">
+                            <label>location :</label>
+                            <p class="details_content">{{ locationName }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="details_content_div">
+                            <label>district :</label>
+                            <p class="details_content">{{ districtName }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="details_content_div">
+                            <label>city :</label>
+                            <p class="details_content">{{ cityName }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="details_content_div">
+                            <label>state :</label>
+                            <p class="details_content">{{ stateName }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="details_content_div">
+                            <label>PIN :</label>
+                            <p class="details_content">{{ pinNumber }}</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="mb-4" *ngIf="view === 'customer'">
+                <h4 class="details_heading">
+                    product category info
+                </h4>
+                <div class="details_content_div d-flex align-items-center">
+                    <label class="mb-0">product category :</label>
+                    <p class="details_content">{{ productCategory }}</p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<app-header></app-header>
+
+<div class="company_master sec_gapping">
+   
+    <div class="container">
+        <div class="sec_heading">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h4 class="page_heading">
+                        <span class="material-symbols-outlined">lists</span> company master
+                    </h4>
+                </div>
+                <div class="col-md-6">
+                    <div class="new_btn_div">
+                        <button mat-raised-button class="new_btn" (click)="openDialog()" >
+                            <span class="material-symbols-outlined">add</span> 
+                            new company
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tabel_div">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="position">
+                    <th mat-header-cell *matHeaderCellDef> Sl No. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+
+                <!-- Date Column -->
+                <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef> created date </th>
+                    <td mat-cell *matCellDef="let element"> 
+                        {{element.date}}
+                    </td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="weight">
+                    <th mat-header-cell *matHeaderCellDef> edit </th>
+                    <td mat-cell *matCellDef="let element" > 
+                        <button mat-raised-button  (click)="openDialog()" class="edit_btn" >
+                            <span class="material-symbols-outlined edit " >
+                                edit_square
+                            </span>
+                        </button>
+                        
+                        <!-- {{element.weight}} -->
+                    </td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="symbol">
+                    <th mat-header-cell *matHeaderCellDef> delete </th>
+                    <td mat-cell *matCellDef="let element"> 
+                        <span class="material-symbols-outlined delete" >
+                            delete
+                        </span>
+                        <!-- {{element.symbol}} -->
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </div>
+</div>

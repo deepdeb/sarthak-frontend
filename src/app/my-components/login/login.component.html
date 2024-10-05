@@ -1,0 +1,53 @@
+<section class="login_screen">
+    <div class="login_content">
+        <div class="loginLogo_div">
+            <img src="assets/images/sarthakLogo.png" alt="" loading="lazy" class="logo_img">
+        </div>   
+        <div class="login_formDiv">
+            <p>login</p>
+            <div class="my_form ">
+                <div class="view_div view_dropdown_div">
+                    <select class="form-control" [(ngModel)]="sbu_id">
+                        <option>-- choose unit name --</option>
+                        <option value=0>Admin</option>
+                        <option value=1>Sarthak Components</option>
+                        <option value=2>Sarthak Power</option>
+                    </select>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="view_div view_dropdown_div">
+                    <select class="form-control">
+                        <option >-- Choose Financial Year --</option>
+                        <option value="2024-25" selected>2024-25</option>
+                    </select>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="view_div" >  
+                    <input type="text" class="form-control" placeholder="Enter Email Id/ Phone No." style="text-transform: lowercase !important;"  [(ngModel)]="userName" (keyup.enter)="logIn()">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="view_div" >  
+                    <input  class="form-control" value="password" [type]="hide ? 'password' : 'text'" name="password" autocomplete="off" style="text-transform: lowercase !important;" [(ngModel)]="password" (keyup.enter)="logIn()">
+                    <span  [ngClass]="hide ? 'fa fa-eye' : 'fa fa-eye-slash'" (click)="hide = !hide"></span>
+                    <i class="fas fa-lock"></i>
+                </div>  
+                <section>
+                    <div class="example-button-row">
+                        <button mat-flat-button class="btn1"  (click)="logIn()">login now</button>                  
+                    </div>
+                </section>
+            </div>
+        </div>     
+          
+
+
+
+
+        
+        <!-- <mat-icon aria-hidden="false" aria-label="Example home icon" >
+            <span class="material-symbols-outlined">
+              star
+            </span>
+        </mat-icon> -->
+    </div>
+</section>

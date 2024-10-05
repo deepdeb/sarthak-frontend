@@ -1,0 +1,268 @@
+<app-header></app-header>
+
+<div class="container-fluid">
+    <div class="page_heading">
+        <div class="row align-items-center">
+            <div class="col-md-9">       
+                <div class="page_name">
+                    <img src="assets/images/received.png" alt="" loading="lazy">
+                    <h1 class="page_top_heading mb-0">order info</h1>
+                </div>
+            </div>
+        <div class="col-md-3 text-end">
+            <div class="page_search">
+                <input type="text" class="search_form">
+                <button type="button" class="search_btn">
+                    <span class="material-symbols-outlined">
+                        search
+                    </span>
+                </button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="main_body sec_gapping">
+        <div class="info_div">
+            <div class="page_info_heading">
+                orders
+            </div>
+            <div class="my_form ">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="">
+                            <label>customer</label>
+                            <div class="form_select_div">
+                                <select class="form-control">
+                                    <option>--choose segment--</option>
+                                    <option value="Sarthak Components">Sarthak Components</option>
+                                    <option value="Sarthak Power">Sarthak Power</option>
+                                </select>
+                                <span class="material-symbols-outlined">
+                                    stat_minus_1
+                                </span>
+                            </div>                            
+                        </div>
+                    </div>
+                    <div class="col-md-3">  
+                        <div class="form_select_div">
+                            <label>PO number</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form_select_div">
+                            <label>PO date</label>
+                            <input type="date" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="">
+                            <label>PO type</label>
+                            <div class="form_select_div">
+                                <select class="form-control">
+                                    <option>--choose segment--</option>
+                                    <option value="Sarthak Components">Sarthak Components</option>
+                                    <option value="Sarthak Power">Sarthak Power</option>
+                                </select>
+                                <span class="material-symbols-outlined">
+                                    stat_minus_1
+                                </span>
+                            </div>                            
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="">
+                            <label>PO sub-type</label>
+                            <div class="form_select_div">
+                                <select class="form-control">
+                                    <option>--choose segment--</option>
+                                    <option value="Sarthak Components">Sarthak Components</option>
+                                    <option value="Sarthak Power">Sarthak Power</option>
+                                </select>
+                                <span class="material-symbols-outlined">
+                                    stat_minus_1
+                                </span>
+                            </div>                                            
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form_select_div">
+                            <label>BASIC PO value</label>
+                            <input type="text" class="form-control">                                                  
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="">
+                            <label>total PO value(inclu GST)</label>                            
+                            <input type="date" class="form-control">                                                  
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form_select_div">
+                            <label>scheduled date of completion</label>                           
+                            <input type="date" class="form-control">                                                  
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="">
+                            <label>actual date of completion</label>
+                            <input type="date" class="form-control">                                                  
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="">
+                            <label>PO upload</label>
+                                <input type="file" class="form-control"> 
+                                                                             
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="">
+                            <label>completion upload</label>
+                            <input type="file" class="form-control">                                                  
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="">
+                            <label>credential upload</label>
+                            <input type="file" class="form-control">                                                  
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-3">
+            <button mat-flat-button class="btn1">submit</button>  
+        </div>
+       
+    </div>
+
+
+
+    <div class="listing_div">
+        <h3 class="text-end" style="font-size: 20px;">total : 5</h3>
+        <table class="listing_table">
+            <tr class="table_head">
+              <th>sl no.</th>
+              <th>customer</th>
+              <th>PO number</th>
+              <th>PO date</th>
+              <th>PO type</th>
+              <th>PO sub-type</th>
+              <th>basic PO value</th>
+              <th>total PO value <small>(inclu GST)</small></th>
+              <th>schedule date of completion</th>
+              <th>edit</th>
+              <th>delete</th>
+            </tr>
+            
+            <tr>
+              <td>1</td>
+              <td>Sarthak components</td>
+              <td></td>
+              <td>30/05/24</td>
+              <td>supply</td>
+              <td>product</td>
+              <td>10,000/-</td>
+              <td>10,900/-</td>
+              <td>30/05/24</td>
+              <td>
+                    <span class="material-symbols-outlined" style="color: #00BF58;">
+                        edit_square
+                    </span>
+               </td>
+              <td>
+                <span class="material-symbols-outlined" style="color: #A8226A;">
+                    delete
+                </span>
+              </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Sarthak components</td>
+                <td></td>
+                <td>30/05/24</td>
+                <td>supply</td>
+                <td>product</td>
+                <td>10,000/-</td>
+                <td>10,900/-</td>
+                <td>30/05/24</td>
+                <td>
+                      <span class="material-symbols-outlined" style="color: #00BF58;">
+                          edit_square
+                      </span>
+                 </td>
+                <td>
+                  <span class="material-symbols-outlined" style="color: #A8226A;">
+                      delete
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Sarthak components</td>
+                <td></td>
+                <td>30/05/24</td>
+                <td>supply</td>
+                <td>product</td>
+                <td>10,000/-</td>
+                <td>10,900/-</td>
+                <td>30/05/24</td>
+                <td>
+                      <span class="material-symbols-outlined" style="color: #00BF58;">
+                          edit_square
+                      </span>
+                 </td>
+                <td>
+                  <span class="material-symbols-outlined" style="color: #A8226A;">
+                      delete
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Sarthak components</td>
+                <td></td>
+                <td>30/05/24</td>
+                <td>supply</td>
+                <td>product</td>
+                <td>10,000/-</td>
+                <td>10,900/-</td>
+                <td>30/05/24</td>
+                <td>
+                      <span class="material-symbols-outlined" style="color: #00BF58;">
+                          edit_square
+                      </span>
+                 </td>
+                <td>
+                  <span class="material-symbols-outlined" style="color: #A8226A;">
+                      delete
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Sarthak components</td>
+                <td></td>
+                <td>30/05/24</td>
+                <td>supply</td>
+                <td>product</td>
+                <td>10,000/-</td>
+                <td>10,900/-</td>
+                <td>30/05/24</td>
+                <td>
+                      <span class="material-symbols-outlined" style="color: #00BF58;">
+                          edit_square
+                      </span>
+                 </td>
+                <td>
+                  <span class="material-symbols-outlined" style="color: #A8226A;">
+                      delete
+                  </span>
+                </td>
+              </tr>
+        </table>
+    </div>
+</div>

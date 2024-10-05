@@ -1,0 +1,43 @@
+
+/* :root {
+    --primary: #093D4A;
+    --secondary: #0B8DCB;
+    --secondary-2:#00ADFF;
+    --secondary-red: #E31E25;
+    --black:#121212;
+    --white:#ffffff;
+    --primary-lit-1:#63A9CB;
+    --primary-lit-2:#093d4a3f;
+    --golden-yellow:#FFD702;
+    --gradient-1:linear-gradient(to right, #0CA4CA , #096278);
+    --gradient-2:linear-gradient(to right, #025367 , #018DB0);
+    --white: #ffffff;
+    --transi: all 0.5s ease;
+  } */
+
+
+h2{
+    color: var(--golden-yellow) !important;
+    background: var(--primary) !important;
+    border-bottom: 1px solid white;
+}
+p{
+    text-transform: capitalize;
+    font-size: 18px;
+    color: black;
+    letter-spacing: 0 !important;
+    font-family: "Roboto Condensed", sans-serif !important;
+}
+.new_btn{
+    letter-spacing: 0 !important;
+    font-family: "Roboto Condensed", sans-serif !important;
+}
+.cancel{
+    color: #fc4545;
+    margin-left: 10px;
+    letter-spacing: 0 !important  ;
+    font-family: "Roboto Condensed", sans-serif !important;
+}
+
+
+

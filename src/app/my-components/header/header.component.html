@@ -1,0 +1,90 @@
+<header>
+    <div class="top_header">
+        <div class="container-fluid">
+            <!-- <div class="row"> -->
+                <!-- <div class="col-md-4">
+                    <p class="mb-0">Sarthak components</p>
+                </div> -->
+                <!-- <div class="col-md-8"> -->
+                    <ul class="top_header_ul">
+                        <li>name : <span>{{logged_person_name}} ( {{desig_name}} )</span></li>
+                        <li>date : <span>{{formattedDate}}</span></li>
+                        <li>time : <span>{{formattedTime12Hr}}</span></li>
+                    </ul>
+                <!-- </div>
+            </div> -->
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand"  routerLink="/dashboard">
+                <img src="assets/images/sarthakLogo.png" alt="Sarthak Logo" loading="lazy">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
+                aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation"
+                (click)="isCollapsed = !isCollapsed">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor03" [ngbCollapse]="isCollapsed">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item " >
+                        <a class="nav-link " routerLink="/dashboard" routerLinkActive="active">dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link " routerLink="/sales-person" routerLinkActive="active" >sales person</button>                      
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link " routerLink="/customer" routerLinkActive="active">customer</button>
+                    </li>                   
+                    <li class="nav-item">
+                        <a class="nav-link " routerLink="/segment" routerLinkActive="active">segment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " routerLink="/enquiries" routerLinkActive="active">enquiries</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " routerLink="/orders" routerLinkActive="active">orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " routerLink="/presentation" routerLinkActive="active">presentation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " routerLink="/reports" routerLinkActive="active">reports</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="logOut" (click)="goToLogin()">logout
+                            <span class="material-symbols-outlined">
+                                directions_run
+                            </span>
+                        </a>
+                    </li> -->
+                </ul>
+            </div>
+
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                    <i class="fas fa-user-circle"></i>
+                    <span class="myProfile"> My Profile</span>
+                  </button>
+                
+                <button mat-menu-item>
+                    <a class="logOut" (click)="goToLogin()">logout
+                        <span class="material-symbols-outlined">
+                            directions_run
+                        </span>
+                    </a>
+                </button>
+            </mat-menu>
+                
+            <!-- <a (click)="goToLogIn()" class="logOut">logout
+                <span class="material-symbols-outlined">
+                    directions_run
+                </span>
+            </a> -->
+        </div>
+    </nav>
+</header>

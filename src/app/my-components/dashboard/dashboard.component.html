@@ -1,0 +1,119 @@
+<app-header></app-header>
+<section class="dashboard sec_gapping">
+    <div class="container-fluid">
+        <div class="row justify-content-end">
+            <div class="col-md-3">
+                <div *ngIf="checkSbuId()" class="view_div view_dropdown_div ">
+                    <select class="form-control" [(ngModel)]="sbuId" (change)="filterUnit()">
+                        <!-- <option>-- choose unit name --</option> -->
+                        <option *ngFor="let item of SBUList" [value]="item.sbu_id">{{item.sbu_name}}</option>
+                        <!-- <option value=1>Sarthak Components</option>
+                        <option value=2>Sarthak Power</option> -->
+                    </select>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="dashboard_card">
+                    <div class="db_img">
+                        <img src="assets/images/customer.png" alt="" loading="lazy">
+                       <div class="db_text">
+                            <h1>customers</h1>
+                            <p>total : {{totalCustomers}}</p>
+                       </div>
+                    </div>      
+                    <p class="view_dtls mb-0"  routerLink="/customer">
+                        view details <span class="material-symbols-outlined">trending_flat</span>
+                    </p>             
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="dashboard_card">
+                    <div class="db_img">
+                        <img src="assets/images/manager.png" alt="" loading="lazy">
+                        <div class="db_text">
+                            <h1>sales person</h1>
+                            <p *ngIf="checkDesignationId != 4">total : {{totalSalesperson}}</p>
+                       </div>
+                    </div>
+                    <p class="view_dtls mb-0"  routerLink="/sales-person">
+                        view details <span class="material-symbols-outlined">trending_flat</span>
+                    </p>  
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="dashboard_card">
+                    <div class="db_img">
+                        <img src="assets/images/market-share.png" alt="" loading="lazy">
+                        <div class="db_text">
+                            <h1>segments</h1>
+                            <p>total : {{totalSegments}}</p>
+                       </div>
+                    </div>
+                    <p class="view_dtls mb-0"  routerLink="/segment">
+                        view details <span class="material-symbols-outlined">trending_flat</span>
+                    </p>  
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="dashboard_card">
+                    <div class="db_img">
+                        <img src="assets/images/enquiry.png" alt="" loading="lazy">
+                        <div class="db_text">
+                            <h1>enquiries</h1>
+                            <p>total : {{totalEnquiries}}</p>
+                       </div>
+                    </div>
+                    <p class="view_dtls mb-0"  routerLink="/enquiries">
+                        view details <span class="material-symbols-outlined">trending_flat</span>
+                    </p>  
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="dashboard_card">
+                    <div class="db_img">
+                        <img src="assets/images/received.png" alt="" loading="lazy">
+                        <div class="db_text">
+                            <h1>orders</h1>
+                            <p>total : {{totalOrders}}</p>
+                       </div>
+                    </div>
+                    <p class="view_dtls mb-0"  routerLink="/orders">
+                        view details <span class="material-symbols-outlined">trending_flat</span>
+                    </p>  
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="dashboard_card">
+                    <div class="db_img">
+                        <img src="assets/images/presentation.png" alt="" loading="lazy">
+                        <div class="db_text">
+                            <h1>presentation</h1>
+                            <!-- <p>total : 100</p> -->
+                       </div>
+                    </div>
+                    <p class="view_dtls mb-0"  routerLink="/presentation">
+                        view details <span class="material-symbols-outlined">trending_flat</span>
+                    </p>  
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="dashboard_card">
+                    <div class="db_img">
+                        <img src="assets/images/reports.png" alt="" loading="lazy">
+                        <div class="db_text">
+                            <h1>reports</h1>
+                            <!-- <p>total : 100</p> -->
+                       </div>
+                    </div>
+                    <p class="view_dtls mb-0"  routerLink="/reports">
+                        view details <span class="material-symbols-outlined">trending_flat</span>
+                    </p>  
+                </div>
+            </div>           
+        </div>
+    </div>
+</section>
