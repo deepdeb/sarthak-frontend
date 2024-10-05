@@ -61,7 +61,6 @@ export class DetailsPageComponent {
   }
 
   getCustomerDetailsById(customer_id: any){
-    // console.log('called customer details')
     const data = {
       customer_id: customer_id
     }
@@ -70,7 +69,7 @@ export class DetailsPageComponent {
         if(res.response){
           this.customer_creation_date = res.response.date;
           this.salesIncharge = res.response.sales_person_name;
-          this.mentorName = res.response.mentor;
+          this.mentorName = res.response.mentor_name;
           this.sbuName = res.response.sbu_name
           this.segmentName = res.response.segment_name
           this.subSegmentName = res.response.subsegment_name
@@ -97,7 +96,6 @@ export class DetailsPageComponent {
 
 
   getSalespersonById(sales_person_id: any){
-    // console.log('called salesperson details')
     const data = {
       sales_person_id : sales_person_id
     }

@@ -65,7 +65,7 @@ export class CustomerComponent {
   constructor(private router: Router, private rest: RestService, private common: CommonService) { }
 
   ngOnInit(): void {
-    if(this.isEdit == false) {
+    if (this.isEdit == false) {
       this.onPageLoadCommonAPI();
     }
   }
@@ -94,7 +94,6 @@ export class CustomerComponent {
           this.salesPersonList = [];
           this.salesPersonList = res.response;
           this.total_count = res.total_count;
-          console.log(res.response);
         }
       }
     })
@@ -102,14 +101,14 @@ export class CustomerComponent {
 
 
   //********** For get mentor List **********//
-  getMentorList(){
+  getMentorList() {
     const data = {
       sbu_id: this.sbuId,
     }
-    this.rest.getMentorList_rest(data).subscribe((res: any) =>{
-      if(res.success){
-        if(res.response){
-          if(res.response.length > 0){
+    this.rest.getMentorList_rest(data).subscribe((res: any) => {
+      if (res.success) {
+        if (res.response) {
+          if (res.response.length > 0) {
             this.mentorList = [];
             this.mentorList = res.response;
           }
@@ -118,7 +117,7 @@ export class CustomerComponent {
     })
   }
 
-  getMentorSalesList(){
+  getMentorSalesList() {
     this.getMentorList()
     this.getSalesPersonList();
   }
@@ -317,17 +316,17 @@ export class CustomerComponent {
     })
   }
 
- 
+
   getSubSubSegmentList() {
     const data = {
       segment_id: this.segmentId || this.segmentId_1 || this.segmentId_2 || this.segmentId_3,
       subsegment_id: this.subSegmentId || this.subSegmentId_1 || this.subSegmentId_2
     }
-    this.rest.getSubSubSegmentList_rest(data).subscribe((res: any)=>{
+    this.rest.getSubSubSegmentList_rest(data).subscribe((res: any) => {
       this.subSubSegmentList = [];
-      if(res.success){    
-        if(res.response){
-          if(res.response.length > 0){
+      if (res.success) {
+        if (res.response) {
+          if (res.response.length > 0) {
             this.subSubSegmentList = res.response;
             this.totalCount = res.total_count;
           }
@@ -335,7 +334,7 @@ export class CustomerComponent {
       }
     })
   }
-  
+
   getSubSubSubSegmentList() {
     const data = {
       segment_id: this.segmentId || this.segmentId_1 || this.segmentId_2 || this.segmentId_3,
@@ -344,9 +343,9 @@ export class CustomerComponent {
     }
     this.rest.getSubSubSubSegmentList_rest(data).subscribe((res: any) => {
       this.subSubSubSegmentList = [];
-      if(res.success) {
-        if(res.response) {
-          if(res.response.length > 0) {
+      if (res.success) {
+        if (res.response) {
+          if (res.response.length > 0) {
             this.subSubSubSegmentList = res.response;
             this.totalCount = res.total_count;
           }
@@ -435,7 +434,6 @@ export class CustomerComponent {
           this.department = res.response.department;
           this.designation = res.response.designation;
           this.salesPersonId = res.response.sales_person_id;
-          console.log('salesperson>>>>', this.salesPersonId);
           this.city_name = res.response.city
           this.pin_no = res.response.pin
           this.mob_no = res.response.mobile
@@ -453,7 +451,6 @@ export class CustomerComponent {
           this.street_no = res.response.street_no
           this.street_name = res.response.street_name
           this.prdtCategoryId = res.response.product_category_id
-          // this.getPrdtCategoryList();
           this.stateId = res.response.state_id;
         }
       }
