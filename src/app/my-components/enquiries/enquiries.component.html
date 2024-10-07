@@ -29,7 +29,7 @@
             </div>
             <div class="my_form ">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-sm-6 col-md-3">
                         <div class="form_select_div">
                             <label>sales incharge</label>
                             <div class="form_select_div">
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-sm-6 col-md-3">
                         <div class="form_select_div">
                             <label>customer</label>
                             <div class="form_select_div">
@@ -58,13 +58,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-sm-3 col-md-3">
                         <div class="form_select_div ">
                             <label>enquiry date</label>
                             <input type="date" class="form-control" [(ngModel)]="enquiryDate">
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-sm-5 col-md-3">
                         <div class="">
                             <label>source of enquiry</label>
                             <div class="form_select_div">
@@ -81,25 +81,25 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-sm-4 col-md-3">
                         <div class="form_select_div">
                             <label>principal house</label>
                             <input type="text" class="form-control" [(ngModel)]="principalHouse">
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-sm-6 col-md-3">
                         <div class="">
                             <label>date of offer</label>
                             <input type="date" class="form-control" [(ngModel)]="offerDate">
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-sm-6 col-md-3">
                         <div class="form_select_div">
                             <label>basic value</label>
                             <input type="text" class="form-control" [(ngModel)]="basicValue">
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-sm-6 col-md-3">
                         <div class="">
                             <label>Tentative Date of Finalisation</label>
                             <div class="d-flex">
@@ -110,19 +110,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-sm-6 col-md-4">
                         <div class="">
                             <label>status</label>
                             <input type="text" class="form-control" [(ngModel)]="enquiryStatus">
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-sm-6 col-md-4">
                         <div class="">
                             <label>remarks</label>
                             <input type="text" class="form-control" [(ngModel)]="enquiryRemarks">
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-sm-6 col-md-4">
                         <div class="">
                             <label>support required</label>
                             <input type="text" class="form-control" [(ngModel)]="enquirySupport">
@@ -139,68 +139,70 @@
 
     <div class="listing_div">
         <h3 class="text-end" style="font-size: 20px;">total : {{ totalCount }}</h3>
-        <table class="listing_table">
-            <tr class="table_head">
-                <th>sl no.</th>
-                <th>sales incharge</th>
-                <th>customer</th>
-                <th>enquiry date</th>
-                <th>enquiry source</th>
-                <th>principal house</th>
-                <th>offer date</th>
-                <th>basic value</th>
-                <th>tentative date of finalisation</th>
-                <th>view follow up</th>
-                <th>view</th>
-                <th>edit</th>
-                <th>delete</th>
-            </tr>
+        <div class="table-responsive">
+            <table class="listing_table">
+                <tr class="table_head">
+                    <th>sl no.</th>
+                    <th>sales incharge</th>
+                    <th>customer</th>
+                    <th>enquiry date</th>
+                    <th>enquiry source</th>
+                    <th>principal house</th>
+                    <th>offer date</th>
+                    <th>basic value</th>
+                    <th>tentative date of finalisation</th>
+                    <th>follow up</th>
+                    <th>view</th>
+                    <th>edit</th>
+                    <th>delete</th>
+                </tr>
 
-            <tr *ngFor="let item of enquiryList; let i = index">
-                <td>{{ i+1 }}</td>
-                <td>{{ item.sales_person_name }}</td>
-                <td>{{ item.customer}}</td>
-                <td>{{ item.enquiry_date }}</td>
-                <td>{{ item.enquiry_source_name }}</td>
-                <td>{{ item.principal_house }}</td>
-                <td>{{ item.offer_date }}</td>
-                <td>{{ item.basic_value}}</td>
-                <ng-container
-                    *ngIf="(item.tentative_finalization_month && item.tentative_finalization_year); else notAvailable">
-                    <td>{{item.tentative_finalization_month}} / {{item.tentative_finalization_year}}</td>
-                </ng-container>
-                <ng-template #notAvailable>
-                    <td>NA</td>
-                </ng-template>
-                <td>
-                    <span class="follow_up">
-                        <span class="material-symbols-outlined" style="color:#1b1b1b;font-size: 20px;">
+                <tr *ngFor="let item of enquiryList; let i = index">
+                    <td>{{ i+1 }}</td>
+                    <td>{{ item.sales_person_name }}</td>
+                    <td>{{ item.customer}}</td>
+                    <td>{{ item.enquiry_date }}</td>
+                    <td>{{ item.enquiry_source_name }}</td>
+                    <td>{{ item.principal_house }}</td>
+                    <td>{{ item.offer_date }}</td>
+                    <td>{{ item.basic_value}}</td>
+                    <ng-container
+                        *ngIf="(item.tentative_finalization_month && item.tentative_finalization_year); else notAvailable">
+                        <td>{{item.tentative_finalization_month}} / {{item.tentative_finalization_year}}</td>
+                    </ng-container>
+                    <ng-template #notAvailable>
+                        <td>NA</td>
+                    </ng-template>
+                    <td>
+                        <span class="follow_up">
+                            <span class="material-symbols-outlined" style="color:#1b1b1b;font-size: 20px;">
+                                visibility
+                            </span>
+                            <!-- follow up -->
+                        </span>
+                    </td>
+                    <td>
+                        <span class="material-symbols-outlined" style="color:#006FFD;"
+                            (click)="goToDetailsPage(item.enquiry_id)">
                             visibility
                         </span>
-                        follow up
-                    </span>
-                </td>
-                <td>
-                    <span class="material-symbols-outlined" style="color:#006FFD;"
-                        (click)="goToDetailsPage(item.enquiry_id)">
-                        visibility
-                    </span>
-                </td>
-                <td>
-                    <span class="material-symbols-outlined" style="color: #00BF58;"
-                        (click)="getEnquiryById(item.enquiry_id)">
-                        edit_square
-                    </span>
-                </td>
-                <!-- <td *ngIf="sbuId != 0"> -->
-                <td>
-                    <span class="material-symbols-outlined" style="color: #A8226A;">
-                        delete
-                    </span>
-                </td>
-            </tr>
+                    </td>
+                    <td>
+                        <span class="material-symbols-outlined" style="color: #00BF58;"
+                            (click)="getEnquiryById(item.enquiry_id)">
+                            edit_square
+                        </span>
+                    </td>
+                    <!-- <td *ngIf="sbuId != 0"> -->
+                    <td>
+                        <span class="material-symbols-outlined" style="color: #A8226A;">
+                            delete
+                        </span>
+                    </td>
+                </tr>
 
-        </table>
+            </table>
+        </div>
     </div>
 
 </div>

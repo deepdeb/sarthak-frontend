@@ -564,7 +564,8 @@ nav.navbar .navbar-brand{
 }
 .listing_div table.listing_table .table_head th{
   font-weight: 400;
-  font-size: 15px;
+  font-size: 13px;
+  text-wrap: nowrap;
 }
 td, th {
   /* border: 1px solid #dddddd;
