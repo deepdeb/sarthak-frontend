@@ -313,13 +313,14 @@
                 <th>sl no.</th>
                 <th>date</th>
                 <th>SBU</th>
+                <th>Mentor</th>
                 <th>customer</th>
                 <th>segment</th>
                 <th>sub-segment</th>
-                <th>name</th>
+                <!-- <th>sub-sub-segment</th>
+                <th>sub-sub-sub-segment</th> -->
                 <th>mobile no.</th>
                 <th>email id</th>
-                <!-- <th>location</th> -->
                 <th>view</th>
                 <th>edit</th>
                 <th>delete</th>
@@ -329,13 +330,14 @@
                 <td>{{ i+1 }}</td>
                 <td>{{ item.date }}</td>
                 <td>{{ item.sbu_name }}</td>
-                <td>{{ item.customer }}</td>
+                <td>{{ item.mentor_name }}</td>
+                <td>{{ item.customer }} <br>( {{item.name}})</td>
                 <td>{{ item.segment_name }}</td>
                 <td>{{ item.subsegment_name }}</td>
-                <td>{{ item.name }}</td>
+                <!-- <td>{{ item.subsubsegment_name }}</td> -->
+                <!-- <td>{{ item.subsubsubsegment_name }}</td> -->
                 <td>{{ item.mobile }}</td>
                 <td class="text-lowercase">{{ item.email }}</td>
-                <!-- <td>{{ item.location }}</td> -->
                 <td>
                     <span class="material-symbols-outlined" style="color:#006FFD;" (click)="goToDetailsPage(item.customer_id)">
                         visibility

@@ -271,6 +271,7 @@ export class CustomerComponent {
           if (res.response.length > 0) {
             this.customerList = res.response;
             this.totalCustomerCount = res.total_count;
+            console.log('>>>customer list', this.customerList)
           }
         }
       }
