@@ -129,10 +129,10 @@ export class CustomerComponent {
       this.common.showAlertMessage('Please Choose a sales incharge', this.common.errContent)
       return;
     }
-    if (!this.mentorId) {
-      this.common.showAlertMessage('Please enter mentor name', this.common.errContent);
-      return;
-    }
+    // if (!this.mentorId) {
+    //   this.common.showAlertMessage('Please select mentor', this.common.errContent);
+    //   return;
+    // }
     if (!this.customer_name) {
       this.common.showAlertMessage('Please enter customer name', this.common.errContent)
       return;
@@ -201,7 +201,7 @@ export class CustomerComponent {
     const data = {
       sbu_id: this.sbuId,
       sales_person_id: this.salesPersonId,
-      mentor_id: this.mentorId,
+      // mentor_id: this.mentorId,
       customer: this.customer_name,
       segment_id: this.segmentId,
       subsegment_id: this.subSegmentId,
@@ -228,7 +228,7 @@ export class CustomerComponent {
       if (res.success) {
           this.sbuId = '';
           this.salesPersonId = ''
-          this.mentorId = ''
+          // this.mentorId = ''
           this.customer_name = ''
           this.segmentId = ''
           this.subSegmentId = ''
@@ -249,7 +249,6 @@ export class CustomerComponent {
           this.stateId = 0
           this.pin_no = ''
           this.common.showAlertMessage(res.message, this.common.succContent);
-          console.log('...salesPersonId', this.salesPersonId)
           this.getCustomerList();
       }
     })

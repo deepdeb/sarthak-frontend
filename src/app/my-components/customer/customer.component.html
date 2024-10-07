@@ -28,7 +28,7 @@
             </div>
             <div class="my_form ">
                 <div class="row g-2">
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                         <div class="form_select_div">
                             <label>SBU</label>                            
                             <div class="form_select_div" >
@@ -46,21 +46,8 @@
                             <!-- <input type="text" class="form-control" *ngIf="checkDesignationId == 4" readonly [value]="sbuId"> -->
                         </div>
                     </div>                  
-                    <div class="col-md-3">
-                        <div class="form_select_div">
-                            <label>mentor</label>
-                            <div class="form_select_div">
-                                <select class="form-control" [(ngModel)]="mentorId">
-                                    <option value="" disabled>--choose mentor--</option>
-                                    <option *ngFor="let item of mentorList" [ngValue]="item.mentor_id">{{ item.mentor_name }}</option>
-                                </select>
-                                <span class="material-symbols-outlined">
-                                    stat_minus_1
-                                </span>
-                            </div>                            
-                        </div>
-                    </div>
-                    <div class="col-md-3">  
+                   
+                    <div class="col-md-4">  
                         <div class="form_select_div" >
                             <label>sales incharge</label>
                             <div class="form_select_div">
@@ -74,6 +61,20 @@
                             </div>                            
                         </div>
                     </div>
+                    <!-- <div class="col-md-3">
+                        <div class="form_select_div">
+                            <label>mentor</label>
+                            <div class="form_select_div">
+                                <select class="form-control" [(ngModel)]="mentorId">
+                                    <option value="" disabled>--choose mentor--</option>
+                                    <option *ngFor="let item of mentorList" [ngValue]="item.mentor_id">{{ item.mentor_name }}</option>
+                                </select>
+                                <span class="material-symbols-outlined">
+                                    stat_minus_1
+                                </span>
+                            </div>                            
+                        </div>
+                    </div> -->
                     <div class="col-md-4">
                         <div class="form_select_div">
                             <label>customer</label>
@@ -318,7 +319,7 @@
                 <th>name</th>
                 <th>mobile no.</th>
                 <th>email id</th>
-                <th>location</th>
+                <!-- <th>location</th> -->
                 <th>view</th>
                 <th>edit</th>
                 <th>delete</th>
@@ -334,7 +335,7 @@
                 <td>{{ item.name }}</td>
                 <td>{{ item.mobile }}</td>
                 <td class="text-lowercase">{{ item.email }}</td>
-                <td>{{ item.location }}</td>
+                <!-- <td>{{ item.location }}</td> -->
                 <td>
                     <span class="material-symbols-outlined" style="color:#006FFD;" (click)="goToDetailsPage(item.customer_id)">
                         visibility
