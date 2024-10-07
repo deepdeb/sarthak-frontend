@@ -143,10 +143,10 @@ export class SegmentComponent implements OnInit {
     this.rest.createSubSegment(data).subscribe((res: any) => {
       if (res.success) {
         if (res.response) {
+          this.getSubSegmentList();
           this.segmentId = '';
           this.subSegmentName = '';
           this.common.showAlertMessage(res.message, this.common.succContent);
-          this.getSubSegmentList();
         }
       }
     })
@@ -174,11 +174,11 @@ export class SegmentComponent implements OnInit {
     this.rest.createSubSubSegment(data).subscribe((res: any) => {
       if (res.success) {
         if (res.response) {
+          this.getSubSubSegmentList();
           this.segmentId_1 = '';
           this.subSegmentId = '';
           this.subSubSegmentName = '';
           this.common.showAlertMessage(res.message, this.common.succContent);
-          this.getSubSubSegmentList();
         }
       }
     })
@@ -211,12 +211,12 @@ export class SegmentComponent implements OnInit {
     this.rest.createSubSubSubSegment_rest(data).subscribe((res: any) => {
       if (res.success) {
         if (res.message) {
+          this.getSubSubSubSegmentList();
           this.segmentId_3 = '',
             this.subSegmentId_2 = '',
             this.subSubSegmentId_1 = '',
             this.subSubSubSegmentName = ''
           this.common.showAlertMessage(res.message, this.common.succContent)
-          this.getSubSubSubSegmentList();
         }
       }
     })

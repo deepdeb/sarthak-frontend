@@ -73,8 +73,8 @@ export class CustomerComponent {
   //********** Common API calls on page load **************//
   onPageLoadCommonAPI() {
     this.getSBUList();
-    this.getMentorList();
-    this.getSalesPersonList();
+    // this.getMentorList();
+    // this.getSalesPersonList();
     this.getCustomerList();
     this.getSegmentList();
     this.getStateList();
@@ -226,7 +226,7 @@ export class CustomerComponent {
 
     this.rest.createCustomer_rest(data, this.isEdit).subscribe((res: any) => {
       if (res.success) {
-        if (res.response) {
+          this.sbuId = '';
           this.salesPersonId = ''
           this.mentorId = ''
           this.customer_name = ''
@@ -248,9 +248,9 @@ export class CustomerComponent {
           this.city_name = ''
           this.stateId = 0
           this.pin_no = ''
-          this.common.showAlertMessage(res.message, this.common.succContent)
+          this.common.showAlertMessage(res.message, this.common.succContent);
+          console.log('...salesPersonId', this.salesPersonId)
           this.getCustomerList();
-        }
       }
     })
 
@@ -416,6 +416,8 @@ export class CustomerComponent {
 
   //************* for edit customer ***********//
   getCustomerDetailsById(function_customer_id: any) {
+    this.mentorList = [];
+    this.salesPersonList = [];
     this.customerId = function_customer_id
     this.isEdit = true;
     const data = {
@@ -424,9 +426,25 @@ export class CustomerComponent {
     this.rest.getCustomerDetailsById_rest(data).subscribe((res: any) => {
       if (res.success) {
         if (res.response) {
-          this.sbuId = res.response.sbu_id
-          this.getMentorList();
-          // this.getSalesPersonList();
+          this.sbuId = res.response.sbu_id;
+          if(this.sbuId) {
+            this.getMentorList();
+            this.getSalesPersonList();
+          }
+
+          this.segmentId = res.response.segment_id
+          if(this.segmentId) {
+            this.getSubSegmentList();
+          }
+          this.subSegmentId = res.response.subsegment_id
+          if(this.subSegmentId) {
+            this.getSubSubSegmentList();
+          }
+          this.subSubSegmentId = res.response.subsubsegment_id
+          if(this.subSubSegmentId) {
+            this.getSubSubSubSegmentList();
+          }
+          this.subSubSubSegmentId = res.response.subsubsubsegment_id
           this.customer_name = res.response.customer
           this.area_name = res.response.area
           this.location_name = res.response.location
@@ -441,13 +459,6 @@ export class CustomerComponent {
           this.mentorId = res.response.mentor_id
           this.emailId = res.response.email
           this.district_name = res.response.district
-          this.segmentId = res.response.segment_id
-          this.getSubSegmentList();
-          this.subSegmentId = res.response.subsegment_id
-          this.getSubSubSegmentList();
-          this.subSubSegmentId = res.response.subsubsegment_id
-          this.getSubSubSubSegmentList();
-          this.subSubSubSegmentId = res.response.subsubsubsegment_id
           this.street_no = res.response.street_no
           this.street_name = res.response.street_name
           this.prdtCategoryId = res.response.product_category_id

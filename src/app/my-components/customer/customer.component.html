@@ -33,7 +33,7 @@
                             <label>SBU</label>                            
                             <div class="form_select_div" >
                                 <select class="form-control" [(ngModel)]="sbuId" (change)="getMentorSalesList()">
-                                    <!-- <option>-- choose SBU --</option> -->
+                                    <option value="" disabled>-- choose SBU --</option>
                                     <option *ngFor="let item of SBUList" [value]= "item.sbu_id">{{ item.sbu_name }}</option>
                                 </select>
                                 <span class="material-symbols-outlined">
@@ -51,7 +51,7 @@
                             <label>mentor</label>
                             <div class="form_select_div">
                                 <select class="form-control" [(ngModel)]="mentorId">
-                                    <option value='' disabled>--choose mentor--</option>
+                                    <option value="" disabled>--choose mentor--</option>
                                     <option *ngFor="let item of mentorList" [ngValue]="item.mentor_id">{{ item.mentor_name }}</option>
                                 </select>
                                 <span class="material-symbols-outlined">
@@ -65,7 +65,7 @@
                             <label>sales incharge</label>
                             <div class="form_select_div">
                                 <select class="form-control" [(ngModel)]="salesPersonId">
-                                    <option value='' disabled>--choose sales incharge--</option>
+                                    <option value="" disabled>--choose sales incharge--</option>
                                     <option *ngFor="let item of salesPersonList" [value]="item.sales_person_id">{{ item.sales_person_name }}</option>
                                 </select>
                                 <span class="material-symbols-outlined">
