@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class DetailsPageComponent {
 
   salesIncharge: string = '';
+  salesPersonId: any;
   mentorName: string = '';
   customer_creation_date: any;
   customer_Name: string = '';
@@ -124,20 +125,20 @@ export class DetailsPageComponent {
     this.rest.getEnquiryById_rest(data).subscribe((res: any) =>{
       if(res.success){
         if(res.response){
-          console.log('res response>>>', res.response)
-          this.enquiryId = res.response.enquiry_id
-          this.salesIncharge = res.response.sales_person_name
-          this.customer_Name = res.response.customer
-          this.enquiryDate = res.response.enquiry_date
-          this.principalHouse = res.response.principal_house
-          this.enquirySource = res.response.enquiry_source_name
-          this.basicValue = res.response.basic_value
-          this.offerDate = res.response.offer_date
-          this.yearFinal = res.response.tentative_finalization_year
-          this.monthFinal = res.response.tentative_finalization_month
-          this.enquiryStatus = res.response.status_initial
-          this.enquiryRemarks = res.response.remarks_initial
-          this.enquirySupport = res.response.support_initial
+          console.log('res', res.response)
+          this.enquiryId = res.response[0].enquiry_id
+          this.salesIncharge = res.response[0].sales_person_name
+          this.customer_Name = res.response[0].customer
+          this.enquiryDate = res.response[0].enquiry_date
+          this.principalHouse = res.response[0].principal_house
+          this.enquirySource = res.response[0].enquiry_source_name
+          this.basicValue = res.response[0].basic_value
+          this.offerDate = res.response[0].offer_date
+          this.yearFinal = res.response[0].tentative_finalization_year
+          this.monthFinal = res.response[0].tentative_finalization_month
+          this.enquiryStatus = res.response[0].status_initial
+          this.enquiryRemarks = res.response[0].remarks_initial
+          this.enquirySupport = res.response[0].support_initial
         }
       }
     })

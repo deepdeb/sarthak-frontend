@@ -20,6 +20,8 @@ export class RestService {
   }
   //************** FOR SBU-LIST end ************//
 
+
+
   //************ For  Function-name List START ************//
   getFunctionList_rest() {
     return this.http.get(this.API_ROOT + 'common/getFunctionList', httpOptions)
@@ -28,14 +30,12 @@ export class RestService {
   //************ For  Function List END ************//
 
 
+
   //************ For  Designation-name List START ************//
   getDesignationList_rest() {
     return this.http.get(this.API_ROOT + 'common/getDesignationList', httpOptions)
   }
   //************ For  Designation-name List end ************//
-
-
-
 
 
 
@@ -132,6 +132,11 @@ export class RestService {
 
 
 
+  // ************* for customer list by salesperson start ***********//
+  getCustomerListBySalesperson_rest(data: any): Observable<any> {
+    return this.http.post(this.API_ROOT + 'common/getCustomerListBySalesperson', data, httpOptions)
+  }
+  // ************* for customer list by salesperson end ************//
 
 
   //********** edit & show details for only one customer start **********//

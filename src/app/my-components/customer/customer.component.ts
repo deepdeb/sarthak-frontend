@@ -19,12 +19,8 @@ export class CustomerComponent {
   salesPersonList: any = [];
   total_count: number = 0;
   salesPersonId = '' as any;
-  segmentId = '' as any;
-  segmentList: any = [];
-  subSegmentList: any = [];
   customer_name: string = '';
   mentor_name: string = '';
-  subSegmentId = '' as any;
   contact_name: string = '';
   designation: string = '';
   department: string = '';
@@ -50,15 +46,20 @@ export class CustomerComponent {
   mentorId: any = '';
   mentorList: any = [];
 
-  subSubSegmentId: any;
-  segmentId_1: any;
-  segmentId_2: any;
-  segmentId_3: any;
-  subSegmentId_1: any;
-  subSegmentId_2: any;
-  subSubSegmentId_1: any;
+  segmentId = 0 as number;
+  segmentId_1 = 0 as number;
+  segmentId_2 = 0 as number;
+  segmentId_3 = 0 as number;
+  subSegmentId = 0 as number;
+  subSegmentId_1 = 0 as number;
+  subSegmentId_2 = 0 as number;
+  subSubSegmentId = 0 as number;
+  subSubSegmentId_1 = 0 as number;
+  subSubSubSegmentId = 0 as number;
+
+  segmentList: any = [];
+  subSegmentList: any = [];
   subSubSegmentList: any = [];
-  subSubSubSegmentId: any;
   subSubSubSegmentList: any = [];
   totalCustomerCount: number = 0;
 
@@ -230,10 +231,10 @@ export class CustomerComponent {
           this.salesPersonId = ''
           // this.mentorId = ''
           this.customer_name = ''
-          this.segmentId = ''
-          this.subSegmentId = ''
-          this.subSubSegmentId = ''
-          this.subSubSubSegmentId = ''
+          this.segmentId = 0
+          this.subSegmentId = 0
+          this.subSubSegmentId = 0
+          this.subSubSubSegmentId = 0
           this.contact_name = ''
           this.designation = ''
           this.department = ''
@@ -281,11 +282,11 @@ export class CustomerComponent {
 
   //************  segment listing function start ***********//
   getSegmentList() {
+    this.segmentList = [];
     this.rest.getSegmentList_rest().subscribe((res: any) => {
       if (res.success) {
         if (res.response) {
           if (res.response.length > 0) {
-            this.segmentList = [];
             this.segmentList = res.response;
             // this.totalCount = res.total_count;
           }
@@ -301,11 +302,17 @@ export class CustomerComponent {
   //************  sub-segment listing function end ***********//
 
   getSubSegmentList() {
+    this.subSegmentList = [];
+    this.subSegmentId = 0;
+    this.subSegmentId_1 = 0;
+    this.subSegmentId_2 = 0;
+    this.subSubSegmentId = 0;
+    this.subSubSegmentId_1 = 0;
+    this.subSubSubSegmentId = 0;
     const data = {
       segment_id: this.segmentId
     }
     this.rest.getSubSegmentList_rest(data).subscribe((res: any) => {
-      this.subSegmentList = [];
       if (res.success) {
         if (res.response) {
           if (res.response.length > 0) {
@@ -318,12 +325,15 @@ export class CustomerComponent {
 
 
   getSubSubSegmentList() {
+    this.subSubSegmentList = [];
+    this.subSubSegmentId = 0;
+    this.subSubSegmentId_1 = 0;
+    this.subSubSubSegmentId = 0;
     const data = {
       segment_id: this.segmentId || this.segmentId_1 || this.segmentId_2 || this.segmentId_3,
       subsegment_id: this.subSegmentId || this.subSegmentId_1 || this.subSegmentId_2
     }
     this.rest.getSubSubSegmentList_rest(data).subscribe((res: any) => {
-      this.subSubSegmentList = [];
       if (res.success) {
         if (res.response) {
           if (res.response.length > 0) {
@@ -336,13 +346,14 @@ export class CustomerComponent {
   }
 
   getSubSubSubSegmentList() {
+    this.subSubSubSegmentList = [];
+    this.subSubSubSegmentId = 0
     const data = {
       segment_id: this.segmentId || this.segmentId_1 || this.segmentId_2 || this.segmentId_3,
       subsegment_id: this.subSegmentId || this.subSegmentId_1 || this.subSegmentId_2,
       subsubsegment_id: this.subSubSegmentId || this.subSubSegmentId_1
     }
     this.rest.getSubSubSubSegmentList_rest(data).subscribe((res: any) => {
-      this.subSubSubSegmentList = [];
       if (res.success) {
         if (res.response) {
           if (res.response.length > 0) {

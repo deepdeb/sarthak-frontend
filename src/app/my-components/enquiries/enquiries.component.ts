@@ -11,13 +11,12 @@ import { CommonService } from 'src/app/my-services/common.service';
   styleUrls: ['./enquiries.component.css']
 })
 export class EnquiriesComponent {
-  salesIncharge: string = '';
   customer_Name: string = '';
   sbuId: any = localStorage.getItem('sbu_id');
   salesPersonList: any = [];
-  salesPersonId: any = localStorage.getItem('sales_person_id');
+  salesPersonId = '' as any;
   customerList: any =[];
-  customerId: any;
+  customerId = '' as any;
   enquiryDate: any;
   principalHouse: any;
   enquirySourceId: any;
@@ -32,9 +31,11 @@ export class EnquiriesComponent {
   enquiryList: any= [];
   enquiryId: any;
   totalCount : number = 0;
-
   isEdit:  boolean = false;
+
+  checkSalesPersonId: any = localStorage.getItem('sales_person_id')
   checkDesignationId: any = localStorage.getItem('designation_id');
+  customerBySalespersonList = [] as any;
 
 
 
@@ -53,12 +54,12 @@ getCustomerList(){
   const data = {
     check_designation_id: localStorage.getItem('designation_id'),
     sbu_id: localStorage.getItem('sbu_id'),
-    sales_person_id: localStorage.getItem('sales_person_id')
+    // sales_person_id: localStorage.getItem('sales_person_id')
+    sales_person_id: this.salesPersonId
   };
   this.rest.getCustomerList_rest(data).subscribe((res: any) =>{
     if(res.success){
       if(res.response){
-        console.log('>>> customer list', res.response)
         if(res.response.length > 0){
           this.customerList = [];
           this.customerList = res.response;
@@ -68,6 +69,38 @@ getCustomerList(){
     }
   })
 }
+
+
+//********* FOR get customer list by salesperson start *********//
+getCustomerListBySalesperson() {
+  this.setSBUId(this.salesPersonId);
+  const data = {
+    sales_person_id: this.salesPersonId
+  }
+  this.rest.getCustomerListBySalesperson_rest(data).subscribe((res: any) => {
+    if(res.success) {
+      this.customerBySalespersonList = [];
+      if(res.response) {
+        if(res.response.length > 0) {
+          this.customerBySalespersonList = res.response;
+        }
+      }
+    }
+  })
+}
+//********* FOR get customer list by salesperson end **********/
+
+
+
+
+//********* Set SBU ID for create enquiry ************/
+setSBUId(sales_person_id: any) {
+  const salesperson = this.salesPersonList.find((element: any) => element.sales_person_id == sales_person_id);
+  this.sbuId = salesperson.sbu_id;
+}
+//********* Set SBU ID for create enquiry ************/
+
+
 
 
 //********* FOR total sales person list start *********//
@@ -80,10 +113,8 @@ getSalesPersonList() {
   this.rest.getSalesPersonList_rest(data).subscribe((res: any) => {
     if (res.success) {
       if (res.response) {
-        // console.log('>>>', res)
         this.salesPersonList = [];
         this.salesPersonList = res.response;
-        // this.total_count = res.total_count;
       }
     }
   })
@@ -110,52 +141,24 @@ getEnquirySourceList(){
 
 //************* Create Enquiry start *************//
 createEnquiry(){
-  // if(!this.salesPersonId){
-  //   this.common.showAlertMessage('Please choose a Sales Person', this.common.errContent);
-  //   return;
-  // }
-  // if(!this.customerId){
-  //   this.common.showAlertMessage('Please choose a Customer', this.common.errContent);
-  //   return;
-  // }
+  if(!this.salesPersonId){
+    this.common.showAlertMessage('Please choose Sales Person', this.common.errContent);
+    return;
+  }
+  if(!this.customerId){
+    this.common.showAlertMessage('Please choose customer', this.common.errContent);
+    return;
+  }
   if(!this.enquiryDate){
-    this.common.showAlertMessage('Please set a Enquiry Date', this.common.errContent);
+    this.common.showAlertMessage('Please set Enquiry Date', this.common.errContent);
     return;
   }
   if(!this.enquirySourceId){
-    this.common.showAlertMessage('Please choose a Enquiry Source', this.common.errContent);
+    this.common.showAlertMessage('Please choose source of enquiry', this.common.errContent);
     return;
   }
   if(!this.principalHouse){
-    this.common.showAlertMessage('Please enter PrincipalHouse', this.common.errContent);
-    return;
-  }
-  if(!this.offerDate){
-    this.common.showAlertMessage('Please set a Offer Date', this.common.errContent);
-    return;
-  }
-  if(!this.basicValue){
-    this.common.showAlertMessage('Please enter the Basic Value', this.common.errContent);
-    return;
-  }
-  if(!this.monthFinal){
-    this.common.showAlertMessage('Please enter Final Month', this.common.errContent);
-    return;
-  }
-  if(!this.yearFinal){
-    this.common.showAlertMessage('Please enter Final Year', this.common.errContent);
-    return;
-  }
-  if(!this.enquiryStatus){
-    this.common.showAlertMessage('Please enter Enquiry Status', this.common.errContent);
-    return;
-  }
-  if(!this.enquiryRemarks){
-    this.common.showAlertMessage('Please enter Enquiry Remarks', this.common.errContent);
-    return;
-  }
-  if(!this.enquirySupport){
-    this.common.showAlertMessage('Please enter Required Support', this.common.errContent);
+    this.common.showAlertMessage('Please enter Principal House', this.common.errContent);
     return;
   }
 
@@ -207,7 +210,6 @@ getEnquiryList(){
     sbu_id: localStorage.getItem('sbu_id'),
     sales_person_id: localStorage.getItem('sales_person_id')
   }
-  console.log('>>>',data)
   this.rest.getEnquiryList_rest(data).subscribe((res: any) =>{
     if(res.success){
       if(res.response){
@@ -232,32 +234,32 @@ goToDetailsPage(enquiry_id: any){
 }
 
 
-
-
 getEnquiryById(enquiry_id: any){
   this.enquiryId = enquiry_id;
   this.isEdit = true;
   const data = {
-    sbu_id: localStorage.getItem('sbu_id'),
+    sbu_id: this.sbuId,
     enquiry_id: enquiry_id
   }
   this.rest.getEnquiryById_rest(data).subscribe((res: any) =>{
     if(res.success){
       if(res.response){
-        console.log('res response>>>', res.response)
-        // this.enquiryId = res.response.enquiry_id
-        this.salesPersonId = res.response.sales_person_id
-        this.customerId = res.response.customer_id
-        this.enquiryDate = res.response.enquiry_date
-        this.principalHouse = res.response.principal_house
-        this.enquirySourceId = res.response.enquiry_source_id,
-        this.basicValue = res.response.basic_value
-        this.offerDate = res.response.offer_date
-        this.yearFinal = res.response.tentative_finalization_year
-        this.monthFinal = res.response.tentative_finalization_month
-        this.enquiryStatus = res.response.status_initial
-        this.enquiryRemarks = res.response.remarks_initial
-        this.enquirySupport = res.response.support_initial
+        this.salesPersonId = res.response[0].sales_person_id
+        if(this.salesPersonId) {
+          this.getCustomerListBySalesperson();
+          this.setSBUId(this.salesPersonId);
+        }
+        this.customerId = res.response[0].customer_id
+        this.enquiryDate = res.response[0].enquiry_date
+        this.principalHouse = res.response[0].principal_house
+        this.enquirySourceId = res.response[0].enquiry_source_id,
+        this.basicValue = res.response[0].basic_value
+        this.offerDate = res.response[0].offer_date
+        this.yearFinal = res.response[0].tentative_finalization_year
+        this.monthFinal = res.response[0].tentative_finalization_month
+        this.enquiryStatus = res.response[0].status_initial
+        this.enquiryRemarks = res.response[0].remarks_initial
+        this.enquirySupport = res.response[0].support_initial
       }
     }
   })
@@ -270,6 +272,10 @@ restrictPhone(event: any): void {
     event.preventDefault();
     return;
   }
+}
+
+setSBU(sbu_id: any) {
+  console.log('sbu_id', sbu_id);
 }
 
 }
