@@ -39,7 +39,7 @@ export class EnquiriesComponent {
 
 
   // ************ static months & years **************//
-  months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+  months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
   years = ['2024', '2025'];
 
 
