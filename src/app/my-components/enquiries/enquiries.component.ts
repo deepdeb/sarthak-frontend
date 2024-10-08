@@ -278,4 +278,15 @@ setSBU(sbu_id: any) {
   console.log('sbu_id', sbu_id);
 }
 
+
+
+
+//************* for follow-up page ***************//
+
+goToFollowUpPage(){
+  this.router.navigate(['followUp']);
 }
+
+}
+
+

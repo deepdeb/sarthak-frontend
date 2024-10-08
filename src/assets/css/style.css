@@ -65,10 +65,12 @@ ul li{
 }
 
 
-select option, input, table td {
+select,select option, input, table td {
   text-transform: uppercase !important;
 }
-
+table tr td{
+  font-size: small;
+}
 .btn1{
   background: var(--secondary) !important;
   border-radius: 4px !important;
@@ -686,7 +688,7 @@ tr:nth-child(even),tr:hover {
 
 /************ enquiry css start ***********/
 .follow_up{
-  padding: 6px 12px;
+  padding: 6px ;
   font-size: 12px;
   font-weight: 500;
   text-transform: capitalize;
@@ -695,8 +697,26 @@ tr:nth-child(even),tr:hover {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  cursor: pointer;
 }
-
+.follow_txt{
+  padding: 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  background: white;
+  font-size: 13px;
+  font-weight: 400;
+}
+.follow_up_div{
+  margin-top: 60px;
+}
+.follow_up_div .follow_up_heading{
+  color: var(--primary);
+  font-size: 26px !important;
+  margin-bottom: 30px !important;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--secondary);
+}
 
 
 
@@ -747,7 +767,7 @@ tr:nth-child(even),tr:hover {
   color: var(--white) !important;
   border-radius: 4px;
   letter-spacing: 0 !important;
-    font-family: "Roboto Condensed", sans-serif !important;
+  font-family: "Roboto Condensed", sans-serif !important;
 }
 
 .mdc-button__label{
@@ -814,7 +834,6 @@ tr:nth-child(even),tr:hover {
 .details_div p{
   color: #ffffffa6;
   font-size: 16px ;
-  text-transform: capitalize;
   margin-bottom: 0;
 }
 .details_heading{
@@ -828,4 +847,7 @@ tr:nth-child(even),tr:hover {
   /* display: flex;
   align-items: center; */
   margin-bottom: 16px;
+}
+.details_content{
+  text-transform: uppercase;
 }
