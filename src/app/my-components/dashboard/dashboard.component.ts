@@ -47,6 +47,7 @@ export class DashboardComponent implements OnInit {
   }
 
   filterUnit() {
+    this.salesPersonId = ''
     this.getDashBoardCount();
   }
 

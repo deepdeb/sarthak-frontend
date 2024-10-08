@@ -700,12 +700,13 @@ tr:nth-child(even),tr:hover {
   cursor: pointer;
 }
 .follow_txt{
-  padding: 8px;
+  padding: 6px;
   border-radius: 4px;
   text-transform: uppercase;
   background: white;
   font-size: 13px;
   font-weight: 400;
+  height: 40px;
 }
 .follow_up_div{
   margin-top: 60px;
