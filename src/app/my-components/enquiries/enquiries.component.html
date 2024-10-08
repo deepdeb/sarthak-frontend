@@ -35,7 +35,8 @@
                             <div class="form_select_div">
                                 <select class="form-control" [(ngModel)]="salesPersonId"
                                     (change)="getCustomerListBySalesperson();">
-                                    <option *ngFor="let item of salesPersonList" [value]="item.sales_person_id">{{ item.sales_person_name }}</option>
+                                    <option *ngFor="let item of salesPersonList" [value]="item.sales_person_id">{{
+                                        item.sales_person_name }}</option>
                                 </select>
                                 <span class="material-symbols-outlined">
                                     stat_minus_1
@@ -99,7 +100,7 @@
                             <input type="text" class="form-control" [(ngModel)]="basicValue">
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-3">
+                    <!-- <div class="col-sm-6 col-md-3">
                         <div class="">
                             <label>Tentative Date of Finalisation</label>
                             <div class="d-flex">
@@ -109,7 +110,34 @@
                                     [(ngModel)]="yearFinal" placeholder="YYYY">
                             </div>
                         </div>
+                    </div> -->
+
+                    <div class="col-sm-6 col-md-3">
+                        <div class="">
+                            <label>Tentative Date of Finalisation</label>
+                            <div class="row">
+                                <div class="form_select_div col-md-6">
+                                    <select class="form-control me-3" [(ngModel)]="monthFinal">
+                                        <option value="" disabled>MM</option>
+                                        <option *ngFor="let month of months" [value]="month">{{ month }}</option>
+                                    </select>
+                                    <span class="material-symbols-outlined"  style="top:15% !important;right:26px;transform:none !important; ">
+                                        stat_minus_1
+                                    </span>
+                                </div>
+                                <div class="form_select_div col-md-6">
+                                    <select class="form-control" [(ngModel)]="yearFinal">
+                                        <option value="" disabled>YYYY</option>
+                                        <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                                    </select>
+                                    <span class="material-symbols-outlined" style="top:15% !important;right:26px;transform:none !important; " >
+                                        stat_minus_1
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                     <div class="col-sm-6 col-md-4">
                         <div class="">
                             <label>status</label>
@@ -174,7 +202,7 @@
                         <td>NA</td>
                     </ng-template>
                     <td>
-                        <span class="follow_up" (click)="goToFollowUpPage()">
+                        <span class="follow_up" (click)="goToFollowUpPage(item.enquiry_id)">
                             <span class="material-symbols-outlined" style="color:#1b1b1b;font-size: 18px;">
                                 visibility
                             </span>

@@ -28,12 +28,13 @@
             </div>
             <div class="my_form ">
                 <div class="row g-2">
-                    <div class="col-md-4">
+
+                    <div *ngIf="checkSbuId ==0" class="col-md-4">
                         <div class="form_select_div">
                             <label>SBU</label>                            
                             <div class="form_select_div" >
                                 <select class="form-control" [(ngModel)]="sbuId" (change)="getMentorSalesList()">
-                                    <option value="" disabled>-- choose SBU --</option>
+                                    <option *ngIf="sbuId==0" value="" disabled>-- choose SBU --</option>
                                     <option *ngFor="let item of SBUList" [value]= "item.sbu_id">{{ item.sbu_name }}</option>
                                 </select>
                                 <span class="material-symbols-outlined">
@@ -47,7 +48,7 @@
                         </div>
                     </div>                  
                    
-                    <div class="col-md-4">  
+                    <div *ngIf="checkSbuId ==0" class="col-md-4">  
                         <div class="form_select_div" >
                             <label>sales incharge</label>
                             <div class="form_select_div">
@@ -75,7 +76,14 @@
                             </div>                            
                         </div>
                     </div> -->
-                    <div class="col-md-4">
+                    <div *ngIf="checkSbuId ==0" class="col-md-4">
+                        <div class="form_select_div">
+                            <label>customer</label>
+                            <input type="text" class="form-control" [(ngModel)]="customer_name">
+                        </div>
+                    </div>
+
+                    <div *ngIf="checkSbuId !=0" class="col-md-12">
                         <div class="form_select_div">
                             <label>customer</label>
                             <input type="text" class="form-control" [(ngModel)]="customer_name">

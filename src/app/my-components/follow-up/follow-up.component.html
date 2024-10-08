@@ -27,13 +27,13 @@
             <div class="page_info_heading">
                 enquiry
             </div>
-            
+
             <div class="my_form ">
                 <div class="row">
                     <div class="col-sm-6 col-md-3">
                         <div class="form_select_div">
                             <label>sales incharge</label>
-                            <p class="follow_txt">akash chatterjee</p>
+                            <p class="follow_txt">{{salesPersonName}}</p>
                             <!-- <div class="form_select_div">
                                 <select class="form-control" [(ngModel)]="salesPersonId"
                                     (change)="getCustomerListBySalesperson();">
@@ -48,7 +48,7 @@
                     <div class="col-sm-6 col-md-3">
                         <div class="form_select_div">
                             <label>customer</label>
-                            <p class="follow_txt">Bajaj electricals</p>
+                            <p class="follow_txt">{{customerName}}</p>
                             <!-- <div class="form_select_div">
                                 <select class="form-control" [(ngModel)]="customerId">
                                     <option value="" disabled>--choose customer--</option>
@@ -64,14 +64,14 @@
                     <div class="col-sm-3 col-md-3">
                         <div class="form_select_div ">
                             <label>enquiry date</label>
-                            <p class="follow_txt">2024-10-07</p>
+                            <p class="follow_txt">{{enquiryDate}}</p>
                             <!-- <input type="date" class="form-control" [(ngModel)]="enquiryDate"> -->
                         </div>
                     </div>
                     <div class="col-sm-5 col-md-3">
                         <div class="">
                             <label>source of enquiry</label>
-                            <p class="follow_txt">purchase</p>
+                            <p class="follow_txt">{{enquirySource}}</p>
                             <!-- <div class="form_select_div">
                                 <select class="form-control" [(ngModel)]="enquirySourceId">
                                     <option>--choose enquiry
@@ -89,28 +89,34 @@
                     <div class="col-sm-4 col-md-3">
                         <div class="form_select_div">
                             <label>principal house</label>
-                            <p class="follow_txt">PH-2</p>
+                            <p class="follow_txt">{{principalHouse}}</p>
                             <!-- <input type="text" class="form-control" [(ngModel)]="principalHouse"> -->
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
                         <div class="">
                             <label>date of offer</label>
-                            <p class="follow_txt">2024-10-07</p>
+                            <p class="follow_txt">{{offerDate}}</p>
                             <!-- <input type="date" class="form-control" [(ngModel)]="offerDate"> -->
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
                         <div class="form_select_div">
                             <label>basic value</label>
-                            <p class="follow_txt">10000.00</p>
+                            <p class="follow_txt">{{basicValue}}</p>
                             <!-- <input type="text" class="form-control" [(ngModel)]="basicValue"> -->
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
                         <div class="">
                             <label>Tentative Date of Finalisation</label>
-                            <p class="follow_txt">10 / 2024</p>
+                            <ng-container
+                                *ngIf="tentativeFinalizationMonth && tentativeFinalizationYear; else noMonthAndYear">
+                                <p class="follow_txt">{{tentativeFinalizationMonth}} / {{tentativeFinalizationYear}}</p>
+                            </ng-container>
+                            <ng-template #noMonthAndYear>
+                                <p class="follow_txt"></p>
+                            </ng-template>
                             <!-- <div class="d-flex">
                                 <input type="text" class="form-control me-3" maxlength="2"
                                     (keypress)="restrictPhone($event)" [(ngModel)]="monthFinal" placeholder="MM">
@@ -122,27 +128,21 @@
                     <div class="col-sm-6 col-md-4">
                         <div class="">
                             <label>status</label>
-                            <p class="follow_txt">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti necessitatibus quo natus eius officiis dolorum delectus esse.
-                            </p>
+                            <p class="follow_txt">{{statusInitial}}</p>
                             <!-- <input type="text" class="form-control" [(ngModel)]="enquiryStatus"> -->
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-4">
                         <div class="">
-                            <label>remarks</label> 
-                            <p class="follow_txt">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti necessitatibus quo natus eius officiis dolorum delectus esse.
-                            </p>
+                            <label>remarks</label>
+                            <p class="follow_txt">{{remarksInitial}}</p>
                             <!-- <input type="text" class="form-control" [(ngModel)]="enquiryRemarks"> -->
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-4">
                         <div class="">
                             <label>support required</label>
-                            <p class="follow_txt">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti necessitatibus quo natus eius officiis dolorum delectus esse.
-                            </p> 
+                            <p class="follow_txt">{{supportInitial}}</p>
                             <!-- <input type="text" class="form-control" [(ngModel)]="enquirySupport"> -->
                         </div>
                     </div>
@@ -150,7 +150,7 @@
             </div>
 
             <!-- first follow up  -->
-            <div class="follow_up_div">       
+            <div class="follow_up_div">
                 <div class="mb-4">
                     <h4 class="follow_up_heading">
                         first follow up
@@ -160,28 +160,28 @@
                             <div class="col-lg-2">
                                 <div class="form_select_div">
                                     <label class="">status date</label>
-                                    <input type="date" class="form-control" >
+                                    <input type="date" class="form-control">
                                     <!-- <p class="details_content">productCategory</p> -->
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <div class="form_select_div">
                                     <label class="">status</label>
-                                    <input type="text" class="form-control" >
+                                    <input type="text" class="form-control">
                                     <!-- <p class="details_content">productCategory</p> -->
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <div class="form_select_div">
                                     <label class="">remarks</label>
-                                    <input type="text" class="form-control" >
+                                    <input type="text" class="form-control">
                                     <!-- <p class="details_content">productCategory</p> -->
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <div class="form_select_div">
                                     <label class="">support required</label>
-                                    <input type="text" class="form-control" >
+                                    <input type="text" class="form-control">
                                     <!-- <p class="details_content">productCategory</p> -->
                                 </div>
                             </div>
@@ -189,18 +189,18 @@
                                 <button mat-flat-button class="btn1">
                                     <span class="material-symbols-outlined">
                                         add
-                                        </span>
+                                    </span>
                                 </button>
                             </div>
                         </div>
                     </div>
-                   
+
                 </div>
-                
+
             </div>
 
             <!-- second follow up  -->
-            <div class="follow_up_div">       
+            <div class="follow_up_div">
                 <div class="mb-4">
                     <h4 class="follow_up_heading">
                         second follow up
@@ -210,28 +210,28 @@
                             <div class="col-lg-2">
                                 <div class="form_select_div">
                                     <label class="">status date</label>
-                                    <input type="date" class="form-control" >
+                                    <input type="date" class="form-control">
                                     <!-- <p class="details_content">productCategory</p> -->
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <div class="form_select_div">
                                     <label class="">status</label>
-                                    <input type="text" class="form-control" >
+                                    <input type="text" class="form-control">
                                     <!-- <p class="details_content">productCategory</p> -->
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <div class="form_select_div">
                                     <label class="">remarks</label>
-                                    <input type="text" class="form-control" >
+                                    <input type="text" class="form-control">
                                     <!-- <p class="details_content">productCategory</p> -->
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <div class="form_select_div">
                                     <label class="">support required</label>
-                                    <input type="text" class="form-control" >
+                                    <input type="text" class="form-control">
                                     <!-- <p class="details_content">productCategory</p> -->
                                 </div>
                             </div>
@@ -239,18 +239,18 @@
                                 <button mat-flat-button class="btn1">
                                     <span class="material-symbols-outlined">
                                         add
-                                        </span>
+                                    </span>
                                 </button>
                             </div>
                         </div>
                     </div>
-                   
+
                 </div>
-                
+
             </div>
 
-             <!-- final follow up  -->
-             <div class="follow_up_div">       
+            <!-- final follow up  -->
+            <div class="follow_up_div">
                 <div class="mb-4">
                     <h4 class="follow_up_heading">
                         final follow up
@@ -260,28 +260,28 @@
                             <div class="col-lg-2">
                                 <div class="form_select_div">
                                     <label class="">status date</label>
-                                    <input type="date" class="form-control" >
+                                    <input type="date" class="form-control">
                                     <!-- <p class="details_content">productCategory</p> -->
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <div class="form_select_div">
                                     <label class="">status</label>
-                                    <input type="text" class="form-control" >
+                                    <input type="text" class="form-control">
                                     <!-- <p class="details_content">productCategory</p> -->
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <div class="form_select_div">
                                     <label class="">remarks</label>
-                                    <input type="text" class="form-control" >
+                                    <input type="text" class="form-control">
                                     <!-- <p class="details_content">productCategory</p> -->
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <div class="form_select_div">
                                     <label class="">support required</label>
-                                    <input type="text" class="form-control" >
+                                    <input type="text" class="form-control">
                                     <!-- <p class="details_content">productCategory</p> -->
                                 </div>
                             </div>
@@ -289,21 +289,21 @@
                                 <button mat-flat-button class="btn1">
                                     <span class="material-symbols-outlined">
                                         add
-                                        </span>
+                                    </span>
                                 </button>
                             </div>
                         </div>
                     </div>
-                   
+
                 </div>
-                
+
             </div>
 
         </div>
         <div class="text-center mt-3">
-            <button mat-flat-button class="btn1" >submit</button>
+            <button mat-flat-button class="btn1">submit</button>
         </div>
-       
+
         <!-- <div class="text-center mt-3">
             <button mat-flat-button class="btn1" (click)="createEnquiry()">submit</button>
         </div> -->

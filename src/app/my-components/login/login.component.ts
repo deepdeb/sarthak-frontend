@@ -18,7 +18,7 @@ export class LoginComponent {
   //   this._snackBar.open(message, action, { verticalPosition: "top", duration: 4000});
   // }
   hide: boolean = true;
-  sbu_id: any;
+  sbu_id = '' as any;
   userName: any;
   password: any;
   designation_id: string = "";

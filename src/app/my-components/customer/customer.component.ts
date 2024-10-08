@@ -18,7 +18,7 @@ export class CustomerComponent {
   customerCreateDate: any;
   salesPersonList: any = [];
   total_count: number = 0;
-  salesPersonId = '' as any;
+  salesPersonId = localStorage.getItem('sales_person_id');
   customer_name: string = '';
   mentor_name: string = '';
   contact_name: string = '';
@@ -43,6 +43,7 @@ export class CustomerComponent {
   isEdit: boolean = false;
   customerId: any;
   checkDesignationId: any = localStorage.getItem('designation_id');
+  checkSbuId: any = localStorage.getItem('sbu_id')
   mentorId: any = '';
   mentorList: any = [];
 
@@ -84,6 +85,8 @@ export class CustomerComponent {
 
   //********** For get sales person List **********//
   getSalesPersonList() {
+    this.salesPersonList = [];
+    this.salesPersonId = ''
     const data = {
       check_designation_id: this.checkDesignationId,
       sbu_id: this.sbuId,
@@ -92,7 +95,6 @@ export class CustomerComponent {
     this.rest.getSalesPersonList_rest(data).subscribe((res: any) => {
       if (res.success) {
         if (res.response) {
-          this.salesPersonList = [];
           this.salesPersonList = res.response;
           this.total_count = res.total_count;
         }
@@ -119,7 +121,7 @@ export class CustomerComponent {
   }
 
   getMentorSalesList() {
-    this.getMentorList()
+    // this.getMentorList()
     this.getSalesPersonList();
   }
 
@@ -130,10 +132,6 @@ export class CustomerComponent {
       this.common.showAlertMessage('Please Choose a sales incharge', this.common.errContent)
       return;
     }
-    // if (!this.mentorId) {
-    //   this.common.showAlertMessage('Please select mentor', this.common.errContent);
-    //   return;
-    // }
     if (!this.customer_name) {
       this.common.showAlertMessage('Please enter customer name', this.common.errContent)
       return;
@@ -202,7 +200,6 @@ export class CustomerComponent {
     const data = {
       sbu_id: this.sbuId,
       sales_person_id: this.salesPersonId,
-      // mentor_id: this.mentorId,
       customer: this.customer_name,
       segment_id: this.segmentId,
       subsegment_id: this.subSegmentId,
@@ -229,7 +226,6 @@ export class CustomerComponent {
       if (res.success) {
           this.sbuId = '';
           this.salesPersonId = ''
-          // this.mentorId = ''
           this.customer_name = ''
           this.segmentId = 0
           this.subSegmentId = 0

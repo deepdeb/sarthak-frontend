@@ -125,7 +125,6 @@ export class DetailsPageComponent {
     this.rest.getEnquiryById_rest(data).subscribe((res: any) =>{
       if(res.success){
         if(res.response){
-          console.log('res', res.response)
           this.enquiryId = res.response[0].enquiry_id
           this.salesIncharge = res.response[0].sales_person_name
           this.customer_Name = res.response[0].customer
