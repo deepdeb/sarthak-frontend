@@ -68,7 +68,7 @@ export class DetailsPageComponent {
     this.rest.getCustomerDetailsById_rest(data).subscribe((res: any) =>{
       if(res.success){
         if(res.response){
-          this.customer_creation_date = res.response.date;
+          this.customer_creation_date = res.response.customer_create_date;
           this.salesIncharge = res.response.sales_person_name;
           this.mentorName = res.response.mentor_name;
           this.sbuName = res.response.sbu_name

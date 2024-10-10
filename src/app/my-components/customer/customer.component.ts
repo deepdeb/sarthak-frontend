@@ -132,6 +132,10 @@ export class CustomerComponent {
       this.common.showAlertMessage('Please Choose a sales incharge', this.common.errContent)
       return;
     }
+    if (!this.customerCreateDate) {
+      this.common.showAlertMessage('Please select date', this.common.errContent)
+      return;
+    }
     if (!this.customer_name) {
       this.common.showAlertMessage('Please enter customer name', this.common.errContent)
       return;
@@ -200,6 +204,7 @@ export class CustomerComponent {
     const data = {
       sbu_id: this.sbuId,
       sales_person_id: this.salesPersonId,
+      customer_create_date: this.customerCreateDate,
       customer: this.customer_name,
       segment_id: this.segmentId,
       subsegment_id: this.subSegmentId,
@@ -226,6 +231,7 @@ export class CustomerComponent {
       if (res.success) {
           this.sbuId = '';
           this.salesPersonId = ''
+          this.customerCreateDate = null
           this.customer_name = ''
           this.segmentId = 0
           this.subSegmentId = 0
@@ -268,7 +274,6 @@ export class CustomerComponent {
           if (res.response.length > 0) {
             this.customerList = res.response;
             this.totalCustomerCount = res.total_count;
-            console.log('>>>customer list', this.customerList)
           }
         }
       }
@@ -455,10 +460,10 @@ export class CustomerComponent {
           this.customer_name = res.response.customer
           this.area_name = res.response.area
           this.location_name = res.response.location
-          this.customerCreateDate = res.response.date
           this.department = res.response.department;
           this.designation = res.response.designation;
           this.salesPersonId = res.response.sales_person_id;
+          this.customerCreateDate = res.response.customer_create_date;
           this.city_name = res.response.city
           this.pin_no = res.response.pin
           this.mob_no = res.response.mobile

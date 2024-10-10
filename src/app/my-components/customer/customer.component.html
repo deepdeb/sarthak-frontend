@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <div  class="main_body sec_gapping">
+    <div class="main_body sec_gapping">
         <div class="info_div">
             <div class="page_info_heading">
                 customer info
@@ -29,13 +29,14 @@
             <div class="my_form ">
                 <div class="row g-2">
 
-                    <div *ngIf="checkSbuId ==0" class="col-md-4">
+                    <div *ngIf="checkSbuId ==0" class="col-md-3">
                         <div class="form_select_div">
-                            <label>SBU</label>                            
-                            <div class="form_select_div" >
+                            <label>SBU</label>
+                            <div class="form_select_div">
                                 <select class="form-control" [(ngModel)]="sbuId" (change)="getMentorSalesList()">
                                     <option *ngIf="sbuId==0" value="" disabled>-- choose SBU --</option>
-                                    <option *ngFor="let item of SBUList" [value]= "item.sbu_id">{{ item.sbu_name }}</option>
+                                    <option *ngFor="let item of SBUList" [value]="item.sbu_id">{{ item.sbu_name }}
+                                    </option>
                                 </select>
                                 <span class="material-symbols-outlined">
                                     stat_minus_1
@@ -46,20 +47,33 @@
                             </div> -->
                             <!-- <input type="text" class="form-control" *ngIf="checkDesignationId == 4" readonly [value]="sbuId"> -->
                         </div>
-                    </div>                  
-                   
-                    <div *ngIf="checkSbuId ==0" class="col-md-4">  
-                        <div class="form_select_div" >
+                    </div>
+
+                    <div *ngIf="checkSbuId ==0" class="col-md-3">
+                        <div class="form_select_div">
                             <label>sales incharge</label>
                             <div class="form_select_div">
                                 <select class="form-control" [(ngModel)]="salesPersonId">
                                     <option value="" disabled>--choose sales incharge--</option>
-                                    <option *ngFor="let item of salesPersonList" [value]="item.sales_person_id">{{ item.sales_person_name }}</option>
+                                    <option *ngFor="let item of salesPersonList" [value]="item.sales_person_id">{{
+                                        item.sales_person_name }}</option>
                                 </select>
                                 <span class="material-symbols-outlined">
                                     stat_minus_1
                                 </span>
-                            </div>                            
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="checkSbuId==0" class="col-md-3">
+                        <div class="">
+                            <label>select date</label>
+                            <input type="date" class="form-control" [(ngModel)]="customerCreateDate">
+                        </div>
+                    </div>
+                    <div *ngIf="checkSbuId!=0" class="col-md-6">
+                        <div class="">
+                            <label>select date</label>
+                            <input type="date" class="form-control" [(ngModel)]="customerCreateDate">
                         </div>
                     </div>
                     <!-- <div class="col-md-3">
@@ -76,20 +90,20 @@
                             </div>                            
                         </div>
                     </div> -->
-                    <div *ngIf="checkSbuId ==0" class="col-md-4">
+                    <div *ngIf="checkSbuId ==0" class="col-md-3">
                         <div class="form_select_div">
                             <label>customer</label>
                             <input type="text" class="form-control" [(ngModel)]="customer_name">
                         </div>
                     </div>
 
-                    <div *ngIf="checkSbuId !=0" class="col-md-12">
+                    <div *ngIf="checkSbuId !=0" class="col-md-6">
                         <div class="form_select_div">
                             <label>customer</label>
                             <input type="text" class="form-control" [(ngModel)]="customer_name">
                         </div>
                     </div>
-                   
+
                     <!--_______ segment area start _______-->
                     <div class="col-md-3">
                         <div class="">
@@ -110,8 +124,9 @@
                     <div class="col-md-3">
                         <div class="">
                             <label>sub-segment</label>
-                            <div class="form_select_div" >
-                                <select class="form-control" [(ngModel)]="subSegmentId" (change)="getSubSubSegmentList()"> 
+                            <div class="form_select_div">
+                                <select class="form-control" [(ngModel)]="subSegmentId"
+                                    (change)="getSubSubSegmentList()">
                                     <option value="" disabled>--choose sub-segment--</option>
                                     <option *ngFor="let item of subSegmentList" [ngValue]="item.subsegment_id">
                                         {{ item.subsegment_name }}</option>
@@ -137,10 +152,12 @@
                             </div> -->
 
                             <div class="form_select_div ">
-                                
-                                <select class="form-control" [(ngModel)]="subSubSegmentId" (change)="getSubSubSubSegmentList()">
+
+                                <select class="form-control" [(ngModel)]="subSubSegmentId"
+                                    (change)="getSubSubSubSegmentList()">
                                     <option value="" disabled>-- choose sub-sub-segment --</option>
-                                    <option *ngFor="let item of subSubSegmentList" [ngValue]="item.subsubsegment_id">{{ item.subsubsegment_name }}
+                                    <option *ngFor="let item of subSubSegmentList" [ngValue]="item.subsubsegment_id">{{
+                                        item.subsubsegment_name }}
                                     </option>
                                 </select>
                                 <span class="material-symbols-outlined">
@@ -152,10 +169,11 @@
                     <div class="col-md-3">
                         <div class="">
                             <label>sub sub-sub-segment</label>
-                            <div class="form_select_div" >
+                            <div class="form_select_div">
                                 <select class="form-control" [(ngModel)]="subSubSubSegmentId">
                                     <option value="" disabled>--choose sub-sub-sub-segment--</option>
-                                    <option *ngFor="let item of subSubSubSegmentList" [ngValue]="item.subsubsubsegment_id">{{
+                                    <option *ngFor="let item of subSubSubSegmentList"
+                                        [ngValue]="item.subsubsubsegment_id">{{
                                         item.subsubsubsegment_name }}</option>
 
                                 </select>
@@ -167,7 +185,7 @@
                         </div>
                     </div>
                     <!--_______ segment area end _______-->
-                    
+
                 </div>
                 <div class="row">
                     <div class="col-md-2">
@@ -276,7 +294,8 @@
             <div class="form_select_div ms-2" style="width: 23%;">
                 <select class="form-control mb-0" [(ngModel)]="prdtCategoryId">
                     <option value='' disabled>-- choose product category --</option>
-                    <option *ngFor="let item of prdtCategoryList" [ngValue]="item.product_category_id">{{item.product_category_name}}
+                    <option *ngFor="let item of prdtCategoryList" [ngValue]="item.product_category_id">
+                        {{item.product_category_name}}
                     </option>
                 </select>
                 <span class="material-symbols-outlined">
@@ -300,6 +319,9 @@
             <button mat-flat-button class="btn1" (click)="createCustomer()">submit</button>
         </div>
     </div>
+
+
+    <!-- ****************** Customer listing area start ****************** -->
     <div class="listing_div">
         <!-- <div class="row">
             <div class="col-md-4">
@@ -338,7 +360,7 @@
 
                 <tr *ngFor="let item of customerList; let i = index">
                     <td>{{ i+1 }}</td>
-                    <td>{{ item.date }}</td>
+                    <td>{{ item.customer_create_date }}</td>
                     <td>{{ item.sbu_name }}</td>
                     <td>{{ item.sales_person_name }}</td>
                     <td>{{ item.mentor_name }}</td>
@@ -350,12 +372,14 @@
                     <td>{{ item.mobile }}</td>
                     <td class="text-lowercase">{{ item.email }}</td>
                     <td>
-                        <span class="material-symbols-outlined" style="color:#006FFD;" (click)="goToDetailsPage(item.customer_id)">
+                        <span class="material-symbols-outlined" style="color:#006FFD;"
+                            (click)="goToDetailsPage(item.customer_id)">
                             visibility
                         </span>
                     </td>
                     <td>
-                        <span class="material-symbols-outlined" style="color: #00BF58;" (click)="getCustomerDetailsById(item.customer_id)">
+                        <span class="material-symbols-outlined" style="color: #00BF58;"
+                            (click)="getCustomerDetailsById(item.customer_id)">
                             edit_square
                         </span>
                     </td>
@@ -367,6 +391,6 @@
                 </tr>
 
             </table>
-        </div>    
+        </div>
     </div>
 </div>
