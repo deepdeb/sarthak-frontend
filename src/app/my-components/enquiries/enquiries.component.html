@@ -69,10 +69,39 @@
                         <div class="">
                             <label>source of enquiry</label>
                             <div class="form_select_div">
+                            <input type="text" class="form-control">
+                                <!-- <select class="form-control" [(ngModel)]="enquirySourceId">
+                                    <option>--choose enquiry source--</option>
+                                    <option *ngFor="let item of enquirySourceList" [value]="item.enquiry_source_id">{{
+                                        item.enquiry_source_name }}</option>
+                                </select>
+                                <span class="material-symbols-outlined">
+                                    stat_minus_1
+                                </span> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 col-md-3">
+                        <div class="">
+                            <label>type of enquiry</label>
+                            <div class="form_select_div">
                                 <select class="form-control" [(ngModel)]="enquirySourceId">
-                                    <option>--choose enquiry
-                                        <source>--
-                                    </option>
+                                    <option>--choose enquiry source--</option>
+                                    <option *ngFor="let item of enquirySourceList" [value]="item.enquiry_source_id">{{
+                                        item.enquiry_source_name }}</option>
+                                </select>
+                                <span class="material-symbols-outlined">
+                                    stat_minus_1
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 col-md-3">
+                        <div class="">
+                            <label>type of sub-enquiry</label>
+                            <div class="form_select_div">
+                                <select class="form-control" [(ngModel)]="enquirySourceId">
+                                    <option>--choose enquiry sub-source--</option>
                                     <option *ngFor="let item of enquirySourceList" [value]="item.enquiry_source_id">{{
                                         item.enquiry_source_name }}</option>
                                 </select>
@@ -111,7 +140,6 @@
                             </div>
                         </div>
                     </div> -->
-
                     <div class="col-sm-6 col-md-3">
                         <div class="">
                             <label>Tentative Date of Finalisation</label>
@@ -137,7 +165,8 @@
                             </div>
                         </div>
                     </div>
-
+                </div>
+                <div class="row">
                     <div class="col-sm-6 col-md-4">
                         <div class="">
                             <label>status</label>

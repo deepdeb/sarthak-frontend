@@ -291,7 +291,7 @@
         </div>
         <div class="product_categoryDiv">
             <h6>product category : </h6>
-            <div class="form_select_div ms-2" style="width: 23%;">
+            <!-- <div class="form_select_div ms-2" style="width: 23%;">
                 <select class="form-control mb-0" [(ngModel)]="prdtCategoryId">
                     <option value='' disabled>-- choose product category --</option>
                     <option *ngFor="let item of prdtCategoryList" [ngValue]="item.product_category_id">
@@ -301,19 +301,17 @@
                 <span class="material-symbols-outlined">
                     stat_minus_1
                 </span>
-            </div>
+            </div> -->
 
 
-            <!-- <div class="checkbox_div">
+            <div class="checkbox_div">
                 <div *ngFor="let item of prdtCategoryList">
-
                     <input type="radio" [value]="item.product_category_id" [(ngModel)]="prdtCategoryId">
                     <label>
                         {{item.product_category_name}}
                     </label>
                 </div>
-
-            </div> -->
+            </div>
         </div>
         <div class="text-center mt-3">
             <button mat-flat-button class="btn1" (click)="createCustomer()">submit</button>
@@ -343,7 +341,9 @@
                 <tr class="table_head">
                     <th>sl no.</th>
                     <th>date</th>
-                    <th>SBU</th>
+                    <!-- <th>SBU</th> -->
+                    <th>designation</th>
+                    <th>department</th>
                     <th>Sales Incharge</th>
                     <th>Mentor</th>
                     <th>customer</th>
@@ -361,7 +361,9 @@
                 <tr *ngFor="let item of customerList; let i = index">
                     <td>{{ i+1 }}</td>
                     <td>{{ item.customer_create_date }}</td>
-                    <td>{{ item.sbu_name }}</td>
+                    <!-- <td>{{ item.sbu_name }}</td> -->
+                    <td>{{ item.designation }}</td>
+                    <td>{{ item.department }}</td>
                     <td>{{ item.sales_person_name }}</td>
                     <td>{{ item.mentor_name }}</td>
                     <td>{{ item.customer }} <br>( {{item.name}})</td>
