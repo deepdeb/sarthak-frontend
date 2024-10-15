@@ -86,6 +86,11 @@ table tr td{
 .btn1:hover {
   background-image: var(--gradient-2) !important;
 }
+
+
+/* .new_btn{
+  background: var(--primary) !important;
+} */
 .listing_table .material-symbols-outlined{
   cursor: pointer;
 }
@@ -234,6 +239,9 @@ table tr td{
 }
 .form_select_div{
   position: relative;
+}
+.form_select_div select{
+  font-size: 14px;
 }
 .form_select_div select option{
   background: var(--primary);
@@ -599,7 +607,7 @@ tr:nth-child(even),tr:hover {
 
 /************ segment page css start ***********/
 .segment_table{
-  width: 75% !important;
+  width: 80% !important;
   margin: auto !important;
 }
 .segment_tabs{
@@ -688,8 +696,8 @@ tr:nth-child(even),tr:hover {
 
 /************ enquiry css start ***********/
 .follow_up{
-  padding: 6px ;
-  font-size: 12px;
+  padding: 4px ;
+  font-size: 11px;
   font-weight: 500;
   text-transform: capitalize;
   background: #D4B408;
@@ -760,7 +768,7 @@ tr:nth-child(even),tr:hover {
   justify-content: end;
 }
  .new_btn{
-  padding: 8px;
+  padding: 8px 12px;
   font-size: 18px;
   font-weight: 500;
   text-transform: capitalize;
@@ -769,6 +777,7 @@ tr:nth-child(even),tr:hover {
   border-radius: 4px;
   letter-spacing: 0 !important;
   font-family: "Roboto Condensed", sans-serif !important;
+  border: none;
 }
 
 .mdc-button__label{

@@ -22,13 +22,21 @@
     </div>
 
     <div class="main_body sec_gapping">
+        <div class="text-end mb-4">
+            <button class="new_btn " (click)="newForm()" [hidden]="!isEdit">+ new</button>
+        </div>
         <div class="info_div">
             <div class="page_info_heading">
                 customer info
             </div>
             <div class="my_form ">
                 <div class="row g-2">
-
+                    <div *ngIf="checkSbuId==0 && !isEdit" class="col-md-3">
+                        <div class="">
+                            <label>select date</label>
+                            <input type="date" class="form-control" [(ngModel)]="customerCreateDate">
+                        </div>
+                    </div>
                     <div *ngIf="checkSbuId ==0 && !isEdit" class="col-md-3">
                         <div class="form_select_div">
                             <label>SBU</label>
@@ -64,12 +72,7 @@
                             </div>
                         </div>
                     </div>
-                    <div *ngIf="checkSbuId==0 && !isEdit" class="col-md-3">
-                        <div class="">
-                            <label>select date</label>
-                            <input type="date" class="form-control" [(ngModel)]="customerCreateDate">
-                        </div>
-                    </div>
+                    
                     <div *ngIf="checkSbuId!=0 && !isEdit" class="col-md-6">
                         <div class="">
                             <label>select date</label>
@@ -312,6 +315,16 @@
                     </label>
                 </div>
             </div>
+
+            <!-- <div class="checkbox_div">
+                <div *ngFor="let item of prdtCategoryList">
+                    <input type="checkbox" [value]="item.product_category_id" (change)="onCheckboxChange($event)">
+                    <label>
+                        {{ item.product_category_name }}
+                    </label>
+                </div>
+            </div> -->
+
         </div>
         <div class="text-center mt-3">
             <button mat-flat-button class="btn1" (click)="createCustomer()">submit</button>
@@ -321,32 +334,62 @@
 
     <!-- ****************** Customer listing area start ****************** -->
     <div class="listing_div">
-        <!-- <div class="row">
-            <div class="col-md-4">
-                <div *ngIf="checkSbuId()" class="view_div view_dropdown_div ">
-                    <select class="form-control" [(ngModel)]="sbu_id" (change)="filterUnit()">
-                        <option>-- choose unit name --</option>
-                        <option value=0>Admin</option>
-                        <option value=1>Sarthak Components</option>
-                        <option value=2>Sarthak Power</option>
-                    </select>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
+        <div class="row align-items-end">
+            <div class="col-md-3">
+                <!-- <div *ngIf="display_2 || display_3 || display_4"> -->
+                    <strong style="text-transform: capitalize;">filter by</strong>                
+                    <div class="form_select_div mt-3" >  
+                        <!-- <label class="test-capitalize mb-2" style="font-size: 16px; font-weight: 500;">choose segment</label>                  -->
+                        <select class="form-control" [(ngModel)]="filterByKeyword" (change)="getFilterListByCategory()">
+                            <option>-- choose category --</option>
+                            <option value="salesperson">Sales Incharge</option>
+                            <option value="mentor">Mentor</option>
+                            <option value="customer">customer</option>
+                            <option value="contactperson">contact person</option>
+                            <option value="designation">designation</option>
+                            <option value="department">department</option>
+                            <option value="segment">segment</option>
+                            <!-- <option *ngFor="let item of segmentList" [value]="item.segment_id">{{ item.segment_name }}
+                            </option> -->
+                        </select>
+                        <span class="material-symbols-outlined">
+                            stat_minus_1
+                        </span>
+                    </div>
+                <!-- </div> -->
             </div>
-            <div class="col-md-4"></div>
-        </div> -->
-        <h3 class="text-end" style="font-size: 20px;">total : {{totalCustomerCount}}</h3>
-        <div class="table-responsive">
+            <div class="col-md-3">
+                <!-- <div *ngIf="display_3 || display_4"> -->
+                    <strong style="text-transform: capitalize;">select one</strong>
+                    <div class="form_select_div mt-3" >
+                        <!-- <label class="test-capitalize mb-2" style="font-size: 16px; font-weight: 500;">choose sub-segment</label> -->
+                        <select class="form-control" [(ngModel)]="customersByFilter" (change)="getCustomersByFilter()">
+                            <option>-- choose one --</option>
+                            <option *ngFor="let item of filteredListByCategory" [value]="item.name">{{ item.name }}
+                            </option>
+                        </select>
+                        <span class="material-symbols-outlined">
+                            stat_minus_1
+                        </span>
+                    </div>
+                <!-- </div> -->
+            </div>
+            <div class="col-md-6">
+                <h3 class="text-end" style="font-size: 20px;">total : {{totalCustomerCount}}</h3>
+            </div>
+        </div>
+        <div class="table-responsive" style="overflow-x: scroll;">
             <table class="listing_table ">
                 <tr class="table_head">
                     <th>sl no.</th>
                     <th>date</th>
-                    <!-- <th>SBU</th> -->
-                    <th>designation</th>
-                    <th>department</th>
+                    <!-- <th>SBU</th> -->                    
                     <th>Sales Incharge</th>
                     <th>Mentor</th>
                     <th>customer</th>
+                    <th>contact person</th>
+                    <th>designation</th>
+                    <th>department</th>
                     <th>segment</th>
                     <th>sub-segment</th>
                     <!-- <th>sub-sub-segment</th>
@@ -362,11 +405,12 @@
                     <td>{{ i+1 }}</td>
                     <td>{{ item.customer_create_date }}</td>
                     <!-- <td>{{ item.sbu_name }}</td> -->
-                    <td>{{ item.designation }}</td>
-                    <td>{{ item.department }}</td>
                     <td>{{ item.sales_person_name }}</td>
                     <td>{{ item.mentor_name }}</td>
-                    <td>{{ item.customer }} <br>( {{item.name}})</td>
+                    <td>{{ item.customer }}</td>
+                    <td>{{item.name}}</td>                    
+                    <td>{{ item.designation }}</td>
+                    <td>{{ item.department }}</td>
                     <td>{{ item.segment_name }}</td>
                     <td>{{ item.subsegment_name }}</td>
                     <!-- <td>{{ item.subsubsegment_name }}</td> -->

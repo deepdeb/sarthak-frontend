@@ -35,6 +35,7 @@ export class SegmentComponent implements OnInit {
   sbuList: any = [];
   designation_id: any = localStorage.getItem('designation_id');
   totalCount: number = 0;
+  salesPersonId: any = localStorage.getItem('sales_person_id');
   display_1: boolean = true;      //segment
   display_2: boolean = false;     //sub-segment
   display_3: boolean = false;     //sub sub-segment

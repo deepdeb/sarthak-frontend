@@ -190,7 +190,13 @@ export class RestService {
 
 
 
+  getFilterListByCategory_rest(data: any): Observable<any>{
+    return this.http.post(this.API_ROOT + 'common/filterListByCategory',data,httpOptions)
+  }
 
 
 
+  getCustomersByFilter_rest(data: any): Observable<any>{
+    return this.http.post(this.API_ROOT + 'common/getCustomersByFilter',data,httpOptions)
+  }
 }

@@ -23,6 +23,9 @@
     </div>
 
     <div class="main_body sec_gapping">
+        <div class="text-end mb-4">
+            <button class="new_btn "  (click)="newForm()" [hidden]="!isEdit">+ new</button>
+        </div>
         <div class="info_div">
             <div class="page_info_heading">
                 enquiries
@@ -195,8 +198,37 @@
 
 
     <div class="listing_div">
-        <h3 class="text-end" style="font-size: 20px;">total : {{ totalCount }}</h3>
-        <div class="table-responsive">
+        <div class="row align-items-end">
+            <div class="col-md-3" >
+                <!-- <strong style="text-transform: capitalize;">filter by</strong>                
+                <div class="form_select_div mt-3" >  
+                    <select class="form-control" >
+                        <option>-- choose category --</option>
+                        <option></option>
+                    </select>
+                    <span class="material-symbols-outlined">
+                        stat_minus_1
+                    </span>
+                </div> -->
+            </div>
+            <div class="col-md-3">
+                <!-- <strong style="text-transform: capitalize;">select one</strong>
+                <div class="form_select_div mt-3" >
+                    <select class="form-control" >
+                        <option>-- choose one --</option>
+                        <option ></option>
+                    </select>
+                    <span class="material-symbols-outlined">
+                        stat_minus_1
+                    </span>
+                </div> -->
+            </div>
+            <div class="col-md-6">
+                <h3 class="text-end" style="font-size: 20px;">total : {{totalCount}}</h3>
+            </div>
+        </div>
+        <!-- <h3 class="text-end" style="font-size: 20px;">total : {{ totalCount }}</h3> -->
+        <div class="table-responsive" >
             <table class="listing_table">
                 <tr class="table_head">
                     <th>sl no.</th>
@@ -209,7 +241,8 @@
                     <th>principal house</th>
                     <th>offer date</th>
                     <th>basic value</th>
-                    <th>tentative date of finalisation</th>
+                    <th>tentative month</th>
+                    <th>tentative year</th>
                     <th>follow up</th>
                     <th>view</th>
                     <th>edit</th>
@@ -229,16 +262,23 @@
                     <td>{{ item.basic_value}}</td>
                     <ng-container
                         *ngIf="(item.tentative_finalization_month && item.tentative_finalization_year); else notAvailable">
-                        <td>{{item.tentative_finalization_month}} / {{item.tentative_finalization_year}}</td>
+                        <td>{{item.tentative_finalization_month}}</td>
+                    </ng-container>
+                    <ng-template #notAvailable>
+                        <td>NA</td>
+                    </ng-template>
+                    <ng-container
+                        *ngIf="(item.tentative_finalization_month && item.tentative_finalization_year); else notAvailable">
+                       <td>{{item.tentative_finalization_year}}</td>
                     </ng-container>
                     <ng-template #notAvailable>
                         <td>NA</td>
                     </ng-template>
                     <td>
                         <span class="follow_up" (click)="goToFollowUpPage(item.enquiry_id)">
-                            <span class="material-symbols-outlined" style="color:#1b1b1b;font-size: 18px;">
+                            <!-- <span class="material-symbols-outlined" style="color:#1b1b1b;font-size: 18px;">
                                 visibility
-                            </span>
+                            </span> -->
                             follow up
                         </span>
                     </td>

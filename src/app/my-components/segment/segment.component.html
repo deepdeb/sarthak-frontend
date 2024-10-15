@@ -213,7 +213,7 @@
                     <div class="form_select_div mt-3" >  
                         <!-- <label class="test-capitalize mb-2" style="font-size: 16px; font-weight: 500;">choose segment</label>                  -->
                         <select class="form-control" [(ngModel)]="segmentId_2" (change)="getSubSegmentList()">
-                            <option>-- choose segment --</option>
+                            <option>choose segment</option>
                             <option *ngFor="let item of segmentList" [value]="item.segment_id">{{ item.segment_name }}
                             </option>
                         </select>
@@ -229,7 +229,7 @@
                     <div class="form_select_div mt-3" >
                         <!-- <label class="test-capitalize mb-2" style="font-size: 16px; font-weight: 500;">choose sub-segment</label> -->
                         <select class="form-control" [(ngModel)]="subSegmentId_1" (change)="getSubSubSegmentList()">
-                            <option>-- choose sub-segment --</option>
+                            <option>choose sub-segment</option>
                             <option *ngFor="let item of subSegmentList" [value]="item.subsegment_id">{{ item.subsegment_name }}
                             </option>
                         </select>
@@ -245,7 +245,7 @@
                     <div class="form_select_div mt-3"  >
                         <!-- <label class="test-capitalize mb-2" style="font-size: 16px; font-weight: 500;">choose sub-sub-segment</label> -->
                         <select class="form-control" [(ngModel)]="subSubSegmentId" (change)="getSubSubSubSegmentList()">
-                            <option>-- choose sub-sub-segment --</option>
+                            <option>choose sub-sub-segment</option>
                             <option *ngFor="let item of subSubSegmentList" [value]="item.subsubsegment_id">{{ item.subsubsegment_name }}
                             </option>
                         </select>
@@ -269,7 +269,8 @@
                 <th *ngIf="display_2">sub-segment</th>
                 <th *ngIf="display_3">Sub sub-segment</th>
                 <th *ngIf="display_4">Sub sub-sub--segment</th>
-                <!-- <th>edit</th> -->
+                <th>view</th>
+                <th>edit</th>
                 <th>delete</th>
             </tr>
 
@@ -278,11 +279,16 @@
                 <tr *ngFor="let item of segmentList; let i = index">
                     <td>{{ i + 1 }}</td>
                     <td>{{ item.segment_name }}</td>
-                    <!-- <td>
+                    <td>
+                        <span class="material-symbols-outlined" style="color:#006FFD;"  >
+                            visibility
+                        </span>
+                    </td>
+                    <td>
                         <span class="material-symbols-outlined" style="color: #00BF58;">
                             edit_square
                         </span>
-                    </td> -->
+                    </td>
                     <td>
                         <span class="material-symbols-outlined" style="color: #A8226A;">
                             delete
@@ -295,11 +301,16 @@
                 <tr *ngFor="let item of subSegmentList; let i = index">
                     <td>{{ i + 1 }}</td>
                     <td>{{ item.subsegment_name }}</td>
-                    <!-- <td>
+                    <td>
+                        <span class="material-symbols-outlined" style="color:#006FFD;"  >
+                            visibility
+                        </span>
+                    </td>
+                    <td>
                         <span class="material-symbols-outlined" style="color: #00BF58;">
                             edit_square
                         </span>
-                    </td> -->
+                    </td>
                     <td>
                         <span class="material-symbols-outlined" style="color: #A8226A;">
                             delete
@@ -312,11 +323,16 @@
                 <tr *ngFor="let item of subSubSegmentList; let i = index">
                     <td>{{ i + 1 }}</td>
                     <td>{{ item.subsubsegment_name }}</td>
-                    <!-- <td>
+                    <td>
+                        <span class="material-symbols-outlined" style="color:#006FFD;"  >
+                            visibility
+                        </span>
+                    </td>
+                    <td>
                         <span class="material-symbols-outlined" style="color: #00BF58;">
                             edit_square
                         </span>
-                    </td> -->
+                    </td>
                     <td>
                         <span class="material-symbols-outlined" style="color: #A8226A;">
                             delete
@@ -329,11 +345,16 @@
                 <tr *ngFor="let item of subSubSubSegmentList; let i = index">
                     <td>{{ i + 1 }}</td>
                     <td>{{ item.subsubsubsegment_name }}</td>
-                    <!-- <td>
+                    <td>
+                        <span class="material-symbols-outlined" style="color:#006FFD;"  >
+                            visibility
+                        </span>
+                    </td>
+                    <td>
                         <span class="material-symbols-outlined" style="color: #00BF58;">
                             edit_square
                         </span>
-                    </td> -->
+                    </td>
                     <td>
                         <span class="material-symbols-outlined" style="color: #A8226A;">
                             delete

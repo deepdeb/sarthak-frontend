@@ -48,6 +48,9 @@
 
 
     <div class="main_body mt-2 mb-5 ">
+        <!-- <div class="text-end mb-4">
+            <button class="new_btn">+ new</button>
+        </div> -->
         <div class="info_div">
             <div class="page_info_heading">
                 personal info
@@ -186,49 +189,51 @@
 
     <div class="listing_div" *ngIf="checkDesignationId != 4">
         <h3 class="text-end" style="font-size: 20px;">total : {{total_count}}</h3>
-        <table class="listing_table">
-            <tr class="table_head">
-                <th>sl no.</th>
-                <th>SBU</th>
-                <th>function</th>
-                <th>name</th>
-                <th>designation</th>
-                <th>mobile no.</th>
-                <th>email id</th>
-                <th>DOB</th>
-                <th>view</th>
-                <th>edit</th>
-                <th>delete</th>
-            </tr>
+        <div class="table-responsive" >
+            <table class="listing_table">
+                <tr class="table_head">
+                    <th>sl no.</th>
+                    <th>SBU</th>                
+                    <th>name</th>
+                    <th>designation</th>
+                    <th>function</th>
+                    <th>mobile no.</th>
+                    <th>email id</th>
+                    <th>DOB</th>
+                    <th>view</th>
+                    <th>edit</th>
+                    <th>delete</th>
+                </tr>
 
-            <tr *ngFor="let item of salesPersonList; let i = index">
-                <td>{{ i+1 }}</td>
-                <td>{{ item.sbu_name}}</td>
-                <td>{{ item.function_name}}</td>
-                <td>{{ item.sales_person_name}}</td>
-                <td>{{ item.designation_name}}</td>
-                <td>{{ item.mobile}}</td>
-                <td class="text-lowercase">{{ item.email}}</td>
-                <td>{{ item.dob}}</td>
-                <td>
-                    <span class="material-symbols-outlined" style="color:#006FFD;"
-                        (click)="goToDetailsPage(item.sales_person_id)">
-                        visibility
-                    </span>
-                </td>
-                <td>
-                    <span class="material-symbols-outlined" style="color: #00BF58;"
-                        (click)="getSalespersonById(item.sales_person_id)">
-                        edit_square
-                    </span>
-                </td>
-                <td>
-                    <span class="material-symbols-outlined" style="color: #A8226A;">
-                        delete
-                    </span>
-                </td>
-            </tr>
+                <tr *ngFor="let item of salesPersonList; let i = index">
+                    <td>{{ i+1 }}</td>
+                    <td>{{ item.sbu_name}}</td>
+                    <td>{{ item.sales_person_name}}</td>
+                    <td>{{ item.designation_name}}</td>
+                    <td>{{ item.function_name}}</td>
+                    <td>{{ item.mobile}}</td>
+                    <td class="text-lowercase">{{ item.email}}</td>
+                    <td>{{ item.dob}}</td>
+                    <td>
+                        <span class="material-symbols-outlined" style="color:#006FFD;"
+                            (click)="goToDetailsPage(item.sales_person_id)">
+                            visibility
+                        </span>
+                    </td>
+                    <td>
+                        <span class="material-symbols-outlined" style="color: #00BF58;"
+                            (click)="getSalespersonById(item.sales_person_id)">
+                            edit_square
+                        </span>
+                    </td>
+                    <td>
+                        <span class="material-symbols-outlined" style="color: #A8226A;">
+                            delete
+                        </span>
+                    </td>
+                </tr>
 
-        </table>
+            </table>
+        </div>
     </div>
 </div>

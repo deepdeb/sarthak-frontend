@@ -323,9 +323,13 @@ export class EnquiriesComponent {
     this.router.navigate(['followUp'], { queryParams: { enquiry_id: enquiry_id } });
   }
 
-  console() {
-    console.log(this.yearFinal);
-  }
+
+
+
+  // **************** new form logic  ********************//
+newForm() {
+  window.location.reload()
+}
 
 }
 

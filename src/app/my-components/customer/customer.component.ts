@@ -64,6 +64,11 @@ export class CustomerComponent {
   subSubSubSegmentList: any = [];
   totalCustomerCount: number = 0;
 
+  filterByKeyword: string = '';
+  filteredListByCategory: any = [];
+  customersByFilter: string = '';
+  selectedCategoryIds: any = [];
+
   constructor(private router: Router, private rest: RestService, private common: CommonService) { }
 
   ngOnInit(): void {
@@ -481,9 +486,6 @@ export class CustomerComponent {
       }
     })
   }
-
-
-
   //************* for all details page ***********//
 
 
@@ -492,4 +494,55 @@ export class CustomerComponent {
     this.router.navigate(['detailsPage'], { queryParams: { view: 'customer', id: customer_id } });
   }
 
+
+  //********** Filter List By Category **********//
+  getFilterListByCategory(){
+    this.filteredListByCategory = [];
+    const data ={
+      filterby_keyword: this.filterByKeyword
+    }
+    this.rest.getFilterListByCategory_rest(data).subscribe((res:any) => {
+      if(res.success){
+        if(res.response){
+          if(res.response.length > 0){
+            this.filteredListByCategory = res.response;
+          }
+        }
+      }
+    })
+  }
+
+  getCustomersByFilter(){
+    const data ={
+      filter_by: this.filterByKeyword,
+      filter_by_value: this.customersByFilter,      
+    }
+    this.rest.getCustomersByFilter_rest(data).subscribe((res: any) =>{
+      if(res.success){
+        if(res.response){
+          if(res.response.length > 0){
+            this.customerList = res.response;
+          }
+        }
+      }
+    })
+  }
+
+
+//********** Check box logic **********//
+onCheckboxChange(event: any) {
+  const categoryId = +event.target.value
+  if(event.target.checked) {
+    this.selectedCategoryIds.push(categoryId)
+  } else {
+    this.selectedCategoryIds = this.selectedCategoryIds.filter((id: any) => id !== categoryId)
+  }
+  console.log('cat ids', this.selectedCategoryIds)
+}
+
+
+// **************** new form logic  ********************//
+newForm() {
+  window.location.reload()
+}
 }
