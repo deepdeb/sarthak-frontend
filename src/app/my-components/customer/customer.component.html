@@ -5,7 +5,7 @@
             <div class="col-md-9">
                 <div class="page_name">
                     <img src="assets/images/customer.png" alt="" loading="lazy">
-                    <h1 class="page_top_heading mb-0">info</h1>
+                    <h1 class="page_top_heading mb-0">customer info</h1>
                 </div>
             </div>
             <div class="col-md-3 text-end">
@@ -29,7 +29,7 @@
             <div class="my_form ">
                 <div class="row g-2">
 
-                    <div *ngIf="checkSbuId ==0" class="col-md-3">
+                    <div *ngIf="checkSbuId ==0 && !isEdit" class="col-md-3">
                         <div class="form_select_div">
                             <label>SBU</label>
                             <div class="form_select_div">
@@ -49,7 +49,7 @@
                         </div>
                     </div>
 
-                    <div *ngIf="checkSbuId ==0" class="col-md-3">
+                    <div *ngIf="checkSbuId ==0 && !isEdit" class="col-md-3">
                         <div class="form_select_div">
                             <label>sales incharge</label>
                             <div class="form_select_div">
@@ -64,13 +64,13 @@
                             </div>
                         </div>
                     </div>
-                    <div *ngIf="checkSbuId==0" class="col-md-3">
+                    <div *ngIf="checkSbuId==0 && !isEdit" class="col-md-3">
                         <div class="">
                             <label>select date</label>
                             <input type="date" class="form-control" [(ngModel)]="customerCreateDate">
                         </div>
                     </div>
-                    <div *ngIf="checkSbuId!=0" class="col-md-6">
+                    <div *ngIf="checkSbuId!=0 && !isEdit" class="col-md-6">
                         <div class="">
                             <label>select date</label>
                             <input type="date" class="form-control" [(ngModel)]="customerCreateDate">
@@ -90,14 +90,14 @@
                             </div>                            
                         </div>
                     </div> -->
-                    <div *ngIf="checkSbuId ==0" class="col-md-3">
+                    <div *ngIf="checkSbuId ==0 && !isEdit" class="col-md-3">
                         <div class="form_select_div">
                             <label>customer</label>
                             <input type="text" class="form-control" [(ngModel)]="customer_name">
                         </div>
                     </div>
 
-                    <div *ngIf="checkSbuId !=0" class="col-md-6">
+                    <div *ngIf="checkSbuId !=0 && !isEdit" class="col-md-6">
                         <div class="form_select_div">
                             <label>customer</label>
                             <input type="text" class="form-control" [(ngModel)]="customer_name">
@@ -105,7 +105,7 @@
                     </div>
 
                     <!--_______ segment area start _______-->
-                    <div class="col-md-3">
+                    <div *ngIf="!isEdit" class="col-md-3">
                         <div class="">
                             <label>segment</label>
                             <div class="form_select_div">
@@ -121,7 +121,7 @@
                             <!-- <input type="text" class="form-control"> -->
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div *ngIf="!isEdit" class="col-md-3">
                         <div class="">
                             <label>sub-segment</label>
                             <div class="form_select_div">
@@ -137,7 +137,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div *ngIf="!isEdit" class="col-md-3">
                         <div class="">
                             <label>sub sub-segment</label>
                             <!-- <div class="form_select_div">
@@ -166,7 +166,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div *ngIf="!isEdit" class="col-md-3">
                         <div class="">
                             <label>sub sub-sub-segment</label>
                             <div class="form_select_div">
@@ -223,7 +223,7 @@
                 </div>
             </div>
         </div>
-        <div class="info_div mt-5">
+        <div *ngIf="!isEdit" class="info_div mt-5">
             <div class="page_info_heading">
                 address info
             </div>
@@ -289,7 +289,7 @@
                 </div>
             </div>
         </div>
-        <div class="product_categoryDiv">
+        <div *ngIf="!isEdit" class="product_categoryDiv">
             <h6>product category : </h6>
             <!-- <div class="form_select_div ms-2" style="width: 23%;">
                 <select class="form-control mb-0" [(ngModel)]="prdtCategoryId">

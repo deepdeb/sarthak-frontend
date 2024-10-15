@@ -120,7 +120,7 @@
                     <div class="col-md-3"  *ngIf="view === 'enquiry'">
                         <div class="details_content_div">
                             <label>Tentative Date of Finalisation :</label>
-                            <div class="d-flex align-items-center">
+                            <div *ngIf="monthFinal || yearFinal" class="d-flex align-items-center">
                                 <p class="details_content me-2" style="padding: 4px 10px; background: #ffffff2d;border-radius:3px">{{ monthFinal }}</p>
                                 <p style="font-size: 24px; font-weight: 500;margin-right: 8px;"> / </p>
                                 <p class="details_content" style="padding: 4px 10px; background: #ffffff2d;border-radius:3px"> {{ yearFinal }}</p>

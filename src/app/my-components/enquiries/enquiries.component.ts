@@ -18,8 +18,10 @@ export class EnquiriesComponent {
   customerList: any = [];
   customerId = '' as any;
   enquiryDate: any;
+  enquirySource = '' as string;
   principalHouse: any;
-  enquirySourceId: any;
+  enquiryTypeId: any = '';
+  enquirySubTypeId: any = '';
   basicValue: any;
   offerDate: any;
   yearFinal = '' as any;
@@ -27,7 +29,8 @@ export class EnquiriesComponent {
   enquiryStatus: any;
   enquiryRemarks: any;
   enquirySupport: any;
-  enquirySourceList: any = [];
+  enquiryTypeList: any = [];
+  enquirySubTypeList: any = [];
   enquiryList: any = [];
   enquiryId: any;
   totalCount: number = 0;
@@ -49,7 +52,8 @@ export class EnquiriesComponent {
   ngOnInit(): void {
     this.getSalesPersonList();
     this.getCustomerList();
-    this.getEnquirySourceList();
+    this.getEnquiryTypeList();
+    this.getEnquirySubTypeList();
     this.getEnquiryList();
   }
 
@@ -101,6 +105,9 @@ export class EnquiriesComponent {
 
   //********* Set SBU ID for create enquiry ************/
   setSBUId(sales_person_id: any) {
+    console.log(sales_person_id);
+    console.log(this.salesPersonList);
+    
     const salesperson = this.salesPersonList.find((element: any) => element.sales_person_id == sales_person_id);
     this.sbuId = salesperson.sbu_id;
   }
@@ -129,14 +136,30 @@ export class EnquiriesComponent {
 
 
 
-  //*********** get enquiry source list start *********//
-  getEnquirySourceList() {
-    this.rest.getEnquirySourceList_rest().subscribe((res: any) => {
+  //*********** get enquiry type list start *********//
+  getEnquiryTypeList() {
+    this.rest.getEnquiryTypeList_rest().subscribe((res: any) => {
       if (res.success) {
         if (res.response) {
           if (res.response.length > 0) {
-            this.enquirySourceList = [];
-            this.enquirySourceList = res.response;
+            this.enquiryTypeList = [];
+            this.enquiryTypeList = res.response;
+          }
+        }
+      }
+    })
+  }
+
+
+
+  //*********** get enquiry sub type list start *********//
+  getEnquirySubTypeList() {
+    this.rest.getEnquirySubTypeList_rest().subscribe((res: any) => {
+      if (res.success) {
+        if (res.response) {
+          if (res.response.length > 0) {
+            this.enquirySubTypeList = [];
+            this.enquirySubTypeList = res.response;
           }
         }
       }
@@ -158,8 +181,16 @@ export class EnquiriesComponent {
       this.common.showAlertMessage('Please set Enquiry Date', this.common.errContent);
       return;
     }
-    if (!this.enquirySourceId) {
-      this.common.showAlertMessage('Please choose source of enquiry', this.common.errContent);
+    if (!this.enquirySource) {
+      this.common.showAlertMessage('Plese enter source of enquiry', this.common.errContent)
+      return;
+    }
+    if (!this.enquiryTypeId) {
+      this.common.showAlertMessage('Please choose type of enquiry', this.common.errContent);
+      return;
+    }
+    if (!this.enquirySubTypeId) {
+      this.common.showAlertMessage('Please choose enquiry sub type', this.common.errContent);
       return;
     }
     if (!this.principalHouse) {
@@ -172,7 +203,9 @@ export class EnquiriesComponent {
       sales_person_id: this.salesPersonId,
       customer_id: this.customerId,
       enquiry_date: this.enquiryDate,
-      enquiry_source_id: this.enquirySourceId,
+      enquiry_source: this.enquirySource,
+      enquiry_type_id: this.enquiryTypeId,
+      enquiry_sub_type_id: this.enquirySubTypeId,
       principal_house: this.principalHouse,
       offer_date: this.offerDate,
       basic_value: this.basicValue,
@@ -189,7 +222,9 @@ export class EnquiriesComponent {
           this.salesPersonId = ''
           this.customerId = ''
           this.enquiryDate = ''
-          this.enquirySourceId = ''
+          this.enquirySource = ''
+          this.enquiryTypeId = ''
+          this.enquirySubTypeId = ''
           this.principalHouse = ''
           this.offerDate = ''
           this.basicValue = ''
@@ -200,7 +235,7 @@ export class EnquiriesComponent {
           this.enquirySupport = ''
           this.common.showAlertMessage(res.message, this.common.succContent)
           this.getEnquiryList();
-
+          this.isEdit = false;
         }
       }
     })
@@ -255,9 +290,11 @@ export class EnquiriesComponent {
           }
           this.customerId = res.response[0].customer_id
           this.enquiryDate = res.response[0].enquiry_date
+          this.enquirySource = res.response[0].enquiry_source
           this.principalHouse = res.response[0].principal_house
-          this.enquirySourceId = res.response[0].enquiry_source_id,
-            this.basicValue = res.response[0].basic_value
+          this.enquiryTypeId = res.response[0].enquiry_type_id
+          this.enquirySubTypeId = res.response[0].enquiry_sub_type_id
+          this.basicValue = res.response[0].basic_value
           this.offerDate = res.response[0].offer_date
           this.yearFinal = res.response[0].tentative_finalization_year
           this.monthFinal = res.response[0].tentative_finalization_month

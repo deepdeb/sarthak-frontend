@@ -128,13 +128,19 @@ export class SalesPersonComponent implements OnInit {
 
   //********* FOR sales person creation start *********//
   createSalesPerson(form: NgForm) {
-    if (!form.value.sbu) {
+    // if (!form.value.sbu) {
+    //   this.common.showAlertMessage('Select SBU', this.common.errContent)
+    //   return
+    // }
+    if(!this.sbu_id) {
       this.common.showAlertMessage('Select SBU', this.common.errContent)
-      return
     }
-    if (!form.value.function) {
+    // if (!form.value.function) {
+    //   this.common.showAlertMessage('Select function', this.common.errContent)
+    //   return
+    // }
+    if(!this.functionId) {
       this.common.showAlertMessage('Select function', this.common.errContent)
-      return
     }
     if (!form.value.name) {
       this.common.showAlertMessage('Enter Name', this.common.errContent)
@@ -156,12 +162,13 @@ export class SalesPersonComponent implements OnInit {
       this.common.showAlertMessage('Enter password', this.common.errContent)
       return
     }
+    const mentorId = form.value.mentor ? form.value.mentor : null
     const data = {
-      sbu_id: form.value.sbu,
-      function_id: form.value.function,
+      sbu_id: this.sbu_id,
+      function_id: this.functionId,
       sales_person_name: form.value.name,
       designation_id: form.value.designation,
-      mentor_id: form.value.mentor,
+      mentor_id: mentorId,
       mobile: form.value.mobile_no,
       email: form.value.email_id,
       dob: form.value.dob,
@@ -169,7 +176,6 @@ export class SalesPersonComponent implements OnInit {
       ...(this.isEdit && {sales_person_id: this.salesPersonId})
     };
     this.isDisabled = true;
-    console.log('data', data)
     this.rest.createSalesPerson_rest(data,  this.isEdit).subscribe((res: any) => {
       if (res.success) {
         form.reset();
@@ -202,10 +208,11 @@ export class SalesPersonComponent implements OnInit {
 
 
 
-  //********** edit & show details for only one sales-persson start **********//
+  //********** edit & show details for only one sales-person start **********//
   getSalespersonById(sales_person_id: any) {
     this.salesPersonId = sales_person_id;
     this.isEdit = true;
+    this.isDisabled = false;
     const data = {
       sales_person_id: this.salesPersonId
     }
@@ -222,7 +229,6 @@ export class SalesPersonComponent implements OnInit {
           this.DOB = res.response.dob
           this.mobNum = res.response.mobile
           this.passWord = res.response.password
-          console.log(this.mentorId)
         }
       }
     })

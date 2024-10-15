@@ -58,7 +58,7 @@
                         <div class="form_select_div">
                             <label>SBU</label>
                             <div class="form_select_div">
-                                <select class="form-control" name="sbu" [(ngModel)]="sbu_id" (change)="getMentorList()">
+                                <select class="form-control" name="sbu" [(ngModel)]="sbu_id" (change)="getMentorList()" [disabled]="isEdit">
                                     <option *ngFor="let item of SBUList" [value]="item.sbu_id">{{ item.sbu_name }}
                                     </option>
                                 </select>
@@ -68,6 +68,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-md-2">
                         <div class="form_select_div">
                             <label>function</label>
@@ -83,12 +84,14 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-md-2">
                         <div class="form_select_div ">
                             <label>name</label>
                             <input type="text" class="form-control" name="name" [(ngModel)]="salesPersonName" />
                         </div>
                     </div>
+
                     <div class="col-md-3">
                         <div class="form_select_div">
                             <label>designation</label>
@@ -105,6 +108,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-md-3">
                         <div class="form_select_div">
                             <label>mentor</label>

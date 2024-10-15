@@ -132,10 +132,10 @@ export class CustomerComponent {
       this.common.showAlertMessage('Please Choose a sales incharge', this.common.errContent)
       return;
     }
-    if (!this.customerCreateDate) {
-      this.common.showAlertMessage('Please select date', this.common.errContent)
-      return;
-    }
+    // if (!this.customerCreateDate) {
+    //   this.common.showAlertMessage('Please select date', this.common.errContent)
+    //   return;
+    // }
     if (!this.customer_name) {
       this.common.showAlertMessage('Please enter customer name', this.common.errContent)
       return;
@@ -253,6 +253,7 @@ export class CustomerComponent {
           this.pin_no = ''
           this.common.showAlertMessage(res.message, this.common.succContent);
           this.getCustomerList();
+          this.isEdit = false;
       }
     })
 
@@ -428,6 +429,7 @@ export class CustomerComponent {
 
   //************* for edit customer ***********//
   getCustomerDetailsById(function_customer_id: any) {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
     this.mentorList = [];
     this.salesPersonList = [];
     this.customerId = function_customer_id

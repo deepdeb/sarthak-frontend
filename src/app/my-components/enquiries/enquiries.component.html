@@ -69,10 +69,10 @@
                         <div class="">
                             <label>source of enquiry</label>
                             <div class="form_select_div">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" [(ngModel)]="enquirySource">
                                 <!-- <select class="form-control" [(ngModel)]="enquirySourceId">
                                     <option>--choose enquiry source--</option>
-                                    <option *ngFor="let item of enquirySourceList" [value]="item.enquiry_source_id">{{
+                                    <option *ngFor="let item of enquiryTypeList" [value]="item.enquiry_source_id">{{
                                         item.enquiry_source_name }}</option>
                                 </select>
                                 <span class="material-symbols-outlined">
@@ -85,10 +85,10 @@
                         <div class="">
                             <label>type of enquiry</label>
                             <div class="form_select_div">
-                                <select class="form-control" [(ngModel)]="enquirySourceId">
-                                    <option>--choose enquiry source--</option>
-                                    <option *ngFor="let item of enquirySourceList" [value]="item.enquiry_source_id">{{
-                                        item.enquiry_source_name }}</option>
+                                <select class="form-control" [(ngModel)]="enquiryTypeId">
+                                    <option value="" disabled>--choose enquiry type--</option>
+                                    <option *ngFor="let item of enquiryTypeList" [value]="item.enquiry_type_id">{{
+                                        item.enquiry_type_name }}</option>
                                 </select>
                                 <span class="material-symbols-outlined">
                                     stat_minus_1
@@ -98,12 +98,12 @@
                     </div>
                     <div class="col-sm-5 col-md-3">
                         <div class="">
-                            <label>type of sub-enquiry</label>
+                            <label>enquiry sub type</label>
                             <div class="form_select_div">
-                                <select class="form-control" [(ngModel)]="enquirySourceId">
-                                    <option>--choose enquiry sub-source--</option>
-                                    <option *ngFor="let item of enquirySourceList" [value]="item.enquiry_source_id">{{
-                                        item.enquiry_source_name }}</option>
+                                <select class="form-control" [(ngModel)]="enquirySubTypeId">
+                                    <option value="" disabled>--choose enquiry sub-type--</option>
+                                    <option *ngFor="let item of enquirySubTypeList" [value]="item.enquiry_sub_type_id">{{
+                                        item.enquiry_sub_type_name }}</option>
                                 </select>
                                 <span class="material-symbols-outlined">
                                     stat_minus_1
@@ -204,6 +204,8 @@
                     <th>customer</th>
                     <th>enquiry date</th>
                     <th>enquiry source</th>
+                    <th>enquiry type</th>
+                    <th>enquiry sub type</th>
                     <th>principal house</th>
                     <th>offer date</th>
                     <th>basic value</th>
@@ -219,7 +221,9 @@
                     <td>{{ item.sales_person_name }}</td>
                     <td>{{ item.customer}}</td>
                     <td>{{ item.enquiry_date }}</td>
-                    <td>{{ item.enquiry_source_name }}</td>
+                    <td>{{ item.enquiry_source }}</td>
+                    <td>{{ item.enquiry_type_name }}</td>
+                    <td>{{ item.enquiry_sub_type_name }}</td>
                     <td>{{ item.principal_house }}</td>
                     <td>{{ item.offer_date }}</td>
                     <td>{{ item.basic_value}}</td>

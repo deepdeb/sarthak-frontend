@@ -130,7 +130,7 @@ export class DetailsPageComponent {
           this.customer_Name = res.response[0].customer
           this.enquiryDate = res.response[0].enquiry_date
           this.principalHouse = res.response[0].principal_house
-          this.enquirySource = res.response[0].enquiry_source_name
+          this.enquirySource = res.response[0].enquiry_source
           this.basicValue = res.response[0].basic_value
           this.offerDate = res.response[0].offer_date
           this.yearFinal = res.response[0].tentative_finalization_year

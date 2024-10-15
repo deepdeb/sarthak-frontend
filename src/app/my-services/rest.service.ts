@@ -155,10 +155,18 @@ export class RestService {
 
 
 
-  //*********** get enquiry source list start *********//
-  getEnquirySourceList_rest(): Observable<any> {
-    return this.http.get(this.API_ROOT + 'common/getEnquirySourceList', httpOptions)
+  //*********** get enquiry type list start *********//
+  getEnquiryTypeList_rest(): Observable<any> {
+    return this.http.get(this.API_ROOT + 'common/getEnquiryTypeList', httpOptions)
   }
+
+
+
+  //*********** get enquiry sub type list start *********//
+  getEnquirySubTypeList_rest(): Observable<any> {
+    return this.http.get(this.API_ROOT + 'common/getEnquirySubTypeList', httpOptions)
+  }
+
 
 
   //********** create enquiry start **********//
@@ -166,6 +174,7 @@ export class RestService {
     const apiEndPoint = isEdit ? 'common/editEnquiry' : 'common/createEnquiry'
     return this.http.post(this.API_ROOT + apiEndPoint, data, httpOptions)
   }
+
 
 
   //********** get enquiry list start **********//
