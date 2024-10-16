@@ -14,10 +14,8 @@ import { CommonService } from 'src/app/my-services/common.service';
 
 export class CustomerComponent {
 
-  totalCount: number = 0;
   customerCreateDate: any;
   salesPersonList: any = [];
-  total_count: number = 0;
   salesPersonId = localStorage.getItem('sales_person_id');
   customer_name: string = '';
   mentor_name: string = '';
@@ -101,7 +99,6 @@ export class CustomerComponent {
       if (res.success) {
         if (res.response) {
           this.salesPersonList = res.response;
-          this.total_count = res.total_count;
         }
       }
     })
@@ -234,31 +231,31 @@ export class CustomerComponent {
 
     this.rest.createCustomer_rest(data, this.isEdit).subscribe((res: any) => {
       if (res.success) {
-          this.sbuId = '';
-          this.salesPersonId = ''
-          this.customerCreateDate = null
-          this.customer_name = ''
-          this.segmentId = 0
-          this.subSegmentId = 0
-          this.subSubSegmentId = 0
-          this.subSubSubSegmentId = 0
-          this.contact_name = ''
-          this.designation = ''
-          this.department = ''
-          this.mob_no = ''
-          this.emailId = ''
-          this.prdtCategoryId = ''
-          this.street_no = ''
-          this.street_name = ''
-          this.area_name = ''
-          this.location_name = ''
-          this.district_name = ''
-          this.city_name = ''
-          this.stateId = 0
-          this.pin_no = ''
-          this.common.showAlertMessage(res.message, this.common.succContent);
-          this.getCustomerList();
-          this.isEdit = false;
+        this.sbuId = '';
+        this.salesPersonId = ''
+        this.customerCreateDate = null
+        this.customer_name = ''
+        this.segmentId = 0
+        this.subSegmentId = 0
+        this.subSubSegmentId = 0
+        this.subSubSubSegmentId = 0
+        this.contact_name = ''
+        this.designation = ''
+        this.department = ''
+        this.mob_no = ''
+        this.emailId = ''
+        this.prdtCategoryId = ''
+        this.street_no = ''
+        this.street_name = ''
+        this.area_name = ''
+        this.location_name = ''
+        this.district_name = ''
+        this.city_name = ''
+        this.stateId = 0
+        this.pin_no = ''
+        this.common.showAlertMessage(res.message, this.common.succContent);
+        this.getCustomerList();
+        this.isEdit = false;
       }
     })
 
@@ -345,7 +342,6 @@ export class CustomerComponent {
         if (res.response) {
           if (res.response.length > 0) {
             this.subSubSegmentList = res.response;
-            this.totalCount = res.total_count;
           }
         }
       }
@@ -365,7 +361,6 @@ export class CustomerComponent {
         if (res.response) {
           if (res.response.length > 0) {
             this.subSubSubSegmentList = res.response;
-            this.totalCount = res.total_count;
           }
         }
       }
@@ -446,21 +441,21 @@ export class CustomerComponent {
       if (res.success) {
         if (res.response) {
           this.sbuId = res.response.sbu_id;
-          if(this.sbuId) {
+          if (this.sbuId) {
             this.getMentorList();
             this.getSalesPersonList();
           }
 
           this.segmentId = res.response.segment_id
-          if(this.segmentId) {
+          if (this.segmentId) {
             this.getSubSegmentList();
           }
           this.subSegmentId = res.response.subsegment_id
-          if(this.subSegmentId) {
+          if (this.subSegmentId) {
             this.getSubSubSegmentList();
           }
           this.subSubSegmentId = res.response.subsubsegment_id
-          if(this.subSubSegmentId) {
+          if (this.subSubSegmentId) {
             this.getSubSubSubSegmentList();
           }
           this.subSubSubSegmentId = res.response.subsubsubsegment_id
@@ -496,15 +491,15 @@ export class CustomerComponent {
 
 
   //********** Filter List By Category **********//
-  getFilterListByCategory(){
+  getFilterListByCategory() {
     this.filteredListByCategory = [];
-    const data ={
+    const data = {
       filterby_keyword: this.filterByKeyword
     }
-    this.rest.getFilterListByCategory_rest(data).subscribe((res:any) => {
-      if(res.success){
-        if(res.response){
-          if(res.response.length > 0){
+    this.rest.getFilterListByCategory_rest(data).subscribe((res: any) => {
+      if (res.success) {
+        if (res.response) {
+          if (res.response.length > 0) {
             this.filteredListByCategory = res.response;
           }
         }
@@ -512,17 +507,19 @@ export class CustomerComponent {
     })
   }
 
-  getCustomersByFilter(){
+  getCustomersByFilter() {
     this.customerList = [];
-    const data ={
+    this.totalCustomerCount = 0;
+    const data = {
       filter_by: this.filterByKeyword,
-      filter_by_value: this.customersByFilter,      
+      filter_by_value: this.customersByFilter,
     }
-    this.rest.getCustomersByFilter_rest(data).subscribe((res: any) =>{
-      if(res.success){
-        if(res.response){
-          if(res.response.length > 0){
+    this.rest.getCustomersByFilter_rest(data).subscribe((res: any) => {
+      if (res.success) {
+        if (res.response) {
+          if (res.response.length > 0) {
             this.customerList = res.response;
+            this.totalCustomerCount = res.total_count;
           }
         }
       }
@@ -530,20 +527,19 @@ export class CustomerComponent {
   }
 
 
-//********** Check box logic **********//
-onCheckboxChange(event: any) {
-  const categoryId = +event.target.value
-  if(event.target.checked) {
-    this.selectedCategoryIds.push(categoryId)
-  } else {
-    this.selectedCategoryIds = this.selectedCategoryIds.filter((id: any) => id !== categoryId)
+  //********** Check box logic **********//
+  onCheckboxChange(event: any) {
+    const categoryId = +event.target.value
+    if (event.target.checked) {
+      this.selectedCategoryIds.push(categoryId)
+    } else {
+      this.selectedCategoryIds = this.selectedCategoryIds.filter((id: any) => id !== categoryId)
+    }
   }
-  console.log('cat ids', this.selectedCategoryIds)
-}
 
 
-// **************** new form logic  ********************//
-newForm() {
-  window.location.reload()
-}
+  // **************** new form logic  ********************//
+  newForm() {
+    window.location.reload()
+  }
 }
