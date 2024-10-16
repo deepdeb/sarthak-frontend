@@ -513,6 +513,7 @@ export class CustomerComponent {
   }
 
   getCustomersByFilter(){
+    this.customerList = [];
     const data ={
       filter_by: this.filterByKeyword,
       filter_by_value: this.customersByFilter,      
