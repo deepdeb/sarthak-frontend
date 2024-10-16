@@ -203,6 +203,8 @@ export class CustomerComponent {
       return;
     }
 
+    // const selectedCategoryIds = this.selectedCategoryIds.join(',');
+
     const data = {
       sbu_id: this.sbuId,
       sales_person_id: this.salesPersonId,
@@ -218,6 +220,7 @@ export class CustomerComponent {
       mobile: this.mob_no,
       email: this.emailId,
       product_category_id: this.prdtCategoryId,
+      // product_category_id: selectedCategoryIds,
       street_no: this.street_no,
       street_name: this.street_name,
       area: this.area_name,
@@ -476,6 +479,7 @@ export class CustomerComponent {
           this.street_no = res.response.street_no
           this.street_name = res.response.street_name
           this.prdtCategoryId = res.response.product_category_id
+          // this.selectedCategoryIds = res.response.product_category_id.split(',').map((id: string) => +id.trim());
           this.stateId = res.response.state_id;
         }
       }
