@@ -21,7 +21,9 @@ export class DetailsPageComponent {
   designationName: string = '';
   departmentName: string = '';
   mobileNumber: any;
+  altMobileNumber: any;
   emailAdderss: string = '';
+  altEmailAddress: string = '';
   streetNumber: string = ''; 
   streetName: string = '';
   areaName: string = '';
@@ -30,7 +32,8 @@ export class DetailsPageComponent {
   districtName: string = '';
   stateName: string = '';
   pinNumber: any;
-  productCategory: string = ''; 
+  productCategory: any= [];
+  otherProductCategory: string = '' 
   view: any;
   details_id: any;
 
@@ -67,28 +70,31 @@ export class DetailsPageComponent {
     }
     this.rest.getCustomerDetailsById_rest(data).subscribe((res: any) =>{
       if(res.success){
-        if(res.response){
-          this.customer_creation_date = res.response.customer_create_date;
-          this.salesIncharge = res.response.sales_person_name;
-          this.mentorName = res.response.mentor_name;
-          this.sbuName = res.response.sbu_name
-          this.segmentName = res.response.segment_name
-          this.subSegmentName = res.response.subsegment_name
-          this.contactPersonName = res.response.name
-          this.designationName = res.response.designation
-          this.departmentName = res.response.department
-          this.mobileNumber = res.response.mobile
-          this.emailAdderss = res.response.email
-          this.customer_Name = res.response.customer
-          this.streetNumber = res.response.street_no
-          this.streetName = res.response.street_name
-          this.areaName = res.response.area
-          this.locationName = res.response.location
-          this.cityName = res.response.city
-          this.districtName = res.response.district
-          this.stateName = res.response.state_name
-          this.pinNumber = res.response.pin
-          this.productCategory = res.response.product_category_name
+        if(res.response && res.response.length > 0){
+          this.customer_creation_date = res.response[0].customer_create_date;
+          this.salesIncharge = res.response[0].sales_person_name;
+          this.mentorName = res.response[0].mentor_name;
+          this.sbuName = res.response[0].sbu_name
+          this.segmentName = res.response[0].segment_name
+          this.subSegmentName = res.response[0].subsegment_name
+          this.contactPersonName = res.response[0].name
+          this.designationName = res.response[0].designation
+          this.departmentName = res.response[0].department
+          this.mobileNumber = res.response[0].mobile
+          this.altMobileNumber = res.response[0].alt_mobile
+          this.emailAdderss = res.response[0].email
+          this.altEmailAddress = res.response[0].alt_email
+          this.customer_Name = res.response[0].customer
+          this.streetNumber = res.response[0].street_no
+          this.streetName = res.response[0].street_name
+          this.areaName = res.response[0].area
+          this.locationName = res.response[0].location
+          this.cityName = res.response[0].city
+          this.districtName = res.response[0].district
+          this.stateName = res.response[0].state_name
+          this.pinNumber = res.response[0].pin
+          this.productCategory = res.product_categories
+          this.otherProductCategory = res.response[0].other_product_category 
         }
       }
     })

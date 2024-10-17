@@ -195,6 +195,12 @@
                             <p class="details_content">{{ mobileNumber }}</p>
                         </div>
                     </div>
+                    <div class="col-md-3" *ngIf="view === 'customer' || view === 'salesperson'">
+                        <div class="details_content_div">
+                            <label>alternative mobile no. :</label>
+                            <p class="details_content"></p>
+                        </div>
+                    </div>
                     <div class="col-md-3" *ngIf="view === 'salesperson'">
                         <div class="details_content_div">
                             <label>DOB :</label>
@@ -205,6 +211,12 @@
                         <div class="details_content_div">
                             <label>email id :</label>
                             <p class="details_content text-lowercase">{{ emailAdderss }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'customer' || view === 'salesperson'">
+                        <div class="details_content_div">
+                            <label>alternative email id :</label>
+                            <p class="details_content text-lowercase">{{ altEmailAddress }}</p>
                         </div>
                     </div>
                 </div>
@@ -273,9 +285,20 @@
                 <h4 class="details_heading">
                     product category info
                 </h4>
-                <div class="details_content_div d-flex align-items-center">
+                <div class="details_content_div d-flex align-items-start">
                     <label class="mb-0">product category :</label>
+                    <ul>
+                        <li class="details_content" *ngFor="let item of productCategory">
+                            <span *ngIf="item.product_category_name == 'others'">{{ item.product_category_name }} ({{otherProductCategory}})</span>
+                            <span *ngIf="item.product_category_name != 'others'">{{ item.product_category_name }}</span>
+                        </li>
+                        <!-- <li class="details_content">{{ productCategory }}</li>
+                        <li class="details_content">{{ productCategory }}</li>
+                        <li class="details_content">{{ productCategory }}</li> -->
+                    </ul>
+                    <!-- <p class="details_content">{{ productCategory }}</p>
                     <p class="details_content">{{ productCategory }}</p>
+                    <p class="details_content">{{ productCategory }}</p> -->
                 </div>
             </div>
             

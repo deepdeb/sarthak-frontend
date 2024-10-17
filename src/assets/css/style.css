@@ -55,7 +55,7 @@ img {
 }
 
 .sec_gapping{
-  padding: 60px 0;
+  padding: 20px 0;
 }
 ul{
   padding-left: 0;
@@ -69,7 +69,7 @@ select,select option, input, table td {
   text-transform: uppercase !important;
 }
 table tr td{
-  font-size: small;
+  font-size: 12px;
 }
 .btn1{
   background: var(--secondary) !important;
@@ -517,7 +517,7 @@ nav.navbar .navbar-brand{
 .main_body .info_div{
   border: 1px solid #9DB4FF;
   border-radius: 6px;
-  padding: 50px 20px 30px;
+  padding: 40px 20px 10px;
   position: relative;
 }
 .main_body .info_div .page_info_heading{
@@ -576,6 +576,9 @@ nav.navbar .navbar-brand{
   font-weight: 400;
   font-size: 13px;
   text-wrap: nowrap;
+}
+.listing_table .material-symbols-outlined{
+  font-size: 18px;
 }
 td, th {
   /* border: 1px solid #dddddd;
@@ -860,4 +863,5 @@ tr:nth-child(even),tr:hover {
 }
 .details_content{
   text-transform: uppercase;
+  color: #ffffffa6;
 }

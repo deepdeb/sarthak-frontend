@@ -23,7 +23,9 @@ export class CustomerComponent {
   designation: string = '';
   department: string = '';
   mob_no: any;
+  alt_mob_no: any;
   emailId: string = '';
+  alt_emailId: string = '';
   street_no: string = '';
   street_name: string = '';
   area_name: string = '';
@@ -44,6 +46,8 @@ export class CustomerComponent {
   checkSbuId: any = localStorage.getItem('sbu_id')
   mentorId: any = '';
   mentorList: any = [];
+  isShowInput: boolean = true;
+  otherProductCategory: string = ''
 
   segmentId = 0 as number;
   segmentId_1 = 0 as number;
@@ -166,10 +170,10 @@ export class CustomerComponent {
       this.common.showAlertMessage('Please enter a email id', this.common.errContent)
       return;
     }
-    if (!this.prdtCategoryId) {
-      this.common.showAlertMessage('Please choose a product category', this.common.errContent);
-      return;
-    }
+    // if (!this.prdtCategoryId) {
+    //   this.common.showAlertMessage('Please choose a product category', this.common.errContent);
+    //   return;
+    // }
     if (!this.street_no) {
       this.common.showAlertMessage('Please enter street no.', this.common.errContent)
       return;
@@ -203,7 +207,7 @@ export class CustomerComponent {
       return;
     }
 
-    // const selectedCategoryIds = this.selectedCategoryIds.join(',');
+    const selectedCategoryIds = this.selectedCategoryIds.join(',');
 
     const data = {
       sbu_id: this.sbuId,
@@ -218,9 +222,12 @@ export class CustomerComponent {
       designation: this.designation,
       department: this.department,
       mobile: this.mob_no,
+      alt_mobile: this.alt_mob_no,
       email: this.emailId,
-      product_category_id: this.prdtCategoryId,
-      // product_category_id: selectedCategoryIds,
+      alt_email: this.alt_emailId,
+      // product_category_id: this.prdtCategoryId,
+      product_category_id: selectedCategoryIds,
+      other_product_category: this.otherProductCategory,
       street_no: this.street_no,
       street_name: this.street_name,
       area: this.area_name,
@@ -246,8 +253,11 @@ export class CustomerComponent {
         this.designation = ''
         this.department = ''
         this.mob_no = ''
+        this.alt_mob_no = ''
         this.emailId = ''
+        this.alt_emailId = ''
         this.prdtCategoryId = ''
+        this.otherProductCategory = ''
         this.street_no = ''
         this.street_name = ''
         this.area_name = ''
@@ -472,14 +482,16 @@ export class CustomerComponent {
           this.city_name = res.response.city
           this.pin_no = res.response.pin
           this.mob_no = res.response.mobile
+          this.alt_mob_no = res.response.alt_mobile
           this.contact_name = res.response.name
           this.mentorId = res.response.mentor_id
           this.emailId = res.response.email
+          this.alt_emailId = res.response.alt_email
           this.district_name = res.response.district
           this.street_no = res.response.street_no
           this.street_name = res.response.street_name
-          this.prdtCategoryId = res.response.product_category_id
-          // this.selectedCategoryIds = res.response.product_category_id.split(',').map((id: string) => +id.trim());
+          // this.prdtCategoryId = res.response.product_category_id
+          this.selectedCategoryIds = res.response.product_category_id.split(',').map((id: string) => +id.trim());
           this.stateId = res.response.state_id;
         }
       }
@@ -535,8 +547,12 @@ export class CustomerComponent {
   onCheckboxChange(event: any) {
     const categoryId = +event.target.value
     if (event.target.checked) {
+      if(event.target.value == 4){
+        this.isShowInput = false
+      }
       this.selectedCategoryIds.push(categoryId)
     } else {
+      this.isShowInput = true
       this.selectedCategoryIds = this.selectedCategoryIds.filter((id: any) => id !== categoryId)
     }
   }

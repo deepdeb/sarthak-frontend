@@ -190,39 +190,51 @@
                     <!--_______ segment area end _______-->
 
                 </div>
-                <div class="row">
-                    <div class="col-md-2">
+                <div class="row g-2">
+                    <div class="col-md-3">
                         <div class="form_select_div">
                             <label>name</label>
                             <input type="text" class="form-control" [(ngModel)]="contact_name">
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="form_select_div">
                             <label>designation</label>
                             <input type="text" class="form-control" [(ngModel)]="designation">
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="form_select_div">
                             <label>department</label>
                             <input type="text" class="form-control" [(ngModel)]="department">
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="form_select_div">
                             <label>mobile no.</label>
                             <input type="text" class="form-control" maxlength="10" [(ngModel)]="mob_no"
                                 (keypress)="restrictPhone($event)">
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
+                        <div class="form_select_div">
+                            <label>alternative mobile no.</label>
+                            <input type="text" class="form-control" maxlength="10" [(ngModel)]="alt_mob_no"
+                                (keypress)="restrictPhone($event)">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
                         <div class="form_select_div">
                             <label>email id</label>
                             <input type="text" class="form-control text-lowercase" [(ngModel)]="emailId">
                         </div>
                     </div>
-
+                    <div class="col-md-3">
+                        <div class="form_select_div">
+                            <label>alternative email id</label>
+                            <input type="text" class="form-control text-lowercase" [(ngModel)]="alt_emailId">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -307,24 +319,24 @@
             </div> -->
 
 
-            <div class="checkbox_div">
+            <!-- <div class="checkbox_div">
                 <div *ngFor="let item of prdtCategoryList">
                     <input type="radio" [value]="item.product_category_id" [(ngModel)]="prdtCategoryId">
                     <label>
                         {{item.product_category_name}}
                     </label>
                 </div>
-            </div>
-
-            <!-- <div class="checkbox_div">
-                <div *ngFor="let item of prdtCategoryList">
-                    <input type="checkbox" [value]="item.product_category_id" (change)="onCheckboxChange($event)">
-                    <label>
-                        {{ item.product_category_name }}
-                    </label>
-                </div>
             </div> -->
 
+            <div class="checkbox_div">
+                <div *ngFor="let item of prdtCategoryList">
+                    <input type="checkbox" [value]="item.product_category_id" (change)="onCheckboxChange($event)" [checked]="selectedCategoryIds.includes(item.product_category_id)">
+                    <label>
+                        {{ item.product_category_name }}
+                    </label>                    
+                </div>
+                <input type="text" [(ngModel)]="otherProductCategory" [hidden]="isShowInput">
+            </div>
         </div>
         <div class="text-center mt-3">
             <button mat-flat-button class="btn1" (click)="createCustomer()">submit</button>
@@ -336,18 +348,17 @@
     <div class="listing_div">
         <div class="row align-items-end">
             <div class="col-md-3">
-                <!-- <div *ngIf="display_2 || display_3 || display_4"> -->
                     <strong style="text-transform: capitalize;">filter by</strong>                
                     <div class="form_select_div mt-3" >  
-                        <!-- <label class="test-capitalize mb-2" style="font-size: 16px; font-weight: 500;">choose segment</label>                  -->
+                        <!-- <label class="test-capitalize mb-2" style="font-size: 16px; font-weight: 500;">choose segment</label>  -->
                         <select class="form-control" [(ngModel)]="filterByKeyword" (change)="getFilterListByCategory()">
                             <option>-- choose category --</option>
                             <option value="salesperson">Sales Incharge</option>
                             <option value="mentor">Mentor</option>
                             <option value="customer">customer</option>
-                            <option value="contactperson">contact person</option>
+                            <!-- <option value="contactperson">contact person</option>
                             <option value="designation">designation</option>
-                            <option value="department">department</option>
+                            <option value="department">department</option> -->
                             <option value="segment">segment</option>
                             <!-- <option *ngFor="let item of segmentList" [value]="item.segment_id">{{ item.segment_name }}
                             </option> -->
@@ -358,7 +369,7 @@
                     </div>
                 <!-- </div> -->
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <!-- <div *ngIf="display_3 || display_4"> -->
                     <strong style="text-transform: capitalize;">select one</strong>
                     <div class="form_select_div mt-3" >
@@ -374,11 +385,12 @@
                     </div>
                 <!-- </div> -->
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <h3 class="text-end" style="font-size: 20px;">total : {{totalCustomerCount}}</h3>
             </div>
         </div>
-        <div class="table-responsive" style="overflow-x: scroll;">
+        
+        <div class="table-responsive" >
             <table class="listing_table ">
                 <tr class="table_head">
                     <th>sl no.</th>
@@ -391,7 +403,7 @@
                     <th>designation</th>
                     <th>department</th>
                     <th>segment</th>
-                    <th>sub-segment</th>
+                    <!-- <th>sub-segment</th> -->
                     <!-- <th>sub-sub-segment</th>
                     <th>sub-sub-sub-segment</th> -->
                     <th>mobile no.</th>
@@ -412,11 +424,11 @@
                     <td>{{ item.designation }}</td>
                     <td>{{ item.department }}</td>
                     <td>{{ item.segment_name }}</td>
-                    <td>{{ item.subsegment_name }}</td>
+                    <!-- <td>{{ item.subsegment_name }}</td> -->
                     <!-- <td>{{ item.subsubsegment_name }}</td> -->
                     <!-- <td>{{ item.subsubsubsegment_name }}</td> -->
-                    <td>{{ item.mobile }}</td>
-                    <td class="text-lowercase">{{ item.email }}</td>
+                    <td>{{ item.mobile }} <br> {{ item.alt_mobile }}</td>
+                    <td class="text-lowercase">{{ item.email }} <br> {{ item.alt_email }} </td>
                     <td>
                         <span class="material-symbols-outlined" style="color:#006FFD;"
                             (click)="goToDetailsPage(item.customer_id)">
