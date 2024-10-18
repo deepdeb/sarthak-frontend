@@ -193,9 +193,9 @@
             <table class="listing_table">
                 <tr class="table_head">
                     <th>sl no.</th>
-                    <th>SBU</th>                
-                    <th>name</th>
-                    <th>designation</th>
+                    <th style="text-align: left;">SBU</th>                
+                    <th style="text-align: left;">name</th>
+                    <th style="text-align: left;">designation</th>
                     <th>function</th>
                     <th>mobile no.</th>
                     <th>email id</th>
@@ -207,9 +207,9 @@
 
                 <tr *ngFor="let item of salesPersonList; let i = index">
                     <td>{{ i+1 }}</td>
-                    <td>{{ item.sbu_name}}</td>
-                    <td>{{ item.sales_person_name}}</td>
-                    <td>{{ item.designation_name}}</td>
+                    <td style="text-align: left;">{{ item.sbu_name}}</td>
+                    <td style="text-align: left;">{{ item.sales_person_name}}</td>
+                    <td style="text-align: left;">{{ item.designation_name}}</td>
                     <td>{{ item.function_name}}</td>
                     <td>{{ item.mobile}}</td>
                     <td class="text-lowercase">{{ item.email}}</td>

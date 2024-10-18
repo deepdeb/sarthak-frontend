@@ -14,7 +14,7 @@ import { CommonService } from 'src/app/my-services/common.service';
 
 export class CustomerComponent {
 
-  customerCreateDate: any;
+  customerCreateDate: any = new Date().toISOString().split('T')[0];
   salesPersonList: any = [];
   salesPersonId = localStorage.getItem('sales_person_id');
   customer_name: string = '';
