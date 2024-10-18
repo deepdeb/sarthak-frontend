@@ -339,7 +339,7 @@
             </div>
         </div>
         <div class="text-center mt-3">
-            <button mat-flat-button class="btn1" (click)="createCustomer()">submit</button>
+            <button mat-flat-button class="btn1" (click)="createCustomer()" [disabled]="isButtonDisabled">submit</button>
         </div>
     </div>
 

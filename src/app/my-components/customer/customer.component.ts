@@ -41,6 +41,7 @@ export class CustomerComponent {
   SBUList: any = [];
   sbuId: any = localStorage.getItem('sbu_id');
   isEdit: boolean = false;
+  isButtonDisabled: boolean = false;
   customerId: any;
   checkDesignationId: any = localStorage.getItem('designation_id');
   checkSbuId: any = localStorage.getItem('sbu_id')
@@ -245,7 +246,7 @@ export class CustomerComponent {
       pin: this.pin_no,
       ...(this.isEdit && { customer_id: this.customerId })
     }
-
+    this.isButtonDisabled = true;
     this.rest.createCustomer_rest(data, this.isEdit).subscribe((res: any) => {
       if (res.success) {
         this.sbuId = '';
@@ -275,6 +276,7 @@ export class CustomerComponent {
         this.pin_no = ''
         this.selectedCategoryIds = []
         this.common.showAlertMessage(res.message, this.common.succContent);
+        this.isButtonDisabled = false;
         this.getCustomerList();
         this.isEdit = false;
       }
@@ -455,6 +457,7 @@ export class CustomerComponent {
     this.salesPersonList = [];
     this.customerId = function_customer_id
     this.isEdit = true;
+    this.isButtonDisabled = false;
     const data = {
       customer_id: function_customer_id
     }
