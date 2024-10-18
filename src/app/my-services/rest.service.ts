@@ -199,4 +199,18 @@ export class RestService {
   getCustomersByFilter_rest(data: any): Observable<any>{
     return this.http.post(this.API_ROOT + 'common/getCustomersByFilter',data,httpOptions)
   }
+
+
+
+
+  // follow up creation //
+
+  createFollowUp_rest(data: any): Observable<any>{
+    return this.http.post(this.API_ROOT + 'common/createFollowUp', data,httpOptions)
+  }
+
+  //************* get follow-up *************//
+  getFollowUpById_rest(data: any):Observable<any>{
+    return this.http.post(this.API_ROOT + 'common/getFollowUpById', data, httpOptions)
+  }
 }

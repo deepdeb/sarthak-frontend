@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { RestService } from 'src/app/my-services/rest.service';
 import { ActivatedRoute } from '@angular/router';
+import { CommonService } from 'src/app/my-services/common.service';
+
+
 
 @Component({
   selector: 'app-follow-up',
@@ -22,13 +25,21 @@ export class FollowUpComponent {
   remarksInitial: any;
   supportInitial: any;
 
-  constructor(private route: ActivatedRoute, private rest: RestService) {}
+  followUpDateCreate: any;
+  followUpStatusCreate: string = '';
+  followUpRemarksCreate: string = '';
+  followUpSupportCreate: string = '';
+  isCreateNew: boolean =false;
+  followUpList: any = [];
+
+  constructor(private route: ActivatedRoute, private rest: RestService, private common: CommonService) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.enquiryId = params['enquiry_id'];
     })
     this.getEnquiryById();
+    this.getFollowUpById();
   }
   
   getEnquiryById() {
@@ -51,6 +62,64 @@ export class FollowUpComponent {
           this.statusInitial = res.response[0].status_initial,
           this.remarksInitial = res.response[0].remarks_initial,
           this.supportInitial = res.response[0].support_initial
+        }
+      }
+    })
+  }
+
+
+
+  //********** follow up creation **********//
+  createFollowUp(){
+    if(!this.followUpDateCreate){
+      this.common.showAlertMessage('Please select Follow Up Date ', this.common.errContent)
+      return;
+    } 
+    if(!this.followUpStatusCreate){
+      this.common.showAlertMessage('Please write the Follow Up Status ', this.common.errContent)
+      return;
+    }
+    const data = {
+      enquiry_id: this.enquiryId,
+      status_date: this.followUpDateCreate,
+      status: this.followUpStatusCreate,
+      remarks: this.followUpRemarksCreate,
+      support: this.followUpSupportCreate
+    }
+    this.rest.createFollowUp_rest(data).subscribe((res: any) =>{
+      if(res.success){
+        if(res.response){
+          this.common.showAlertMessage(res.response, this.common.succContent)
+          this.getFollowUpById();
+          this.followUpDateCreate = '',
+          this.followUpStatusCreate = '',
+          this.followUpRemarksCreate = '',
+          this.followUpSupportCreate = ''
+          this.isCreateNew = false;
+        }
+      }
+    })
+  }
+
+
+  showNewFollowUpForm(){
+    this.isCreateNew = true
+  }
+
+
+
+  //************* get follow-up *************//
+  getFollowUpById(){
+    this.followUpList = [];
+    const data = {
+      enquiry_id: this.enquiryId
+    }
+    this.rest.getFollowUpById_rest(data).subscribe((res:any) =>{
+      if(res.success){
+        if(res.response){
+          if(res.response.length > 0){
+            this.followUpList = res.response;
+          }
         }
       }
     })

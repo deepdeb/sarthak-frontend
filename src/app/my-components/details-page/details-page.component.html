@@ -52,8 +52,6 @@
 
 
 
-
-
                 <div class="row g-2" >
                     <div class="col-md-3" *ngIf="view === 'customer'">
                         <div class="details_content_div">
@@ -146,13 +144,6 @@
                         </div>
                     </div>
 
-
-
-
-
-
-
-
                     <div class="col-md-3"  *ngIf="view === 'customer' || view === 'salesperson'">
                         <div class="details_content_div">
                             <label>SBU :</label>
@@ -198,7 +189,7 @@
                     <div class="col-md-3" *ngIf="view === 'customer' || view === 'salesperson'">
                         <div class="details_content_div">
                             <label>alternative mobile no. :</label>
-                            <p class="details_content"></p>
+                            <p class="details_content">{{ altMobileNumber }}</p>
                         </div>
                     </div>
                     <div class="col-md-3" *ngIf="view === 'salesperson'">
@@ -227,7 +218,6 @@
                 <h4 class="details_heading">
                     address info
                 </h4>
-
                 <div class="row">
                     <div class="col-md-3">
                         <div class="details_content_div">
@@ -277,7 +267,6 @@
                             <p class="details_content">{{ pinNumber }}</p>
                         </div>
                     </div>
-
                 </div>
             </div>
 
@@ -292,16 +281,26 @@
                             <span *ngIf="item.product_category_name == 'others'">{{ item.product_category_name }} ({{otherProductCategory}})</span>
                             <span *ngIf="item.product_category_name != 'others'">{{ item.product_category_name }}</span>
                         </li>
-                        <!-- <li class="details_content">{{ productCategory }}</li>
-                        <li class="details_content">{{ productCategory }}</li>
-                        <li class="details_content">{{ productCategory }}</li> -->
                     </ul>
-                    <!-- <p class="details_content">{{ productCategory }}</p>
-                    <p class="details_content">{{ productCategory }}</p>
-                    <p class="details_content">{{ productCategory }}</p> -->
                 </div>
             </div>
             
+        </div>
+
+
+        <div class="mb-4">
+            <button class="btn1"  *ngIf="view === 'customer'" style="display: flex;align-items: center;" routerLink="/customer">
+                <span class="material-symbols-outlined" style="font-size: 20px;">arrow_back_ios</span>
+                back
+            </button>
+            <button class="btn1"  *ngIf="view === 'salesperson'" style="display: flex;align-items: center;" routerLink="/sales-person">
+                <span class="material-symbols-outlined" style="font-size: 20px;">arrow_back_ios</span>
+                back
+            </button>
+            <button class="btn1"  *ngIf="view === 'enquiry'" style="display: flex;align-items: center;" routerLink="/enquiries">
+                <span class="material-symbols-outlined" style="font-size: 20px;">arrow_back_ios</span>
+                back
+            </button>
         </div>
     </div>
 </div>

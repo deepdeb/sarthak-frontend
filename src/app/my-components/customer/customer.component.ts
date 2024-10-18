@@ -207,6 +207,13 @@ export class CustomerComponent {
       return;
     }
 
+    if(this.selectedCategoryIds.includes(4)) {
+      if(!this.otherProductCategory) {
+        this.common.showAlertMessage('Please enter product category', this.common.errContent)
+        return;
+      }
+    }
+
     const selectedCategoryIds = this.selectedCategoryIds.join(',');
 
     const data = {
@@ -266,6 +273,7 @@ export class CustomerComponent {
         this.city_name = ''
         this.stateId = 0
         this.pin_no = ''
+        this.selectedCategoryIds = []
         this.common.showAlertMessage(res.message, this.common.succContent);
         this.getCustomerList();
         this.isEdit = false;
@@ -451,48 +459,50 @@ export class CustomerComponent {
       customer_id: function_customer_id
     }
     this.rest.getCustomerDetailsById_rest(data).subscribe((res: any) => {
+      console.log('res.response', res.response)
       if (res.success) {
         if (res.response) {
-          this.sbuId = res.response.sbu_id;
+          this.sbuId = res.response[0].sbu_id;
           if (this.sbuId) {
             this.getMentorList();
             this.getSalesPersonList();
           }
 
-          this.segmentId = res.response.segment_id
+          this.segmentId = res.response[0].segment_id
           if (this.segmentId) {
             this.getSubSegmentList();
           }
-          this.subSegmentId = res.response.subsegment_id
+          this.subSegmentId = res.response[0].subsegment_id
           if (this.subSegmentId) {
             this.getSubSubSegmentList();
           }
-          this.subSubSegmentId = res.response.subsubsegment_id
+          this.subSubSegmentId = res.response[0].subsubsegment_id
           if (this.subSubSegmentId) {
             this.getSubSubSubSegmentList();
           }
-          this.subSubSubSegmentId = res.response.subsubsubsegment_id
-          this.customer_name = res.response.customer
-          this.area_name = res.response.area
-          this.location_name = res.response.location
-          this.department = res.response.department;
-          this.designation = res.response.designation;
-          this.salesPersonId = res.response.sales_person_id;
-          this.customerCreateDate = res.response.customer_create_date;
-          this.city_name = res.response.city
-          this.pin_no = res.response.pin
-          this.mob_no = res.response.mobile
-          this.alt_mob_no = res.response.alt_mobile
-          this.contact_name = res.response.name
-          this.mentorId = res.response.mentor_id
-          this.emailId = res.response.email
-          this.alt_emailId = res.response.alt_email
-          this.district_name = res.response.district
-          this.street_no = res.response.street_no
-          this.street_name = res.response.street_name
-          // this.prdtCategoryId = res.response.product_category_id
-          this.selectedCategoryIds = res.response.product_category_id.split(',').map((id: string) => +id.trim());
-          this.stateId = res.response.state_id;
+          this.subSubSubSegmentId = res.response[0].subsubsubsegment_id
+          this.customer_name = res.response[0].customer
+          this.area_name = res.response[0].area
+          this.location_name = res.response[0].location
+          this.department = res.response[0].department;
+          this.designation = res.response[0].designation;
+          this.salesPersonId = res.response[0].sales_person_id;
+          this.customerCreateDate = res.response[0].customer_create_date;
+          this.city_name = res.response[0].city
+          this.pin_no = res.response[0].pin
+          this.mob_no = res.response[0].mobile
+          this.alt_mob_no = res.response[0].alt_mobile
+          this.contact_name = res.response[0].name
+          this.mentorId = res.response[0].mentor_id
+          this.emailId = res.response[0].email
+          this.alt_emailId = res.response[0].alt_email
+          this.district_name = res.response[0].district
+          this.street_no = res.response[0].street_no
+          this.street_name = res.response[0].street_name
+          // this.prdtCategoryId = res.response[0].product_category_id
+          this.selectedCategoryIds = res.response[0].product_category_id.split(',').map((id: string) => +id.trim());
+          this.otherProductCategory = res.response[0].other_product_category;
+          this.stateId = res.response[0].state_id;
         }
       }
     })

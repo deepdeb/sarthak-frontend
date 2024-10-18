@@ -149,159 +149,101 @@
                 </div>
             </div>
 
+            <!-- new follow up  -->
+            <div class="mt-5 mb-2">
+                <button mat-flat-button class="btn1" (click)="showNewFollowUpForm()">
+                    <span class="material-symbols-outlined">
+                        add
+                    </span>
+                    new follow up
+                </button>
+            </div>
+            <div class="follow_up_div" *ngIf="isCreateNew">
+                <div class="follow_up_heading">
+                    <div class="row">
+                        <div class="col-6">
+                            <h4>
+                                new follow up
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="my_form">
+                    <div class="row  align-items-center">
+                        <div class="col-lg-2">
+                            <div class="form_select_div">
+                                <label class="">status date</label>
+                                <input type="date" class="form-control" [(ngModel)]="followUpDateCreate">
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form_select_div">
+                                <label class="">status</label>
+                                <input type="text" class="form-control" [(ngModel)]="followUpStatusCreate">
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form_select_div">
+                                <label class="">remarks</label>
+                                <input type="text" class="form-control" [(ngModel)]="followUpRemarksCreate">
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form_select_div">
+                                <label class="">support required</label>
+                                <input type="text" class="form-control" [(ngModel)]="followUpSupportCreate">
+                            </div>
+                        </div>
+                        <div class="col-lg-1">
+                            <button mat-flat-button class="btn1" (click)="createFollowUp()">submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <!-- first follow up  -->
-            <div class="follow_up_div">
-                <div class="mb-4">
-                    <h4 class="follow_up_heading">
-                        first follow up
-                    </h4>
-                    <div class="my_form">
-                        <div class="row  align-items-center">
-                            <div class="col-lg-2">
-                                <div class="form_select_div">
-                                    <label class="">status date</label>
-                                    <input type="date" class="form-control">
-                                    <!-- <p class="details_content">productCategory</p> -->
-                                </div>
+           
+            <div class="follow_up_div" *ngFor="let item of followUpList; let i = index">
+                <div class="follow_up_heading">
+                    <div class="row">
+                        <div class="col-6">
+                            <h4>follow up - {{ i+1 }} </h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="my_form">
+                    <div class="row  align-items-center">
+                        <div class="col-lg-3">
+                            <div class="form_select_div">
+                                <label class="">status date</label>
+                                <input type="date" class="form-control" [value]="item.status_date">
                             </div>
-                            <div class="col-lg-3">
-                                <div class="form_select_div">
-                                    <label class="">status</label>
-                                    <input type="text" class="form-control">
-                                    <!-- <p class="details_content">productCategory</p> -->
-                                </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form_select_div">
+                                <label class="">status</label>
+                                <input type="text" class="form-control" [value]="item.status">
                             </div>
-                            <div class="col-lg-3">
-                                <div class="form_select_div">
-                                    <label class="">remarks</label>
-                                    <input type="text" class="form-control">
-                                    <!-- <p class="details_content">productCategory</p> -->
-                                </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form_select_div">
+                                <label class="">remarks</label>
+                                <input type="text" class="form-control" [value]="item.remarks">
                             </div>
-                            <div class="col-lg-3">
-                                <div class="form_select_div">
-                                    <label class="">support required</label>
-                                    <input type="text" class="form-control">
-                                    <!-- <p class="details_content">productCategory</p> -->
-                                </div>
-                            </div>
-                            <div class="col-lg-1">
-                                <button mat-flat-button class="btn1">
-                                    <span class="material-symbols-outlined">
-                                        add
-                                    </span>
-                                </button>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form_select_div">
+                                <label class="">support required</label>
+                                <input type="text" class="form-control" [value]="item.support">
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
 
-            <!-- second follow up  -->
-            <div class="follow_up_div">
-                <div class="mb-4">
-                    <h4 class="follow_up_heading">
-                        second follow up
-                    </h4>
-                    <div class="my_form">
-                        <div class="row  align-items-center">
-                            <div class="col-lg-2">
-                                <div class="form_select_div">
-                                    <label class="">status date</label>
-                                    <input type="date" class="form-control">
-                                    <!-- <p class="details_content">productCategory</p> -->
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="form_select_div">
-                                    <label class="">status</label>
-                                    <input type="text" class="form-control">
-                                    <!-- <p class="details_content">productCategory</p> -->
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="form_select_div">
-                                    <label class="">remarks</label>
-                                    <input type="text" class="form-control">
-                                    <!-- <p class="details_content">productCategory</p> -->
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="form_select_div">
-                                    <label class="">support required</label>
-                                    <input type="text" class="form-control">
-                                    <!-- <p class="details_content">productCategory</p> -->
-                                </div>
-                            </div>
-                            <div class="col-lg-1">
-                                <button mat-flat-button class="btn1">
-                                    <span class="material-symbols-outlined">
-                                        add
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
 
-                </div>
-
-            </div>
-
-            <!-- final follow up  -->
-            <div class="follow_up_div">
-                <div class="mb-4">
-                    <h4 class="follow_up_heading">
-                        final follow up
-                    </h4>
-                    <div class="my_form">
-                        <div class="row  align-items-center">
-                            <div class="col-lg-2">
-                                <div class="form_select_div">
-                                    <label class="">status date</label>
-                                    <input type="date" class="form-control">
-                                    <!-- <p class="details_content">productCategory</p> -->
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="form_select_div">
-                                    <label class="">status</label>
-                                    <input type="text" class="form-control">
-                                    <!-- <p class="details_content">productCategory</p> -->
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="form_select_div">
-                                    <label class="">remarks</label>
-                                    <input type="text" class="form-control">
-                                    <!-- <p class="details_content">productCategory</p> -->
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="form_select_div">
-                                    <label class="">support required</label>
-                                    <input type="text" class="form-control">
-                                    <!-- <p class="details_content">productCategory</p> -->
-                                </div>
-                            </div>
-                            <div class="col-lg-1">
-                                <button mat-flat-button class="btn1">
-                                    <span class="material-symbols-outlined">
-                                        add
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-        <div class="text-center mt-3">
-            <button mat-flat-button class="btn1">submit</button>
         </div>
 
         <!-- <div class="text-center mt-3">

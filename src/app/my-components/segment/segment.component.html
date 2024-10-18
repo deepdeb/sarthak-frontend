@@ -198,20 +198,12 @@
 
     <!------------- listing of segment, sub-segment, sub sub-segment ------------>
 
-    <!-- <ul class="segment_tabs">
-        <li (click)="segment_list()">segments</li>
-        <li (click)="sub_segment_list()">sub-segments</li>
-        <li (click)="sub_sub_segment_list()">sub sub-segments</li>
-        <li (click)="sub_sub_sub_segment_list()">sub sub-sub-segments</li>
-    </ul> -->
-    
+   
     <div class="listing_div segment_table">
         <div class="row align-items-center">
             <div class="col-md-3" >
-                <!-- <div *ngIf="display_2 || display_3 || display_4"> -->
                     <strong style="text-transform: capitalize;">choose segment</strong>                
                     <div class="form_select_div mt-3" >  
-                        <!-- <label class="test-capitalize mb-2" style="font-size: 16px; font-weight: 500;">choose segment</label>                  -->
                         <select class="form-control" [(ngModel)]="segmentId_2" (change)="getSubSegmentList()">
                             <option>choose segment</option>
                             <option *ngFor="let item of segmentList" [value]="item.segment_id">{{ item.segment_name }}
@@ -221,13 +213,10 @@
                             stat_minus_1
                         </span>
                     </div>
-                <!-- </div> -->
             </div>
             <div class="col-md-3">
-                <!-- <div *ngIf="display_3 || display_4"> -->
                     <strong style="text-transform: capitalize;">choose sub-segment</strong>
                     <div class="form_select_div mt-3" >
-                        <!-- <label class="test-capitalize mb-2" style="font-size: 16px; font-weight: 500;">choose sub-segment</label> -->
                         <select class="form-control" [(ngModel)]="subSegmentId_1" (change)="getSubSubSegmentList()">
                             <option>choose sub-segment</option>
                             <option *ngFor="let item of subSegmentList" [value]="item.subsegment_id">{{ item.subsegment_name }}
@@ -237,7 +226,6 @@
                             stat_minus_1
                         </span>
                     </div>
-                <!-- </div> -->
             </div>
             <div class="col-md-3">
                 <!-- <div *ngIf="display_4"> -->

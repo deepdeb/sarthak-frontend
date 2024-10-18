@@ -720,11 +720,14 @@ tr:nth-child(even),tr:hover {
   height: 40px;
 }
 .follow_up_div{
-  margin-top: 60px;
+  margin-top: 30px;
 }
-.follow_up_div .follow_up_heading{
+.follow_up_div .follow_up_heading h4{
   color: var(--primary);
   font-size: 26px !important;
+  
+}
+.follow_up_div .follow_up_heading {
   margin-bottom: 30px !important;
   padding-bottom: 12px;
   border-bottom: 1px solid var(--secondary);
