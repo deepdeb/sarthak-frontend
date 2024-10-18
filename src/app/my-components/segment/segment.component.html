@@ -38,8 +38,10 @@
                                 <input type="text" class="form-control" [(ngModel)]="segmentName">
                             </div>
                             <div class="col-md-4">
-                                <button mat-flat-button type="submit" class="btn1" [disabled]="isDisabled"
-                                    (click)="addNewSegment()">submit</button>
+                                <button *ngIf="!isEditSegment" mat-flat-button type="submit" class="btn1"
+                                    [disabled]="isDisabled" (click)="addNewSegment()">submit</button>
+                                <button *ngIf="isEditSegment" mat-flat-button type="submit" class="btn1"
+                                    [disabled]="isDisabled" (click)="editSegment()">edit</button>
                             </div>
                         </div>
                     </div>
@@ -69,8 +71,11 @@
                                 <input type="text" class="form-control" [(ngModel)]="subSegmentName">
                             </div>
                             <div class="col-md-4">
-                                <button mat-flat-button type="submit" class="btn1" [disabled]="isDisabled"
+                                <button *ngIf="!isEditSubSegment" mat-flat-button type="submit" class="btn1" [disabled]="isDisabled"
                                     (click)="addNewSubSegment()">submit
+                                </button>
+                                <button *ngIf="isEditSubSegment" mat-flat-button type="submit" class="btn1" [disabled]="isDisabled"
+                                    (click)="editSubSegment()">edit
                                 </button>
                             </div>
                         </div>
@@ -126,8 +131,8 @@
                 </div>
 
 
-                 <!-- new Sub sub-sub_segment add  -->
-                 <div class="row">
+                <!-- new Sub sub-sub_segment add  -->
+                <div class="row">
                     <div class="col-md-3">
                         <label>choose segment</label>
                         <div class="form_select_div">
@@ -147,7 +152,7 @@
                             <label>choose sub-segment</label>
                             <div class="form_select_div">
                                 <select class="form-control" name="subSegment" [(ngModel)]="subSegmentId_2"
-                                (change)="getSubSubSegmentList()">
+                                    (change)="getSubSubSegmentList()">
                                     <option>-- choose Sub-segment --</option>
                                     <option *ngFor="let item of subSegmentList" [value]="item.subsegment_id">{{
                                         item.subsegment_name }}</option>
@@ -179,8 +184,7 @@
                         <label>enter new sub-sub-sub-segment</label>
                         <div class="row g-2">
                             <div class="col-md-9">
-                                <input type="text" class="form-control"
-                                [(ngModel)]="subSubSubSegmentName">
+                                <input type="text" class="form-control" [(ngModel)]="subSubSubSegmentName">
                             </div>
                             <div class="col-md-3">
                                 <button mat-flat-button type="submit" class="btn1" [disabled]="isDisabled"
@@ -198,49 +202,51 @@
 
     <!------------- listing of segment, sub-segment, sub sub-segment ------------>
 
-   
+
     <div class="listing_div segment_table">
         <div class="row align-items-center">
-            <div class="col-md-3" >
-                    <strong style="text-transform: capitalize;">choose segment</strong>                
-                    <div class="form_select_div mt-3" >  
-                        <select class="form-control" [(ngModel)]="segmentId_2" (change)="getSubSegmentList()">
-                            <option>choose segment</option>
-                            <option *ngFor="let item of segmentList" [value]="item.segment_id">{{ item.segment_name }}
-                            </option>
-                        </select>
-                        <span class="material-symbols-outlined">
-                            stat_minus_1
-                        </span>
-                    </div>
+            <div class="col-md-3">
+                <strong style="text-transform: capitalize;">choose segment</strong>
+                <div class="form_select_div mt-3">
+                    <select class="form-control" [(ngModel)]="segmentId_2" (change)="getSubSegmentList()">
+                        <option>choose segment</option>
+                        <option *ngFor="let item of segmentList" [value]="item.segment_id">{{ item.segment_name }}
+                        </option>
+                    </select>
+                    <span class="material-symbols-outlined">
+                        stat_minus_1
+                    </span>
+                </div>
             </div>
             <div class="col-md-3">
-                    <strong style="text-transform: capitalize;">choose sub-segment</strong>
-                    <div class="form_select_div mt-3" >
-                        <select class="form-control" [(ngModel)]="subSegmentId_1" (change)="getSubSubSegmentList()">
-                            <option>choose sub-segment</option>
-                            <option *ngFor="let item of subSegmentList" [value]="item.subsegment_id">{{ item.subsegment_name }}
-                            </option>
-                        </select>
-                        <span class="material-symbols-outlined">
-                            stat_minus_1
-                        </span>
-                    </div>
+                <strong style="text-transform: capitalize;">choose sub-segment</strong>
+                <div class="form_select_div mt-3">
+                    <select class="form-control" [(ngModel)]="subSegmentId_1" (change)="getSubSubSegmentList()">
+                        <option>choose sub-segment</option>
+                        <option *ngFor="let item of subSegmentList" [value]="item.subsegment_id">{{ item.subsegment_name
+                            }}
+                        </option>
+                    </select>
+                    <span class="material-symbols-outlined">
+                        stat_minus_1
+                    </span>
+                </div>
             </div>
             <div class="col-md-3">
                 <!-- <div *ngIf="display_4"> -->
-                    <strong style="text-transform: capitalize;">choose sub-sub-segment</strong>               
-                    <div class="form_select_div mt-3"  >
-                        <!-- <label class="test-capitalize mb-2" style="font-size: 16px; font-weight: 500;">choose sub-sub-segment</label> -->
-                        <select class="form-control" [(ngModel)]="subSubSegmentId" (change)="getSubSubSubSegmentList()">
-                            <option>choose sub-sub-segment</option>
-                            <option *ngFor="let item of subSubSegmentList" [value]="item.subsubsegment_id">{{ item.subsubsegment_name }}
-                            </option>
-                        </select>
-                        <span class="material-symbols-outlined">
-                            stat_minus_1
-                        </span>
-                    </div>
+                <strong style="text-transform: capitalize;">choose sub-sub-segment</strong>
+                <div class="form_select_div mt-3">
+                    <!-- <label class="test-capitalize mb-2" style="font-size: 16px; font-weight: 500;">choose sub-sub-segment</label> -->
+                    <select class="form-control" [(ngModel)]="subSubSegmentId" (change)="getSubSubSubSegmentList()">
+                        <option>choose sub-sub-segment</option>
+                        <option *ngFor="let item of subSubSegmentList" [value]="item.subsubsegment_id">{{
+                            item.subsubsegment_name }}
+                        </option>
+                    </select>
+                    <span class="material-symbols-outlined">
+                        stat_minus_1
+                    </span>
+                </div>
                 <!-- </div> -->
             </div>
             <div class="col-md-3">
@@ -257,7 +263,7 @@
                 <th *ngIf="display_2">sub-segment</th>
                 <th *ngIf="display_3">Sub sub-segment</th>
                 <th *ngIf="display_4">Sub sub-sub--segment</th>
-                <th>view</th>
+                <!-- <th>view</th> -->
                 <th>edit</th>
                 <th>delete</th>
             </tr>
@@ -267,13 +273,14 @@
                 <tr *ngFor="let item of segmentList; let i = index">
                     <td>{{ i + 1 }}</td>
                     <td>{{ item.segment_name }}</td>
-                    <td>
+                    <!-- <td>
                         <span class="material-symbols-outlined" style="color:#006FFD;"  >
                             visibility
                         </span>
-                    </td>
+                    </td> -->
                     <td>
-                        <span class="material-symbols-outlined" style="color: #00BF58;">
+                        <span class="material-symbols-outlined" style="color: #00BF58;"
+                            (click)="getSegmentToForm(item.segment_id, item.segment_name)">
                             edit_square
                         </span>
                     </td>
@@ -284,18 +291,19 @@
                     </td>
                 </tr>
             </ng-container>
-            
+
             <ng-container *ngIf="display_2">
                 <tr *ngFor="let item of subSegmentList; let i = index">
                     <td>{{ i + 1 }}</td>
                     <td>{{ item.subsegment_name }}</td>
-                    <td>
+                    <!-- <td>
                         <span class="material-symbols-outlined" style="color:#006FFD;"  >
                             visibility
                         </span>
-                    </td>
+                    </td> -->
                     <td>
-                        <span class="material-symbols-outlined" style="color: #00BF58;">
+                        <span class="material-symbols-outlined" style="color: #00BF58;"
+                            (click)="getSubSegmentToForm(item.segment_id, item.subsegment_id, item.subsegment_name)">
                             edit_square
                         </span>
                     </td>
@@ -306,16 +314,16 @@
                     </td>
                 </tr>
             </ng-container>
-            
+
             <ng-container *ngIf="display_3">
                 <tr *ngFor="let item of subSubSegmentList; let i = index">
                     <td>{{ i + 1 }}</td>
                     <td>{{ item.subsubsegment_name }}</td>
-                    <td>
+                    <!-- <td>
                         <span class="material-symbols-outlined" style="color:#006FFD;"  >
                             visibility
                         </span>
-                    </td>
+                    </td> -->
                     <td>
                         <span class="material-symbols-outlined" style="color: #00BF58;">
                             edit_square
@@ -333,11 +341,11 @@
                 <tr *ngFor="let item of subSubSubSegmentList; let i = index">
                     <td>{{ i + 1 }}</td>
                     <td>{{ item.subsubsubsegment_name }}</td>
-                    <td>
+                    <!-- <td>
                         <span class="material-symbols-outlined" style="color:#006FFD;"  >
                             visibility
                         </span>
-                    </td>
+                    </td> -->
                     <td>
                         <span class="material-symbols-outlined" style="color: #00BF58;">
                             edit_square

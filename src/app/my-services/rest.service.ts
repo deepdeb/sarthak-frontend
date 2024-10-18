@@ -67,6 +67,11 @@ export class RestService {
   createSegment(data: any): Observable<any> {
     return this.http.post(this.API_ROOT + 'director/createSegment', data, httpOptions);
   }
+
+  editSegment_rest(data: any): Observable<any> {
+    return this.http.post(this.API_ROOT + 'director/editSegment', data, httpOptions);
+  }
+
   getSegmentList_rest(): Observable<any> {
     return this.http.get(this.API_ROOT + 'common/getSegmentList', httpOptions);
   }
@@ -74,6 +79,11 @@ export class RestService {
   createSubSegment(data: any): Observable<any> {
     return this.http.post(this.API_ROOT + 'director/createSubSegment', data, httpOptions)
   }
+
+  editSubSegment_rest(data: any): Observable<any> {
+    return this.http.post(this.API_ROOT + 'director/editSubSegment', data, httpOptions)
+  }
+
   getSubSegmentList_rest(data: any): Observable<any> {
     return this.http.post(this.API_ROOT + 'common/getSubSegmentList', data, httpOptions)
   }

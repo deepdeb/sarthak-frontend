@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
 import { RestService } from 'src/app/my-services/rest.service';
 import { CommonService } from 'src/app/my-services/common.service';
 
@@ -20,6 +19,8 @@ export class SegmentComponent implements OnInit {
   segmentId_1: any;
   segmentId_2: any;
   segmentId_3: any;
+  segmentIdEdit: any;
+  subSegmentIdEdit: any;
   subSegmentName: string = '';
   subSubSegmentName: string = '';
   subSubSubSegmentName: string = '';
@@ -41,6 +42,8 @@ export class SegmentComponent implements OnInit {
   display_3: boolean = false;     //sub sub-segment
   display_4: boolean = false;     //sub sub-sub-segment
 
+  isEditSegment: boolean = false;
+  isEditSubSegment: boolean = false;
 
 
   segment_list() {
@@ -127,6 +130,34 @@ export class SegmentComponent implements OnInit {
   }
 
 
+  //******** edit segment logic *********//
+  getSegmentToForm(segment_id: any, segment_name: any) {
+    this.isEditSegment = true;
+    this.segmentIdEdit = segment_id;
+    this.segmentName = segment_name;
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  editSegment() {
+    const data = {
+      segment_id: this.segmentIdEdit,
+      segment_name: this.segmentName
+    }
+    this.rest.editSegment_rest(data).subscribe((res: any) => {
+      if(res.success) {
+        if(res.message) {
+          this.common.showAlertMessage(res.message, this.common.succContent);
+          this.getSegmentList();
+          this.isEditSegment = false;
+          this.segmentIdEdit = '';
+          this.segmentName = '';
+        }
+      }
+    })
+  }
+  //******** edit segment logic *********//
+
+
   //******* add new sub-segment ******//
   addNewSubSegment() {
     if (!this.segmentId) {
@@ -152,6 +183,38 @@ export class SegmentComponent implements OnInit {
       }
     })
   }
+
+
+  //******* edit sub segment logic *******//
+  getSubSegmentToForm(segment_id: any, subsegment_id: any, subsegment_name: any) {
+    this.isEditSubSegment = true;
+    this.segmentId = segment_id;
+    this.subSegmentIdEdit = subsegment_id;
+    this.subSegmentName = subsegment_name;
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  editSubSegment() {
+    const data = {
+      segment_id: this.segmentId,
+      subsegment_id: this.subSegmentIdEdit,
+      subsegment_name: this.subSegmentName
+    }
+    this.rest.editSubSegment_rest(data).subscribe((res: any) => {
+      if(res.success) {
+        if(res.message) {
+          this.common.showAlertMessage(res.message, this.common.succContent);
+          this.getSubSegmentList();
+          this.isEditSubSegment = false;
+          this.segmentId = '';
+          this.subSegmentIdEdit = '';
+          this.subSegmentName = '';
+        }
+      }
+    })
+  }
+  //******* edit sub segment logic *******//
+
 
   //******* add new sub-sub-segment ******//
   addNewSubSubSegment() {
@@ -235,7 +298,6 @@ export class SegmentComponent implements OnInit {
         this.segmentList = [];
         if (res.response) {
           if (res.response.length > 0) {
-            console.log(res.response)
             this.segmentList = res.response;
             this.totalCount = res.total_count;
           }
