@@ -113,6 +113,7 @@ export class OrdersComponent {
 
   //************ get PO Sub type List ************//
   getPoSubTypeListByPOtype() {
+    this.poSubTypeList = []
     const data = {
       po_type_id: this.poTypeId
     }
@@ -120,7 +121,7 @@ export class OrdersComponent {
       if(res.success){
         if(res.response){
           if(res.response.length > 0){
-            this.poSubTypeList = []
+            
             this.poSubTypeList = res.response
           }
         }

@@ -180,18 +180,6 @@
                             <p class="details_content">{{ departmentName }}</p>
                         </div>
                     </div>
-                    <div class="col-md-3" *ngIf="view === 'customer' || view === 'salesperson'">
-                        <div class="details_content_div">
-                            <label>mobile no. :</label>
-                            <p class="details_content">{{ mobileNumber }}</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3" *ngIf="view === 'customer' || view === 'salesperson'">
-                        <div class="details_content_div">
-                            <label>alternative mobile no. :</label>
-                            <p class="details_content">{{ altMobileNumber }}</p>
-                        </div>
-                    </div>
                     <div class="col-md-3" *ngIf="view === 'salesperson'">
                         <div class="details_content_div">
                             <label>DOB :</label>
@@ -200,11 +188,25 @@
                     </div>
                     <div class="col-md-3" *ngIf="view === 'customer' || view === 'salesperson'">
                         <div class="details_content_div">
+                            <label>mobile no. :</label>
+                            <p class="details_content">{{ mobileNumber }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'customer' || view === 'salesperson'">
+                        <div class="details_content_div">
                             <label>email id :</label>
                             <p class="details_content text-lowercase">{{ emailAdderss }}</p>
                         </div>
                     </div>
-                    <div class="col-md-3" *ngIf="view === 'customer' || view === 'salesperson'">
+                    <div class="col-md-3" *ngIf="view === 'customer'">
+                        <div class="details_content_div">
+                            <label>alternative mobile no. :</label>
+                            <p class="details_content">{{ altMobileNumber }}</p>
+                        </div>
+                    </div>
+                   
+                    
+                    <div class="col-md-3" *ngIf="view === 'customer'">
                         <div class="details_content_div">
                             <label>alternative email id :</label>
                             <p class="details_content text-lowercase">{{ altEmailAddress }}</p>
