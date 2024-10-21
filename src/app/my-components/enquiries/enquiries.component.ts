@@ -119,7 +119,6 @@ export class EnquiriesComponent {
   //********* FOR total sales person list start *********//
   getSalesPersonList() {
     const data = {
-      // check_designation_id: this.checkDesignationId,
       sbu_id: localStorage.getItem('sbu_id'),
       sales_person_id: localStorage.getItem('sales_person_id')
     };

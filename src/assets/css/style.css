@@ -868,3 +868,36 @@ tr:nth-child(even),tr:hover {
   text-transform: uppercase;
   color: #ffffffa6;
 }
+
+
+
+/*********** customer page scroll ***********/
+.customer_table{
+  height: 580px;
+  overflow-y: scroll;
+}
+/* width */
+.customer_table::-webkit-scrollbar {
+  height: 7px;
+  width: 7px;  
+}
+
+/* Track */
+.customer_table::-webkit-scrollbar-track {
+  background: #d8d8d8;
+}
+
+/* Handle */
+.customer_table::-webkit-scrollbar-thumb {
+  background: var(--primary)!important;
+  border-radius: 12px;
+}
+/* .listing_table{
+  width: 1000px;
+  overflow-x: scroll;
+} */
+
+/* Handle on hover */
+/* .table-responsive::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-lit-1);
+} */

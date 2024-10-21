@@ -223,4 +223,17 @@ export class RestService {
   getFollowUpById_rest(data: any):Observable<any>{
     return this.http.post(this.API_ROOT + 'common/getFollowUpById', data, httpOptions)
   }
+
+
+
+  //*********** get PO-type list ***********//
+  getPOtypeList_rest(): Observable<any>{
+    return this.http.get(this.API_ROOT + 'common/getPOTypeList', httpOptions)
+  }
+
+
+  //*********** get PO sub-type list ***********//
+  getPoSubTypeListByPOtype_rest(data: any):Observable<any>{
+    return this.http.post(this.API_ROOT + 'common/getPOSubTypeList', data, httpOptions)
+  }
 }

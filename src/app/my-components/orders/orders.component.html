@@ -28,15 +28,31 @@
                 orders
             </div>
             <div class="my_form ">
-                <div class="row">
+                <div class="row g-2">
                     <div class="col-md-3">
+                        <div class="form_select_div">
+                            <label>sales incharge</label>
+                            <div class="form_select_div">
+                                <select class="form-control" [(ngModel)]="salesPersonId"
+                                    (change)="getCustomerListBySalesperson();">
+                                    <option *ngFor="let item of salesPersonList" [value]="item.sales_person_id">{{
+                                        item.sales_person_name }}</option>
+                                </select>
+                                <span class="material-symbols-outlined">
+                                    stat_minus_1
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
                         <div class="">
                             <label>customer</label>
                             <div class="form_select_div">
-                                <select class="form-control">
-                                    <option>--choose segment--</option>
-                                    <option value="Sarthak Components">Sarthak Components</option>
-                                    <option value="Sarthak Power">Sarthak Power</option>
+                                <select class="form-control" [(ngModel)]="customerId">
+                                    <option value="" disabled>--choose customer--</option>
+                                    <option *ngFor="let item of customerBySalespersonList" [value]="item.customer_id">
+                                        {{ item.customer }}
+                                    </option>
                                 </select>
                                 <span class="material-symbols-outlined">
                                     stat_minus_1
@@ -47,23 +63,23 @@
                     <div class="col-md-3">  
                         <div class="form_select_div">
                             <label>PO number</label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" [(ngModel)]="poNumber">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form_select_div">
                             <label>PO date</label>
-                            <input type="date" class="form-control">
+                            <input type="date" class="form-control" [(ngModel)]="poDate">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="">
                             <label>PO type</label>
                             <div class="form_select_div">
-                                <select class="form-control">
-                                    <option>--choose segment--</option>
-                                    <option value="Sarthak Components">Sarthak Components</option>
-                                    <option value="Sarthak Power">Sarthak Power</option>
+                                <select class="form-control" [(ngModel)]="poTypeId" (change)="getPoSubTypeListByPOtype()">
+                                    <option value="" disabled>--choose PO type--</option>
+                                    <option *ngFor="let item of poTypeList" [value]="item.po_type_id">{{ item.po_type_name }}</option>
+                              
                                 </select>
                                 <span class="material-symbols-outlined">
                                     stat_minus_1
@@ -75,10 +91,9 @@
                         <div class="">
                             <label>PO sub-type</label>
                             <div class="form_select_div">
-                                <select class="form-control">
-                                    <option>--choose segment--</option>
-                                    <option value="Sarthak Components">Sarthak Components</option>
-                                    <option value="Sarthak Power">Sarthak Power</option>
+                                <select class="form-control" [(ngModel)]="poSubType">
+                                    <option value="" disabled>--choose PO sub-type--</option>
+                                    <option *ngFor="let item of poSubTypeList" [value]="item.po_subtype_id">{{ item.po_subtype_name }}</option>
                                 </select>
                                 <span class="material-symbols-outlined">
                                     stat_minus_1
@@ -86,47 +101,47 @@
                             </div>                                            
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form_select_div">
                             <label>BASIC PO value</label>
-                            <input type="text" class="form-control">                                                  
+                            <input type="text" class="form-control" [(ngModel)]="basicPoValue">                                                  
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="">
                             <label>total PO value(inclu GST)</label>                            
-                            <input type="date" class="form-control">                                                  
+                            <input type="text" class="form-control" [(ngModel)]="totalPoValue">                                                  
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form_select_div">
                             <label>scheduled date of completion</label>                           
-                            <input type="date" class="form-control">                                                  
+                            <input type="date" class="form-control" [(ngModel)]="completionDate">                                                  
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="">
                             <label>actual date of completion</label>
-                            <input type="date" class="form-control">                                                  
+                            <input type="date" class="form-control" [(ngModel)]="actualCompletionDate">                                                  
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="">
                             <label>PO upload</label>
-                                <input type="file" class="form-control"> 
+                                <input type="file" class="form-control" [(ngModel)]="poUpload"> 
                                                                              
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="">
                             <label>completion upload</label>
-                            <input type="file" class="form-control">                                                  
+                            <input type="file" class="form-control" [(ngModel)]="completionUpload">                                                  
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="">
                             <label>credential upload</label>
-                            <input type="file" class="form-control">                                                  
+                            <input type="file" class="form-control" [(ngModel)]="credentialUpload">                                                  
                         </div>
                     </div>
                     
@@ -134,135 +149,57 @@
             </div>
         </div>
         <div class="text-center mt-3">
-            <button mat-flat-button class="btn1">submit</button>  
+            <button mat-flat-button class="btn1" (click)="createOrder()">submit</button>  
         </div>
        
     </div>
 
 
 
-    <div class="listing_div">
+    <div>
         <h3 class="text-end" style="font-size: 20px;">total : 5</h3>
-        <table class="listing_table">
-            <tr class="table_head">
-              <th>sl no.</th>
-              <th>customer</th>
-              <th>PO number</th>
-              <th>PO date</th>
-              <th>PO type</th>
-              <th>PO sub-type</th>
-              <th>basic PO value</th>
-              <th>total PO value <small>(inclu GST)</small></th>
-              <th>schedule date of completion</th>
-              <th>edit</th>
-              <th>delete</th>
-            </tr>
-            
-            <tr>
-              <td>1</td>
-              <td>Sarthak components</td>
-              <td></td>
-              <td>30/05/24</td>
-              <td>supply</td>
-              <td>product</td>
-              <td>10,000/-</td>
-              <td>10,900/-</td>
-              <td>30/05/24</td>
-              <td>
-                    <span class="material-symbols-outlined" style="color: #00BF58;">
-                        edit_square
-                    </span>
-               </td>
-              <td>
-                <span class="material-symbols-outlined" style="color: #A8226A;">
-                    delete
-                </span>
-              </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Sarthak components</td>
-                <td></td>
-                <td>30/05/24</td>
-                <td>supply</td>
-                <td>product</td>
-                <td>10,000/-</td>
-                <td>10,900/-</td>
-                <td>30/05/24</td>
-                <td>
-                      <span class="material-symbols-outlined" style="color: #00BF58;">
-                          edit_square
-                      </span>
-                 </td>
-                <td>
-                  <span class="material-symbols-outlined" style="color: #A8226A;">
-                      delete
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Sarthak components</td>
-                <td></td>
-                <td>30/05/24</td>
-                <td>supply</td>
-                <td>product</td>
-                <td>10,000/-</td>
-                <td>10,900/-</td>
-                <td>30/05/24</td>
-                <td>
-                      <span class="material-symbols-outlined" style="color: #00BF58;">
-                          edit_square
-                      </span>
-                 </td>
-                <td>
-                  <span class="material-symbols-outlined" style="color: #A8226A;">
-                      delete
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>Sarthak components</td>
-                <td></td>
-                <td>30/05/24</td>
-                <td>supply</td>
-                <td>product</td>
-                <td>10,000/-</td>
-                <td>10,900/-</td>
-                <td>30/05/24</td>
-                <td>
-                      <span class="material-symbols-outlined" style="color: #00BF58;">
-                          edit_square
-                      </span>
-                 </td>
-                <td>
-                  <span class="material-symbols-outlined" style="color: #A8226A;">
-                      delete
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>Sarthak components</td>
-                <td></td>
-                <td>30/05/24</td>
-                <td>supply</td>
-                <td>product</td>
-                <td>10,000/-</td>
-                <td>10,900/-</td>
-                <td>30/05/24</td>
-                <td>
-                      <span class="material-symbols-outlined" style="color: #00BF58;">
-                          edit_square
-                      </span>
-                 </td>
-                <td>
-                  <span class="material-symbols-outlined" style="color: #A8226A;">
-                      delete
-                  </span>
-                </td>
-              </tr>
-        </table>
     </div>
+    <!-- <div class="customer_table"> -->
+        <div class="listing_div">        
+            <table class="listing_table">
+                <tr class="table_head sticky-top">
+                  <th>sl no.</th>
+                  <th>customer</th>
+                  <th>PO number</th>
+                  <th>PO date</th>
+                  <th>PO type</th>
+                  <th>PO sub-type</th>
+                  <th>basic PO value</th>
+                  <th>total PO value <small>(inclu GST)</small></th>
+                  <th>schedule date of completion</th>
+                  <th>edit</th>
+                  <th>delete</th>
+                </tr>
+                
+                <tr>
+                  <td>1</td>
+                  <td>Sarthak components</td>
+                  <td></td>
+                  <td>30/05/24</td>
+                  <td>supply</td>
+                  <td>product</td>
+                  <td>10,000/-</td>
+                  <td>10,900/-</td>
+                  <td>30/05/24</td>
+                  <td>
+                        <span class="material-symbols-outlined" style="color: #00BF58;">
+                            edit_square
+                        </span>
+                   </td>
+                  <td>
+                    <span class="material-symbols-outlined" style="color: #A8226A;">
+                        delete
+                    </span>
+                  </td>
+                </tr>
+               
+            </table>
+        </div>
+    <!-- </div> -->
+    
 </div>

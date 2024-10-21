@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RestService } from 'src/app/my-services/rest.service';
-// import { NgForm } from '@angular/forms';
 import { CommonService } from 'src/app/my-services/common.service';
 
 
