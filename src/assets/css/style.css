@@ -69,7 +69,7 @@ select,select option, input, table td {
   text-transform: uppercase !important;
 }
 table tr td{
-  font-size: 12px;
+  font-size: 13px;
 }
 .btn1{
   background: var(--secondary) !important;
