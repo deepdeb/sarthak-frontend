@@ -69,7 +69,7 @@ select,select option, input, table td {
   text-transform: uppercase !important;
 }
 table tr td{
-  font-size: 13px;
+  font-size: 11px;
 }
 .btn1{
   background: var(--secondary) !important;
@@ -88,9 +88,6 @@ table tr td{
 }
 
 
-/* .new_btn{
-  background: var(--primary) !important;
-} */
 .listing_table .material-symbols-outlined{
   cursor: pointer;
 }

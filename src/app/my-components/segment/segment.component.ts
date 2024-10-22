@@ -141,6 +141,7 @@ export class SegmentComponent implements OnInit {
   editSegment() {
     if(!this.segmentName) {
       this.common.showAlertMessage('Enter segment name', this.common.errContent);
+      return;
     }
     const data = {
       segment_id: this.segmentIdEdit,
@@ -200,6 +201,7 @@ export class SegmentComponent implements OnInit {
   editSubSegment() {
     if(!this.subSegmentName) {
       this.common.showAlertMessage('Enter sub segment name', this.common.errContent)
+      return;
     }
     const data = {
       segment_id: this.segmentId,

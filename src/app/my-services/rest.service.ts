@@ -236,4 +236,21 @@ export class RestService {
   getPoSubTypeListByPOtype_rest(data: any):Observable<any>{
     return this.http.post(this.API_ROOT + 'common/getPOSubTypeList', data, httpOptions)
   }
+
+
+  //*********** upload file ***********//
+  uploadFile_rest(data: any): Observable<any>{
+    return this.http.post(this.API_ROOT + 'common/fileUpload',data )
+  }
+
+
+  //************* create order *************//
+  createOrder_rest(data: any): Observable<any>{
+    return this.http.post(this.API_ROOT + 'common/createOrder', data, httpOptions)
+  }
+
+  //************ order listing ************//
+  getOrderList_rest(data :any): Observable<any>{
+    return this.http.post(this.API_ROOT + 'common/getOrderList', data, httpOptions)
+  }
 }
