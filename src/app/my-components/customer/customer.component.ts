@@ -44,7 +44,7 @@ export class CustomerComponent {
   customerId: any;
   checkDesignationId: any = localStorage.getItem('designation_id');
   checkSbuId: any = localStorage.getItem('sbu_id')
-  mentorId: any = '';
+  // mentorId: any = '';
   mentorList: any = [];
   isShowInput: boolean = true;
   otherProductCategory: string = ''
@@ -495,7 +495,7 @@ export class CustomerComponent {
           this.mob_no = res.response[0].mobile
           this.alt_mob_no = res.response[0].alt_mobile
           this.contact_name = res.response[0].name
-          this.mentorId = res.response[0].mentor_id
+          // this.mentorId = res.response[0].mentor_id
           this.emailId = res.response[0].email
           this.alt_emailId = res.response[0].alt_email
           this.district_name = res.response[0].district

@@ -57,11 +57,11 @@
             </div>
             <form class="my_form" #salesPersonCreation="ngForm" (ngSubmit)="createSalesPerson(salesPersonCreation)">
                 <div class="row g-2">
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="form_select_div">
                             <label>SBU</label>
                             <div class="form_select_div">
-                                <select class="form-control" name="sbu" [(ngModel)]="sbu_id" (change)="getMentorList()" [disabled]="isEdit">
+                                <select class="form-control" name="sbu" [(ngModel)]="sbu_id" [disabled]="isEdit">
                                     <option *ngFor="let item of SBUList" [value]="item.sbu_id">{{ item.sbu_name }}
                                     </option>
                                 </select>
@@ -72,7 +72,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="form_select_div">
                             <label>function</label>
                             <div class="form_select_div">
@@ -88,7 +88,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="form_select_div ">
                             <label>name</label>
                             <input type="text" class="form-control" name="name" [(ngModel)]="salesPersonName" />
@@ -99,8 +99,7 @@
                         <div class="form_select_div">
                             <label>designation</label>
                             <div class="form_select_div">
-                                <select class="form-control" name="designation" [(ngModel)]="designationId"
-                                    (change)="showMentorList()">
+                                <select class="form-control" name="designation" [(ngModel)]="designationId">
                                     <option>--choose designation--</option>
                                     <option *ngFor="let item of designationList" [value]="item.designation_id">{{
                                         item.designation_name }}</option>
@@ -112,7 +111,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <!-- <div class="col-md-3">
                         <div class="form_select_div">
                             <label>mentor</label>
                             <div class="form_select_div">
@@ -126,7 +125,7 @@
                                 </span>
                             </div>
                         </div>
-                        <!-- <div class="form_select_div" *ngIf="checkDesignationId==4">
+                        <div class="form_select_div" *ngIf="checkDesignationId==4">
                             <label>mentor</label>
                             <div class="form_select_div">
                                 <select class="form-control" name="mentor" [(ngModel)]="mentorId">
@@ -138,8 +137,8 @@
                                     stat_minus_1
                                 </span>
                             </div>
-                        </div> -->
-                    </div>
+                        </div>
+                    </div> -->
                     
 
 

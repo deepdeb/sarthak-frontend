@@ -32,7 +32,7 @@ export class SalesPersonComponent implements OnInit {
   checkDesignationId: any = localStorage.getItem('designation_id');
   isMentorVisible: boolean = false;
   mentorList: any = [];
-  mentorId: any = ''; 
+  // mentorId: any = ''; 
 
   constructor(private router: Router, private rest: RestService, private common: CommonService) { }
 
@@ -41,7 +41,7 @@ export class SalesPersonComponent implements OnInit {
     this.getSBUList();
     this.getFunctionList();
     this.getDesignationList();
-    if(this.checkDesignationId == 4) {
+    if (this.checkDesignationId == 4) {
       this.getSalespersonById(this.salesPersonId);
     }
   }
@@ -132,14 +132,14 @@ export class SalesPersonComponent implements OnInit {
     //   this.common.showAlertMessage('Select SBU', this.common.errContent)
     //   return
     // }
-    if(!this.sbu_id) {
+    if (!this.sbu_id) {
       this.common.showAlertMessage('Select SBU', this.common.errContent)
     }
     // if (!form.value.function) {
     //   this.common.showAlertMessage('Select function', this.common.errContent)
     //   return
     // }
-    if(!this.functionId) {
+    if (!this.functionId) {
       this.common.showAlertMessage('Select function', this.common.errContent)
     }
     if (!form.value.name) {
@@ -162,30 +162,31 @@ export class SalesPersonComponent implements OnInit {
       this.common.showAlertMessage('Enter password', this.common.errContent)
       return
     }
-    const mentorId = form.value.mentor ? form.value.mentor : null
+    // const mentorId = form.value.mentor ? form.value.mentor : null
+
     const data = {
       sbu_id: this.sbu_id,
       function_id: this.functionId,
       sales_person_name: form.value.name,
       designation_id: form.value.designation,
-      mentor_id: mentorId,
+      // mentor_id: mentorId,
       mobile: form.value.mobile_no,
       email: form.value.email_id,
       dob: form.value.dob,
       password: form.value.password,
-      ...(this.isEdit && {sales_person_id: this.salesPersonId})
+      ...(this.isEdit && { sales_person_id: this.salesPersonId })
     };
     this.isDisabled = true;
-    this.rest.createSalesPerson_rest(data,  this.isEdit).subscribe((res: any) => {
+    this.rest.createSalesPerson_rest(data, this.isEdit).subscribe((res: any) => {
       if (res.success) {
         form.reset();
-        if(this.checkDesignationId == 4) {
+        if (this.checkDesignationId == 4) {
           this.getSalespersonById(this.salesPersonId);
-        } 
+        }
         this.common.showAlertMessage(res.message, this.common.succContent);
         this.isDisabled = false;
         this.getSalesPersonList();
-        if(this.checkDesignationId == 1) {
+        if (this.checkDesignationId == 1) {
           this.isEdit = false;
         }
       }
@@ -220,9 +221,9 @@ export class SalesPersonComponent implements OnInit {
       if (res.success) {
         if (res.response) {
           this.sbu_id = res.response.sbu_id;
-          this.getMentorList();
+          // this.getMentorList();
           this.functionId = res.response.function_id;
-          this.mentorId = res.response.mentor_id ? res.response.mentor_id : '';
+          // this.mentorId = res.response.mentor_id ? res.response.mentor_id : '';
           this.salesPersonName = res.response.sales_person_name
           this.designationId = res.response.designation_id
           this.emailId = res.response.email
@@ -245,25 +246,25 @@ export class SalesPersonComponent implements OnInit {
 
 
 
-//********** For get mentor List **********//
-getMentorList(){
-  const data = {
-    sbu_id: this.sbu_id,
-  }
-  this.rest.getMentorList_rest(data).subscribe((res: any) =>{
-    if(res.success){
-      this.mentorList = [];
-      if(res.response){
-        if(res.response.length > 0){
-          this.mentorList = res.response;
-        }
-      }
-    }
-  })
-}
-  showMentorList(){
-    if(this.designationId == 4){
-      this.isMentorVisible = true;
-    }
-  }
+  //********** For get mentor List **********//
+  // getMentorList() {
+  //   const data = {
+  //     sbu_id: this.sbu_id,
+  //   }
+  //   this.rest.getMentorList_rest(data).subscribe((res: any) => {
+  //     if (res.success) {
+  //       this.mentorList = [];
+  //       if (res.response) {
+  //         if (res.response.length > 0) {
+  //           this.mentorList = res.response;
+  //         }
+  //       }
+  //     }
+  //   })
+  // }
+  // showMentorList(){
+  //   if(this.designationId == 4){
+  //     this.isMentorVisible = true;
+  //   }
+  // }
 }

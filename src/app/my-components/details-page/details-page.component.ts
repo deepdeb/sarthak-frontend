@@ -11,7 +11,7 @@ export class DetailsPageComponent {
 
   salesIncharge: string = '';
   salesPersonId: any;
-  mentorName: string = '';
+  // mentorName: string = '';
   customer_creation_date: any;
   customer_Name: string = '';
   sbuName: string = '';
@@ -73,7 +73,7 @@ export class DetailsPageComponent {
         if(res.response && res.response.length > 0){
           this.customer_creation_date = res.response[0].customer_create_date;
           this.salesIncharge = res.response[0].sales_person_name;
-          this.mentorName = res.response[0].mentor_name;
+          // this.mentorName = res.response[0].mentor_name;
           this.sbuName = res.response[0].sbu_name
           this.segmentName = res.response[0].segment_name
           this.subSegmentName = res.response[0].subsegment_name

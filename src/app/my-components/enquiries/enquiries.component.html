@@ -24,7 +24,7 @@
 
     <div class="main_body sec_gapping">
         <div class="text-end mb-4">
-            <button class="new_btn "  (click)="newForm()" [hidden]="!isEdit">+ new</button>
+            <button class="new_btn " (click)="newForm()" [hidden]="!isEdit">+ new</button>
         </div>
         <div class="info_div">
             <div class="page_info_heading">
@@ -33,11 +33,42 @@
             <div class="my_form ">
                 <div class="row">
                     <div class="col-sm-6 col-md-3">
+                        <label>SBU</label>
+                        <div class="form_select_div">
+                            <select class="form-control" [(ngModel)]="sbuId" (change)="getMentorSalesList()">
+                                <option *ngIf="sbuId==0" value="" disabled>-- choose SBU --</option>
+                                <option *ngFor="let item of SBUList" [value]="item.sbu_id">{{ item.sbu_name }}
+                                </option>
+                            </select>
+                            <span class="material-symbols-outlined">
+                                stat_minus_1
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-3">
+                        <div class="form_select_div">
+                            <label>mentor</label>
+                            <div class="form_select_div">
+                                <select class="form-control" name="mentor" [(ngModel)]="mentorId">
+                                    <option value='' disabled>--choose mentor--</option>
+                                    <option *ngFor="let item of mentorList" [ngValue]="item.mentor_id">{{
+                                        item.mentor_name
+                                        }}</option>
+                                </select>
+                                <span class="material-symbols-outlined">
+                                    stat_minus_1
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
                         <div class="form_select_div">
                             <label>sales incharge</label>
                             <div class="form_select_div">
                                 <select class="form-control" [(ngModel)]="salesPersonId"
                                     (change)="getCustomerListBySalesperson();">
+                                    <option value='' disabled>--choose sales-incharge--</option>
                                     <option *ngFor="let item of salesPersonList" [value]="item.sales_person_id">{{
                                         item.sales_person_name }}</option>
                                 </select>
@@ -72,7 +103,7 @@
                         <div class="">
                             <label>source of enquiry</label>
                             <div class="form_select_div">
-                            <input type="text" class="form-control" [(ngModel)]="enquirySource">
+                                <input type="text" class="form-control" [(ngModel)]="enquirySource">
                                 <!-- <select class="form-control" [(ngModel)]="enquirySourceId">
                                     <option>--choose enquiry source--</option>
                                     <option *ngFor="let item of enquiryTypeList" [value]="item.enquiry_source_id">{{
@@ -105,7 +136,8 @@
                             <div class="form_select_div">
                                 <select class="form-control" [(ngModel)]="enquirySubTypeId">
                                     <option value="" disabled>--choose enquiry sub-type--</option>
-                                    <option *ngFor="let item of enquirySubTypeList" [value]="item.enquiry_sub_type_id">{{
+                                    <option *ngFor="let item of enquirySubTypeList" [value]="item.enquiry_sub_type_id">
+                                        {{
                                         item.enquiry_sub_type_name }}</option>
                                 </select>
                                 <span class="material-symbols-outlined">
@@ -133,16 +165,16 @@
                         </div>
                     </div>
                     <!-- <div class="col-sm-6 col-md-3">
-                        <div class="">
-                            <label>Tentative Date of Finalisation</label>
-                            <div class="d-flex">
-                                <input type="text" class="form-control me-3" maxlength="2"
-                                    (keypress)="restrictPhone($event)" [(ngModel)]="monthFinal" placeholder="MM">
-                                <input type="text" class="form-control" maxlength="4" (keypress)="restrictPhone($event)"
-                                    [(ngModel)]="yearFinal" placeholder="YYYY">
+                            <div class="">
+                                <label>Tentative Date of Finalisation</label>
+                                <div class="d-flex">
+                                    <input type="text" class="form-control me-3" maxlength="2"
+                                        (keypress)="restrictPhone($event)" [(ngModel)]="monthFinal" placeholder="MM">
+                                    <input type="text" class="form-control" maxlength="4"
+                                        (keypress)="restrictPhone($event)" [(ngModel)]="yearFinal" placeholder="YYYY">
+                                </div>
                             </div>
-                        </div>
-                    </div> -->
+                        </div> -->
                     <div class="col-sm-6 col-md-3">
                         <div class="">
                             <label>Tentative Date of Finalisation</label>
@@ -152,7 +184,8 @@
                                         <option value="" disabled>MM</option>
                                         <option *ngFor="let month of months" [value]="month">{{ month }}</option>
                                     </select>
-                                    <span class="material-symbols-outlined"  style="top:15% !important;right:26px;transform:none !important; ">
+                                    <span class="material-symbols-outlined"
+                                        style="top:15% !important;right:26px;transform:none !important; ">
                                         stat_minus_1
                                     </span>
                                 </div>
@@ -161,7 +194,8 @@
                                         <option value="" disabled>YYYY</option>
                                         <option *ngFor="let year of years" [value]="year">{{ year }}</option>
                                     </select>
-                                    <span class="material-symbols-outlined" style="top:15% !important;right:26px;transform:none !important; " >
+                                    <span class="material-symbols-outlined"
+                                        style="top:15% !important;right:26px;transform:none !important; ">
                                         stat_minus_1
                                     </span>
                                 </div>
@@ -199,10 +233,10 @@
 
     <div class="listing_div">
         <div class="row align-items-end">
-            <div class="col-md-3" >
-                <strong style="text-transform: capitalize;">filter by</strong>                
-                <div class="form_select_div mt-3" >  
-                    <select class="form-control" >
+            <div class="col-md-3">
+                <strong style="text-transform: capitalize;">filter by</strong>
+                <div class="form_select_div mt-3">
+                    <select class="form-control">
                         <option>-- choose category --</option>
                         <option>sales incharge</option>
                         <option>customer</option>
@@ -212,7 +246,7 @@
                         <!-- <option>enquiry sub-type</option> -->
                         <option>principal house</option>
                         <option>basic value</option>
-                        <option>tentative month	</option>
+                        <option>tentative month </option>
                         <option>tentative year</option>
                     </select>
                     <span class="material-symbols-outlined">
@@ -222,10 +256,10 @@
             </div>
             <div class="col-md-4">
                 <strong style="text-transform: capitalize;">select one</strong>
-                <div class="form_select_div mt-3" >
-                    <select class="form-control" >
+                <div class="form_select_div mt-3">
+                    <select class="form-control">
                         <option>-- choose one --</option>
-                        <option ></option>
+                        <option></option>
                     </select>
                     <span class="material-symbols-outlined">
                         stat_minus_1
@@ -234,10 +268,10 @@
             </div>
             <div class="col-md-3">
                 <strong style="text-transform: capitalize;">select one</strong>
-                <div class="form_select_div mt-3" >
-                    <select class="form-control" >
+                <div class="form_select_div mt-3">
+                    <select class="form-control">
                         <option>-- choose one --</option>
-                        <option ></option>
+                        <option></option>
                     </select>
                     <span class="material-symbols-outlined">
                         stat_minus_1
@@ -249,7 +283,7 @@
             </div>
         </div>
         <!-- <h3 class="text-end" style="font-size: 20px;">total : {{ totalCount }}</h3> -->
-        <div class="table-responsive" >
+        <div class="table-responsive">
             <table class="listing_table">
                 <tr class="table_head">
                     <th>sl no.</th>
@@ -290,7 +324,7 @@
                     </ng-template>
                     <ng-container
                         *ngIf="(item.tentative_finalization_month && item.tentative_finalization_year); else notAvailable">
-                       <td>{{item.tentative_finalization_year}}</td>
+                        <td>{{item.tentative_finalization_year}}</td>
                     </ng-container>
                     <ng-template #notAvailable>
                         <td>NA</td>

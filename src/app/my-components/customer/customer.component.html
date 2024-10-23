@@ -356,7 +356,7 @@
                     <select class="form-control" [(ngModel)]="filterByKeyword" (change)="getFilterListByCategory()">
                         <option>-- choose category --</option>
                         <option value="salesperson">Sales Incharge</option>
-                        <option value="mentor">Mentor</option>
+                        <!-- <option value="mentor">Mentor</option> -->
                         <option value="customer">customer</option>
                         <!-- <option value="contactperson">contact person</option>
                             <option value="designation">designation</option>
@@ -399,7 +399,7 @@
                     <th>date</th>
                     <!-- <th>SBU</th> -->
                     <th>Sales Incharge</th>
-                    <th>Mentor</th>
+                    <!-- <th>Mentor</th> -->
                     <th>customer</th>
                     <th>contact person</th>
                     <th>designation</th>
@@ -420,7 +420,7 @@
                     <td>{{ item.customer_create_date }}</td>
                     <!-- <td>{{ item.sbu_name }}</td> -->
                     <td>{{ item.sales_person_name }}</td>
-                    <td>{{ item.mentor_name }}</td>
+                    <!-- <td>{{ item.mentor_name }}</td> -->
                     <td>{{ item.customer }}</td>
                     <td>{{item.name}}</td>
                     <td>{{ item.designation }}</td>

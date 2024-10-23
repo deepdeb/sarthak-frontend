@@ -107,13 +107,13 @@
                     <div class="col-md-2">
                         <div class="form_select_div">
                             <label>BASIC PO value</label>
-                            <input type="text" class="form-control" [(ngModel)]="basicPoValue" >
+                            <input type="text" class="form-control" [(ngModel)]="basicPoValue" (blur)="decimalFilter_1()">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="">
-                            <label>total PO value(inclu GST)</label>
-                            <input type="text" class="form-control" [(ngModel)]="totalPoValue" >
+                            <label>total PO value(incl. GST)</label>
+                            <input type="text" class="form-control" [(ngModel)]="totalPoValue" (blur)="decimalFilter_2()">
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -173,7 +173,7 @@
                 <th>PO type</th>
                 <th>PO sub-type</th>
                 <th>basic PO value</th>
-                <th>total PO value <small>(inclu GST)</small></th>
+                <th>total PO value <small>(incl. GST)</small></th>
                 <th>schedule date of completion</th>
                 <th>actual date of completion</th>
                 <th>view</th>

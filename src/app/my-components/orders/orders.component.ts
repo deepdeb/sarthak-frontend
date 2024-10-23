@@ -22,6 +22,12 @@ export class OrdersComponent {
   poTypeList: any = [];
   poSubType: any;
   poSubTypeList: any = [];
+  // basicPoValue: number = 0.00;
+  // totalPoValue: number = 0.00;
+
+  // basicPoValue: any;
+  // totalPoValue: any;
+  
   basicPoValue: string = '';
   totalPoValue: string = '';
   completionDate: any;
@@ -50,6 +56,16 @@ export class OrdersComponent {
     // this.getPoSubTypeListByPOtype();
     this.getOrderList();
   }
+
+  decimalFilter_1() {
+    this.basicPoValue = this.basicPoValue + '.00'
+    // this.totalPoValue = this.totalPoValue + '.00'
+ }
+
+ decimalFilter_2() {
+  // this.basicPoValue = this.basicPoValue + '.00'
+  this.totalPoValue = this.totalPoValue + '.00'
+}
 
 
   //********* Set SBU ID for create enquiry ************/
@@ -219,22 +235,22 @@ export class OrdersComponent {
       this.common.showAlertMessage('Please select completion date', this.common.errContent)
       return;
     }
-    if(!this.actualCompletionDate){
-      this.common.showAlertMessage('Please select actual completion date', this.common.errContent)
-      return;
-    }
+    // if(!this.actualCompletionDate){
+    //   this.common.showAlertMessage('Please select actual completion date', this.common.errContent)
+    //   return;
+    // }
     if(!this.poUpload){
       this.common.showAlertMessage('Please set file for PO', this.common.errContent)
       return;
     }
-    if(!this.completionUpload){
-      this.common.showAlertMessage('Please set file for completion', this.common.errContent)
-      return;
-    }
-    if(!this.credentialUpload){
-      this.common.showAlertMessage('Please set file for credential', this.common.errContent)
-      return;
-    }
+    // if(!this.completionUpload){
+    //   this.common.showAlertMessage('Please set file for completion', this.common.errContent)
+    //   return;
+    // }
+    // if(!this.credentialUpload){
+    //   this.common.showAlertMessage('Please set file for credential', this.common.errContent)
+    //   return;
+    // }
 
     const data ={
       sales_person_id: this.salesPersonId,
@@ -262,6 +278,8 @@ export class OrdersComponent {
         this.poDate = '';
         this.poTypeId = '';
         this.poSubTypeId = '';
+        // this.basicPoValue = 0.00;
+        // this.totalPoValue = 0.00;
         this.basicPoValue = '';
         this.totalPoValue = '';
         this.completionDate = '';
@@ -269,6 +287,9 @@ export class OrdersComponent {
         this.po_Photo = '';
         this.completion_Photo = '';
         this.credential_Photo = '';
+        this.poUpload = '';
+        this.completionUpload = '';
+        this.credentialUpload = '';
         this.common.showAlertMessage(res.message, this.common.succContent);
         this.getOrderList();
       }
@@ -305,5 +326,8 @@ export class OrdersComponent {
     // this.router.navigate(['detailsPage'], { queryParams: { view: 'customer', id: customer_id } });
   }
 
+
+
+  
 
 }

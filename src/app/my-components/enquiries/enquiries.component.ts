@@ -40,6 +40,9 @@ export class EnquiriesComponent {
   checkDesignationId: any = localStorage.getItem('designation_id');
   customerBySalespersonList = [] as any;
 
+  mentorList: any = [];
+  mentorId: any = '';
+  SBUList: any = [];
 
   // ************ static months & years **************//
   months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
@@ -50,11 +53,12 @@ export class EnquiriesComponent {
   constructor(private router: Router, private common: CommonService, private rest: RestService) { }
 
   ngOnInit(): void {
-    this.getSalesPersonList();
+    // this.getSalesPersonList();
     this.getCustomerList();
     this.getEnquiryTypeList();
     this.getEnquirySubTypeList();
     this.getEnquiryList();
+    this.getSBUList();
   }
 
 
@@ -84,7 +88,7 @@ export class EnquiriesComponent {
   getCustomerListBySalesperson() {
     this.customerBySalespersonList = []
     this.customerId = ''
-    this.setSBUId(this.salesPersonId);
+    // this.setSBUId(this.salesPersonId);
     const data = {
       sales_person_id: this.salesPersonId
     }
@@ -101,25 +105,42 @@ export class EnquiriesComponent {
   //********* FOR get customer list by salesperson end **********/
 
 
-
-
-  //********* Set SBU ID for create enquiry ************/
-  setSBUId(sales_person_id: any) {
-    console.log(sales_person_id);
-    console.log(this.salesPersonList);
-    
-    const salesperson = this.salesPersonList.find((element: any) => element.sales_person_id == sales_person_id);
-    this.sbuId = salesperson.sbu_id;
+  // ************* get SBU List start **************//
+  getSBUList() {
+    const data = {
+      sbu_id: this.sbuId
+    }
+    this.rest.getSBUList_rest(data).subscribe((res: any) => {
+      if (res.success) {
+        if (res.response) {
+          if (res.response.length > 0) {
+            this.SBUList = [];
+            this.SBUList = res.response;
+          }
+        }
+      }
+    })
   }
-  //********* Set SBU ID for create enquiry ************/
+  // ************* get SBU List end **************//
 
+
+
+  //********* Set SBU ID for create enquiry ************/
+  // setSBUId(sales_person_id: any) {
+  //   console.log(sales_person_id);
+  //   console.log(this.salesPersonList);
+
+  //   const salesperson = this.salesPersonList.find((element: any) => element.sales_person_id == sales_person_id);
+  //   this.sbuId = salesperson.sbu_id;
+  // }
+  //********* Set SBU ID for create enquiry ************/
 
 
 
   //********* FOR total sales person list start *********//
   getSalesPersonList() {
     const data = {
-      sbu_id: localStorage.getItem('sbu_id'),
+      sbu_id: this.sbuId,
       sales_person_id: localStorage.getItem('sales_person_id')
     };
     this.rest.getSalesPersonList_rest(data).subscribe((res: any) => {
@@ -150,7 +171,6 @@ export class EnquiriesComponent {
   }
 
 
-
   //*********** get enquiry sub type list start *********//
   getEnquirySubTypeList() {
     this.rest.getEnquirySubTypeList_rest().subscribe((res: any) => {
@@ -168,6 +188,14 @@ export class EnquiriesComponent {
 
   //************* Create Enquiry start *************//
   createEnquiry() {
+    if (!this.sbuId) {
+      this.common.showAlertMessage('Please choose SBU', this.common.errContent);
+      return;
+    }
+    if (!this.mentorId) {
+      this.common.showAlertMessage('Please choose Mentor', this.common.errContent);
+      return;
+    }
     if (!this.salesPersonId) {
       this.common.showAlertMessage('Please choose Sales Person', this.common.errContent);
       return;
@@ -199,6 +227,7 @@ export class EnquiriesComponent {
 
     const data = {
       sbu_id: this.sbuId,
+      mentor_id: this.mentorId,
       sales_person_id: this.salesPersonId,
       customer_id: this.customerId,
       enquiry_date: this.enquiryDate,
@@ -218,7 +247,9 @@ export class EnquiriesComponent {
     this.rest.createEnquiry_rest(data, this.isEdit).subscribe((res: any) => {
       if (res.success) {
         if (res.response) {
+          this.sbuId = ''
           this.salesPersonId = ''
+          this.mentorId = ''
           this.customerId = ''
           this.enquiryDate = ''
           this.enquirySource = ''
@@ -282,10 +313,16 @@ export class EnquiriesComponent {
     this.rest.getEnquiryById_rest(data).subscribe((res: any) => {
       if (res.success) {
         if (res.response) {
+          this.sbuId = res.response[0].sbu_id
+          if(this.sbuId){
+            this.getMentorList();
+            this.getSalesPersonList();
+          }
+          this.mentorId = res.response[0].mentor_id
           this.salesPersonId = res.response[0].sales_person_id
           if (this.salesPersonId) {
             this.getCustomerListBySalesperson();
-            this.setSBUId(this.salesPersonId);
+            // this.setSBUId(this.salesPersonId);
           }
           this.customerId = res.response[0].customer_id
           this.enquiryDate = res.response[0].enquiry_date
@@ -326,10 +363,38 @@ export class EnquiriesComponent {
 
 
   // **************** new form logic  ********************//
-newForm() {
-  window.location.reload()
-}
+  newForm() {
+    window.location.reload()
+  }
 
+
+
+  //********** For get mentor List **********//
+  getMentorList() {
+    const data = {
+      sbu_id: this.sbuId,
+    }
+    this.rest.getMentorList_rest(data).subscribe((res: any) => {
+      if (res.success) {
+        this.mentorList = [];
+        if (res.response) {
+          if (res.response.length > 0) {
+            this.mentorList = res.response;
+          }
+        }
+      }
+    })
+  }
+  getMentorSalesList() {
+    this.getMentorList();
+    this.getSalesPersonList();
+
+  }
+  // showMentorList(){
+  //   if(this.designationId == 4){
+  //     this.isMentorVisible = true;
+  //   }
+  // }
 }
 
 
