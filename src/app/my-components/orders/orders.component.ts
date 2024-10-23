@@ -278,7 +278,7 @@ export class OrdersComponent {
 
 
 
-  // get order list 
+  //*************** get order list ***************//
   getOrderList(){
     this.orderList = [];
     const data = {
@@ -290,7 +290,7 @@ export class OrdersComponent {
         if (res.response) {
           if (res.response.length > 0) {
             this.orderList = res.response;
-            console.log("OrderList >>>>>>>", this.orderList)
+            // console.log("OrderList >>>>>>>", this.orderList)
             this.totalOrderCount = res.total_count;
 
           }
@@ -300,6 +300,10 @@ export class OrdersComponent {
   }
 
 
+  //*********** DETAILS view ***********//
+  goToDetailsPage() {
+    // this.router.navigate(['detailsPage'], { queryParams: { view: 'customer', id: customer_id } });
+  }
 
 
 }
