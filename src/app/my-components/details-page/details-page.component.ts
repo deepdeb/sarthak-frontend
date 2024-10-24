@@ -64,7 +64,8 @@ export class DetailsPageComponent {
   credentialUpload: any;
   supplyProduct: string = '';
   supplyBrand: string = '';
-  description: string = '';
+  supplyDescription: string = '';
+  sitcDescription: string = '';
   csCable: string = '';
   csPanel: string = '';
   csWelding: string = '';
@@ -203,8 +204,9 @@ export class DetailsPageComponent {
           // this.completionUpload = res.response[0]
           // this.credentialUpload = res.response[0]
           this.supplyProduct = res.response[0].product
-          this.description = res.response[0].description
+          this.supplyDescription = res.response[0].supply_description
           this.supplyBrand = res.response[0].brand
+          this.sitcDescription = res.response[0].sitc_description
           this.csCable = res.response[0].cable_assembly
           this.csPanel = res.response[0].panel
           this.csWelding = res.response[0].welding_receptable

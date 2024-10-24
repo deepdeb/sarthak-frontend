@@ -40,8 +40,9 @@ export class OrdersComponent {
   orderList: any = [];
 
   supplyProduct: string = '';
+  supplyDescription: string = '';
   supplyBrand: string = '';
-  description: string = '';
+  sitcDescription: string = '';
   csCable: string = '';
   csPanel: string = '';
   csWelding: string = '';
@@ -54,6 +55,7 @@ export class OrdersComponent {
   sitcRow: boolean = false;
   csRow: boolean = false;
   isOthersDisabled: boolean = true;
+  isOthersChecked: boolean = false;
 
   constructor(private router: Router, private rest: RestService, private common: CommonService) { }
   ngOnInit(): void {
@@ -75,15 +77,12 @@ export class OrdersComponent {
   }
 
 
-  //********* Set SBU ID for create enquiry ************/
+  //********* Set SBU ID for create order ************/
   setSBUId(sales_person_id: any) {
-    console.log(sales_person_id);
-    console.log(this.salesPersonList);
-
     const salesperson = this.salesPersonList.find((element: any) => element.sales_person_id == sales_person_id);
     this.sbuId = salesperson.sbu_id;
   }
-  //********* Set SBU ID for create enquiry ************/
+  //********* Set SBU ID for create order ************/
 
 
   //********* FOR total sales person list start *********//
@@ -132,8 +131,6 @@ export class OrdersComponent {
           if (res.response.length > 0) {
             this.poTypeList = [];
             this.poTypeList = res.response;
-            // console.log("PO Type List",this.poTypeList)
-
           }
         }
       }
@@ -143,6 +140,17 @@ export class OrdersComponent {
 
   //************ get PO Sub type List ************//
   getPoSubTypeInputsByPOtype(po_type_id: any) {
+    this.supplyProduct = '';
+    this.supplyDescription = '';
+    this.supplyBrand = '';
+    this.sitcDescription = '';
+    this.csCable = '';
+    this.csPanel = '';
+    this.csWelding = '';
+    this.csClamps = '';
+    this.csHsaBox = '';
+    this.csOthers = '';
+    
     if (po_type_id == 1) {
       this.isDivShow = true;
       this.supplyRow = true;
@@ -163,15 +171,15 @@ export class OrdersComponent {
     }
   }
 
- //********** Check box logic **********//
- onCheckboxChange(event: any) {
-  if (event.target.checked) {
-    this.isOthersDisabled = false;
-  } else {
-    this.isOthersDisabled = true;
-    this.csOthers = ''
+  //********** Check box logic **********//
+  onCheckboxChange(event: any) {
+    if (event.target.checked) {
+      this.isOthersDisabled = false;
+    } else {
+      this.isOthersDisabled = true;
+      this.csOthers = ''
+    }
   }
-}
 
 
 
@@ -291,9 +299,10 @@ export class OrdersComponent {
       completion_file: this.completion_Photo,
       credential_file: this.credential_Photo,
       product: this.supplyProduct,
-      description: this.description,
+      supply_description: this.supplyDescription,
       brand: this.supplyBrand,
-      cable_assembly:this.csCable,
+      sitc_description: this.sitcDescription,
+      cable_assembly: this.csCable,
       panel: this.csPanel,
       welding_receptable: this.csWelding,
       clamps: this.csClamps,
@@ -318,15 +327,18 @@ export class OrdersComponent {
         this.poUpload = '';
         this.completionUpload = '';
         this.credentialUpload = '';
-        this.supplyProduct= '';
-        this.description= '';
-        this.supplyBrand= '';
-        this.csCable= '';
-        this.csPanel= '';
-        this.csWelding= '';
-        this.csClamps= '';
-        this.csHsaBox= '';
-        this.csOthers= '';
+        this.supplyProduct = '';
+        this.supplyDescription = '';
+        this.supplyBrand = '';
+        this.sitcDescription = '';
+        this.csCable = '';
+        this.csPanel = '';
+        this.csWelding = '';
+        this.csClamps = '';
+        this.csHsaBox = '';
+        this.isOthersChecked = false;
+        this.csOthers = '';
+        this.isOthersDisabled = true;
         this.common.showAlertMessage(res.message, this.common.succContent);
         this.getOrderList();
       }
@@ -348,9 +360,7 @@ export class OrdersComponent {
         if (res.response) {
           if (res.response.length > 0) {
             this.orderList = res.response;
-            // console.log("OrderList >>>>>>>", this.orderList)
             this.totalOrderCount = res.total_count;
-
           }
         }
       }

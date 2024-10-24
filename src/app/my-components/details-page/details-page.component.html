@@ -106,6 +106,66 @@
                     </div>
                     <div class="col-md-3" *ngIf="view === 'orders'">
                         <div class="details_content_div">
+                            <label>Product :</label>
+                            <p class="details_content">{{ supplyProduct }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'orders'">
+                        <div class="details_content_div">
+                            <label>Description(Supply) :</label>
+                            <p class="details_content">{{ supplyDescription }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'orders'">
+                        <div class="details_content_div">
+                            <label>Brand :</label>
+                            <p class="details_content">{{ supplyBrand }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'orders'">
+                        <div class="details_content_div">
+                            <label>Description(SITC) :</label>
+                            <p class="details_content">{{ sitcDescription }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'orders'">
+                        <div class="details_content_div">
+                            <label>Cable assembly :</label>
+                            <p class="details_content">{{ csCable }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'orders'">
+                        <div class="details_content_div">
+                            <label>Panel :</label>
+                            <p class="details_content">{{ csPanel }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'orders'">
+                        <div class="details_content_div">
+                            <label>Welding receptable :</label>
+                            <p class="details_content">{{ csWelding }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'orders'">
+                        <div class="details_content_div">
+                            <label>Clamps :</label>
+                            <p class="details_content">{{ csClamps }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'orders'">
+                        <div class="details_content_div">
+                            <label>HSA box :</label>
+                            <p class="details_content">{{ csHsaBox }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'orders'">
+                        <div class="details_content_div">
+                            <label>Others :</label>
+                            <p class="details_content">{{ csOthers }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'orders'">
+                        <div class="details_content_div">
                             <label> BASIC PO value :</label>
                             <p class="details_content">{{ basicPoValue }}</p>
                         </div>
@@ -343,6 +403,10 @@
                 back
             </button>
             <button class="btn1"  *ngIf="view === 'enquiry'" style="display: flex;align-items: center;" routerLink="/enquiries">
+                <span class="material-symbols-outlined" style="font-size: 20px;">arrow_back_ios</span>
+                back
+            </button>
+            <button class="btn1"  *ngIf="view === 'orders'" style="display: flex;align-items: center;" routerLink="/orders">
                 <span class="material-symbols-outlined" style="font-size: 20px;">arrow_back_ios</span>
                 back
             </button>
