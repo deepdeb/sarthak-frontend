@@ -16,6 +16,7 @@ export class CustomerComponent {
   customerCreateDate: any = new Date().toISOString().split('T')[0];
   salesPersonList: any = [];
   salesPersonId = localStorage.getItem('sales_person_id');
+  checkSalesPersonId = localStorage.getItem('sales_person_id') as any;
   customer_name: string = '';
   mentor_name: string = '';
   contact_name: string = '';

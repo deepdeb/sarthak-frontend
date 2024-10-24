@@ -49,7 +49,9 @@
                 <h4 class="details_heading"  *ngIf="view === 'enquiry'">
                    enquiry info
                 </h4>
-
+                <h4 class="details_heading"  *ngIf="view === 'orders'">
+                    order info
+                 </h4>
 
 
                 <div class="row g-2" >
@@ -68,7 +70,7 @@
                     <div class="col-md-3">
                         <div class="details_content_div">
                             <label *ngIf="view === 'customer' || view === 'enquiry'">sales incharge :</label>
-                            <label *ngIf="view === 'salesperson'">name :</label>
+                            <label *ngIf="view === 'salesperson' || view === 'orders'">name :</label>
                             <p class="details_content">{{salesIncharge}}</p>
                         </div>
                     </div>
@@ -78,10 +80,52 @@
                             <p class="details_content">{{mentorName}}</p>
                         </div>
                     </div> -->
-                    <div class="col-md-3" *ngIf="view === 'customer'">
+                    <div class="col-md-3" *ngIf="view === 'customer' || view === 'orders'">
                         <div class="details_content_div">
                             <label>customer :</label>
                             <p class="details_content">{{ customer_Name }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'orders'">
+                        <div class="details_content_div">
+                            <label>PO number :</label>
+                            <p class="details_content">{{ poNumber }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'orders'">
+                        <div class="details_content_div">
+                            <label>PO date :</label>
+                            <p class="details_content">{{ poDate }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'orders'">
+                        <div class="details_content_div">
+                            <label>PO type :</label>
+                            <p class="details_content">{{ poType }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'orders'">
+                        <div class="details_content_div">
+                            <label> BASIC PO value :</label>
+                            <p class="details_content">{{ basicPoValue }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'orders'">
+                        <div class="details_content_div">
+                            <label>total PO value(incl. GST) :</label>
+                            <p class="details_content">{{ totalPoValue }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'orders'">
+                        <div class="details_content_div">
+                            <label> scheduled date of completion :</label>
+                            <p class="details_content">{{ completionDate }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'orders'">
+                        <div class="details_content_div">
+                            <label> actual date of completion :</label>
+                            <p class="details_content">{{ actualCompletionDate }}</p>
                         </div>
                     </div>
                     <div class="col-md-3" *ngIf="view === 'enquiry'">
@@ -285,8 +329,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
-            
+            </div>            
         </div>
 
 

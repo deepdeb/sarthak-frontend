@@ -59,6 +59,9 @@ export class EnquiriesComponent {
     this.getEnquirySubTypeList();
     this.getEnquiryList();
     this.getSBUList();
+    if(this.sbuId != 0) {
+      this.getMentorSalesList();
+    }
   }
 
 
@@ -294,7 +297,10 @@ export class EnquiriesComponent {
   }
 
 
-
+  decimalFilter_3() {
+    this.basicValue = this.basicValue + '.00'
+    // this.totalPoValue = this.totalPoValue + '.00'
+  }
 
 
   //*********** DETAILS view ***********//
@@ -386,7 +392,7 @@ export class EnquiriesComponent {
     })
   }
   getMentorSalesList() {
-    this.getMentorList();
+    // this.getMentorList();
     this.getSalesPersonList();
 
   }

@@ -233,9 +233,9 @@ export class RestService {
 
 
   //*********** get PO sub-type list ***********//
-  getPoSubTypeListByPOtype_rest(data: any):Observable<any>{
-    return this.http.post(this.API_ROOT + 'common/getPOSubTypeList', data, httpOptions)
-  }
+  // getPoSubTypeListByPOtype_rest(data: any):Observable<any>{
+  //   return this.http.post(this.API_ROOT + 'common/getPOSubTypeList', data, httpOptions)
+  // }
 
 
   //*********** upload file ***********//
@@ -253,4 +253,9 @@ export class RestService {
   getOrderList_rest(data :any): Observable<any>{
     return this.http.post(this.API_ROOT + 'common/getOrderList', data, httpOptions)
   }
+  //************ order details by ID ************//
+  getOrderById_rest(data: any){
+    return this.http.post(this.API_ROOT + 'common/getOrderById', data, httpOptions)
+  }
+
 }

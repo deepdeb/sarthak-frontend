@@ -29,7 +29,7 @@
             </div>
             <div class="my_form ">
                 <div class="row g-2">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form_select_div">
                             <label>sales incharge</label>
                             <div class="form_select_div">
@@ -60,7 +60,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form_select_div">
                             <label>PO number</label>
                             <input type="text" class="form-control" [(ngModel)]="poNumber">
@@ -77,11 +77,10 @@
                             <label>PO type</label>
                             <div class="form_select_div">
                                 <select class="form-control" [(ngModel)]="poTypeId"
-                                    (change)="getPoSubTypeListByPOtype()">
+                                    (change)="getPoSubTypeInputsByPOtype(poTypeId)">
                                     <option value="" disabled>--choose PO type--</option>
                                     <option *ngFor="let item of poTypeList" [value]="item.po_type_id">{{
                                         item.po_type_name }}</option>
-
                                 </select>
                                 <span class="material-symbols-outlined">
                                     stat_minus_1
@@ -89,40 +88,84 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <div class="">
-                            <label>PO sub-type</label>
-                            <div class="form_select_div">
-                                <select class="form-control" [(ngModel)]="poSubTypeId">
-                                    <option value="" disabled>--choose PO sub-type--</option>
-                                    <option *ngFor="let item of poSubTypeList" [value]="item.po_subtype_id">{{
-                                        item.po_subtype_name }}</option>
-                                </select>
-                                <span class="material-symbols-outlined">
-                                    stat_minus_1
-                                </span>
+                    <div class="poSubType_div" *ngIf="isDivShow" [ngStyle]="{'padding.px': 12,'background': '#becdfd','border-radius.px': 6}">
+                       
+                        <h5 [ngStyle]="{'border-bottom.px':1, 'font-weight': 600, 'margin-bottom.px': 16,'font-size.px': 18}">PO Sub Type</h5>
+                        <div class="col-md-12" >
+                            <div class="row" *ngIf="supplyRow">
+                                <div class="col-md-4">
+                                    <label>product</label>
+                                    <input type="text" class="form-control" [(ngModel)]="supplyProduct">                                
+                                </div>
+                                <div class="col-md-4">
+                                    <label>description</label>
+                                    <input type="text" class="form-control" [(ngModel)]="description">                                
+                                </div>
+                                <div class="col-md-4">
+                                    <label>brand</label>
+                                    <input type="text" class="form-control" [(ngModel)]="supplyBrand">                                
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="sitcRow">
+                                <div class="col-md-4">
+                                    <label>description</label>
+                                    <input type="text" class="form-control" [(ngModel)]="description">
+                                </div>
+                            </div>
+                            <div class="row g-2" *ngIf="csRow">
+                                <div class="col-md-2">
+                                    <label>cable assembly</label>
+                                    <input type="text" class="form-control" [(ngModel)]="csCable">
+                                    
+                                </div>
+                                <div class="col-md-2">
+                                    <label>panel</label>
+                                    <input type="text" class="form-control" [(ngModel)]="csPanel">
+                                    
+                                </div>
+                                <div class="col-md-2">
+                                    <label>welding receptable</label>
+                                    <input type="text" class="form-control" [(ngModel)]="csWelding">
+                                    
+                                </div>
+                                <div class="col-md-2">
+                                    <label>clamps</label>
+                                    <input type="text" class="form-control" [(ngModel)]="csClamps">
+                                   
+                                </div>
+                                <div class="col-md-2">
+                                    <label>HSA BOX</label>
+                                    <input type="text" class="form-control" [(ngModel)]="csHsaBox">                                
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="checkbox"  class="me-1" (change)="onCheckboxChange($event)">
+                                    <label> others</label>
+                                    <input type="text" class="form-control" [(ngModel)]="csOthers" [disabled]="isOthersDisabled">                                
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="form_select_div">
                             <label>BASIC PO value</label>
-                            <input type="text" class="form-control" [(ngModel)]="basicPoValue" (blur)="decimalFilter_1()">
+                            <input type="text" class="form-control" [(ngModel)]="basicPoValue"
+                                (blur)="decimalFilter_1()">
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="">
                             <label>total PO value(incl. GST)</label>
-                            <input type="text" class="form-control" [(ngModel)]="totalPoValue" (blur)="decimalFilter_2()">
+                            <input type="text" class="form-control" [(ngModel)]="totalPoValue"
+                                (blur)="decimalFilter_2()">
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="form_select_div">
                             <label>scheduled date of completion</label>
                             <input type="date" class="form-control" [(ngModel)]="completionDate">
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="">
                             <label>actual date of completion</label>
                             <input type="date" class="form-control" [(ngModel)]="actualCompletionDate">
@@ -130,21 +173,24 @@
                     </div>
                     <div class="col-md-4">
                         <div class="">
-                            <label for="formFile1" >PO upload</label>
-                            <input type="file" class="form-control" [(ngModel)]="poUpload" id="formFile1"  (change)="uploadFile('poPhoto')">
+                            <label for="formFile1">PO upload</label>
+                            <input type="file" class="form-control" [(ngModel)]="poUpload" id="formFile1"
+                                (change)="uploadFile('poPhoto')">
 
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="">
                             <label for="formFile2">completion upload</label>
-                            <input type="file" class="form-control" [(ngModel)]="completionUpload" id="formFile2" (change)="uploadFile('completionPhoto')">
+                            <input type="file" class="form-control" [(ngModel)]="completionUpload" id="formFile2"
+                                (change)="uploadFile('completionPhoto')">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="">
                             <label for="formFile3">credential upload</label>
-                            <input type="file" class="form-control" [(ngModel)]="credentialUpload" id="formFile3" (change)="uploadFile('credentialPhoto')">
+                            <input type="file" class="form-control" [(ngModel)]="credentialUpload" id="formFile3"
+                                (change)="uploadFile('credentialPhoto')">
                         </div>
                     </div>
 
@@ -171,7 +217,7 @@
                 <th>PO number</th>
                 <th>PO date</th>
                 <th>PO type</th>
-                <th>PO sub-type</th>
+                <!-- <th>PO sub-type</th> -->
                 <th>basic PO value</th>
                 <th>total PO value <small>(incl. GST)</small></th>
                 <th>schedule date of completion</th>
@@ -187,13 +233,13 @@
                 <td>{{ item.po_number }}</td>
                 <td>{{ item.po_date }}</td>
                 <td>{{ item.po_type_name }}</td>
-                <td>{{ item.po_subtype_name }}</td>
+                <!-- <td>{{ item.po_subtype_name }}</td> -->
                 <td>{{ item.basic_po_value }}</td>
                 <td>{{ item.total_po_value }}</td>
                 <td>{{ item.scheduled_completion_date }}</td>
                 <td>{{ item.actual_completion_date }}</td>
                 <td>
-                    <span class="material-symbols-outlined" style="color:#006FFD;" (click)="goToDetailsPage()">
+                    <span class="material-symbols-outlined" style="color:#006FFD;" (click)="goToDetailsPage(item.order_id)">
                         visibility
                     </span>
                 </td>

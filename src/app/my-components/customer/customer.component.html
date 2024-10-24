@@ -75,8 +75,8 @@
 
                     <div *ngIf="checkSbuId!=0 && !isEdit" class="col-md-6">
                         <div class="">
-                            <label>select date</label>
-                            <input type="date" class="form-control" [(ngModel)]="customerCreateDate">
+                            <label>date</label>
+                            <input type="date" class="form-control" [(ngModel)]="customerCreateDate" disabled>
                         </div>
                     </div>
                     <!-- <div class="col-md-3">
@@ -438,13 +438,13 @@
                         </span>
                     </td>
                     <td>
-                        <span class="material-symbols-outlined" style="color: #00BF58;"
-                            (click)="getCustomerDetailsById(item.customer_id)">
+                        <span class="material-symbols-outlined" *ngIf="item.sales_person_id == checkSalesPersonId || checkDesignationId == 1"
+                        style="color: #00BF58;" (click)="getCustomerDetailsById(item.customer_id)" >
                             edit_square
                         </span>
                     </td>
                     <td>
-                        <span class="material-symbols-outlined" style="color: #A8226A;">
+                        <span class="material-symbols-outlined" style="color: #A8226A;" *ngIf="item.sales_person_id == checkSalesPersonId || checkDesignationId == 1">
                             delete
                         </span>
                     </td>

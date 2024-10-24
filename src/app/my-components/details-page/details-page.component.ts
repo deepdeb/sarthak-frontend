@@ -24,7 +24,7 @@ export class DetailsPageComponent {
   altMobileNumber: any;
   emailAdderss: string = '';
   altEmailAddress: string = '';
-  streetNumber: string = ''; 
+  streetNumber: string = '';
   streetName: string = '';
   areaName: string = '';
   locationName: string = '';
@@ -32,8 +32,8 @@ export class DetailsPageComponent {
   districtName: string = '';
   stateName: string = '';
   pinNumber: any;
-  productCategory: any= [];
-  otherProductCategory: string = '' 
+  productCategory: any = [];
+  otherProductCategory: string = ''
   view: any;
   details_id: any;
 
@@ -52,7 +52,28 @@ export class DetailsPageComponent {
   functionName: string = '';
   DOB: any;
 
-
+  poNumber: string = '';
+  poDate: any;
+  poType: any;
+  basicPoValue: string = '';
+  totalPoValue: string = '';
+  completionDate: any;
+  actualCompletionDate: any;
+  poUpload: any;
+  completionUpload: any;
+  credentialUpload: any;
+  supplyProduct: string = '';
+  supplyBrand: string = '';
+  description: string = '';
+  csCable: string = '';
+  csPanel: string = '';
+  csWelding: string = '';
+  csClamps: string = '';
+  csHsaBox: string = '';
+  csOthers: string = '';
+  // credential_Photo: string = '';
+  // completion_Photo: string = '';
+  // po_Photo: string = '';
 
   constructor(private rest: RestService, private route: ActivatedRoute) { }
 
@@ -61,16 +82,20 @@ export class DetailsPageComponent {
       this.details_id = params['id'];
       this.view = params['view'];
     })
-    this.view == 'customer' ? this.getCustomerDetailsById(this.details_id) : this.view == 'salesperson' ? this.getSalespersonById(this.details_id) : this.getEnquiryById(this.details_id);
+    this.view == 'customer' ? this.getCustomerDetailsById(this.details_id) : this.view == 'salesperson' ? this.getSalespersonById(this.details_id) : this.view == 'orders' ? this.getOrderById(this.details_id) : this.getEnquiryById(this.details_id);
   }
 
-  getCustomerDetailsById(customer_id: any){
+
+
+  //************ customer view details ************//
+
+  getCustomerDetailsById(customer_details_id: any) {
     const data = {
-      customer_id: customer_id
+      customer_id: customer_details_id
     }
-    this.rest.getCustomerDetailsById_rest(data).subscribe((res: any) =>{
-      if(res.success){
-        if(res.response && res.response.length > 0){
+    this.rest.getCustomerDetailsById_rest(data).subscribe((res: any) => {
+      if (res.success) {
+        if (res.response && res.response.length > 0) {
           this.customer_creation_date = res.response[0].customer_create_date;
           this.salesIncharge = res.response[0].sales_person_name;
           // this.mentorName = res.response[0].mentor_name;
@@ -94,21 +119,21 @@ export class DetailsPageComponent {
           this.stateName = res.response[0].state_name
           this.pinNumber = res.response[0].pin
           this.productCategory = res.product_categories
-          this.otherProductCategory = res.response[0].other_product_category 
+          this.otherProductCategory = res.response[0].other_product_category
         }
       }
     })
   }
 
 
-
-  getSalespersonById(sales_person_id: any){
+  //************ sales person view details ************//
+  getSalespersonById(sales_person_details_id: any) {
     const data = {
-      sales_person_id : sales_person_id
+      sales_person_id: sales_person_details_id
     }
-    this.rest.getSalespersonById_rest(data).subscribe((res: any) =>{
-      if(res.success){
-        if(res.response){
+    this.rest.getSalespersonById_rest(data).subscribe((res: any) => {
+      if (res.success) {
+        if (res.response) {
           this.sbuName = res.response.sbu_name;
           this.functionName = res.response.function_name
           this.DOB = res.response.dob
@@ -123,14 +148,16 @@ export class DetailsPageComponent {
 
 
 
-  getEnquiryById(enquiry_id: any){
+  //************ enquiry view details ************//
+
+  getEnquiryById(enquiry_details_id: any) {
     const data = {
       sbu_id: localStorage.getItem('sbu_id'),
-      enquiry_id: enquiry_id
+      enquiry_id: enquiry_details_id
     }
-    this.rest.getEnquiryById_rest(data).subscribe((res: any) =>{
-      if(res.success){
-        if(res.response){
+    this.rest.getEnquiryById_rest(data).subscribe((res: any) => {
+      if (res.success) {
+        if (res.response) {
           this.enquiryId = res.response[0].enquiry_id
           this.salesIncharge = res.response[0].sales_person_name
           this.customer_Name = res.response[0].customer
@@ -144,6 +171,46 @@ export class DetailsPageComponent {
           this.enquiryStatus = res.response[0].status_initial
           this.enquiryRemarks = res.response[0].remarks_initial
           this.enquirySupport = res.response[0].support_initial
+        }
+      }
+    })
+  }
+
+
+  //************ order view details ************//
+  getOrderById(order_details_id: any) {
+    const data = {
+      order_id: order_details_id,
+    }
+    this.rest.getOrderById_rest(data).subscribe((res: any) => {
+      if (res.success) {
+        if (res.response) {
+          this.sbuName = res.response[0].sbu_name
+          this.salesIncharge = res.response[0].sales_person_name
+          this.customer_Name = res.response[0].customer
+          this.poNumber = res.response[0].po_number
+          this.poDate = res.response[0].po_date
+          this.poType = res.response[0].po_type_name
+          this.basicPoValue = res.response[0].basic_po_value
+          this.totalPoValue = res.response[0].total_po_value
+          this.completionDate = res.response[0].scheduled_completion_date
+          this.actualCompletionDate = res.response[0].actual_completion_date
+          // this.po_Photo = res.response[0]
+          // this.completion_Photo = res.response[0]
+          // this.credential_Photo = res.response[0]
+
+          // this.poUpload = res.response[0]
+          // this.completionUpload = res.response[0]
+          // this.credentialUpload = res.response[0]
+          this.supplyProduct = res.response[0].product
+          this.description = res.response[0].description
+          this.supplyBrand = res.response[0].brand
+          this.csCable = res.response[0].cable_assembly
+          this.csPanel = res.response[0].panel
+          this.csWelding = res.response[0].welding_receptable
+          this.csClamps = res.response[0].clamps
+          this.csHsaBox = res.response[0].hsa_box
+          this.csOthers = res.response[0].others
         }
       }
     })

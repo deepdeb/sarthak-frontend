@@ -20,14 +20,6 @@ export class OrdersComponent {
   poDate: any;
   poType: any;
   poTypeList: any = [];
-  poSubType: any;
-  poSubTypeList: any = [];
-  // basicPoValue: number = 0.00;
-  // totalPoValue: number = 0.00;
-
-  // basicPoValue: any;
-  // totalPoValue: any;
-  
   basicPoValue: string = '';
   totalPoValue: string = '';
   completionDate: any;
@@ -37,7 +29,6 @@ export class OrdersComponent {
   credentialUpload: any;
   salesPersonList: any = [];
   poTypeId: any;
-  poSubTypeId: any;
 
   customerBySalespersonList = [] as any;
   customerList: any = [];
@@ -47,6 +38,22 @@ export class OrdersComponent {
   completion_Photo: string = '';
   po_Photo: string = '';
   orderList: any = [];
+
+  supplyProduct: string = '';
+  supplyBrand: string = '';
+  description: string = '';
+  csCable: string = '';
+  csPanel: string = '';
+  csWelding: string = '';
+  csClamps: string = '';
+  csHsaBox: string = '';
+  csOthers: string = '';
+
+  isDivShow: boolean = false
+  supplyRow: boolean = false;
+  sitcRow: boolean = false;
+  csRow: boolean = false;
+  isOthersDisabled: boolean = true;
 
   constructor(private router: Router, private rest: RestService, private common: CommonService) { }
   ngOnInit(): void {
@@ -60,12 +67,12 @@ export class OrdersComponent {
   decimalFilter_1() {
     this.basicPoValue = this.basicPoValue + '.00'
     // this.totalPoValue = this.totalPoValue + '.00'
- }
+  }
 
- decimalFilter_2() {
-  // this.basicPoValue = this.basicPoValue + '.00'
-  this.totalPoValue = this.totalPoValue + '.00'
-}
+  decimalFilter_2() {
+    // this.basicPoValue = this.basicPoValue + '.00'
+    this.totalPoValue = this.totalPoValue + '.00'
+  }
 
 
   //********* Set SBU ID for create enquiry ************/
@@ -125,7 +132,7 @@ export class OrdersComponent {
           if (res.response.length > 0) {
             this.poTypeList = [];
             this.poTypeList = res.response;
-    // console.log("PO Type List",this.poTypeList)
+            // console.log("PO Type List",this.poTypeList)
 
           }
         }
@@ -135,33 +142,49 @@ export class OrdersComponent {
 
 
   //************ get PO Sub type List ************//
-  getPoSubTypeListByPOtype() {
-    this.poSubTypeList = []
-    const data = {
-      po_type_id: this.poTypeId
+  getPoSubTypeInputsByPOtype(po_type_id: any) {
+    if (po_type_id == 1) {
+      this.isDivShow = true;
+      this.supplyRow = true;
+      this.csRow = false;
+      this.sitcRow = false;
+
+    } else if (po_type_id == 2) {
+      this.isDivShow = true;
+      this.supplyRow = false;
+      this.sitcRow = true;
+      this.csRow = false;
+
+    } else if (po_type_id == 3) {
+      this.isDivShow = true;
+      this.supplyRow = false;
+      this.sitcRow = false;
+      this.csRow = true
     }
-    this.rest.getPoSubTypeListByPOtype_rest(data).subscribe((res: any) =>{
-      if(res.success){
-        if(res.response){
-          if(res.response.length > 0){            
-            this.poSubTypeList = res.response
-          }
-        }
-      }
-    })
   }
+
+ //********** Check box logic **********//
+ onCheckboxChange(event: any) {
+  if (event.target.checked) {
+    this.isOthersDisabled = false;
+  } else {
+    this.isOthersDisabled = true;
+    this.csOthers = ''
+  }
+}
+
 
 
   //**************  upload files in order page **************//
-  uploadFile(type:  'poPhoto' | 'completionPhoto' | 'credentialPhoto' ): void {
+  uploadFile(type: 'poPhoto' | 'completionPhoto' | 'credentialPhoto'): void {
     let banner1 = '' as any;
     if (type == 'poPhoto') {
       banner1 = document.getElementById('formFile1') as HTMLInputElement
-    } else if (type == 'completionPhoto'){
+    } else if (type == 'completionPhoto') {
       banner1 = document.getElementById('formFile2') as HTMLInputElement
     } else {
       banner1 = document.getElementById('formFile3') as HTMLInputElement
-    } 
+    }
     console.log("Banner 1", banner1)
     const file: any = banner1.files;
     console.log("Banner 1 files", banner1.files)
@@ -183,9 +206,9 @@ export class OrdersComponent {
               this.po_Photo = res.response.newFilename
             } else if (type == 'completionPhoto') {
               this.completion_Photo = res.response.newFilename
-            } else if (type == 'credentialPhoto'){
+            } else if (type == 'credentialPhoto') {
               this.credential_Photo = res.response.newFilename
-            } 
+            }
             this.common.showAlertMessage(res.message, this.common.succContent);
           } else {
             this.common.showAlertMessage(res.message, this.common.errContent);
@@ -199,39 +222,39 @@ export class OrdersComponent {
 
   //*********** create orders ***********//
   createOrder() {
-    if(!this.salesPersonId){
+    if (!this.salesPersonId) {
       this.common.showAlertMessage('Please Choose a sales incharge', this.common.errContent)
       return;
     }
-    if(!this.customerId){
+    if (!this.customerId) {
       this.common.showAlertMessage('Please Choose a customer', this.common.errContent)
       return;
     }
-    if(!this.poNumber){
+    if (!this.poNumber) {
       this.common.showAlertMessage('Please enter PO number', this.common.errContent)
       return;
     }
-    if(!this.poDate){
+    if (!this.poDate) {
       this.common.showAlertMessage('Please select a PO date', this.common.errContent)
       return;
     }
-    if(!this.poTypeId){
+    if (!this.poTypeId) {
       this.common.showAlertMessage('Please Choose a PO Type', this.common.errContent)
       return;
     }
-    if(!this.poSubTypeId){
-      this.common.showAlertMessage('Please Choose a PO sub type', this.common.errContent)
-      return;
-    }
-    if(!this.basicPoValue){
+    // if (!this.poSubTypeId) {
+    //   this.common.showAlertMessage('Please Choose a PO sub type', this.common.errContent)
+    //   return;
+    // }
+    if (!this.basicPoValue) {
       this.common.showAlertMessage('Please enter Basic PO Value', this.common.errContent)
       return;
     }
-    if(!this.totalPoValue){
+    if (!this.totalPoValue) {
       this.common.showAlertMessage('Please enter Total PO Value', this.common.errContent)
       return;
     }
-    if(!this.completionDate){
+    if (!this.completionDate) {
       this.common.showAlertMessage('Please select completion date', this.common.errContent)
       return;
     }
@@ -239,7 +262,7 @@ export class OrdersComponent {
     //   this.common.showAlertMessage('Please select actual completion date', this.common.errContent)
     //   return;
     // }
-    if(!this.poUpload){
+    if (!this.poUpload) {
       this.common.showAlertMessage('Please set file for PO', this.common.errContent)
       return;
     }
@@ -252,14 +275,14 @@ export class OrdersComponent {
     //   return;
     // }
 
-    const data ={
+    const data = {
       sales_person_id: this.salesPersonId,
       sbu_id: this.sbuId,
       customer_id: this.customerId,
       po_number: this.poNumber,
       po_date: this.poDate,
       po_type_id: this.poTypeId,
-      po_subtype_id: this.poSubTypeId,
+      // po_subtype_id: this.poSubTypeId,
       basic_po_value: this.basicPoValue,
       total_po_value: this.totalPoValue,
       scheduled_completion_date: this.completionDate,
@@ -267,19 +290,24 @@ export class OrdersComponent {
       purchase_order_file: this.po_Photo,
       completion_file: this.completion_Photo,
       credential_file: this.credential_Photo,
+      product: this.supplyProduct,
+      description: this.description,
+      brand: this.supplyBrand,
+      cable_assembly:this.csCable,
+      panel: this.csPanel,
+      welding_receptable: this.csWelding,
+      clamps: this.csClamps,
+      hsa_box: this.csHsaBox,
+      others: this.csOthers,
     }
     this.rest.createOrder_rest(data).subscribe((res: any) => {
-      if(res.success){
+      if (res.success) {
         this.sbuId = '';
         this.salesPersonId = '';
         this.customerId = '';
         this.poNumber = '';
         this.poDate = '';
-        this.poDate = '';
         this.poTypeId = '';
-        this.poSubTypeId = '';
-        // this.basicPoValue = 0.00;
-        // this.totalPoValue = 0.00;
         this.basicPoValue = '';
         this.totalPoValue = '';
         this.completionDate = '';
@@ -290,6 +318,15 @@ export class OrdersComponent {
         this.poUpload = '';
         this.completionUpload = '';
         this.credentialUpload = '';
+        this.supplyProduct= '';
+        this.description= '';
+        this.supplyBrand= '';
+        this.csCable= '';
+        this.csPanel= '';
+        this.csWelding= '';
+        this.csClamps= '';
+        this.csHsaBox= '';
+        this.csOthers= '';
         this.common.showAlertMessage(res.message, this.common.succContent);
         this.getOrderList();
       }
@@ -300,7 +337,7 @@ export class OrdersComponent {
 
 
   //*************** get order list ***************//
-  getOrderList(){
+  getOrderList() {
     this.orderList = [];
     const data = {
       sbu_id: localStorage.getItem('sbu_id'),
@@ -322,12 +359,12 @@ export class OrdersComponent {
 
 
   //*********** DETAILS view ***********//
-  goToDetailsPage() {
-    // this.router.navigate(['detailsPage'], { queryParams: { view: 'customer', id: customer_id } });
+  goToDetailsPage(order_id: any) {
+    this.router.navigate(['detailsPage'], { queryParams: { view: 'orders', id: order_id } });
   }
 
 
 
-  
+
 
 }
