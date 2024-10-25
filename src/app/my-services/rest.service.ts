@@ -249,6 +249,11 @@ export class RestService {
     return this.http.post(this.API_ROOT + 'common/createOrder', data, httpOptions)
   }
 
+  //************* edit order **************//
+  editOrder_rest(data: any): Observable<any>{
+    return this.http.post(this.API_ROOT + 'common/editOrder', data, httpOptions)
+  }
+
   //************ order listing ************//
   getOrderList_rest(data :any): Observable<any>{
     return this.http.post(this.API_ROOT + 'common/getOrderList', data, httpOptions)

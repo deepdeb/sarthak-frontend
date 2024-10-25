@@ -148,15 +148,25 @@
                     <div class="col-md-3">
                         <div class="form_select_div">
                             <label>BASIC PO value</label>
-                            <input type="text" class="form-control" [(ngModel)]="basicPoValue"
-                                (blur)="decimalFilter_1()">
+                            <ng-container>
+                                <input *ngIf="!isEdit; else editBasicPOInput" type="text" class="form-control" [(ngModel)]="basicPoValue"
+                                (blur)="decimalBasicPO()">
+                            </ng-container>
+                            <ng-template #editBasicPOInput>
+                                <input type="text" class="form-control" [(ngModel)]="basicPoValue">
+                            </ng-template>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="">
                             <label>total PO value(incl. GST)</label>
-                            <input type="text" class="form-control" [(ngModel)]="totalPoValue"
-                                (blur)="decimalFilter_2()">
+                            <ng-container>
+                                <input *ngIf="!isEdit; else editTotalPOInput" type="text" class="form-control" [(ngModel)]="totalPoValue"
+                                (blur)="decimalTotalPO()">
+                            </ng-container>
+                            <ng-template #editTotalPOInput>
+                                <input type="text" class="form-control" [(ngModel)]="totalPoValue">
+                            </ng-template>
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -198,7 +208,12 @@
             </div>
         </div>
         <div class="text-center mt-3">
-            <button mat-flat-button class="btn1" (click)="createOrder()">submit</button>
+            <ng-container>
+                <button mat-flat-button class="btn1" *ngIf="!this.isEdit; else editButton" (click)="createOrder()">submit</button>
+            </ng-container>
+            <ng-template #editButton>
+                <button mat-flat-button class="btn1" (click)="editOrder()">edit</button>
+            </ng-template>
         </div>
 
     </div>
@@ -244,7 +259,7 @@
                     </span>
                 </td>
                 <td>
-                    <span class="material-symbols-outlined" style="color: #00BF58;">
+                    <span class="material-symbols-outlined" style="color: #00BF58;" (click)="getOrderById(item.order_id)">
                         edit_square
                     </span>
                 </td>

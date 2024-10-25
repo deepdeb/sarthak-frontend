@@ -93,14 +93,14 @@
                             </div>                            
                         </div>
                     </div> -->
-                    <div *ngIf="checkSbuId ==0 && !isEdit" class="col-md-3">
+                    <div *ngIf="checkSbuId ==0" class="col-md-3">
                         <div class="form_select_div">
                             <label>customer</label>
                             <input type="text" class="form-control" [(ngModel)]="customer_name">
                         </div>
                     </div>
 
-                    <div *ngIf="checkSbuId !=0 && !isEdit" class="col-md-6">
+                    <div *ngIf="checkSbuId !=0" class="col-md-6">
                         <div class="form_select_div">
                             <label>customer</label>
                             <input type="text" class="form-control" [(ngModel)]="customer_name">
@@ -189,8 +189,8 @@
                     </div>
                     <!--_______ segment area end _______-->
 
-                </div>
-                <div class="row g-2">
+                <!-- </div>
+                <div class="row g-2"> -->
                     <div class="col-md-3">
                         <div class="form_select_div">
                             <label>name</label>

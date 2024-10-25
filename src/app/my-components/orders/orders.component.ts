@@ -56,6 +56,8 @@ export class OrdersComponent {
   csRow: boolean = false;
   isOthersDisabled: boolean = true;
   isOthersChecked: boolean = false;
+  isEdit: boolean = false;
+  orderId: any;
 
   constructor(private router: Router, private rest: RestService, private common: CommonService) { }
   ngOnInit(): void {
@@ -66,12 +68,12 @@ export class OrdersComponent {
     this.getOrderList();
   }
 
-  decimalFilter_1() {
+  decimalBasicPO() {
     this.basicPoValue = this.basicPoValue + '.00'
     // this.totalPoValue = this.totalPoValue + '.00'
   }
 
-  decimalFilter_2() {
+  decimalTotalPO() {
     // this.basicPoValue = this.basicPoValue + '.00'
     this.totalPoValue = this.totalPoValue + '.00'
   }
@@ -374,7 +376,167 @@ export class OrdersComponent {
   }
 
 
+  //*********** Get order by ID for edit *************/
+  getOrderById(order_id: any) {
+    this.isEdit = true
+    this.orderId = order_id;
+    const data = {
+      order_id: order_id,
+    }
+    this.rest.getOrderById_rest(data).subscribe((res: any) => {
+      if (res.success) {
+        if (res.response) {
+          this.salesPersonId = res.response[0].sales_person_id
+          if(this.salesPersonId) {
+            this.getCustomerListBySalesperson()
+          }
+          this.customerId = res.response[0].customer_id
+          this.poNumber = res.response[0].po_number
+          this.poDate = res.response[0].po_date
+          this.poTypeId = res.response[0].po_type_id
+          this.basicPoValue = res.response[0].basic_po_value
+          this.totalPoValue = res.response[0].total_po_value
+          this.completionDate = res.response[0].scheduled_completion_date
+          this.actualCompletionDate = res.response[0].actual_completion_date
+          this.po_Photo = res.response[0].purchase_order_file
+          this.completion_Photo = res.response[0].completion_file
+          this.credential_Photo = res.response[0].credential_file
+          this.poUpload = res.response[0].purchase_order_file
+          this.completionUpload = res.response[0].completion_file
+          this.credentialUpload = res.response[0].credential_file
+          this.supplyProduct = res.response[0].product
+          this.supplyDescription = res.response[0].supply_description
+          this.supplyBrand = res.response[0].brand
+          this.sitcDescription = res.response[0].sitc_description
+          this.csCable = res.response[0].cable_assembly
+          this.csPanel = res.response[0].panel
+          this.csWelding = res.response[0].welding_receptable
+          this.csClamps = res.response[0].clamps
+          this.csHsaBox = res.response[0].hsa_box
+          this.csOthers = res.response[0].others
+        }
+      }
+    })
+  }
 
-
+    //*********** create orders ***********//
+    editOrder() {
+      if (!this.salesPersonId) {
+        this.common.showAlertMessage('Please Choose a sales incharge', this.common.errContent)
+        return;
+      }
+      if (!this.customerId) {
+        this.common.showAlertMessage('Please Choose a customer', this.common.errContent)
+        return;
+      }
+      if (!this.poNumber) {
+        this.common.showAlertMessage('Please enter PO number', this.common.errContent)
+        return;
+      }
+      if (!this.poDate) {
+        this.common.showAlertMessage('Please select a PO date', this.common.errContent)
+        return;
+      }
+      if (!this.poTypeId) {
+        this.common.showAlertMessage('Please Choose a PO Type', this.common.errContent)
+        return;
+      }
+      // if (!this.poSubTypeId) {
+      //   this.common.showAlertMessage('Please Choose a PO sub type', this.common.errContent)
+      //   return;
+      // }
+      if (!this.basicPoValue) {
+        this.common.showAlertMessage('Please enter Basic PO Value', this.common.errContent)
+        return;
+      }
+      if (!this.totalPoValue) {
+        this.common.showAlertMessage('Please enter Total PO Value', this.common.errContent)
+        return;
+      }
+      if (!this.completionDate) {
+        this.common.showAlertMessage('Please select completion date', this.common.errContent)
+        return;
+      }
+      // if(!this.actualCompletionDate){
+      //   this.common.showAlertMessage('Please select actual completion date', this.common.errContent)
+      //   return;
+      // }
+      if (!this.poUpload) {
+        this.common.showAlertMessage('Please set file for PO', this.common.errContent)
+        return;
+      }
+      // if(!this.completionUpload){
+      //   this.common.showAlertMessage('Please set file for completion', this.common.errContent)
+      //   return;
+      // }
+      // if(!this.credentialUpload){
+      //   this.common.showAlertMessage('Please set file for credential', this.common.errContent)
+      //   return;
+      // }
+  
+      const data = {
+        order_id: this.orderId,
+        sales_person_id: this.salesPersonId,
+        sbu_id: this.sbuId,
+        customer_id: this.customerId,
+        po_number: this.poNumber,
+        po_date: this.poDate,
+        po_type_id: this.poTypeId,
+        // po_subtype_id: this.poSubTypeId,
+        basic_po_value: this.basicPoValue,
+        total_po_value: this.totalPoValue,
+        scheduled_completion_date: this.completionDate,
+        actual_completion_date: this.actualCompletionDate,
+        purchase_order_file: this.po_Photo,
+        completion_file: this.completion_Photo,
+        credential_file: this.credential_Photo,
+        product: this.supplyProduct,
+        supply_description: this.supplyDescription,
+        brand: this.supplyBrand,
+        sitc_description: this.sitcDescription,
+        cable_assembly: this.csCable,
+        panel: this.csPanel,
+        welding_receptable: this.csWelding,
+        clamps: this.csClamps,
+        hsa_box: this.csHsaBox,
+        others: this.csOthers,
+      }
+      this.rest.editOrder_rest(data).subscribe((res: any) => {
+        if (res.success) {
+          this.sbuId = '';
+          this.salesPersonId = '';
+          this.customerId = '';
+          this.poNumber = '';
+          this.poDate = '';
+          this.poTypeId = '';
+          this.basicPoValue = '';
+          this.totalPoValue = '';
+          this.completionDate = '';
+          this.actualCompletionDate = '';
+          this.po_Photo = '';
+          this.completion_Photo = '';
+          this.credential_Photo = '';
+          this.poUpload = '';
+          this.completionUpload = '';
+          this.credentialUpload = '';
+          this.supplyProduct = '';
+          this.supplyDescription = '';
+          this.supplyBrand = '';
+          this.sitcDescription = '';
+          this.csCable = '';
+          this.csPanel = '';
+          this.csWelding = '';
+          this.csClamps = '';
+          this.csHsaBox = '';
+          this.isOthersChecked = false;
+          this.csOthers = '';
+          this.isOthersDisabled = true;
+          this.isEdit = false;
+          this.common.showAlertMessage(res.message, this.common.succContent);
+          this.getOrderList();
+        }
+      })
+  
+    }
 
 }
