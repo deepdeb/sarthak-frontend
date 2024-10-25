@@ -394,6 +394,24 @@ export class OrdersComponent {
           this.poNumber = res.response[0].po_number
           this.poDate = res.response[0].po_date
           this.poTypeId = res.response[0].po_type_id
+          if(this.poTypeId) {
+            this.isDivShow = true;
+            if(this.poTypeId == 1) {
+              this.supplyRow = true;
+              this.sitcRow = false;
+              this.csRow = false;
+            }
+            else if(this.poTypeId == 2) {
+              this.supplyRow = false;
+              this.sitcRow = true;
+              this.csRow = false;
+            }
+            else if(this.poTypeId == 3) {
+              this.supplyRow = false;
+              this.sitcRow = false;
+              this.csRow = true;
+            }
+          }
           this.basicPoValue = res.response[0].basic_po_value
           this.totalPoValue = res.response[0].total_po_value
           this.completionDate = res.response[0].scheduled_completion_date
