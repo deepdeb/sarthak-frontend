@@ -354,7 +354,7 @@
                 <div class="form_select_div mt-3">
                     <!-- <label class="test-capitalize mb-2" style="font-size: 16px; font-weight: 500;">choose segment</label>  -->
                     <select class="form-control" [(ngModel)]="filterByKeyword" (change)="getFilterListByCategory()">
-                        <option>-- choose category --</option>
+                        <option value="" disabled>-- choose category --</option>
                         <option value="salesperson">Sales Incharge</option>
                         <!-- <option value="mentor">Mentor</option> -->
                         <option value="customer">customer</option>
@@ -377,7 +377,7 @@
                 <div class="form_select_div mt-3">
                     <!-- <label class="test-capitalize mb-2" style="font-size: 16px; font-weight: 500;">choose sub-segment</label> -->
                     <select class="form-control" [(ngModel)]="customersByFilter" (change)="getCustomersByFilter()">
-                        <option>-- choose one --</option>
+                        <option value="" disabled>-- choose one --</option>
                         <option *ngFor="let item of filteredListByCategory" [value]="item.name">{{ item.name }}
                         </option>
                     </select>

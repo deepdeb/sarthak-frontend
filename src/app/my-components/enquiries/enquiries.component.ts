@@ -43,6 +43,9 @@ export class EnquiriesComponent {
   mentorList: any = [];
   mentorId: any = '';
   SBUList: any = [];
+  filteredEnquiryListByCategory: any = []
+  filterByKeyword: string = ''
+  enquiriesByFilter: string = ''
 
   // ************ static months & years **************//
   months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
@@ -391,6 +394,7 @@ export class EnquiriesComponent {
       }
     })
   }
+
   getMentorSalesList() {
     // this.getMentorList();
     this.getSalesPersonList();
@@ -401,6 +405,44 @@ export class EnquiriesComponent {
   //     this.isMentorVisible = true;
   //   }
   // }
+
+  
+  //************** Filter enquiry list by category **************/
+  getFilterEnquiryByCategory() {
+    this.filteredEnquiryListByCategory = [];
+    const data = {
+      filterby_keyword: this.filterByKeyword
+    }
+    this.rest.getFilterEnquiryByCategory_rest(data).subscribe((res: any) => {
+      if(res.success) {
+        if(res.response) {
+          if(res.response.length > 0) {
+            this.filteredEnquiryListByCategory = res.response
+          }
+        }
+      }
+    })
+  }
+
+  //**************** Get Enquiries by desired filter **********************/
+  getEnquiriesByFilter() {
+    this.enquiryList = [];
+    this.totalCount = 0;
+    const data = {
+      filter_by: this.filterByKeyword,
+      filter_by_value: this.enquiriesByFilter,
+    }
+    this.rest.getEnquiriesByFilter_rest(data).subscribe((res: any) => {
+      if (res.success) {
+        if (res.response) {
+          if (res.response.length > 0) {
+            this.enquiryList = res.response;
+            this.totalCount = res.total_count;
+          }
+        }
+      }
+    })
+  }
 }
 
 

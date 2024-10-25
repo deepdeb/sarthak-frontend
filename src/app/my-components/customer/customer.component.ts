@@ -519,7 +519,7 @@ export class CustomerComponent {
   }
 
 
-  //********** Filter List By Category **********//
+  //********** Filter Customer List By Category **********//
   getFilterListByCategory() {
     this.filteredListByCategory = [];
     const data = {
