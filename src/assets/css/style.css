@@ -55,7 +55,7 @@ img {
 }
 
 .sec_gapping{
-  padding: 20px 0;
+  padding: 40px 0;
 }
 ul{
   padding-left: 0;
@@ -874,18 +874,18 @@ tr:nth-child(even),tr:hover {
   overflow-y: scroll;
 }
 /* width */
-.customer_table::-webkit-scrollbar {
+.customer_table::-webkit-scrollbar, .imp_docs::-webkit-scrollbar {
   height: 7px;
   width: 7px;  
 }
 
 /* Track */
-.customer_table::-webkit-scrollbar-track {
+.customer_table::-webkit-scrollbar-track, .imp_docs::-webkit-scrollbar-track {
   background: #d8d8d8;
 }
 
 /* Handle */
-.customer_table::-webkit-scrollbar-thumb {
+.customer_table::-webkit-scrollbar-thumb, .imp_docs::-webkit-scrollbar-thumb{
   background: var(--primary)!important;
   border-radius: 12px;
 }
