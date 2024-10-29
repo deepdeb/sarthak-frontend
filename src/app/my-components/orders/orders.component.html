@@ -88,59 +88,64 @@
                             </div>
                         </div>
                     </div>
-                    <div class="poSubType_div" *ngIf="isDivShow" [ngStyle]="{'padding.px': 12,'background': '#becdfd','border-radius.px': 6}">
-                       
-                        <h5 [ngStyle]="{'border-bottom.px':1, 'font-weight': 600, 'margin-bottom.px': 16,'font-size.px': 18}">PO Sub Type</h5>
-                        <div class="col-md-12" >
+                    <div class="poSubType_div" *ngIf="isDivShow"
+                        [ngStyle]="{'padding.px': 12,'background': '#becdfd','border-radius.px': 6}">
+
+                        <h5
+                            [ngStyle]="{'border-bottom.px':1, 'font-weight': 600, 'margin-bottom.px': 16,'font-size.px': 18}">
+                            PO Sub Type</h5>
+                        <div class="col-md-12">
                             <div class="row" *ngIf="supplyRow">
                                 <div class="col-md-4">
-                                    <label>product</label>
-                                    <input type="text" class="form-control" [(ngModel)]="supplyProduct">                                
+                                    <label>product <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                    <input type="text" class="form-control" [(ngModel)]="supplyProduct">
                                 </div>
                                 <div class="col-md-4">
-                                    <label>description</label>
-                                    <input type="text" class="form-control" [(ngModel)]="supplyDescription">                                
+                                    <label>description <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                    <input type="text" class="form-control" [(ngModel)]="supplyDescription">
                                 </div>
                                 <div class="col-md-4">
-                                    <label>brand</label>
-                                    <input type="text" class="form-control" [(ngModel)]="supplyBrand">                                
+                                    <label>brand <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                    <input type="text" class="form-control" [(ngModel)]="supplyBrand">
                                 </div>
                             </div>
                             <div class="row" *ngIf="sitcRow">
                                 <div class="col-md-4">
-                                    <label>description</label>
+                                    <label>description <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
                                     <input type="text" class="form-control" [(ngModel)]="sitcDescription">
                                 </div>
                             </div>
+
                             <div class="row g-2" *ngIf="csRow">
                                 <div class="col-md-2">
-                                    <label>cable assembly</label>
-                                    <input type="text" class="form-control" [(ngModel)]="csCable">
-                                    
+                                    <label>cable assembly <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                    <input type="text" class="form-control" [(ngModel)]="csCable"
+                                        [disabled]="isOthersChecked" [required]="isOthersDisabled">
+
                                 </div>
                                 <div class="col-md-2">
-                                    <label>panel</label>
-                                    <input type="text" class="form-control" [(ngModel)]="csPanel">
-                                    
+                                    <label>panel <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                    <input type="text" class="form-control" [(ngModel)]="csPanel"
+                                        [disabled]="isOthersChecked" [required]="isOthersDisabled">
+
                                 </div>
                                 <div class="col-md-2">
-                                    <label>welding receptable</label>
-                                    <input type="text" class="form-control" [(ngModel)]="csWelding">
-                                    
+                                    <label>welding receptable <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                    <input type="text" class="form-control" [(ngModel)]="csWelding"
+                                        [disabled]="isOthersChecked" [required]="isOthersDisabled">
+
                                 </div>
                                 <div class="col-md-2">
-                                    <label>clamps</label>
-                                    <input type="text" class="form-control" [(ngModel)]="csClamps">
-                                   
+                                    <label>HSA BOX <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                    <input type="text" class="form-control" [(ngModel)]="csHsaBox"
+                                        [disabled]="isOthersChecked" [required]="isOthersDisabled">
                                 </div>
-                                <div class="col-md-2">
-                                    <label>HSA BOX</label>
-                                    <input type="text" class="form-control" [(ngModel)]="csHsaBox">                                
-                                </div>
-                                <div class="col-md-2">
-                                    <input type="checkbox" [(ngModel)]="isOthersChecked" class="me-1" (change)="onCheckboxChange($event)">
-                                    <label> others</label>
-                                    <input type="text" class="form-control" [(ngModel)]="csOthers" [disabled]="isOthersDisabled">                                
+                                <div class="col-md-4">
+                                    <input type="checkbox" [(ngModel)]="isOthersChecked" class="me-1"
+                                        (change)="onCheckboxChange($event)">
+                                    <label> others <span [hidden]="isOthersDisabled" style="color: red;">*</span></label>
+                                    <input type="text" class="form-control" [(ngModel)]="csOthers"
+                                        [disabled]="isOthersDisabled" [required]="isOthersChecked">
                                 </div>
                             </div>
                         </div>
@@ -149,8 +154,8 @@
                         <div class="form_select_div">
                             <label>BASIC PO value</label>
                             <ng-container>
-                                <input *ngIf="!isEdit; else editBasicPOInput" type="text" class="form-control" [(ngModel)]="basicPoValue"
-                                (blur)="decimalBasicPO()">
+                                <input *ngIf="!isEdit; else editBasicPOInput" type="text" class="form-control"
+                                    [(ngModel)]="basicPoValue" (blur)="decimalBasicPO()">
                             </ng-container>
                             <ng-template #editBasicPOInput>
                                 <input type="text" class="form-control" [(ngModel)]="basicPoValue">
@@ -161,8 +166,8 @@
                         <div class="">
                             <label>total PO value(incl. GST)</label>
                             <ng-container>
-                                <input *ngIf="!isEdit; else editTotalPOInput" type="text" class="form-control" [(ngModel)]="totalPoValue"
-                                (blur)="decimalTotalPO()">
+                                <input *ngIf="!isEdit; else editTotalPOInput" type="text" class="form-control"
+                                    [(ngModel)]="totalPoValue" (blur)="decimalTotalPO()">
                             </ng-container>
                             <ng-template #editTotalPOInput>
                                 <input type="text" class="form-control" [(ngModel)]="totalPoValue">
@@ -209,7 +214,8 @@
         </div>
         <div class="text-center mt-3">
             <ng-container>
-                <button mat-flat-button class="btn1" *ngIf="!this.isEdit; else editButton" (click)="createOrder()">submit</button>
+                <button mat-flat-button class="btn1" *ngIf="!this.isEdit; else editButton"
+                    (click)="createOrder()">submit</button>
             </ng-container>
             <ng-template #editButton>
                 <button mat-flat-button class="btn1" (click)="editOrder()">edit</button>
@@ -220,8 +226,41 @@
 
 
 
-    <div>
-        <h3 class="text-end" style="font-size: 20px;">total : {{ totalOrderCount }}</h3>
+
+    <div class="row align-items-end">
+        <div class="col-md-3">
+            <strong style="text-transform: capitalize;">filter by</strong>
+            <div class="form_select_div mt-3">
+                <select class="form-control">
+                    <option value="" disabled>-- choose category --</option>
+                    <option>customer</option>
+                    <option value="enquiry_date">PO number</option>
+                    <option value="enquiry_source">PO date</option>
+                    <option value="enquiry_type">PO type</option>
+                    <option>basic PO value</option>
+                    <option value="principal_house">total PO valuee</option>
+                    <option value="basic_value">schedule date of completion </option>
+                </select>
+                <span class="material-symbols-outlined">
+                    stat_minus_1
+                </span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <strong style="text-transform: capitalize;">select one</strong>
+            <div class="form_select_div mt-3">
+                <select class="form-control">
+                    <option value="" disabled>-- choose one --</option>
+                    <option></option>
+                </select>
+                <span class="material-symbols-outlined">
+                    stat_minus_1
+                </span>
+            </div>
+        </div>
+        <div class="col-md-5 ">
+            <h3 class="text-end" style="font-size: 20px;">total : {{ totalOrderCount }}</h3>
+        </div>
     </div>
     <!-- <div class="customer_table"> -->
     <div class="listing_div">
@@ -254,12 +293,14 @@
                 <td>{{ item.scheduled_completion_date }}</td>
                 <td>{{ item.actual_completion_date }}</td>
                 <td>
-                    <span class="material-symbols-outlined" style="color:#006FFD;" (click)="goToDetailsPage(item.order_id)">
+                    <span class="material-symbols-outlined" style="color:#006FFD;"
+                        (click)="goToDetailsPage(item.order_id)">
                         visibility
                     </span>
                 </td>
                 <td>
-                    <span class="material-symbols-outlined" style="color: #00BF58;" (click)="getOrderById(item.order_id)">
+                    <span class="material-symbols-outlined" style="color: #00BF58;"
+                        (click)="getOrderById(item.order_id)">
                         edit_square
                     </span>
                 </td>

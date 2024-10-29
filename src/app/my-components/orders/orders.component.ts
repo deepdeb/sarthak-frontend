@@ -152,7 +152,7 @@ export class OrdersComponent {
     this.csClamps = '';
     this.csHsaBox = '';
     this.csOthers = '';
-    
+
     if (po_type_id == 1) {
       this.isDivShow = true;
       this.supplyRow = true;
@@ -177,9 +177,14 @@ export class OrdersComponent {
   onCheckboxChange(event: any) {
     if (event.target.checked) {
       this.isOthersDisabled = false;
+      this.csCable = '';
+      this.csPanel = '';
+      this.csWelding = '';
+      this.csHsaBox = '';    
     } else {
       this.isOthersDisabled = true;
-      this.csOthers = ''
+      this.csOthers = '';
+      
     }
   }
 
@@ -252,10 +257,51 @@ export class OrdersComponent {
       this.common.showAlertMessage('Please Choose a PO Type', this.common.errContent)
       return;
     }
-    // if (!this.poSubTypeId) {
-    //   this.common.showAlertMessage('Please Choose a PO sub type', this.common.errContent)
-    //   return;
-    // }
+    if (this.poTypeId == 1) {
+      if (!this.supplyProduct) {
+        this.common.showAlertMessage('Please enter Supply Product', this.common.errContent)
+        return;
+      }
+      if (!this.supplyDescription) {
+        this.common.showAlertMessage('Please enter Supply Description', this.common.errContent)
+        return;
+      }
+      if (!this.supplyBrand) {
+        this.common.showAlertMessage('Please enter Supply Brand', this.common.errContent)
+        return;
+      }
+    }
+    if (this.poTypeId == 2) {
+      if (!this.sitcDescription) {
+        this.common.showAlertMessage('Please enter SITC Description', this.common.errContent)
+        return;
+      }
+    }
+    if (this.poTypeId == 3 && !this.isOthersChecked) {
+      if (!this.csCable) {
+        this.common.showAlertMessage('Please enter Cable', this.common.errContent)
+        return;
+      }
+      if (!this.csPanel) {
+        this.common.showAlertMessage('Please enter Panel', this.common.errContent)
+        return;
+      }
+      if (!this.csWelding) {
+        this.common.showAlertMessage('Please enter Welding', this.common.errContent)
+        return;
+      }
+      if (!this.csHsaBox) {
+        this.common.showAlertMessage('Please enter HAS Box', this.common.errContent)
+        return;
+      }
+    } else if(this.poTypeId == 3 && this.isOthersChecked){
+      if(!this.csOthers){
+        this.common.showAlertMessage('Please enter Others', this.common.errContent)
+        return;
+      }
+    }
+
+
     if (!this.basicPoValue) {
       this.common.showAlertMessage('Please enter Basic PO Value', this.common.errContent)
       return;
@@ -342,6 +388,7 @@ export class OrdersComponent {
         this.csOthers = '';
         this.isOthersDisabled = true;
         this.common.showAlertMessage(res.message, this.common.succContent);
+        this.isDivShow = false;
         this.getOrderList();
       }
     })
@@ -387,26 +434,26 @@ export class OrdersComponent {
       if (res.success) {
         if (res.response) {
           this.salesPersonId = res.response[0].sales_person_id
-          if(this.salesPersonId) {
+          if (this.salesPersonId) {
             this.getCustomerListBySalesperson()
           }
           this.customerId = res.response[0].customer_id
           this.poNumber = res.response[0].po_number
           this.poDate = res.response[0].po_date
           this.poTypeId = res.response[0].po_type_id
-          if(this.poTypeId) {
+          if (this.poTypeId) {
             this.isDivShow = true;
-            if(this.poTypeId == 1) {
+            if (this.poTypeId == 1) {
               this.supplyRow = true;
               this.sitcRow = false;
               this.csRow = false;
             }
-            else if(this.poTypeId == 2) {
+            else if (this.poTypeId == 2) {
               this.supplyRow = false;
               this.sitcRow = true;
               this.csRow = false;
             }
-            else if(this.poTypeId == 3) {
+            else if (this.poTypeId == 3) {
               this.supplyRow = false;
               this.sitcRow = false;
               this.csRow = true;
@@ -437,124 +484,124 @@ export class OrdersComponent {
     })
   }
 
-    //*********** create orders ***********//
-    editOrder() {
-      if (!this.salesPersonId) {
-        this.common.showAlertMessage('Please Choose a sales incharge', this.common.errContent)
-        return;
-      }
-      if (!this.customerId) {
-        this.common.showAlertMessage('Please Choose a customer', this.common.errContent)
-        return;
-      }
-      if (!this.poNumber) {
-        this.common.showAlertMessage('Please enter PO number', this.common.errContent)
-        return;
-      }
-      if (!this.poDate) {
-        this.common.showAlertMessage('Please select a PO date', this.common.errContent)
-        return;
-      }
-      if (!this.poTypeId) {
-        this.common.showAlertMessage('Please Choose a PO Type', this.common.errContent)
-        return;
-      }
-      // if (!this.poSubTypeId) {
-      //   this.common.showAlertMessage('Please Choose a PO sub type', this.common.errContent)
-      //   return;
-      // }
-      if (!this.basicPoValue) {
-        this.common.showAlertMessage('Please enter Basic PO Value', this.common.errContent)
-        return;
-      }
-      if (!this.totalPoValue) {
-        this.common.showAlertMessage('Please enter Total PO Value', this.common.errContent)
-        return;
-      }
-      if (!this.completionDate) {
-        this.common.showAlertMessage('Please select completion date', this.common.errContent)
-        return;
-      }
-      // if(!this.actualCompletionDate){
-      //   this.common.showAlertMessage('Please select actual completion date', this.common.errContent)
-      //   return;
-      // }
-      if (!this.poUpload) {
-        this.common.showAlertMessage('Please set file for PO', this.common.errContent)
-        return;
-      }
-      // if(!this.completionUpload){
-      //   this.common.showAlertMessage('Please set file for completion', this.common.errContent)
-      //   return;
-      // }
-      // if(!this.credentialUpload){
-      //   this.common.showAlertMessage('Please set file for credential', this.common.errContent)
-      //   return;
-      // }
-  
-      const data = {
-        order_id: this.orderId,
-        sales_person_id: this.salesPersonId,
-        sbu_id: this.sbuId,
-        customer_id: this.customerId,
-        po_number: this.poNumber,
-        po_date: this.poDate,
-        po_type_id: this.poTypeId,
-        // po_subtype_id: this.poSubTypeId,
-        basic_po_value: this.basicPoValue,
-        total_po_value: this.totalPoValue,
-        scheduled_completion_date: this.completionDate,
-        actual_completion_date: this.actualCompletionDate,
-        purchase_order_file: this.po_Photo,
-        completion_file: this.completion_Photo,
-        credential_file: this.credential_Photo,
-        product: this.supplyProduct,
-        supply_description: this.supplyDescription,
-        brand: this.supplyBrand,
-        sitc_description: this.sitcDescription,
-        cable_assembly: this.csCable,
-        panel: this.csPanel,
-        welding_receptable: this.csWelding,
-        clamps: this.csClamps,
-        hsa_box: this.csHsaBox,
-        others: this.csOthers,
-      }
-      this.rest.editOrder_rest(data).subscribe((res: any) => {
-        if (res.success) {
-          this.sbuId = '';
-          this.salesPersonId = '';
-          this.customerId = '';
-          this.poNumber = '';
-          this.poDate = '';
-          this.poTypeId = '';
-          this.basicPoValue = '';
-          this.totalPoValue = '';
-          this.completionDate = '';
-          this.actualCompletionDate = '';
-          this.po_Photo = '';
-          this.completion_Photo = '';
-          this.credential_Photo = '';
-          this.poUpload = '';
-          this.completionUpload = '';
-          this.credentialUpload = '';
-          this.supplyProduct = '';
-          this.supplyDescription = '';
-          this.supplyBrand = '';
-          this.sitcDescription = '';
-          this.csCable = '';
-          this.csPanel = '';
-          this.csWelding = '';
-          this.csClamps = '';
-          this.csHsaBox = '';
-          this.isOthersChecked = false;
-          this.csOthers = '';
-          this.isOthersDisabled = true;
-          this.isEdit = false;
-          this.common.showAlertMessage(res.message, this.common.succContent);
-          this.getOrderList();
-        }
-      })
-  
+  //*********** create orders ***********//
+  editOrder() {
+    if (!this.salesPersonId) {
+      this.common.showAlertMessage('Please Choose a sales incharge', this.common.errContent)
+      return;
     }
+    if (!this.customerId) {
+      this.common.showAlertMessage('Please Choose a customer', this.common.errContent)
+      return;
+    }
+    if (!this.poNumber) {
+      this.common.showAlertMessage('Please enter PO number', this.common.errContent)
+      return;
+    }
+    if (!this.poDate) {
+      this.common.showAlertMessage('Please select a PO date', this.common.errContent)
+      return;
+    }
+    if (!this.poTypeId) {
+      this.common.showAlertMessage('Please Choose a PO Type', this.common.errContent)
+      return;
+    }
+    // if (!this.poSubTypeId) {
+    //   this.common.showAlertMessage('Please Choose a PO sub type', this.common.errContent)
+    //   return;
+    // }
+    if (!this.basicPoValue) {
+      this.common.showAlertMessage('Please enter Basic PO Value', this.common.errContent)
+      return;
+    }
+    if (!this.totalPoValue) {
+      this.common.showAlertMessage('Please enter Total PO Value', this.common.errContent)
+      return;
+    }
+    if (!this.completionDate) {
+      this.common.showAlertMessage('Please select completion date', this.common.errContent)
+      return;
+    }
+    // if(!this.actualCompletionDate){
+    //   this.common.showAlertMessage('Please select actual completion date', this.common.errContent)
+    //   return;
+    // }
+    if (!this.poUpload) {
+      this.common.showAlertMessage('Please set file for PO', this.common.errContent)
+      return;
+    }
+    // if(!this.completionUpload){
+    //   this.common.showAlertMessage('Please set file for completion', this.common.errContent)
+    //   return;
+    // }
+    // if(!this.credentialUpload){
+    //   this.common.showAlertMessage('Please set file for credential', this.common.errContent)
+    //   return;
+    // }
+
+    const data = {
+      order_id: this.orderId,
+      sales_person_id: this.salesPersonId,
+      sbu_id: this.sbuId,
+      customer_id: this.customerId,
+      po_number: this.poNumber,
+      po_date: this.poDate,
+      po_type_id: this.poTypeId,
+      // po_subtype_id: this.poSubTypeId,
+      basic_po_value: this.basicPoValue,
+      total_po_value: this.totalPoValue,
+      scheduled_completion_date: this.completionDate,
+      actual_completion_date: this.actualCompletionDate,
+      purchase_order_file: this.po_Photo,
+      completion_file: this.completion_Photo,
+      credential_file: this.credential_Photo,
+      product: this.supplyProduct,
+      supply_description: this.supplyDescription,
+      brand: this.supplyBrand,
+      sitc_description: this.sitcDescription,
+      cable_assembly: this.csCable,
+      panel: this.csPanel,
+      welding_receptable: this.csWelding,
+      clamps: this.csClamps,
+      hsa_box: this.csHsaBox,
+      others: this.csOthers,
+    }
+    this.rest.editOrder_rest(data).subscribe((res: any) => {
+      if (res.success) {
+        this.sbuId = '';
+        this.salesPersonId = '';
+        this.customerId = '';
+        this.poNumber = '';
+        this.poDate = '';
+        this.poTypeId = '';
+        this.basicPoValue = '';
+        this.totalPoValue = '';
+        this.completionDate = '';
+        this.actualCompletionDate = '';
+        this.po_Photo = '';
+        this.completion_Photo = '';
+        this.credential_Photo = '';
+        this.poUpload = '';
+        this.completionUpload = '';
+        this.credentialUpload = '';
+        this.supplyProduct = '';
+        this.supplyDescription = '';
+        this.supplyBrand = '';
+        this.sitcDescription = '';
+        this.csCable = '';
+        this.csPanel = '';
+        this.csWelding = '';
+        this.csClamps = '';
+        this.csHsaBox = '';
+        this.isOthersChecked = false;
+        this.csOthers = '';
+        this.isOthersDisabled = true;
+        this.isEdit = false;
+        this.common.showAlertMessage(res.message, this.common.succContent);
+        this.getOrderList();
+      }
+    })
+
+  }
 
 }

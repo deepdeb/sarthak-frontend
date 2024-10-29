@@ -264,8 +264,8 @@
                 <th *ngIf="display_3">Sub sub-segment</th>
                 <th *ngIf="display_4">Sub sub-sub--segment</th>
                 <!-- <th>view</th> -->
-                <th>edit</th>
-                <th>delete</th>
+                <th *ngIf="designation_id == 1">edit</th>
+                <th *ngIf="designation_id == 1">delete</th>
             </tr>
 
 
@@ -278,13 +278,13 @@
                             visibility
                         </span>
                     </td> -->
-                    <td>
+                    <td *ngIf="designation_id == 1">
                         <span class="material-symbols-outlined" style="color: #00BF58;"
                             (click)="getSegmentToForm(item.segment_id, item.segment_name)">
                             edit_square
                         </span>
                     </td>
-                    <td>
+                    <td *ngIf="designation_id == 1">
                         <span class="material-symbols-outlined" style="color: #A8226A;">
                             delete
                         </span>
@@ -301,13 +301,13 @@
                             visibility
                         </span>
                     </td> -->
-                    <td>
+                    <td *ngIf="designation_id == 1">
                         <span class="material-symbols-outlined" style="color: #00BF58;"
                             (click)="getSubSegmentToForm(item.segment_id, item.subsegment_id, item.subsegment_name)">
                             edit_square
                         </span>
                     </td>
-                    <td>
+                    <td *ngIf="designation_id == 1">
                         <span class="material-symbols-outlined" style="color: #A8226A;">
                             delete
                         </span>
@@ -324,12 +324,12 @@
                             visibility
                         </span>
                     </td> -->
-                    <td>
+                    <td *ngIf="designation_id == 1">
                         <span class="material-symbols-outlined" style="color: #00BF58;">
                             edit_square
                         </span>
                     </td>
-                    <td>
+                    <td *ngIf="designation_id == 1">
                         <span class="material-symbols-outlined" style="color: #A8226A;">
                             delete
                         </span>
@@ -346,12 +346,12 @@
                             visibility
                         </span>
                     </td> -->
-                    <td>
+                    <td *ngIf="designation_id == 1">
                         <span class="material-symbols-outlined" style="color: #00BF58;">
                             edit_square
                         </span>
                     </td>
-                    <td>
+                    <td *ngIf="designation_id == 1">
                         <span class="material-symbols-outlined" style="color: #A8226A;">
                             delete
                         </span>
