@@ -14,6 +14,7 @@ export class OrdersComponent {
 
 
   sbuId: any = localStorage.getItem('sbu_id');
+  checkSbuId: any = localStorage.getItem('sbu_id');
   salesPersonId = '' as any;
   customerId = '' as any;
   poNumber: string = '';
@@ -59,23 +60,39 @@ export class OrdersComponent {
   isEdit: boolean = false;
   orderId: any;
 
-  constructor(private router: Router, private rest: RestService, private common: CommonService) { }
+  constructor(private router: Router, private rest: RestService, private common: CommonService) { 
+  }
   ngOnInit(): void {
-    this.getPOtypeList();
     this.getSalesPersonList();
+    this.getPOtypeList();
     // this.getCustomerListBySalesperson();
     // this.getPoSubTypeListByPOtype();
+    if(this.checkSbuId != 0) {
+      this.salesPersonId = localStorage.getItem('sales_person_id');
+      this.sbuId = localStorage.getItem('sbu_id')
+      this.getCustomerListBySalesperson();
+    }
     this.getOrderList();
   }
 
   decimalBasicPO() {
-    this.basicPoValue = this.basicPoValue + '.00'
-    // this.totalPoValue = this.totalPoValue + '.00'
+    if(this.basicPoValue){
+      this.basicPoValue = this.basicPoValue + '.00'
+    }
   }
 
   decimalTotalPO() {
-    // this.basicPoValue = this.basicPoValue + '.00'
-    this.totalPoValue = this.totalPoValue + '.00'
+    if(this.totalPoValue){
+      this.totalPoValue = this.totalPoValue + '.00'
+    }
+  }
+
+  //********* Validate PO Value inputs **************//
+  validateInput(event: any): void {
+    if ((event.which < 48 || event.which > 57) && event.which !== 8 && event.which !== 9 && event.which !== 46) {
+      event.preventDefault();
+      return;
+    }
   }
 
 
@@ -109,7 +126,9 @@ export class OrdersComponent {
   getCustomerListBySalesperson() {
     this.customerBySalespersonList = []
     this.customerId = ''
-    this.setSBUId(this.salesPersonId);
+    if(this.sbuId == 0) {
+      this.setSBUId(this.salesPersonId);
+    }
     const data = {
       sales_person_id: this.salesPersonId
     }
