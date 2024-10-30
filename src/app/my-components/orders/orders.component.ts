@@ -60,6 +60,11 @@ export class OrdersComponent {
   isEdit: boolean = false;
   orderId: any;
 
+  filterByKeyword: string = '';
+  filteredOrderListByCategory: any = []
+  ordersByFilter: any = ''
+
+
   constructor(private router: Router, private rest: RestService, private common: CommonService) { 
   }
   ngOnInit(): void {
@@ -621,6 +626,42 @@ export class OrdersComponent {
       }
     })
 
+  }
+
+  // ******************** filter orders list by category ******************** //
+  getFilterOrdersByCategory() {
+    this.filteredOrderListByCategory = [];
+    const data = {
+      filterby_keyword: this.filterByKeyword
+    }
+    this.rest.getFilterOrdersByCategory_rest(data).subscribe((res: any) => {
+      if(res.success) {
+        if(res.response) {
+          if(res.response.length > 0) {
+            this.filteredOrderListByCategory = res.response;
+          }
+        }
+      }
+    })
+  }
+
+  getOrdersByFilter() {
+    this.orderList = [];
+    this.totalOrderCount = 0
+    const data = {
+      filter_by: this.filterByKeyword,
+      filter_by_value: this.ordersByFilter,
+    }
+    this.rest.getOrdersByFilter_rest(data).subscribe((res: any) => {
+      if (res.success) {
+        if (res.response) {
+          if (res.response.length > 0) {
+            this.orderList = res.response;
+            this.totalOrderCount = res.total_count;
+          }
+        }
+      }
+    })
   }
 
 }

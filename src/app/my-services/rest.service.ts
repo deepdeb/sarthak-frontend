@@ -275,4 +275,14 @@ export class RestService {
     return this.http.post(this.API_ROOT + 'common/getEnquiriesByFilter', data, httpOptions)
   }
 
+  //************ for order filter *************/
+  getFilterOrdersByCategory_rest(data: any): Observable<any>{
+    return this.http.post(this.API_ROOT + 'common/filterOrderCategory', data, httpOptions)
+  }
+
+  //************ for order filter *************/
+  getOrdersByFilter_rest(data: any): Observable<any>{
+    return this.http.post(this.API_ROOT + '/common/getOrdersByFilter', data, httpOptions)
+  }
+
 }

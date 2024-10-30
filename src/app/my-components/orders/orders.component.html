@@ -23,6 +23,17 @@
     </div>
 
     <div class="main_body sec_gapping">
+        <div class=" d-flex mb-3">
+            <div class="me-2">
+                <input type="radio" id="radio_1" name="radioBtn">
+                <label >Based on Enquiry</label>
+            </div>
+            <div >
+                <input type="radio" id="radio_2" name="radioBtn">
+                <label >Direct Order</label>
+            </div>
+         
+        </div>
         <div class="info_div">
             <div class="page_info_heading">
                 orders
@@ -231,15 +242,15 @@
         <div class="col-md-3">
             <strong style="text-transform: capitalize;">filter by</strong>
             <div class="form_select_div mt-3">
-                <select class="form-control">
+                <select class="form-control" [(ngModel)]="filterByKeyword" (change)="getFilterOrdersByCategory()">
                     <option value="" disabled>-- choose category --</option>
-                    <option>customer</option>
-                    <option value="enquiry_date">PO number</option>
-                    <option value="enquiry_source">PO date</option>
-                    <option value="enquiry_type">PO type</option>
-                    <option>basic PO value</option>
-                    <option value="principal_house">total PO valuee</option>
-                    <option value="basic_value">schedule date of completion </option>
+                    <option value="customer">customer</option>
+                    <option value="po_number">PO number</option>
+                    <option value="po_date">PO date</option>
+                    <option value="po_type">PO type</option>
+                    <option value="basic_po_value">basic PO value</option>
+                    <option value="total_po_value">total PO value</option>
+                    <option value="scheduled_completion_date">schedule date of completion</option>
                 </select>
                 <span class="material-symbols-outlined">
                     stat_minus_1
@@ -249,9 +260,9 @@
         <div class="col-md-4">
             <strong style="text-transform: capitalize;">select one</strong>
             <div class="form_select_div mt-3">
-                <select class="form-control">
+                <select class="form-control" [(ngModel)]="ordersByFilter" (change)="getOrdersByFilter()">
                     <option value="" disabled>-- choose one --</option>
-                    <option></option>
+                    <option *ngFor="let item of filteredOrderListByCategory" [value]="item.name">{{item.name}}</option>
                 </select>
                 <span class="material-symbols-outlined">
                     stat_minus_1
