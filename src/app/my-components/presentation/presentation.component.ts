@@ -13,7 +13,6 @@ import { CommonService } from 'src/app/my-services/common.service';
   styleUrls: ['./presentation.component.css']
 })
 export class PresentationComponent {
-  active: boolean = true;
   comp_pro_up: boolean = true;
   imp_doc_up: boolean = false;
   princi_house_up: boolean = false;
@@ -23,10 +22,13 @@ export class PresentationComponent {
   imp_doc_down: boolean = false;
   princi_house_down: boolean = false;
   new_comp_show: boolean = false
+
+  activeLinkUp: string = 'company_profile_up'
+  activeLinkDown: string = 'company_profile_down'
   
 
   company_profile_up(){
-    this.active =  true;
+    this.activeLinkUp = 'company_profile_up'
     this.comp_pro_up =  true;
     this.imp_doc_up = false;
     this.princi_house_up = false;
@@ -34,6 +36,7 @@ export class PresentationComponent {
   }
 
   important_documents_up(){
+    this.activeLinkUp = 'important_documents_up'
     this.comp_pro_up =  false;
     this.imp_doc_up = true;
     this.princi_house_up = false;
@@ -41,6 +44,7 @@ export class PresentationComponent {
   }
 
   principal_house_up(){
+    this.activeLinkUp = 'principal_house_up'
     this.comp_pro_up =  false;
     this.imp_doc_up = false;
     this.princi_house_up = true;
@@ -48,6 +52,7 @@ export class PresentationComponent {
   } 
 
   new_company_entry(){
+    this.activeLinkUp = 'new_company_entry'
     this.comp_pro_up =  false;
     this.imp_doc_up = false;
     this.princi_house_up = false;
@@ -58,6 +63,7 @@ export class PresentationComponent {
 
 
   company_profile_down(){
+    this.activeLinkDown = 'company_profile_down'
     this.comp_pro_down =  true;
     this.imp_doc_down = false;
     this.princi_house_down = false;
@@ -65,6 +71,7 @@ export class PresentationComponent {
   }
 
   important_documents_down(){
+    this.activeLinkDown = 'important_documents_down'
     this.comp_pro_down =  false;
     this.imp_doc_down = true;
     this.princi_house_down = false;
@@ -72,6 +79,7 @@ export class PresentationComponent {
   }
 
   principal_house_down(){
+    this.activeLinkDown = 'principal_house_down'
     this.comp_pro_down =  false;
     this.imp_doc_down = false;
     this.princi_house_down = true;
@@ -79,6 +87,7 @@ export class PresentationComponent {
   } 
   
   new_company_show(){
+    this.activeLinkDown = 'new_company_show'
     this.comp_pro_down =  false;
     this.imp_doc_down = false;
     this.princi_house_down = false;

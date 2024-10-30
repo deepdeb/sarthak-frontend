@@ -28,10 +28,10 @@
                 upload documents
             </div>
             <ul class="presentation_tabs">
-                <li class="active" (click)="company_profile_up()">company profile</li>
-                <li (click)="important_documents_up()">important documents</li>
-                <li (click)="principal_house_up()">principal house</li>
-                <li (click)="new_company_entry()">add company</li>
+                <li (click)="company_profile_up()" [ngClass]="{'active': activeLinkUp === 'company_profile_up'}">company profile</li>
+                <li (click)="important_documents_up()" [ngClass]="{'active': activeLinkUp === 'important_documents_up'}">important documents</li>
+                <li (click)="principal_house_up()" [ngClass]="{'active': activeLinkUp === 'principal_house_up'}">principal house</li>
+                <li (click)="new_company_entry()" [ngClass]="{'active': activeLinkUp === 'new_company_entry'}">add company</li>
             </ul>
 
             <div class="upload_document_div company_profile" *ngIf="comp_pro_up">
@@ -279,10 +279,10 @@
                 download documents
             </div>
             <ul class="presentation_tabs">
-                <li class="active" (click)="company_profile_down()">company profile</li>
-                <li (click)="important_documents_down()">important documents</li>
-                <li (click)="principal_house_down()">principal house</li>
-                <li (click)="new_company_show()">new company</li>
+                <li (click)="company_profile_down()" [ngClass]="{'active': activeLinkDown === 'company_profile_down'}">company profile</li>
+                <li (click)="important_documents_down()" [ngClass]="{'active': activeLinkDown === 'important_documents_down'}">important documents</li>
+                <li (click)="principal_house_down()" [ngClass]="{'active': activeLinkDown === 'principal_house_down'}">principal house</li>
+                <li (click)="new_company_show()" [ngClass]="{'active': activeLinkDown === 'new_company_show'}">new company</li>
             </ul>
 
             <div class="listing_div" style="width: 30%;" *ngIf="comp_pro_down">
