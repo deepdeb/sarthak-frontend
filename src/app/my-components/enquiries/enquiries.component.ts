@@ -46,6 +46,7 @@ export class EnquiriesComponent {
   filteredEnquiryListByCategory: any = []
   filterByKeyword: string = ''
   enquiriesByFilter: string = ''
+  lastEnquiryNumber: number = 0
 
   // ************ static months & years **************//
   months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
@@ -293,6 +294,7 @@ export class EnquiriesComponent {
             this.enquiryList = [];
             this.enquiryList = res.response;
             this.totalCount = res.total_count;
+            this.lastEnquiryNumber = res.last_enquiry_id;
           }
         }
       }
