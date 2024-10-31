@@ -48,6 +48,28 @@ export class EnquiriesComponent {
   enquiriesByFilter: string = ''
   lastEnquiryNumber: number = 0
 
+  supplyProduct: string = '';
+  supplyDescription: string = '';
+  supplyBrand: string = '';
+  sitcDescription: string = '';
+  csCable: string = '';
+  csPanel: string = '';
+  csWelding: string = '';
+  csClamps: string = '';
+  csHsaBox: string = '';
+  csOthers: string = '';
+
+  isDivShow: boolean = false
+  supplyRow: boolean = false;
+  sitcRow: boolean = false;
+  csRow: boolean = false;
+  isOthersDisabled: boolean = true;
+  isOthersChecked: boolean = false;
+  // isEdit: boolean = false;
+  orderId: any;
+
+
+
   // ************ static months & years **************//
   months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
   years = ['2024', '2025'];
@@ -89,6 +111,56 @@ export class EnquiriesComponent {
       }
     })
   }
+
+  //************ get PO Sub type List ************//
+
+  getPoSubTypeInputsByPOtype(enquiry_sub_type_id: any) {
+    this.supplyProduct = '';
+    this.supplyDescription = '';
+    this.supplyBrand = '';
+    this.sitcDescription = '';
+    this.csCable = '';
+    this.csPanel = '';
+    this.csWelding = '';
+    this.csClamps = '';
+    this.csHsaBox = '';
+    this.csOthers = '';
+
+    if (enquiry_sub_type_id == 1) {
+      this.isDivShow = true;
+      this.supplyRow = true;
+      this.csRow = false;
+      this.sitcRow = false;
+
+    } else if (enquiry_sub_type_id == 2) {
+      this.isDivShow = true;
+      this.supplyRow = false;
+      this.sitcRow = true;
+      this.csRow = false;
+
+    } else if (enquiry_sub_type_id == 3) {
+      this.isDivShow = true;
+      this.supplyRow = false;
+      this.sitcRow = false;
+      this.csRow = true
+    }
+  }
+
+   //********** Check box logic **********//
+   onCheckboxChange(event: any) {
+    if (event.target.checked) {
+      this.isOthersDisabled = false;
+      this.csCable = '';
+      this.csPanel = '';
+      this.csWelding = '';
+      this.csHsaBox = '';    
+    } else {
+      this.isOthersDisabled = true;
+      this.csOthers = '';
+      
+    }
+  }
+
 
 
   //********* FOR get customer list by salesperson start *********//

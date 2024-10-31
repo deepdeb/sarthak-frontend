@@ -33,14 +33,13 @@
             <div class="my_form ">
                 <div class="row">
 
-                    <div class="col-sm-3 col-md-3">
+                    <div class="col-sm-3 col-md-1">
                         <div class="form_select_div ">
                             <label>enquiry no.</label>
                             <input type="text" class="form-control" [value]="lastEnquiryNumber + 1" disabled>
                         </div>
                     </div>
-
-                    <div class="col-sm-6 col-md-3">
+                    <div class="col-sm-6 col-md-2">
                         <label>SBU</label>
                         <div class="form_select_div">
                             <select class="form-control" [(ngModel)]="sbuId" (change)="getMentorSalesList()">
@@ -53,7 +52,6 @@
                             </span>
                         </div>
                     </div>
-
                     <!-- <div class="col-sm-6 col-md-3">
                         <div class="form_select_div">
                             <label>mentor</label>
@@ -70,8 +68,7 @@
                             </div>
                         </div>
                     </div> -->
-                    
-                   
+                                     
                     <div class="col-sm-6 col-md-3">
                         <div class="form_select_div">
                             <label>sales incharge</label>
@@ -88,7 +85,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-sm-6 col-md-3">
                         <div class="form_select_div">
                             <label>mentor</label>
@@ -104,7 +100,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-sm-6 col-md-3">
                         <div class="form_select_div">
                             <label>customer</label>
@@ -120,25 +115,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-3 col-md-3">
+                    <div class="col-sm-3 col-md-2">
                         <div class="form_select_div ">
                             <label>enquiry date</label>
                             <input type="date" class="form-control" [(ngModel)]="enquiryDate">
                         </div>
                     </div>
-                    <div class="col-sm-5 col-md-3">
+                    <div class="col-sm-5 col-md-4">
                         <div class="">
                             <label>source of enquiry</label>
                             <div class="form_select_div">
-                                <input type="text" class="form-control" [(ngModel)]="enquirySource">
-                                <!-- <select class="form-control" [(ngModel)]="enquirySourceId">
-                                    <option>--choose enquiry source--</option>
-                                    <option *ngFor="let item of enquiryTypeList" [value]="item.enquiry_source_id">{{
-                                        item.enquiry_source_name }}</option>
-                                </select>
-                                <span class="material-symbols-outlined">
-                                    stat_minus_1
-                                </span> -->
+                                <input type="text" class="form-control" [(ngModel)]="enquirySource">                               
                             </div>
                         </div>
                     </div>
@@ -161,7 +148,7 @@
                         <div class="">
                             <label>enquiry sub type</label>
                             <div class="form_select_div">
-                                <select class="form-control" [(ngModel)]="enquirySubTypeId">
+                                <select class="form-control" [(ngModel)]="enquirySubTypeId" (change)="getPoSubTypeInputsByPOtype(enquirySubTypeId)">
                                     <option value="" disabled>--choose enquiry sub-type--</option>
                                     <option *ngFor="let item of enquirySubTypeList" [value]="item.enquiry_sub_type_id">
                                         {{
@@ -173,6 +160,75 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="poSubType_div" *ngIf="isDivShow"
+                    [ngStyle]="{'padding.px': 12,'background': '#becdfd','border-radius.px': 6}">
+
+                    <h5
+                        [ngStyle]="{'border-bottom.px':1, 'font-weight': 600, 'margin-bottom.px': 16,'font-size.px': 18}">
+                        PO Sub Type</h5>
+                    <div class="col-md-12">
+                        <div class="row" *ngIf="supplyRow">
+                            <div class="col-md-4">
+                                <label>product <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                <input type="text" class="form-control" [(ngModel)]="supplyProduct">
+                            </div>
+                            <div class="col-md-4">
+                                <label>description <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                <input type="text" class="form-control" [(ngModel)]="supplyDescription">
+                            </div>
+                            <div class="col-md-4">
+                                <label>brand <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                <input type="text" class="form-control" [(ngModel)]="supplyBrand">
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="sitcRow">
+                            <div class="col-md-4">
+                                <label>description <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                <input type="text" class="form-control" [(ngModel)]="sitcDescription">
+                            </div>
+                        </div>
+
+                        <div class="row g-2" *ngIf="csRow">
+                            <div class="col-md-2">
+                                <label>cable assembly <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                <input type="text" class="form-control" [(ngModel)]="csCable"
+                                    [disabled]="isOthersChecked" [required]="isOthersDisabled">
+
+                            </div>
+                            <div class="col-md-2">
+                                <label>panel <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                <input type="text" class="form-control" [(ngModel)]="csPanel"
+                                    [disabled]="isOthersChecked" [required]="isOthersDisabled">
+
+                            </div>
+                            <div class="col-md-2">
+                                <label>welding receptable <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                <input type="text" class="form-control" [(ngModel)]="csWelding"
+                                    [disabled]="isOthersChecked" [required]="isOthersDisabled">
+
+                            </div>
+                            <div class="col-md-2">
+                                <label>HSA BOX <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                <input type="text" class="form-control" [(ngModel)]="csHsaBox"
+                                    [disabled]="isOthersChecked" [required]="isOthersDisabled">
+                            </div>
+                            <div class="col-md-4">
+                                <input type="checkbox" [(ngModel)]="isOthersChecked" class="me-1"
+                                    (change)="onCheckboxChange($event)">
+                                <label> others <span [hidden]="isOthersDisabled" style="color: red;">*</span></label>
+                                <input type="text" class="form-control" [(ngModel)]="csOthers"
+                                    [disabled]="isOthersDisabled" [required]="isOthersChecked">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
                     <div class="col-sm-4 col-md-3">
                         <div class="form_select_div">
                             <label>principal house</label>
