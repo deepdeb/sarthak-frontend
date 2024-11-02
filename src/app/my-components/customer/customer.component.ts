@@ -251,7 +251,7 @@ export class CustomerComponent {
       if (res.success) {
         this.sbuId = '';
         this.salesPersonId = ''
-        this.customerCreateDate = null
+        this.customerCreateDate = new Date().toISOString().split('T')[0];
         this.customer_name = ''
         this.segmentId = 0
         this.subSegmentId = 0

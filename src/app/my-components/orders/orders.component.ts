@@ -384,7 +384,7 @@ export class OrdersComponent {
     this.rest.createOrder_rest(data).subscribe((res: any) => {
       if (res.success) {
         this.sbuId = '';
-        this.salesPersonId = '';
+        this.salesPersonId = this.checkSbuId != 0 ? localStorage.getItem('sales_person_id') : '';
         this.customerId = '';
         this.poNumber = '';
         this.poDate = '';
@@ -593,7 +593,7 @@ export class OrdersComponent {
     this.rest.editOrder_rest(data).subscribe((res: any) => {
       if (res.success) {
         this.sbuId = '';
-        this.salesPersonId = '';
+        this.salesPersonId = this.checkSbuId != 0 ? localStorage.getItem('sales_person_id') : '';
         this.customerId = '';
         this.poNumber = '';
         this.poDate = '';
