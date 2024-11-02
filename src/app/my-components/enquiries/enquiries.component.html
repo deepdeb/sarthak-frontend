@@ -36,7 +36,7 @@
                     <div class="col-sm-3 col-md-2">
                         <div class="form_select_div ">
                             <label>enquiry no.</label>
-                            <input type="text" class="form-control" [value]="'E000' + (lastEnquiryNumber + 1) + '_24/25'" disabled>
+                            <input type="text" class="form-control" [value]="'E000' + (lastEnquiryNumber + 1) + '/24-25'" disabled>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-2">
@@ -388,7 +388,7 @@
 
                 <tr *ngFor="let item of enquiryList; let i = index">
                     <td>{{ i+1 }}</td>
-                    <td>E000{{ item.enquiry_id }}_24/25</td>
+                    <td>E000{{ item.enquiry_id }}/24-25</td>
                     <td>{{ item.sales_person_name }}</td>
                     <td>{{ item.customer}}</td>
                     <td>{{ item.enquiry_date }}</td>
