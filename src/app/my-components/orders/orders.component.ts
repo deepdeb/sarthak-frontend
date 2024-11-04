@@ -63,6 +63,25 @@ export class OrdersComponent {
   filterByKeyword: string = '';
   filteredOrderListByCategory: any = []
   ordersByFilter: any = ''
+  SBUList: any = [];
+
+
+  enquiryDate: any;
+  enquirySource = '' as string;
+  enquiryTypeId: any = '';
+  enquiryTypeList: any = [];
+  enquirySubTypeId: any = '';
+  basicValue: any;
+  offerDate: any;
+  yearFinal = '' as any;
+  monthFinal = '' as any;
+  principalHouse: any;
+  enquirySubTypeList: any = [];
+  enquiryStatus: any;
+  enquiryRemarks: any;
+  enquirySupport: any;
+
+
 
 
   constructor(private router: Router, private rest: RestService, private common: CommonService) { 
@@ -70,6 +89,9 @@ export class OrdersComponent {
   ngOnInit(): void {
     this.getSalesPersonList();
     this.getPOtypeList();
+    this.getSBUList();
+    this.getEnquirySubTypeList();
+
     // this.getCustomerListBySalesperson();
     // this.getPoSubTypeListByPOtype();
     if(this.checkSbuId != 0) {
@@ -79,6 +101,56 @@ export class OrdersComponent {
     }
     this.getOrderList();
   }
+
+
+ // ************* get SBU List start **************//
+ getSBUList() {
+  const data = {
+    sbu_id: this.sbuId
+  }
+  this.rest.getSBUList_rest(data).subscribe((res: any) => {
+    if (res.success) {
+      if (res.response) {
+        if (res.response.length > 0) {
+          this.SBUList = [];
+          this.SBUList = res.response;
+        }
+      }
+    }
+  })
+}
+// ************* get SBU List end **************//
+
+
+  getMentorSalesList() {
+    // this.getMentorList();
+    this.getSalesPersonList();
+
+  }
+
+
+  //*********** get enquiry sub type list start *********//
+  getEnquirySubTypeList() {
+    this.rest.getEnquirySubTypeList_rest().subscribe((res: any) => {
+      if (res.success) {
+        if (res.response) {
+          if (res.response.length > 0) {
+            this.enquirySubTypeList = [];
+            this.enquirySubTypeList = res.response;
+          }
+        }
+      }
+    })
+  }
+
+
+  decimalFilter_3() {
+    this.basicValue = this.basicValue + '.00'
+  }
+
+  // ************ static months & years **************//
+  months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+  years = ['2024', '2025'];
 
   decimalBasicPO() {
     if(this.basicPoValue){

@@ -65,7 +65,6 @@ export class EnquiriesComponent {
   csRow: boolean = false;
   isOthersDisabled: boolean = true;
   isOthersChecked: boolean = false;
-  // isEdit: boolean = false;
   orderId: any;
 
 
@@ -376,7 +375,6 @@ export class EnquiriesComponent {
 
   decimalFilter_3() {
     this.basicValue = this.basicValue + '.00'
-    // this.totalPoValue = this.totalPoValue + '.00'
   }
 
 
