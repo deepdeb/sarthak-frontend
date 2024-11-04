@@ -64,8 +64,12 @@ export class OrdersComponent {
   filteredOrderListByCategory: any = []
   ordersByFilter: any = ''
   SBUList: any = [];
+  isDirectOrder: boolean = false;
 
 
+  //**************** enquiry related variables start *****************/
+  enquiryList: any = [];
+  enquiryId: any;
   enquiryDate: any;
   enquirySource = '' as string;
   enquiryTypeId: any = '';
@@ -82,14 +86,13 @@ export class OrdersComponent {
   enquirySupport: any;
 
 
-
-
   constructor(private router: Router, private rest: RestService, private common: CommonService) { 
   }
   ngOnInit(): void {
     this.getSalesPersonList();
     this.getPOtypeList();
     this.getSBUList();
+    this.getEnquiryTypeList();
     this.getEnquirySubTypeList();
 
     // this.getCustomerListBySalesperson();
@@ -100,6 +103,7 @@ export class OrdersComponent {
       this.getCustomerListBySalesperson();
     }
     this.getOrderList();
+    this.getEnquiryList();
   }
 
 
@@ -736,4 +740,83 @@ export class OrdersComponent {
     })
   }
 
+  makeIsDirectFalse(){
+    this.isDirectOrder = false;
+  }
+
+  makeIsDirectTrue(){
+    this.isDirectOrder = true;
+  }
+
+  //********** get enquiry listing start **********//
+  getEnquiryList() {
+    const data = {
+      check_designation_id: localStorage.getItem('designation_id'),
+      sbu_id: localStorage.getItem('sbu_id'),
+      sales_person_id: localStorage.getItem('sales_person_id')
+    }
+    this.rest.getEnquiryList_rest(data).subscribe((res: any) => {
+      if (res.success) {
+        if (res.response) {
+          if (res.response.length > 0) {
+            this.enquiryList = [];
+            this.enquiryList = res.response;
+          }
+        }
+      }
+    })
+  }
+
+    //*********** get enquiry type list start *********//
+    getEnquiryTypeList() {
+      this.rest.getEnquiryTypeList_rest().subscribe((res: any) => {
+        if (res.success) {
+          if (res.response) {
+            if (res.response.length > 0) {
+              this.enquiryTypeList = [];
+              this.enquiryTypeList = res.response;
+            }
+          }
+        }
+      })
+    }
+
+  //******************* get enquiry details by ID **************//
+  getEnquiryById(enquiry_id: any) {
+    this.enquiryId = enquiry_id;
+    const data = {
+      sbu_id: this.checkSbuId,
+      enquiry_id: enquiry_id
+    }
+    this.rest.getEnquiryById_rest(data).subscribe((res: any) => {
+      if (res.success) {
+        if (res.response) {
+          this.sbuId = res.response[0].sbu_id
+          // if(this.sbuId){
+            // this.getMentorList();
+          //   this.getSalesPersonList();
+          // }
+          // this.mentorId = res.response[0].mentor_id
+          this.salesPersonId = res.response[0].sales_person_id
+          if (this.salesPersonId) {
+            this.getCustomerListBySalesperson();
+            // this.setSBUId(this.salesPersonId);
+          }
+          this.customerId = res.response[0].customer_id
+          this.enquiryDate = res.response[0].enquiry_date
+          this.enquirySource = res.response[0].enquiry_source
+          this.principalHouse = res.response[0].principal_house
+          this.enquiryTypeId = res.response[0].enquiry_type_id
+          this.enquirySubTypeId = res.response[0].enquiry_sub_type_id
+          this.basicValue = res.response[0].basic_value
+          this.offerDate = res.response[0].offer_date
+          this.yearFinal = res.response[0].tentative_finalization_year
+          this.monthFinal = res.response[0].tentative_finalization_month
+          this.enquiryStatus = res.response[0].status_initial
+          this.enquiryRemarks = res.response[0].remarks_initial
+          this.enquirySupport = res.response[0].support_initial
+        }
+      }
+    })
+  }
 }

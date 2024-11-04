@@ -48,9 +48,9 @@ export class EnquiriesComponent {
   enquiriesByFilter: string = ''
   lastEnquiryNumber: number = 0
 
-  supplyProduct: string = '';
-  supplyDescription: string = '';
-  supplyBrand: string = '';
+  productProduct: string = '';
+  productDescription: string = '';
+  productBrand: string = '';
   sitcDescription: string = '';
   csCable: string = '';
   csPanel: string = '';
@@ -114,9 +114,9 @@ export class EnquiriesComponent {
   //************ get PO Sub type List ************//
 
   getPoSubTypeInputsByPOtype(enquiry_sub_type_id: any) {
-    this.supplyProduct = '';
-    this.supplyDescription = '';
-    this.supplyBrand = '';
+    this.productProduct = '';
+    this.productDescription = '';
+    this.productBrand = '';
     this.sitcDescription = '';
     this.csCable = '';
     this.csPanel = '';
