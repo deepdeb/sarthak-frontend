@@ -383,7 +383,7 @@ export class OrdersComponent {
     }
     this.rest.createOrder_rest(data).subscribe((res: any) => {
       if (res.success) {
-        this.sbuId = '';
+        this.sbuId = this.checkSbuId != 0 ? this.checkSbuId : '';
         this.salesPersonId = this.checkSbuId != 0 ? localStorage.getItem('sales_person_id') : '';
         this.customerId = '';
         this.poNumber = '';
@@ -392,7 +392,7 @@ export class OrdersComponent {
         this.basicPoValue = '';
         this.totalPoValue = '';
         this.completionDate = '';
-        this.actualCompletionDate = '';
+        this.actualCompletionDate = null;
         this.po_Photo = '';
         this.completion_Photo = '';
         this.credential_Photo = '';
@@ -592,7 +592,7 @@ export class OrdersComponent {
     }
     this.rest.editOrder_rest(data).subscribe((res: any) => {
       if (res.success) {
-        this.sbuId = '';
+        this.sbuId = this.checkSbuId != 0 ? this.checkSbuId : '';
         this.salesPersonId = this.checkSbuId != 0 ? localStorage.getItem('sales_person_id') : '';
         this.customerId = '';
         this.poNumber = '';
@@ -601,7 +601,7 @@ export class OrdersComponent {
         this.basicPoValue = '';
         this.totalPoValue = '';
         this.completionDate = '';
-        this.actualCompletionDate = '';
+        this.actualCompletionDate = null;
         this.po_Photo = '';
         this.completion_Photo = '';
         this.credential_Photo = '';

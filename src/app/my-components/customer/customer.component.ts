@@ -249,8 +249,8 @@ export class CustomerComponent {
     this.isButtonDisabled = true;
     this.rest.createCustomer_rest(data, this.isEdit).subscribe((res: any) => {
       if (res.success) {
-        this.sbuId = '';
-        this.salesPersonId = ''
+        this.sbuId = this.checkSbuId != 0 ? this.checkSbuId : '';
+        this.salesPersonId = this.checkSbuId != 0 ? this.checkSalesPersonId : '';
         this.customerCreateDate = new Date().toISOString().split('T')[0];
         this.customer_name = ''
         this.segmentId = 0
