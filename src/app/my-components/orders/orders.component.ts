@@ -147,24 +147,23 @@ export class OrdersComponent {
     })
   }
 
-
-  decimalFilter_3() {
-    this.basicValue = this.basicValue + '.00'
-  }
-
   // ************ static months & years **************//
   months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
   years = ['2024', '2025'];
 
   decimalBasicPO() {
     if(this.basicPoValue){
-      this.basicPoValue = this.basicPoValue + '.00'
+      if(!this.basicPoValue.includes('.')) {
+        this.basicPoValue = this.basicPoValue + '.00'
+      }
     }
   }
 
   decimalTotalPO() {
     if(this.totalPoValue){
-      this.totalPoValue = this.totalPoValue + '.00'
+      if(!this.basicPoValue.includes('.')) {
+        this.totalPoValue = this.totalPoValue + '.00'
+      }
     }
   }
 

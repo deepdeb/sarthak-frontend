@@ -437,8 +437,12 @@ export class EnquiriesComponent {
   }
 
 
-  decimalFilter_3() {
-    this.basicValue = this.basicValue + '.00'
+  decimalBasicValue() {
+    if(this.basicValue) {
+      if(!this.basicValue.includes('.')){
+        this.basicValue = this.basicValue + '.00'
+      }
+    }
   }
 
 
