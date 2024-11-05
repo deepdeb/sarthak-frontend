@@ -31,7 +31,7 @@
                 enquiries
             </div>
             <div class="my_form ">
-                <div class="row">
+                <div class="row g-2">
 
                     <div class="col-sm-3 col-md-2">
                         <div class="form_select_div ">
@@ -69,7 +69,7 @@
                         </div>
                     </div> -->
                                      
-                    <div class="col-sm-6 col-md-2">
+                    <div class="col-sm-6 col-md-3">
                         <div class="form_select_div">
                             <label>sales incharge</label>
                             <div class="form_select_div">
@@ -85,7 +85,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-3">
+                    <div class="col-sm-6 col-md-2">
                         <div class="form_select_div">
                             <label>mentor</label>
                             <div class="form_select_div">
@@ -191,27 +191,27 @@
 
                         <div class="row g-2" *ngIf="csRow">
                             <div class="col-md-2">
-                                <label>cable assembly <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                <label>cable assembly</label>
                                 <input type="text" class="form-control" [(ngModel)]="csCable"
-                                    [disabled]="isOthersChecked" [required]="isOthersDisabled">
+                                    [disabled]="isOthersChecked" >
 
                             </div>
                             <div class="col-md-2">
-                                <label>panel <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                <label>panel </label>
                                 <input type="text" class="form-control" [(ngModel)]="csPanel"
-                                    [disabled]="isOthersChecked" [required]="isOthersDisabled">
+                                    [disabled]="isOthersChecked">
 
                             </div>
                             <div class="col-md-2">
-                                <label>welding receptable <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                <label>welding receptable </label>
                                 <input type="text" class="form-control" [(ngModel)]="csWelding"
-                                    [disabled]="isOthersChecked" [required]="isOthersDisabled">
+                                    [disabled]="isOthersChecked">
 
                             </div>
                             <div class="col-md-2">
-                                <label>HSA BOX <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                <label>HSA BOX </label>
                                 <input type="text" class="form-control" [(ngModel)]="csHsaBox"
-                                    [disabled]="isOthersChecked" [required]="isOthersDisabled">
+                                    [disabled]="isOthersChecked" >
                             </div>
                             <div class="col-md-4">
                                 <input type="checkbox" [(ngModel)]="isOthersChecked" class="me-1"
@@ -286,7 +286,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row g-2">
                     <div class="col-sm-6 col-md-4">
                         <div class="">
                             <label>status</label>

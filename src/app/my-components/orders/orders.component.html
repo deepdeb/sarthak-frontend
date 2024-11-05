@@ -51,7 +51,7 @@
                 enquiry info
             </div>
             <div class="my_form ">
-                <div class="row">
+                <div class="row g-2">
                     <div class="col-sm-3 col-md-2">
                         <div class="form_select_div ">
                             <label>enquiry no.</label>
@@ -89,7 +89,7 @@
                         </div>
                     </div> -->
                                      
-                    <div class="col-sm-6 col-md-2">
+                    <div class="col-sm-6 col-md-3">
                         <div class="form_select_div">
                             <label>sales incharge</label>
                             <div class="form_select_div">
@@ -168,7 +168,7 @@
                         <div class="">
                             <label>enquiry sub type</label>
                             <div class="form_select_div">
-                                <select class="form-control" [(ngModel)]="enquirySubTypeId" (change)="getPoSubTypeInputsByPOtype(enquirySubTypeId)" disabled>
+                                <select class="form-control" [(ngModel)]="enquirySubTypeId" disabled>
                                     <option value="" disabled>--choose enquiry sub-type--</option>
                                     <option *ngFor="let item of enquirySubTypeList" [value]="item.enquiry_sub_type_id">
                                         {{
@@ -181,68 +181,67 @@
                         </div>
                     </div>
 
-                    <div class="poSubType_div" *ngIf="isDivShow"
-                    [ngStyle]="{'padding.px': 12,'background': '#becdfd','border-radius.px': 6}">
+                    <!-- <div class="poSubType_div" *ngIf="isEnquiryDivShow"
+                        [ngStyle]="{'padding.px': 12,'background': '#becdfd','border-radius.px': 6}">
 
-                    <h5
-                        [ngStyle]="{'border-bottom.px':1, 'font-weight': 600, 'margin-bottom.px': 16,'font-size.px': 18}">
-                        PO Sub Type</h5>
-                    <div class="col-md-12">
-                        <div class="row" *ngIf="supplyRow">
-                            <div class="col-md-4">
-                                <label>product <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
-                                <input type="text" class="form-control" [(ngModel)]="supplyProduct">
+                        <h5
+                            [ngStyle]="{'border-bottom.px':1, 'font-weight': 600, 'margin-bottom.px': 16,'font-size.px': 18}">
+                            Enquiry Sub Type Details</h5>
+                        <div class="col-md-12">
+                            <div class="row" *ngIf="supplyRow">
+                                <div class="col-md-4">
+                                    <label>product <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                    <input type="text" class="form-control" [(ngModel)]="supplyProduct">
+                                </div>
+                                <div class="col-md-4">
+                                    <label>description <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                    <input type="text" class="form-control" [(ngModel)]="supplyDescription">
+                                </div>
+                                <div class="col-md-4">
+                                    <label>brand <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                    <input type="text" class="form-control" [(ngModel)]="supplyBrand">
+                                </div>
                             </div>
-                            <div class="col-md-4">
-                                <label>description <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
-                                <input type="text" class="form-control" [(ngModel)]="supplyDescription">
+                            <div class="row" *ngIf="sitcRow">
+                                <div class="col-md-4">
+                                    <label>description <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                    <input type="text" class="form-control" [(ngModel)]="sitcDescription">
+                                </div>
                             </div>
-                            <div class="col-md-4">
-                                <label>brand <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
-                                <input type="text" class="form-control" [(ngModel)]="supplyBrand">
+                            <div class="row g-2" *ngIf="csRow">
+                                <div class="col-md-2">
+                                    <label>cable assembly <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                    <input type="text" class="form-control" [(ngModel)]="csCable"
+                                        [disabled]="isOthersChecked" [required]="isOthersDisabled">
+
+                                </div>
+                                <div class="col-md-2">
+                                    <label>panel <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                    <input type="text" class="form-control" [(ngModel)]="csPanel"
+                                        [disabled]="isOthersChecked" [required]="isOthersDisabled">
+
+                                </div>
+                                <div class="col-md-2">
+                                    <label>welding receptable <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                    <input type="text" class="form-control" [(ngModel)]="csWelding"
+                                        [disabled]="isOthersChecked" [required]="isOthersDisabled">
+
+                                </div>
+                                <div class="col-md-2">
+                                    <label>HSA BOX <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                    <input type="text" class="form-control" [(ngModel)]="csHsaBox"
+                                        [disabled]="isOthersChecked" [required]="isOthersDisabled">
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="checkbox" [(ngModel)]="isOthersChecked" class="me-1"
+                                        (change)="onCheckboxChange($event)">
+                                    <label> others <span [hidden]="isOthersDisabled" style="color: red;">*</span></label>
+                                    <input type="text" class="form-control" [(ngModel)]="csOthers"
+                                        [disabled]="isOthersDisabled" [required]="isOthersChecked">
+                                </div>
                             </div>
                         </div>
-                        <div class="row" *ngIf="sitcRow">
-                            <div class="col-md-4">
-                                <label>description <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
-                                <input type="text" class="form-control" [(ngModel)]="sitcDescription">
-                            </div>
-                        </div>
-
-                        <div class="row g-2" *ngIf="csRow">
-                            <div class="col-md-2">
-                                <label>cable assembly <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
-                                <input type="text" class="form-control" [(ngModel)]="csCable"
-                                    [disabled]="isOthersChecked" [required]="isOthersDisabled">
-
-                            </div>
-                            <div class="col-md-2">
-                                <label>panel <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
-                                <input type="text" class="form-control" [(ngModel)]="csPanel"
-                                    [disabled]="isOthersChecked" [required]="isOthersDisabled">
-
-                            </div>
-                            <div class="col-md-2">
-                                <label>welding receptable <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
-                                <input type="text" class="form-control" [(ngModel)]="csWelding"
-                                    [disabled]="isOthersChecked" [required]="isOthersDisabled">
-
-                            </div>
-                            <div class="col-md-2">
-                                <label>HSA BOX <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
-                                <input type="text" class="form-control" [(ngModel)]="csHsaBox"
-                                    [disabled]="isOthersChecked" [required]="isOthersDisabled">
-                            </div>
-                            <div class="col-md-4">
-                                <input type="checkbox" [(ngModel)]="isOthersChecked" class="me-1"
-                                    (change)="onCheckboxChange($event)">
-                                <label> others <span [hidden]="isOthersDisabled" style="color: red;">*</span></label>
-                                <input type="text" class="form-control" [(ngModel)]="csOthers"
-                                    [disabled]="isOthersDisabled" [required]="isOthersChecked">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    </div> -->
 
 
 
@@ -409,7 +408,7 @@
 
                         <h5
                             [ngStyle]="{'border-bottom.px':1, 'font-weight': 600, 'margin-bottom.px': 16,'font-size.px': 18}">
-                            PO Sub Type</h5>
+                            PO Type Details</h5>
                         <div class="col-md-12">
                             <div class="row" *ngIf="supplyRow">
                                 <div class="col-md-4">
@@ -434,27 +433,27 @@
 
                             <div class="row g-2" *ngIf="csRow">
                                 <div class="col-md-2">
-                                    <label>cable assembly <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                    <label>cable assembly </label>
                                     <input type="text" class="form-control" [(ngModel)]="csCable"
-                                        [disabled]="isOthersChecked" [required]="isOthersDisabled">
+                                        [disabled]="isOthersChecked">
 
                                 </div>
                                 <div class="col-md-2">
-                                    <label>panel <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                    <label>panel </label>
                                     <input type="text" class="form-control" [(ngModel)]="csPanel"
-                                        [disabled]="isOthersChecked" [required]="isOthersDisabled">
+                                        [disabled]="isOthersChecked">
 
                                 </div>
                                 <div class="col-md-2">
-                                    <label>welding receptable <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                    <label>welding receptable </label>
                                     <input type="text" class="form-control" [(ngModel)]="csWelding"
-                                        [disabled]="isOthersChecked" [required]="isOthersDisabled">
+                                        [disabled]="isOthersChecked" >
 
                                 </div>
                                 <div class="col-md-2">
-                                    <label>HSA BOX <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
+                                    <label>HSA BOX</label>
                                     <input type="text" class="form-control" [(ngModel)]="csHsaBox"
-                                        [disabled]="isOthersChecked" [required]="isOthersDisabled">
+                                        [disabled]="isOthersChecked" >
                                 </div>
                                 <div class="col-md-4">
                                     <input type="checkbox" [(ngModel)]="isOthersChecked" class="me-1"
@@ -583,6 +582,7 @@
         <table class="listing_table">
             <tr class="table_head sticky-top">
                 <th>sl no.</th>
+                <th>enquiry no.</th>
                 <th>customer</th>
                 <th>PO number</th>
                 <th>PO date</th>
@@ -599,6 +599,8 @@
 
             <tr *ngFor="let item of orderList; let i = index">
                 <td>{{ i+1 }}</td>
+                <td>{{ item.enquiry_id ? 'E000' + item.enquiry_id + '/24-25' : 'Direct Order'}}</td>
+                 <!-- <td></td> -->
                 <td>{{ item.customer }}</td>
                 <td>{{ item.po_number }}</td>
                 <td>{{ item.po_date }}</td>

@@ -52,6 +52,8 @@ export class OrdersComponent {
   csOthers: string = '';
 
   isDivShow: boolean = false
+  isEnquiryDivShow: boolean = false;
+
   supplyRow: boolean = false;
   sitcRow: boolean = false;
   csRow: boolean = false;
@@ -161,7 +163,7 @@ export class OrdersComponent {
 
   decimalTotalPO() {
     if(this.totalPoValue){
-      if(!this.basicPoValue.includes('.')) {
+      if(!this.totalPoValue.includes('.')) {
         this.totalPoValue = this.totalPoValue + '.00'
       }
     }
@@ -377,20 +379,8 @@ export class OrdersComponent {
       }
     }
     if (this.poTypeId == 3 && !this.isOthersChecked) {
-      if (!this.csCable) {
-        this.common.showAlertMessage('Please enter Cable', this.common.errContent)
-        return;
-      }
-      if (!this.csPanel) {
-        this.common.showAlertMessage('Please enter Panel', this.common.errContent)
-        return;
-      }
-      if (!this.csWelding) {
-        this.common.showAlertMessage('Please enter Welding', this.common.errContent)
-        return;
-      }
-      if (!this.csHsaBox) {
-        this.common.showAlertMessage('Please enter HAS Box', this.common.errContent)
+      if (!this.csCable && !this.csPanel && !this.csWelding && !this.csHsaBox) {
+        this.common.showAlertMessage('Please enter anyone of cable assembly, panel, welding receptable , HSA Box ', this.common.errContent)
         return;
       }
     } else if(this.poTypeId == 3 && this.isOthersChecked){
@@ -431,6 +421,7 @@ export class OrdersComponent {
     // }
 
     const data = {
+      enquiry_id: this.enquiryId,
       sales_person_id: this.salesPersonId,
       sbu_id: this.sbuId,
       customer_id: this.customerId,
@@ -458,6 +449,7 @@ export class OrdersComponent {
     }
     this.rest.createOrder_rest(data).subscribe((res: any) => {
       if (res.success) {
+        this.enquiryId = '';
         this.sbuId = this.checkSbuId != 0 ? this.checkSbuId : '';
         this.salesPersonId = this.checkSbuId != 0 ? localStorage.getItem('sales_person_id') : '';
         this.customerId = '';
@@ -781,12 +773,13 @@ export class OrdersComponent {
     }
 
   //******************* get enquiry details by ID **************//
-  getEnquiryById(enquiry_id: any) {
+  getEnquiryById(enquiry_id: any) {    
     this.enquiryId = enquiry_id;
     const data = {
       sbu_id: this.checkSbuId,
       enquiry_id: enquiry_id
     }
+    console.log('data>>>', data)
     this.rest.getEnquiryById_rest(data).subscribe((res: any) => {
       if (res.success) {
         if (res.response) {
@@ -817,5 +810,62 @@ export class OrdersComponent {
         }
       }
     })
+
+    // this.isEnquiryDivShow = true;
+    // this.supplyRow = true;
+    // this.csRow = true;
+    // this.sitcRow = true;
+    this.supplyProduct = '';
+    this.supplyDescription = '';
+    this.supplyBrand = '';
+    this.sitcDescription = '';
+    this.csCable = '';
+    this.csPanel = '';
+    this.csWelding = '';
+    this.csClamps = '';
+    this.csHsaBox = '';
+    this.csOthers = '';
+
+    console.log(">>>", this.enquirySubTypeId);
+
+    // if(this.isEnquiryDivShow){
+      if (this.enquirySubTypeId == 1) {
+        this.isEnquiryDivShow = true;
+        this.supplyRow = true;
+        this.csRow = false;
+        this.sitcRow = false;
+  
+      } else if (this.enquirySubTypeId == 2) {
+        this.isEnquiryDivShow = true;
+        this.supplyRow = false;
+        this.sitcRow = true;
+        this.csRow = false;
+  
+      }
+       else if (this.enquirySubTypeId == 3) {
+        this.isEnquiryDivShow = true;
+        this.supplyRow = false;
+        this.sitcRow = false;
+        this.csRow = true
+      }
+    // }
+    // if (this.enquirySubTypeId == 1) {
+    //   // this.isEnquiryDivShow = true;
+    //   this.supplyRow = true;
+    //   this.csRow = false;
+    //   this.sitcRow = false;
+
+    // } else if (this.enquirySubTypeId == 2) {
+    //   this.isEnquiryDivShow = true;
+    //   this.supplyRow = false;
+    //   this.sitcRow = true;
+    //   this.csRow = false;
+
+    // } else if (this.enquirySubTypeId == 3) {
+    //   this.isEnquiryDivShow = true;
+    //   this.supplyRow = false;
+    //   this.sitcRow = false;
+    //   this.csRow = true
+    // }
   }
 }

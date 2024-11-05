@@ -319,22 +319,11 @@ export class EnquiriesComponent {
       }
     }
     if (this.enquirySubTypeId == 3 && !this.isOthersChecked) {
-      if (!this.csCable) {
-        this.common.showAlertMessage('Please enter cable assembly', this.common.errContent);
+      if (!this.csCable && !this.csPanel && !this.csWelding && !this.csHsaBox) {
+        this.common.showAlertMessage('Please enter anyone of cable assembly, panel, welding receptable , HSA Box ', this.common.errContent)
         return;
       }
-      if (!this.csPanel) {
-        this.common.showAlertMessage('Please enter panel', this.common.errContent);
-        return;
-      }
-      if (!this.csWelding) {
-        this.common.showAlertMessage('Please enter welding receptable', this.common.errContent);
-        return;
-      }
-      if (!this.csHsaBox) {
-        this.common.showAlertMessage('Please enter hsa box', this.common.errContent);
-        return;
-      }
+      
     } else if (this.enquirySubTypeId == 3 && this.isOthersChecked) {
       if (!this.csOthers) {
         this.common.showAlertMessage('Please enter Others', this.common.errContent)
