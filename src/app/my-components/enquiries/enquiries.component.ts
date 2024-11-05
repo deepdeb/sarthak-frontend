@@ -84,7 +84,7 @@ export class EnquiriesComponent {
     this.getEnquirySubTypeList();
     this.getEnquiryList();
     this.getSBUList();
-    if(this.sbuId != 0) {
+    if (this.sbuId != 0) {
       this.getMentorSalesList();
     }
   }
@@ -145,18 +145,18 @@ export class EnquiriesComponent {
     }
   }
 
-   //********** Check box logic **********//
-   onCheckboxChange(event: any) {
+  //********** Check box logic **********//
+  onCheckboxChange(event: any) {
     if (event.target.checked) {
       this.isOthersDisabled = false;
       this.csCable = '';
       this.csPanel = '';
       this.csWelding = '';
-      this.csHsaBox = '';    
+      this.csHsaBox = '';
     } else {
       this.isOthersDisabled = true;
       this.csOthers = '';
-      
+
     }
   }
 
@@ -298,6 +298,49 @@ export class EnquiriesComponent {
       this.common.showAlertMessage('Please choose enquiry sub type', this.common.errContent);
       return;
     }
+    if (this.enquirySubTypeId == 1) {
+      if (!this.productProduct) {
+        this.common.showAlertMessage('Please enter product', this.common.errContent);
+        return;
+      }
+      if (!this.productDescription) {
+        this.common.showAlertMessage('Please enter product description', this.common.errContent);
+        return;
+      }
+      if (!this.productBrand) {
+        this.common.showAlertMessage('Please enter product brand', this.common.errContent);
+        return;
+      }
+    }
+    if (this.enquirySubTypeId == 2) {
+      if (!this.sitcDescription) {
+        this.common.showAlertMessage('Please enter SITC description', this.common.errContent);
+        return;
+      }
+    }
+    if (this.enquirySubTypeId == 3 && !this.isOthersChecked) {
+      if (!this.csCable) {
+        this.common.showAlertMessage('Please enter cable assembly', this.common.errContent);
+        return;
+      }
+      if (!this.csPanel) {
+        this.common.showAlertMessage('Please enter panel', this.common.errContent);
+        return;
+      }
+      if (!this.csWelding) {
+        this.common.showAlertMessage('Please enter welding receptable', this.common.errContent);
+        return;
+      }
+      if (!this.csHsaBox) {
+        this.common.showAlertMessage('Please enter hsa box', this.common.errContent);
+        return;
+      }
+    } else if (this.enquirySubTypeId == 3 && this.isOthersChecked) {
+      if (!this.csOthers) {
+        this.common.showAlertMessage('Please enter Others', this.common.errContent)
+        return;
+      }
+    }
     if (!this.principalHouse) {
       this.common.showAlertMessage('Please enter Principal House', this.common.errContent);
       return;
@@ -312,6 +355,15 @@ export class EnquiriesComponent {
       enquiry_source: this.enquirySource,
       enquiry_type_id: this.enquiryTypeId,
       enquiry_sub_type_id: this.enquirySubTypeId,
+      product: this.productProduct,
+      product_description: this.productDescription,
+      brand: this.productBrand,
+      sitc_description: this.sitcDescription,
+      cable_assembly: this.csCable,
+      panel: this.csPanel,
+      welding_receptable: this.csWelding,
+      hsa_box: this.csHsaBox,
+      others: this.csOthers,
       principal_house: this.principalHouse,
       offer_date: this.offerDate,
       basic_value: this.basicValue,
@@ -325,7 +377,7 @@ export class EnquiriesComponent {
     this.rest.createEnquiry_rest(data, this.isEdit).subscribe((res: any) => {
       if (res.success) {
         if (res.response) {
-          this.sbuId = ''
+          // this.sbuId = ''
           this.salesPersonId = ''
           this.mentorId = ''
           this.customerId = ''
@@ -333,6 +385,17 @@ export class EnquiriesComponent {
           this.enquirySource = ''
           this.enquiryTypeId = ''
           this.enquirySubTypeId = ''
+          this.productProduct = '';
+          this.productDescription = '';
+          this.productBrand = '';
+          this.sitcDescription = '';
+          this.csCable = '';
+          this.csPanel = '';
+          this.csWelding = '';
+          this.csHsaBox = '';
+          this.isOthersChecked = false;
+          this.csOthers = '';
+          this.isOthersDisabled = true;
           this.principalHouse = ''
           this.offerDate = ''
           this.basicValue = ''
@@ -343,6 +406,7 @@ export class EnquiriesComponent {
           this.enquirySupport = ''
           this.common.showAlertMessage(res.message, this.common.succContent)
           this.getEnquiryList();
+          this.isDivShow = false;
           this.isEdit = false;
         }
       }
@@ -395,7 +459,7 @@ export class EnquiriesComponent {
       if (res.success) {
         if (res.response) {
           this.sbuId = res.response[0].sbu_id
-          if(this.sbuId){
+          if (this.sbuId) {
             this.getMentorList();
             this.getSalesPersonList();
           }
@@ -478,7 +542,7 @@ export class EnquiriesComponent {
   //   }
   // }
 
-  
+
   //************** Filter enquiry list by category **************/
   getFilterEnquiryByCategory() {
     this.filteredEnquiryListByCategory = [];
@@ -486,9 +550,9 @@ export class EnquiriesComponent {
       filterby_keyword: this.filterByKeyword
     }
     this.rest.getFilterEnquiryByCategory_rest(data).subscribe((res: any) => {
-      if(res.success) {
-        if(res.response) {
-          if(res.response.length > 0) {
+      if (res.success) {
+        if (res.response) {
+          if (res.response.length > 0) {
             this.filteredEnquiryListByCategory = res.response
           }
         }
