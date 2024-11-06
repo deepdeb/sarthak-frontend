@@ -578,6 +578,19 @@ export class EnquiriesComponent {
                 return monthOrder[monthA] - monthOrder[monthB];
               });
             }
+            else if (this.filterByKeyword == 'tentative_finalization_year') {
+              this.filteredEnquiryListByCategory.forEach((item: any) => {
+                if (!item.name) {
+                  item.name = '';
+                }
+              });
+
+              this.filteredEnquiryListByCategory.sort((a: any, b: any) => {
+                if (a.name === '') return -1;
+                if (b.name === '') return 1;
+                return a.name - b.name;
+              });
+            }
           }
         }
       }
