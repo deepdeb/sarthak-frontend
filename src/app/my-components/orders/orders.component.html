@@ -195,48 +195,57 @@
                             <div class="row" *ngIf="productRowEnquiry">
                                 <div class="col-md-4">
                                     <label>product</label>
-                                    <input type="text" class="form-control" [(ngModel)]="productProduct" disabled>
+                                    <textarea type="text" class="form-control" [(ngModel)]="productProduct" disabled></textarea>   
+                                    <!-- <input type="text" class="form-control" [(ngModel)]="productProduct" disabled> -->
                                 </div>
                                 <div class="col-md-4">
                                     <label>description</label>
-                                    <input type="text" class="form-control" [(ngModel)]="productDescription" disabled>
+                                    <textarea type="text" class="form-control" [(ngModel)]="productDescription" disabled></textarea>   
+                                    <!-- <input type="text" class="form-control" [(ngModel)]="productDescription" disabled> -->
                                 </div>
                                 <div class="col-md-4">
                                     <label>brand</label>
-                                    <input type="text" class="form-control" [(ngModel)]="productBrand" disabled>
+                                    <textarea type="text" class="form-control" [(ngModel)]="productBrand" disabled></textarea>   
+                                    <!-- <input type="text" class="form-control" [(ngModel)]="productBrand" disabled> -->
                                 </div>
                             </div>
                             <div class="row" *ngIf="sitcRowEnquiry">
                                 <div class="col-md-4">
-                                    <label>description</label>
-                                    <input type="text" class="form-control" [(ngModel)]="sitcDescriptionEnquiry" disabled>
+                                    <label>description</label>                                     
+                                    <textarea type="text" class="form-control" [(ngModel)]="sitcDescriptionEnquiry" disabled></textarea>   
+                                    <!-- <input type="text" class="form-control" [(ngModel)]="sitcDescriptionEnquiry" disabled> -->
                                 </div>
                             </div>
                             <div class="row g-2" *ngIf="csRowEnquiry">
                                 <div class="col-md-2">
-                                    <label>cable assembly</label>
-                                    <input type="text" class="form-control" [(ngModel)]="csCableEnquiry" disabled>
+                                    <label>cable assembly</label>                                     
+                                    <textarea type="text" class="form-control" [(ngModel)]="csCableEnquiry" disabled></textarea>   
+                                    <!-- <input type="text" class="form-control" [(ngModel)]="csCableEnquiry" disabled> -->
 
                                 </div>
                                 <div class="col-md-2">
-                                    <label>panel</label>
-                                    <input type="text" class="form-control" [(ngModel)]="csPanelEnquiry" disabled>
+                                    <label>panel</label>                                     
+                                    <textarea type="text" class="form-control" [(ngModel)]="csPanelEnquiry" disabled ></textarea>   
+                                    <!-- <input type="text" class="form-control" [(ngModel)]="csPanelEnquiry" disabled> -->
 
                                 </div>
                                 <div class="col-md-2">
-                                    <label>welding receptable</label>
-                                    <input type="text" class="form-control" [(ngModel)]="csWeldingEnquiry" disabled>
+                                    <label>welding receptable</label>                                     
+                                    <textarea type="text" class="form-control" [(ngModel)]="csWeldingEnquiry" disabled></textarea>   
+                                    <!-- <input type="text" class="form-control" [(ngModel)]="csWeldingEnquiry" disabled> -->
 
                                 </div>
                                 <div class="col-md-2">
-                                    <label>HSA BOX</label>
-                                    <input type="text" class="form-control" [(ngModel)]="csHsaBoxEnquiry" disabled>
+                                    <label>HSA BOX</label>                              
+                                    <textarea type="text" class="form-control" [(ngModel)]="csHsaBoxEnquiry" disabled></textarea>   
+                                    <!-- <input type="text" class="form-control" [(ngModel)]="csHsaBoxEnquiry" disabled> -->
                                 </div>
                                 <div class="col-md-4">
                                     <!-- <input type="checkbox" [(ngModel)]="isOthersChecked" class="me-1"
                                         (change)="onCheckboxChange($event)"> -->
-                                    <label> others</label>
-                                    <input type="text" class="form-control" [(ngModel)]="csOthersEnquiry" disabled>
+                                    <label> others</label>                              
+                                    <textarea type="text" class="form-control" [(ngModel)]="csOthersEnquiry" disabled></textarea>   
+                                    <!-- <input type="text" class="form-control" [(ngModel)]="csOthersEnquiry" disabled> -->
                                 </div>
                             </div>
                         </div>
@@ -308,19 +317,22 @@
                     <div class="col-sm-6 col-md-4">
                         <div class="">
                             <label>status</label>
-                            <input type="text" class="form-control" [(ngModel)]="enquiryStatus" disabled>
+                            <textarea type="text" class="form-control" [(ngModel)]="enquiryStatus" disabled></textarea>
+                            <!-- <input type="text" class="form-control" [(ngModel)]="enquiryStatus" disabled> -->
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-4">
                         <div class="">
                             <label>remarks</label>
-                            <input type="text" class="form-control" [(ngModel)]="enquiryRemarks" disabled>
+                            <textarea type="text" class="form-control" [(ngModel)]="enquiryRemarks" disabled></textarea>
+                            <!-- <input type="text" class="form-control" [(ngModel)]="enquiryRemarks" disabled> -->
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-4">
                         <div class="">
                             <label>support required</label>
-                            <input type="text" class="form-control" [(ngModel)]="enquirySupport" disabled>
+                            <textarea type="text" class="form-control" [(ngModel)]="enquirySupport" disabled></textarea>
+                            <!-- <input type="text" class="form-control" [(ngModel)]="enquirySupport" disabled> -->
                         </div>
                     </div>
                 </div>
@@ -331,13 +343,10 @@
         </div> -->
 
 
-        <br>
-        <br>
-        <br>
+    
 
 
-
-        <div class="info_div ">
+        <div class="info_div mt-5">
             <div class="page_info_heading">
                 orders
             </div>
@@ -413,61 +422,86 @@
                             <div class="row" *ngIf="supplyRow">
                                 <div class="col-md-4">
                                     <label>product <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
-                                    <input type="text" class="form-control" [(ngModel)]="supplyProduct">
+                                    <textarea  type="text" class="form-control" [(ngModel)]="supplyProduct"></textarea>
+                                    <!-- <input type="text" class="form-control" [(ngModel)]="supplyProduct"> -->
                                 </div>
                                 <div class="col-md-4">
                                     <label>description <span [hidden]="isOthersChecked"
-                                            style="color: red;">*</span></label>
-                                    <input type="text" class="form-control" [(ngModel)]="supplyDescription">
+                                            style="color: red;">*</span>
+                                    </label>
+                                     <textarea type="text" class="form-control" [(ngModel)]="supplyDescription"></textarea>   
+                                    <!-- <input type="text" class="form-control" [(ngModel)]="supplyDescription"> -->
                                 </div>
                                 <div class="col-md-4">
                                     <label>brand <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
-                                    <input type="text" class="form-control" [(ngModel)]="supplyBrand">
+                                    <textarea type="text" class="form-control" [(ngModel)]="supplyBrand"></textarea>   
+                                    <!-- <input type="text" class="form-control" [(ngModel)]="supplyBrand"> -->
                                 </div>
                             </div>
                             <div class="row" *ngIf="sitcRow">
                                 <div class="col-md-4">
                                     <label>description <span [hidden]="isOthersChecked"
                                             style="color: red;">*</span></label>
-                                    <input type="text" class="form-control" [(ngModel)]="sitcDescription">
+                                     <textarea type="text" class="form-control" [(ngModel)]="sitcDescription"></textarea>   
+                                    <!-- <input type="text" class="form-control" [(ngModel)]="sitcDescription"> -->
                                 </div>
                             </div>
 
                             <div class="row g-2" *ngIf="csRow">
                                 <div class="col-md-2">
                                     <label>cable assembly </label>
-                                    <input type="text" class="form-control" [(ngModel)]="csCable"
-                                        [disabled]="isOthersChecked">
+                                    <textarea type="text" class="form-control" [(ngModel)]="csCable"
+                                    [disabled]="isOthersChecked"></textarea>   
+
+                                    <!-- <input type="text" class="form-control" [(ngModel)]="csCable"
+                                        [disabled]="isOthersChecked"> -->
 
                                 </div>
                                 <div class="col-md-2">
                                     <label>panel </label>
-                                    <input type="text" class="form-control" [(ngModel)]="csPanel"
-                                        [disabled]="isOthersChecked">
+                                    <textarea type="text" class="form-control" [(ngModel)]="csPanel"
+                                    [disabled]="isOthersChecked"></textarea>   
+
+                                    <!-- <input type="text" class="form-control" [(ngModel)]="csPanel"
+                                        [disabled]="isOthersChecked"> -->
 
                                 </div>
                                 <div class="col-md-2">
                                     <label>welding receptable </label>
-                                    <input type="text" class="form-control" [(ngModel)]="csWelding"
-                                        [disabled]="isOthersChecked">
+                                    <textarea type="text" class="form-control" [(ngModel)]="csWelding"
+                                    [disabled]="isOthersChecked"></textarea>   
+
+                                    <!-- <input type="text" class="form-control" [(ngModel)]="csWelding"
+                                        [disabled]="isOthersChecked"> -->
 
                                 </div>
                                 <div class="col-md-2">
                                     <label>HSA BOX</label>
-                                    <input type="text" class="form-control" [(ngModel)]="csHsaBox"
-                                        [disabled]="isOthersChecked">
+                                    <textarea type="text" class="form-control" [(ngModel)]="csHsaBox"
+                                    [disabled]="isOthersChecked"></textarea>   
+
+                                    <!-- <input type="text" class="form-control" [(ngModel)]="csHsaBox"
+                                        [disabled]="isOthersChecked"> -->
                                 </div>
                                 <div class="col-md-4">
                                     <input type="checkbox" [(ngModel)]="isOthersChecked" class="me-1"
                                         (change)="onCheckboxChange($event)">
                                     <label> others <span [hidden]="isOthersDisabled"
                                             style="color: red;">*</span></label>
-                                    <input type="text" class="form-control" [(ngModel)]="csOthers"
-                                        [disabled]="isOthersDisabled" [required]="isOthersChecked">
+                                     <textarea type="text" class="form-control" [(ngModel)]="csOthers"
+                                     [disabled]="isOthersDisabled" [required]="isOthersChecked" ></textarea>   
+
+                                    <!-- <input type="text" class="form-control" [(ngModel)]="csOthers"
+                                        [disabled]="isOthersDisabled" [required]="isOthersChecked"> -->
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
+
+
+
                     <div class="col-md-3">
                         <div class="form_select_div">
                             <label>BASIC PO value</label>
@@ -508,27 +542,37 @@
                             <input type="date" class="form-control" [(ngModel)]="actualCompletionDate">
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="">
                             <label for="formFile1">PO upload</label>
                             <input type="file" class="form-control" [(ngModel)]="poUpload" id="formFile1"
                                 (change)="uploadFile('poPhoto')">
 
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="">
-                            <label for="formFile2">completion upload</label>
-                            <input type="file" class="form-control" [(ngModel)]="completionUpload" id="formFile2"
-                                (change)="uploadFile('completionPhoto')">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
+                    </div>                   
+                    <div class="col-md-6">
                         <div class="">
                             <label for="formFile3">credential upload</label>
                             <input type="file" class="form-control" [(ngModel)]="credentialUpload" id="formFile3"
                                 (change)="uploadFile('credentialPhoto')">
                         </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="">
+                            <label for="formFile2">completion upload</label>
+                            <div class="d-flex ">
+                                <input type="file" class="form-control" [(ngModel)]="completionUpload" id="formFile2"
+                                    (change)="uploadFile('completionPhoto')">
+                                <button mat-flat-button class="btn1" style="margin-left: 20px;">
+                                    <span class="material-symbols-outlined">
+                                        add
+                                    </span>
+                                    new
+                                </button>
+                            </div>    
+                        </div>
+                        
                     </div>
 
                 </div>
@@ -584,60 +628,60 @@
             <h3 class="text-end" style="font-size: 20px;">total : {{ totalOrderCount }}</h3>
         </div>
     </div>
-    <!-- <div class="customer_table"> -->
-    <div class="listing_div">
-        <table class="listing_table">
-            <tr class="table_head sticky-top">
-                <th>sl no.</th>
-                <th>enquiry no.</th>
-                <th>customer</th>
-                <th>PO number</th>
-                <th>PO date</th>
-                <th>PO type</th>
-                <!-- <th>PO sub-type</th> -->
-                <th>basic PO value</th>
-                <th>total PO value <small>(incl. GST)</small></th>
-                <th>schedule date of completion</th>
-                <th>actual date of completion</th>
-                <th>view</th>
-                <th>edit</th>
-                <th>delete</th>
-            </tr>
+    <div class="customer_table ">
+        <!-- <div class="listing_div"> -->
+            <table class="listing_table ">
+                <tr class="table_head sticky-top">
+                    <th>sl no.</th>
+                    <th>enquiry no.</th>
+                    <th>customer</th>
+                    <th>PO number</th>
+                    <th>PO date</th>
+                    <th>PO type</th>
+                    <!-- <th>PO sub-type</th> -->
+                    <th>basic PO value</th>
+                    <th>total PO value <small>(incl. GST)</small></th>
+                    <th>schedule date of completion</th>
+                    <th>actual date of completion</th>
+                    <th>view</th>
+                    <th>edit</th>
+                    <th>delete</th>
+                </tr>
 
-            <tr *ngFor="let item of orderList; let i = index">
-                <td>{{ i+1 }}</td>
-                <td>{{ item.enquiry_id ? 'E000' + item.enquiry_id + '/24-25' : 'Direct Order'}}</td>
-                <!-- <td></td> -->
-                <td>{{ item.customer }}</td>
-                <td>{{ item.po_number }}</td>
-                <td>{{ item.po_date }}</td>
-                <td>{{ item.po_type_name }}</td>
-                <!-- <td>{{ item.po_subtype_name }}</td> -->
-                <td>{{ item.basic_po_value }}</td>
-                <td>{{ item.total_po_value }}</td>
-                <td>{{ item.scheduled_completion_date }}</td>
-                <td>{{ item.actual_completion_date }}</td>
-                <td>
-                    <span class="material-symbols-outlined" style="color:#006FFD;"
-                        (click)="goToDetailsPage(item.order_id)">
-                        visibility
-                    </span>
-                </td>
-                <td>
-                    <span class="material-symbols-outlined" style="color: #00BF58;"
-                        (click)="getOrderById(item.order_id)">
-                        edit_square
-                    </span>
-                </td>
-                <td>
-                    <span class="material-symbols-outlined" style="color: #A8226A;">
-                        delete
-                    </span>
-                </td>
-            </tr>
+                <tr *ngFor="let item of orderList; let i = index">
+                    <td>{{ i+1 }}</td>
+                    <td>{{ item.enquiry_id ? 'E000' + item.enquiry_id + '/24-25' : 'Direct Order'}}</td>
+                    <!-- <td></td> -->
+                    <td>{{ item.customer }}</td>
+                    <td>{{ item.po_number }}</td>
+                    <td>{{ item.po_date }}</td>
+                    <td>{{ item.po_type_name }}</td>
+                    <!-- <td>{{ item.po_subtype_name }}</td> -->
+                    <td>{{ item.basic_po_value }}</td>
+                    <td>{{ item.total_po_value }}</td>
+                    <td>{{ item.scheduled_completion_date }}</td>
+                    <td>{{ item.actual_completion_date }}</td>
+                    <td>
+                        <span class="material-symbols-outlined" style="color:#006FFD;"
+                            (click)="goToDetailsPage(item.order_id)">
+                            visibility
+                        </span>
+                    </td>
+                    <td>
+                        <span class="material-symbols-outlined" style="color: #00BF58;"
+                            (click)="getOrderById(item.order_id)">
+                            edit_square
+                        </span>
+                    </td>
+                    <td>
+                        <span class="material-symbols-outlined" style="color: #A8226A;">
+                            delete
+                        </span>
+                    </td>
+                </tr>
 
-        </table>
+            </table>
+        <!-- </div> -->
     </div>
-    <!-- </div> -->
 
 </div>

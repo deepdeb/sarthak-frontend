@@ -166,59 +166,73 @@
 
                     <h5
                         [ngStyle]="{'border-bottom.px':1, 'font-weight': 600, 'margin-bottom.px': 16,'font-size.px': 18}">
-                        PO Sub Type</h5>
+                        enquiry subt-ype details</h5>
                     <div class="col-md-12">
                         <div class="row" *ngIf="supplyRow">
                             <div class="col-md-4">
                                 <label>product <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
-                                <input type="text" class="form-control" [(ngModel)]="productProduct">
+                                <textarea type="text" class="form-control" [(ngModel)]="productProduct"></textarea>
+                                <!-- <input type="text" class="form-control" [(ngModel)]="productProduct"> -->
                             </div>
                             <div class="col-md-4">
                                 <label>description <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
-                                <input type="text" class="form-control" [(ngModel)]="productDescription">
+                                <textarea type="text" class="form-control" [(ngModel)]="productDescription"></textarea>
+                                <!-- <input type="text" class="form-control" [(ngModel)]="productDescription"> -->
                             </div>
                             <div class="col-md-4">
                                 <label>brand <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
-                                <input type="text" class="form-control" [(ngModel)]="productBrand">
+                                <textarea type="text" class="form-control" [(ngModel)]="productBrand"></textarea>
+                                <!-- <input type="text" class="form-control" [(ngModel)]="productBrand"> -->
                             </div>
                         </div>
                         <div class="row" *ngIf="sitcRow">
                             <div class="col-md-4">
                                 <label>description <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
-                                <input type="text" class="form-control" [(ngModel)]="sitcDescription">
+                                <textarea type="text" class="form-control" [(ngModel)]="sitcDescription"></textarea>
+                                <!-- <input type="text" class="form-control" [(ngModel)]="sitcDescription"> -->
                             </div>
                         </div>
 
                         <div class="row g-2" *ngIf="csRow">
                             <div class="col-md-2">
                                 <label>cable assembly</label>
-                                <input type="text" class="form-control" [(ngModel)]="csCable"
-                                    [disabled]="isOthersChecked" >
+                                <textarea  type="text" class="form-control" [(ngModel)]="csCable"
+                                [disabled]="isOthersChecked"></textarea>
+                                <!-- <input type="text" class="form-control" [(ngModel)]="csCable"
+                                    [disabled]="isOthersChecked" > -->
 
                             </div>
                             <div class="col-md-2">
                                 <label>panel </label>
-                                <input type="text" class="form-control" [(ngModel)]="csPanel"
-                                    [disabled]="isOthersChecked">
+                                <textarea type="text" class="form-control" [(ngModel)]="csPanel"
+                                [disabled]="isOthersChecked"></textarea>
+                                <!-- <input type="text" class="form-control" [(ngModel)]="csPanel"
+                                    [disabled]="isOthersChecked"> -->
 
                             </div>
                             <div class="col-md-2">
                                 <label>welding receptable </label>
-                                <input type="text" class="form-control" [(ngModel)]="csWelding"
-                                    [disabled]="isOthersChecked">
+                                <textarea type="text" class="form-control" [(ngModel)]="csWelding"
+                                [disabled]="isOthersChecked"></textarea>
+                                <!-- <input type="text" class="form-control" [(ngModel)]="csWelding"
+                                    [disabled]="isOthersChecked"> -->
 
                             </div>
                             <div class="col-md-2">
                                 <label>HSA BOX </label>
-                                <input type="text" class="form-control" [(ngModel)]="csHsaBox"
-                                    [disabled]="isOthersChecked" >
+                                <textarea type="text" class="form-control" [(ngModel)]="csHsaBox"
+                                [disabled]="isOthersChecked"></textarea>
+                                <!-- <input type="text" class="form-control" [(ngModel)]="csHsaBox"
+                                    [disabled]="isOthersChecked" > -->
                             </div>
                             <div class="col-md-4">
                                 <input type="checkbox" [(ngModel)]="isOthersChecked" class="me-1"
                                     (change)="onCheckboxChange($event)">
                                 <label> others <span [hidden]="isOthersDisabled" style="color: red;">*</span></label>
-                                <input type="text" class="form-control" [(ngModel)]="csOthers"
-                                    [disabled]="isOthersDisabled" [required]="isOthersChecked">
+                                <textarea type="text" class="form-control" [(ngModel)]="csOthers"
+                                [disabled]="isOthersDisabled" [required]="isOthersChecked"></textarea>
+                                <!-- <input type="text" class="form-control" [(ngModel)]="csOthers"
+                                    [disabled]="isOthersDisabled" [required]="isOthersChecked"> -->
                             </div>
                         </div>
                     </div>
@@ -290,19 +304,22 @@
                     <div class="col-sm-6 col-md-4">
                         <div class="">
                             <label>status</label>
-                            <input type="text" class="form-control" [(ngModel)]="enquiryStatus">
+                            <textarea type="text" class="form-control" [(ngModel)]="enquiryStatus"></textarea>
+                            <!-- <input type="text" class="form-control" [(ngModel)]="enquiryStatus"> -->
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-4">
                         <div class="">
                             <label>remarks</label>
-                            <input type="text" class="form-control" [(ngModel)]="enquiryRemarks">
+                            <textarea type="text" class="form-control" [(ngModel)]="enquiryRemarks"></textarea>
+                            <!-- <input type="text" class="form-control" [(ngModel)]="enquiryRemarks"> -->
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-4">
                         <div class="">
                             <label>support required</label>
-                            <input type="text" class="form-control" [(ngModel)]="enquirySupport">
+                            <textarea type="text" class="form-control" [(ngModel)]="enquirySupport"></textarea>
+                            <!-- <input type="text" class="form-control" [(ngModel)]="enquirySupport"> -->
                         </div>
                     </div>
                 </div>
@@ -364,9 +381,9 @@
             </div>
         </div>
         <!-- <h3 class="text-end" style="font-size: 20px;">total : {{ totalCount }}</h3> -->
-        <div class="table-responsive">
+        <div class="table-responsive customer_table">
             <table class="listing_table">
-                <tr class="table_head">
+                <tr class="table_head sticky-top">
                     <th>sl no.</th>
                     <th>enquiry no.</th>
                     <th>sales incharge</th>

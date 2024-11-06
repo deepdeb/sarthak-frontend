@@ -554,22 +554,22 @@ nav.navbar .navbar-brand{
 /************* Customer page css end ***************/
 
 /****************** table CSS start ***********/
-.listing_div{
+/* .listing_div{
   padding-bottom: 30px;
-}
-.listing_div table.listing_table {
+} */
+ table.listing_table {
   /* font-family: arial, sans-serif; */
   border-collapse: collapse;
   width: 100%;
   text-align: center;
   text-transform: capitalize;
 }
-.listing_div table.listing_table .table_head{
+ table.listing_table .table_head{
   background: #3838AA;
   color: white;
   text-transform: capitalize;
 }
-.listing_div table.listing_table .table_head th{
+ table.listing_table .table_head th{
   font-weight: 400;
   font-size: 13px;
   text-wrap: nowrap;

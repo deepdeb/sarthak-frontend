@@ -1,4 +1,4 @@
-<header>
+<header class="sticky-top">
     <div class="top_header">
         <div class="container-fluid">
             <ul class="top_header_ul">
@@ -50,12 +50,12 @@
 
             <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="" class="order-3 order-lg-4">
                 <mat-icon>more_vert</mat-icon>
-              </button>
-              <mat-menu #menu="matMenu">
+            </button>
+            <mat-menu #menu="matMenu">
                 <button mat-menu-item>
                     <i class="fas fa-user-circle"></i>
                     <span class="myProfile"> My Profile</span>
-                  </button>
+                </button>
                 
                 <button mat-menu-item>
                     <a class="logOut" (click)="goToLogin()">logout
