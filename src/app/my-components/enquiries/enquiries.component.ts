@@ -323,7 +323,7 @@ export class EnquiriesComponent {
         this.common.showAlertMessage('Please enter anyone of cable assembly, panel, welding receptable , HSA Box ', this.common.errContent)
         return;
       }
-      
+
     } else if (this.enquirySubTypeId == 3 && this.isOthersChecked) {
       if (!this.csOthers) {
         this.common.showAlertMessage('Please enter Others', this.common.errContent)
@@ -427,8 +427,8 @@ export class EnquiriesComponent {
 
 
   decimalBasicValue() {
-    if(this.basicValue) {
-      if(!this.basicValue.includes('.')){
+    if (this.basicValue) {
+      if (!this.basicValue.includes('.')) {
         this.basicValue = this.basicValue + '.00'
       }
     }
@@ -547,6 +547,37 @@ export class EnquiriesComponent {
         if (res.response) {
           if (res.response.length > 0) {
             this.filteredEnquiryListByCategory = res.response
+            if (this.filterByKeyword == 'tentative_finalization_month') {
+              const monthOrder = {
+                "JAN": 1,
+                "FEB": 2,
+                "MAR": 3,
+                "APR": 4,
+                "MAY": 5,
+                "JUN": 6,
+                "JUL": 7,
+                "AUG": 8,
+                "SEP": 9,
+                "OCT": 10,
+                "NOV": 11,
+                "DEC": 12
+              };
+
+              this.filteredEnquiryListByCategory.forEach((item: any) => {
+                if (!item.name) {
+                  item.name = '';
+                }
+              });
+
+              this.filteredEnquiryListByCategory.sort((a: any, b: any) => {
+                const monthA = a.name as keyof typeof monthOrder;
+                const monthB = b.name as keyof typeof monthOrder;
+
+                if (a.name === '') return -1;
+                if (b.name === '') return 1;
+                return monthOrder[monthA] - monthOrder[monthB];
+              });
+            }
           }
         }
       }

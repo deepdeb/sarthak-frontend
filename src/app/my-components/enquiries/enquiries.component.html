@@ -342,7 +342,7 @@
                 <div class="form_select_div mt-3">
                     <select class="form-control" [(ngModel)]="enquiriesByFilter" (change)="getEnquiriesByFilter()">
                         <option value="" disabled>-- choose one --</option>
-                        <option *ngFor="let item of filteredEnquiryListByCategory" [value]="item.name">{{item.name ? item.name : 'null'}}</option>
+                        <option *ngFor="let item of filteredEnquiryListByCategory" [value]="item.name">{{item.name ? item.name : '-na-'}}</option>
                     </select>
                     <span class="material-symbols-outlined">
                         stat_minus_1
