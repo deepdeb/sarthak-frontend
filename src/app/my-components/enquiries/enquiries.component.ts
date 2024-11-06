@@ -549,19 +549,19 @@ export class EnquiriesComponent {
             this.filteredEnquiryListByCategory = res.response
             if (this.filterByKeyword == 'tentative_finalization_month') {
               const monthOrder = {
-                "JAN": 1,
-                "FEB": 2,
-                "MAR": 3,
-                "APR": 4,
-                "MAY": 5,
-                "JUN": 6,
-                "JUL": 7,
-                "AUG": 8,
-                "SEP": 9,
-                "OCT": 10,
-                "NOV": 11,
-                "DEC": 12
-              };
+                "APR": 1,
+                "MAY": 2,
+                "JUN": 3,
+                "JUL": 4,
+                "AUG": 5,
+                "SEP": 6,
+                "OCT": 7,
+                "NOV": 8,
+                "DEC": 9,
+                "JAN": 10,
+                "FEB": 11,
+                "MAR": 12
+              };              
 
               this.filteredEnquiryListByCategory.forEach((item: any) => {
                 if (!item.name) {
