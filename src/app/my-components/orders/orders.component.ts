@@ -40,6 +40,7 @@ export class OrdersComponent {
   po_Photo: string = '';
   orderList: any = [];
 
+  // PO subtype details variables
   supplyProduct: string = '';
   supplyDescription: string = '';
   supplyBrand: string = '';
@@ -52,11 +53,11 @@ export class OrdersComponent {
   csOthers: string = '';
 
   isDivShow: boolean = false
-  isEnquiryDivShow: boolean = false;
 
   supplyRow: boolean = false;
   sitcRow: boolean = false;
   csRow: boolean = false;
+
   isOthersDisabled: boolean = true;
   isOthersChecked: boolean = false;
   isEdit: boolean = false;
@@ -87,6 +88,21 @@ export class OrdersComponent {
   enquiryRemarks: any;
   enquirySupport: any;
 
+  productProduct: string = '';
+  productDescription: string = '';
+  productBrand: string = '';
+  sitcDescriptionEnquiry: string = '';
+  csCableEnquiry: string = '';
+  csPanelEnquiry: string = '';
+  csWeldingEnquiry: string = '';
+  csHsaBoxEnquiry: string = '';
+  csOthersEnquiry: string = '';
+
+  isDivShowEnquiry: boolean = false;
+
+  productRowEnquiry: boolean = false;
+  csRowEnquiry: boolean = false;
+  sitcRowEnquiry: boolean = false;
 
   constructor(private router: Router, private rest: RestService, private common: CommonService) { 
   }
@@ -271,6 +287,30 @@ export class OrdersComponent {
       this.supplyRow = false;
       this.sitcRow = false;
       this.csRow = true
+    }
+  }
+
+
+  //******************* get Enquiry Sub type details */
+  getEnquirySubtypeDetails(enquiry_sub_type_id: any) {
+    
+    if (enquiry_sub_type_id == 1) {
+      this.isDivShowEnquiry = true;
+      this.productRowEnquiry = true;
+      this.csRowEnquiry = false;
+      this.sitcRowEnquiry = false;
+
+    } else if (enquiry_sub_type_id == 2) {
+      this.isDivShowEnquiry = true;
+      this.productRowEnquiry = false;
+      this.sitcRowEnquiry = true;
+      this.csRowEnquiry = false;
+
+    } else if (enquiry_sub_type_id == 3) {
+      this.isDivShowEnquiry = true;
+      this.productRowEnquiry = false;
+      this.sitcRowEnquiry = false;
+      this.csRowEnquiry = true
     }
   }
 
@@ -775,11 +815,11 @@ export class OrdersComponent {
   //******************* get enquiry details by ID **************//
   getEnquiryById(enquiry_id: any) {    
     this.enquiryId = enquiry_id;
+    this.enquirySubTypeId = '';
     const data = {
       sbu_id: this.checkSbuId,
       enquiry_id: enquiry_id
     }
-    console.log('data>>>', data)
     this.rest.getEnquiryById_rest(data).subscribe((res: any) => {
       if (res.success) {
         if (res.response) {
@@ -800,6 +840,18 @@ export class OrdersComponent {
           this.principalHouse = res.response[0].principal_house
           this.enquiryTypeId = res.response[0].enquiry_type_id
           this.enquirySubTypeId = res.response[0].enquiry_sub_type_id
+          this.productProduct = res.response[0].product
+          this.productDescription = res.response[0].product_description
+          this.productBrand = res.response[0].brand
+          this.sitcDescriptionEnquiry = res.response[0].sitc_description
+          this.csCableEnquiry = res.response[0].cable_assembly
+          this.csPanelEnquiry = res.response[0].panel
+          this.csWeldingEnquiry = res.response[0].welding_receptable
+          this.csHsaBoxEnquiry = res.response[0].hsa_box
+          this.csOthersEnquiry = res.response[0].others
+          if(this.enquirySubTypeId) {
+            this.getEnquirySubtypeDetails(this.enquirySubTypeId);
+          }
           this.basicValue = res.response[0].basic_value
           this.offerDate = res.response[0].offer_date
           this.yearFinal = res.response[0].tentative_finalization_year
@@ -810,62 +862,5 @@ export class OrdersComponent {
         }
       }
     })
-
-    // this.isEnquiryDivShow = true;
-    // this.supplyRow = true;
-    // this.csRow = true;
-    // this.sitcRow = true;
-    this.supplyProduct = '';
-    this.supplyDescription = '';
-    this.supplyBrand = '';
-    this.sitcDescription = '';
-    this.csCable = '';
-    this.csPanel = '';
-    this.csWelding = '';
-    this.csClamps = '';
-    this.csHsaBox = '';
-    this.csOthers = '';
-
-    console.log(">>>", this.enquirySubTypeId);
-
-    // if(this.isEnquiryDivShow){
-      if (this.enquirySubTypeId == 1) {
-        this.isEnquiryDivShow = true;
-        this.supplyRow = true;
-        this.csRow = false;
-        this.sitcRow = false;
-  
-      } else if (this.enquirySubTypeId == 2) {
-        this.isEnquiryDivShow = true;
-        this.supplyRow = false;
-        this.sitcRow = true;
-        this.csRow = false;
-  
-      }
-       else if (this.enquirySubTypeId == 3) {
-        this.isEnquiryDivShow = true;
-        this.supplyRow = false;
-        this.sitcRow = false;
-        this.csRow = true
-      }
-    // }
-    // if (this.enquirySubTypeId == 1) {
-    //   // this.isEnquiryDivShow = true;
-    //   this.supplyRow = true;
-    //   this.csRow = false;
-    //   this.sitcRow = false;
-
-    // } else if (this.enquirySubTypeId == 2) {
-    //   this.isEnquiryDivShow = true;
-    //   this.supplyRow = false;
-    //   this.sitcRow = true;
-    //   this.csRow = false;
-
-    // } else if (this.enquirySubTypeId == 3) {
-    //   this.isEnquiryDivShow = true;
-    //   this.supplyRow = false;
-    //   this.sitcRow = false;
-    //   this.csRow = true
-    // }
   }
 }
