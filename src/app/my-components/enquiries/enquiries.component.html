@@ -329,8 +329,8 @@
                         <!-- <option>enquiry sub-type</option> -->
                         <option value="principal_house">principal house</option>
                         <option value="basic_value">basic value</option>
-                        <option value="tentative_month">tentative month </option>
-                        <option value="tentative_year">tentative year</option>
+                        <option value="tentative_finalization_month">tentative month </option>
+                        <option value="tentative_finalization_year">tentative year</option>
                     </select>
                     <span class="material-symbols-outlined">
                         stat_minus_1
@@ -342,7 +342,7 @@
                 <div class="form_select_div mt-3">
                     <select class="form-control" [(ngModel)]="enquiriesByFilter" (change)="getEnquiriesByFilter()">
                         <option value="" disabled>-- choose one --</option>
-                        <option *ngFor="let item of filteredEnquiryListByCategory" [value]="item.name ? item.name : null">{{item.name ? item.name : 'null'}}</option>
+                        <option *ngFor="let item of filteredEnquiryListByCategory" [value]="item.name">{{item.name ? item.name : 'null'}}</option>
                     </select>
                     <span class="material-symbols-outlined">
                         stat_minus_1
@@ -399,14 +399,14 @@
                     <td>{{ item.offer_date }}</td>
                     <td>{{ item.basic_value}}</td>
                     <ng-container
-                        *ngIf="(item.tentative_finalization_month && item.tentative_finalization_year); else notAvailable">
+                        *ngIf="item.tentative_finalization_month; else notAvailable">
                         <td>{{item.tentative_finalization_month}}</td>
                     </ng-container>
                     <ng-template #notAvailable>
                         <td>NA</td>
                     </ng-template>
                     <ng-container
-                        *ngIf="(item.tentative_finalization_month && item.tentative_finalization_year); else notAvailable">
+                        *ngIf="item.tentative_finalization_year; else notAvailable">
                         <td>{{item.tentative_finalization_year}}</td>
                     </ng-container>
                     <ng-template #notAvailable>
