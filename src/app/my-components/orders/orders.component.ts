@@ -103,6 +103,7 @@ export class OrdersComponent {
   productRowEnquiry: boolean = false;
   csRowEnquiry: boolean = false;
   sitcRowEnquiry: boolean = false;
+  isCreateNew: boolean =false;
 
   constructor(private router: Router, private rest: RestService, private common: CommonService) { 
   }
@@ -122,6 +123,12 @@ export class OrdersComponent {
     }
     this.getOrderList();
     this.getEnquiryList();
+  }
+
+
+
+  showNewFollowUpForm(){
+    this.isCreateNew = true
   }
 
 

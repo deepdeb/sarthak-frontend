@@ -22,22 +22,22 @@
     </div>
 
     <div class="main_body sec_gapping">
-        <div class="text-end mb-4">
+        <!-- <div class="text-end mb-4">
             <button class="new_btn " (click)="newForm()" [hidden]="!isEdit">+ new</button>
-        </div>
+        </div> -->
         <div class="info_div">
             <div class="page_info_heading">
                 customer info
             </div>
             <div class="my_form ">
                 <div class="row g-2">
-                    <div *ngIf="checkSbuId==0 && !isEdit" class="col-md-3">
+                    <div *ngIf="checkSbuId==0" class="col-md-3">
                         <div class="">
                             <label>date</label>
                             <input type="date" class="form-control" [(ngModel)]="customerCreateDate" disabled>
                         </div>
                     </div>
-                    <div *ngIf="checkSbuId ==0 && !isEdit" class="col-md-3">
+                    <div *ngIf="checkSbuId ==0" class="col-md-3">
                         <div class="form_select_div">
                             <label>SBU</label>
                             <div class="form_select_div">
@@ -57,7 +57,7 @@
                         </div>
                     </div>
 
-                    <div *ngIf="checkSbuId ==0 && !isEdit" class="col-md-3">
+                    <div *ngIf="checkSbuId ==0 " class="col-md-3">
                         <div class="form_select_div">
                             <label>sales incharge</label>
                             <div class="form_select_div">
@@ -73,7 +73,7 @@
                         </div>
                     </div>
 
-                    <div *ngIf="checkSbuId!=0 && !isEdit" class="col-md-6">
+                    <div *ngIf="checkSbuId!=0 " class="col-md-6">
                         <div class="">
                             <label>date</label>
                             <input type="date" class="form-control" [(ngModel)]="customerCreateDate" disabled>
@@ -108,7 +108,7 @@
                     </div>
 
                     <!--_______ segment area start _______-->
-                    <div *ngIf="!isEdit" class="col-md-3">
+                    <div class="col-md-3">
                         <div class="">
                             <label>segment</label>
                             <div class="form_select_div">
@@ -124,7 +124,7 @@
                             <!-- <input type="text" class="form-control"> -->
                         </div>
                     </div>
-                    <div *ngIf="!isEdit" class="col-md-3">
+                    <div class="col-md-3">
                         <div class="">
                             <label>sub-segment</label>
                             <div class="form_select_div">
@@ -140,7 +140,7 @@
                             </div>
                         </div>
                     </div>
-                    <div *ngIf="!isEdit" class="col-md-3">
+                    <div class="col-md-3">
                         <div class="">
                             <label>sub sub-segment</label>
                             <!-- <div class="form_select_div">
@@ -169,7 +169,7 @@
                             </div>
                         </div>
                     </div>
-                    <div *ngIf="!isEdit" class="col-md-3">
+                    <div class="col-md-3">
                         <div class="">
                             <label>sub sub-sub-segment</label>
                             <div class="form_select_div">
@@ -238,7 +238,7 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="!isEdit" class="info_div mt-5">
+        <div class="info_div mt-5">
             <div class="page_info_heading">
                 address info
             </div>
@@ -304,7 +304,7 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="!isEdit" class="product_categoryDiv">
+        <div class="product_categoryDiv">
             <h6>product category : </h6>
             <!-- <div class="form_select_div ms-2" style="width: 23%;">
                 <select class="form-control mb-0" [(ngModel)]="prdtCategoryId">
@@ -357,13 +357,12 @@
                         <option value="" disabled>-- choose category --</option>
                         <option value="salesperson">Sales Incharge</option>
                         <!-- <option value="mentor">Mentor</option> -->
-                        <option value="customer">customer</option>
-                        <!-- <option value="contactperson">contact person</option>
-                            <option value="designation">designation</option>
-                            <option value="department">department</option> -->
+                        <option value="customer">customer</option>                        
                         <option value="segment">segment</option>
-                        <!-- <option *ngFor="let item of segmentList" [value]="item.segment_id">{{ item.segment_name }}
-                            </option> -->
+                        <option value="state">state</option>
+                        <option value="location">location</option>
+                        <option value="city">city</option>
+                        <option value="pin">PIN</option>
                     </select>
                     <span class="material-symbols-outlined">
                         stat_minus_1
@@ -410,6 +409,10 @@
                     <th>sub-sub-sub-segment</th> -->
                     <th>mobile no.</th>
                     <th>email id</th>
+                    <th>state</th>
+                    <th>city</th>
+                    <th>location</th>
+                    <th>PIN</th>
                     <th>view</th>
                     <th>edit</th>
                     <th>delete</th>
@@ -431,6 +434,10 @@
                     <!-- <td>{{ item.subsubsubsegment_name }}</td> -->
                     <td>{{ item.mobile }} <br> {{ item.alt_mobile }}</td>
                     <td class="text-lowercase">{{ item.email }} <br> {{ item.alt_email }} </td>
+                    <td>{{ item.state_name }}</td>
+                    <td>{{ item.city }}</td>
+                    <td>{{ item.location }}</td>
+                    <td>{{ item.pin }}</td>
                     <td>
                         <span class="material-symbols-outlined" style="color:#006FFD;"
                             (click)="goToDetailsPage(item.customer_id)">

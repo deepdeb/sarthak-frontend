@@ -15,6 +15,7 @@ export class EnquiriesComponent {
   sbuId: any = localStorage.getItem('sbu_id');
   salesPersonList: any = [];
   salesPersonId = '' as any;
+  reffNumber: any;
   customerList: any = [];
   customerId = '' as any;
   enquiryDate: any;

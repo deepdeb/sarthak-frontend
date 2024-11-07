@@ -387,13 +387,13 @@
                     <div class="col-md-2">
                         <div class="form_select_div">
                             <label>PO number</label>
-                            <input type="text" class="form-control" [(ngModel)]="poNumber">
+                            <input type="text" class="form-control" [(ngModel)]="poNumber" [disabled]="isEdit">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form_select_div">
                             <label>PO date</label>
-                            <input type="date" class="form-control" [(ngModel)]="poDate">
+                            <input type="date" class="form-control" [(ngModel)]="poDate" [disabled]="isEdit">
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -499,9 +499,6 @@
                     </div>
 
 
-
-
-
                     <div class="col-md-3">
                         <div class="form_select_div">
                             <label>BASIC PO value</label>
@@ -542,7 +539,7 @@
                             <input type="date" class="form-control" [(ngModel)]="actualCompletionDate">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="">
                             <label for="formFile1">PO upload</label>
                             <input type="file" class="form-control" [(ngModel)]="poUpload" id="formFile1"
@@ -550,32 +547,21 @@
 
                         </div>
                     </div>                   
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="">
                             <label for="formFile3">credential upload</label>
                             <input type="file" class="form-control" [(ngModel)]="credentialUpload" id="formFile3"
                                 (change)="uploadFile('credentialPhoto')">
                         </div>
                     </div>
-
                     <div class="col-md-4">
                         <div class="">
                             <label for="formFile2">completion upload</label>
-                            <div class="d-flex ">
-                                <input type="file" class="form-control" [(ngModel)]="completionUpload" id="formFile2"
-                                    (change)="uploadFile('completionPhoto')">
-                                <button mat-flat-button class="btn1" style="margin-left: 20px;">
-                                    <span class="material-symbols-outlined">
-                                        add
-                                    </span>
-                                    new
-                                </button>
-                            </div>    
-                        </div>
-                        
+                            <input type="file" class="form-control" [(ngModel)]="completionUpload" id="formFile2"
+                            (change)="uploadFile('completionPhoto')">   
+                        </div>                        
                     </div>
-
-                </div>
+                </div>               
             </div>
         </div>
         <div class="text-center mt-3">
