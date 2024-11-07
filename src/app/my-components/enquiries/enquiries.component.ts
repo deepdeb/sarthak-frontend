@@ -340,6 +340,7 @@ export class EnquiriesComponent {
       sbu_id: this.sbuId,
       mentor_id: this.mentorId,
       sales_person_id: this.salesPersonId,
+      reff_number: this.reffNumber,
       customer_id: this.customerId,
       enquiry_date: this.enquiryDate,
       enquiry_source: this.enquirySource,
@@ -369,6 +370,7 @@ export class EnquiriesComponent {
         if (res.response) {
           // this.sbuId = ''
           this.salesPersonId = ''
+          this.reffNumber = ''
           this.mentorId = ''
           this.customerId = ''
           this.enquiryDate = ''
@@ -463,6 +465,7 @@ export class EnquiriesComponent {
             this.getCustomerListBySalesperson();
             // this.setSBUId(this.salesPersonId);
           }
+          this.reffNumber = res.response[0].reff_number
           this.customerId = res.response[0].customer_id
           this.enquiryDate = res.response[0].enquiry_date
           this.enquirySource = res.response[0].enquiry_source

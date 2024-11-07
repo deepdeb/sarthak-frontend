@@ -47,7 +47,8 @@ export class CustomerComponent {
   checkSbuId: any = localStorage.getItem('sbu_id')
   // mentorId: any = '';
   mentorList: any = [];
-  isShowInput: boolean = true;
+  isHideInput: boolean = true;
+  isOthersChecked: boolean = false;
   otherProductCategory: string = ''
 
   segmentId = 0 as number;
@@ -235,7 +236,7 @@ export class CustomerComponent {
       alt_email: this.alt_emailId,
       // product_category_id: this.prdtCategoryId,
       product_category_id: selectedCategoryIds,
-      other_product_category: this.otherProductCategory,
+      other_product_category: this.isOthersChecked ? this.otherProductCategory : '',
       street_no: this.street_no,
       street_name: this.street_name,
       area: this.area_name,
@@ -266,6 +267,7 @@ export class CustomerComponent {
         this.alt_emailId = ''
         this.prdtCategoryId = ''
         this.otherProductCategory = ''
+        this.isOthersChecked = false
         this.street_no = ''
         this.street_name = ''
         this.area_name = ''
@@ -457,12 +459,12 @@ export class CustomerComponent {
     this.salesPersonList = [];
     this.customerId = function_customer_id
     this.isEdit = true;
+    this.isHideInput = false;
     this.isButtonDisabled = false;
     const data = {
       customer_id: function_customer_id
     }
     this.rest.getCustomerDetailsById_rest(data).subscribe((res: any) => {
-      console.log('res.response', res.response)
       if (res.success) {
         if (res.response) {
           this.sbuId = res.response[0].sbu_id;
@@ -561,11 +563,15 @@ export class CustomerComponent {
     const categoryId = +event.target.value
     if (event.target.checked) {
       if(event.target.value == 4){
-        this.isShowInput = false
+        this.isOthersChecked = true;
+        this.isHideInput = false
       }
       this.selectedCategoryIds.push(categoryId)
     } else {
-      this.isShowInput = true
+      if(event.target.value == 4) {
+        this.isOthersChecked = false;
+        this.isHideInput = true
+      }
       this.selectedCategoryIds = this.selectedCategoryIds.filter((id: any) => id !== categoryId)
     }
   }
