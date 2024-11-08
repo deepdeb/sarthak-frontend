@@ -16,6 +16,7 @@ export class OrdersComponent {
   sbuId: any = localStorage.getItem('sbu_id');
   checkSbuId: any = localStorage.getItem('sbu_id');
   salesPersonId = '' as any;
+  reffNumber: any;
   customerId = '' as any;
   poNumber: string = '';
   poDate: any;
@@ -104,6 +105,7 @@ export class OrdersComponent {
   csRowEnquiry: boolean = false;
   sitcRowEnquiry: boolean = false;
   isCreateNew: boolean =false;
+  isEnquiryIdFilter: boolean = false;
 
   constructor(private router: Router, private rest: RestService, private common: CommonService) { 
   }
@@ -744,7 +746,11 @@ export class OrdersComponent {
 
   // ******************** filter orders list by category ******************** //
   getFilterOrdersByCategory() {
+    this.isEnquiryIdFilter = false;
     this.filteredOrderListByCategory = [];
+    if(this.filterByKeyword == 'enquiry_id') {
+      this.isEnquiryIdFilter = true;
+    }
     const data = {
       filterby_keyword: this.filterByKeyword
     }

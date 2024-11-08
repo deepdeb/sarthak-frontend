@@ -13,6 +13,7 @@ import { CommonService } from 'src/app/my-services/common.service';
 export class FollowUpComponent {
   enquiryId: any;
   salesPersonName: any;
+  reffNumber: any;
   customerName: any;
   enquirySource: any;
   principalHouse: any;
@@ -51,6 +52,7 @@ export class FollowUpComponent {
       if(res.success) {
         if(res.response) {
           this.salesPersonName = res.response[0].sales_person_name,
+          this.reffNumber = res.response[0].reff_number;
           this.customerName = res.response[0].customer,
           this.enquiryDate = res.response[0].enquiry_date,
           this.enquirySource = res.response[0].enquiry_source_name,

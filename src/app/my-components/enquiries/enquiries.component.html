@@ -71,7 +71,7 @@
                     </div>
                     <div class="col-sm-5 col-md-3">
                         <div class="">
-                            <label>SI offer Reff No. </label>
+                            <label>SI offer Ref. No. </label>
                             <div class="form_select_div">
                                 <input type="text" class="form-control" [(ngModel)]="reffNumber">
                             </div>
@@ -309,6 +309,7 @@
                     <select class="form-control" [(ngModel)]="filterByKeyword" (change)="getFilterEnquiryByCategory()">
                         <option value="" disabled>-- choose category --</option>
                         <option value="salesperson">sales incharge</option>
+                        <option value="reff_number">reffered number</option>
                         <option value="enquiry_date">enquiry date</option>
                         <option value="enquiry_source">enquiry source</option>
                         <option value="enquiry_type">enquiry type</option>
@@ -354,6 +355,7 @@
                 <tr class="table_head sticky-top">
                     <th>sl no.</th>
                     <th>enquiry no.</th>
+                    <th>SI Ref. No.</th>
                     <th>sales incharge</th>
                     <th>customer</th>
                     <th>enquiry date</th>
@@ -374,6 +376,7 @@
                 <tr *ngFor="let item of enquiryList; let i = index">
                     <td>{{ i+1 }}</td>
                     <td>E000{{ item.enquiry_id }}/24-25</td>
+                    <td>{{ item.reff_number }}</td>
                     <td>{{ item.sales_person_name }}</td>
                     <td>{{ item.customer}}</td>
                     <td>{{ item.enquiry_date }}</td>

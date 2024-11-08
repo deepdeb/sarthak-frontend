@@ -30,19 +30,16 @@
 
             <div class="my_form ">
                 <div class="row">
-                    <div class="col-sm-6 col-md-3">
+                    <div class="col-sm-6 col-md-2">
                         <div class="form_select_div">
                             <label>sales incharge</label>
                             <p class="follow_txt">{{salesPersonName}}</p>
-                            <!-- <div class="form_select_div">
-                                <select class="form-control" [(ngModel)]="salesPersonId"
-                                    (change)="getCustomerListBySalesperson();">
-                                    <option *ngFor="let item of salesPersonList" [value]="item.sales_person_id">{{ item.sales_person_name }}</option>
-                                </select>
-                                <span class="material-symbols-outlined">
-                                    stat_minus_1
-                                </span>
-                            </div> -->
+                        </div>
+                    </div>
+                    <div class="col-md-2" >
+                        <div class="form_select_div">
+                            <label>SI offer Ref. No. :</label>
+                            <p class="follow_txt">{{reffNumber}}</p>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
@@ -61,7 +58,7 @@
                             </div> -->
                         </div>
                     </div>
-                    <div class="col-sm-3 col-md-3">
+                    <div class="col-sm-3 col-md-2">
                         <div class="form_select_div ">
                             <label>enquiry date</label>
                             <p class="follow_txt">{{enquiryDate}}</p>

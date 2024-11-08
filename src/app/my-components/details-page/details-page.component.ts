@@ -12,6 +12,7 @@ export class DetailsPageComponent {
   salesIncharge: string = '';
   salesPersonId: any;
   // mentorName: string = '';
+  reffNumber: any;
   customer_creation_date: any;
   customer_Name: string = '';
   sbuName: string = '';
@@ -161,6 +162,7 @@ export class DetailsPageComponent {
         if (res.response) {
           this.enquiryId = res.response[0].enquiry_id
           this.salesIncharge = res.response[0].sales_person_name
+          this.reffNumber = res.response[0].reff_number;
           this.customer_Name = res.response[0].customer
           this.enquiryDate = res.response[0].enquiry_date
           this.principalHouse = res.response[0].principal_house
@@ -188,6 +190,7 @@ export class DetailsPageComponent {
         if (res.response) {
           this.sbuName = res.response[0].sbu_name
           this.salesIncharge = res.response[0].sales_person_name
+          this.reffNumber = res.response[0].reff_number;
           this.customer_Name = res.response[0].customer
           this.poNumber = res.response[0].po_number
           this.poDate = res.response[0].po_date

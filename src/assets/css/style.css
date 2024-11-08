@@ -12,7 +12,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #E8EDFF;
+  /* background-color: #E8EDFF; */
   font-family: "Roboto", sans-serif !important;
 }
 
@@ -116,8 +116,15 @@ table tr td{
   border: none;
   padding: 8px;
   text-transform: capitalize;
+  background: #dde4ff;
 }
-
+/* .form-control:focus{
+  box-shadow: none;
+  border: 2px solid #dde4ff;
+}
+.form-control:focus-visible {
+  outline: none;
+} */
 .page_heading{
   padding: 16px 0;
 
@@ -260,15 +267,6 @@ table tr td{
 .form_nonSelect_div .material-symbols-outlined{
   left: 10px;
 }
-/* .form_nonSelect_div .form-control{
-  padding: 8px 8px 8px 38px;
-}
-.form_nonSelect_div .view_div {
-  position: relative;
-}
-.form_nonSelect_div .view_div .material-symbols-outlined{
-  margin-left: auto;
-} */
 .view_div{
   position: relative;
 }
@@ -341,9 +339,7 @@ nav.navbar .navbar-brand{
   justify-content: end;
 }
 .navbar-collapse .navbar-nav .nav-item .nav-link.active,.navbar-collapse .navbar-nav .nav-item .nav-link:hover{
-  color: var(--secondary);
-  
-
+  color: var(--secondary); 
 }
 .navbar-collapse .navbar-nav .nav-item{
   margin-right: 30px;
@@ -632,11 +628,9 @@ tr:nth-child(even),tr:hover {
   display: flex;
   margin-bottom: 30px;
 }
-
 .presentation_tabs li{
   margin-right: 30px;
 }
-
 .presentation_tabs li{
   padding: 10px 20px;
   border-radius: 4px;
@@ -646,7 +640,6 @@ tr:nth-child(even),tr:hover {
   font-weight: 500;
   color: var(--black);
 }
-
 .presentation_tabs li.active{
   background: var(--primary);
   color: white;
@@ -711,7 +704,7 @@ tr:nth-child(even),tr:hover {
   padding: 6px;
   border-radius: 4px;
   text-transform: uppercase;
-  background: white;
+  background: #f4f4f4;
   font-size: 13px;
   font-weight: 400;
   height: 40px;
@@ -731,12 +724,9 @@ tr:nth-child(even),tr:hover {
 }
 
 
-
-
-
-
-
-
+.poSubType_div h5, .poSubType_div label{
+ color: white;
+}
 
 
 
