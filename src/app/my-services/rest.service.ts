@@ -285,4 +285,10 @@ export class RestService {
     return this.http.post(this.API_ROOT + '/common/getOrdersByFilter', data, httpOptions)
   }
 
+
+
+  multipleFileUpload(data: any){
+    return this.http.post(this.API_ROOT + 'common/multipleFileUpload', data);
+  }
+
 }

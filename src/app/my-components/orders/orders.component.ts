@@ -36,9 +36,9 @@ export class OrdersComponent {
   customerList: any = [];
   totalOrderCount: number = 0;
 
-  credential_Photo: string = '';
-  completion_Photo: string = '';
-  po_Photo: string = '';
+  credential_Photo: any = [];
+  completion_Photo: any = [];
+  po_Photo: any = [];
   orderList: any = [];
 
   // PO subtype details variables
@@ -107,6 +107,13 @@ export class OrdersComponent {
   isCreateNew: boolean =false;
   isEnquiryIdFilter: boolean = false;
 
+  filePath: any = this.common.filePath
+
+  isFileDiv: boolean = true;
+  FileOrg : any;
+  FileOrgAll : any;
+  fileDocAll : any;
+  
   constructor(private router: Router, private rest: RestService, private common: CommonService) { 
   }
   ngOnInit(): void {
@@ -127,8 +134,7 @@ export class OrdersComponent {
     this.getEnquiryList();
   }
 
-
-
+  //************ show new follow up form **************//
   showNewFollowUpForm(){
     this.isCreateNew = true
   }
@@ -352,7 +358,6 @@ export class OrdersComponent {
     }
     console.log("Banner 1", banner1)
     const file: any = banner1.files;
-    console.log("Banner 1 files", banner1.files)
 
     if (file.length > 0) {
       const reader = new FileReader();
@@ -381,6 +386,68 @@ export class OrdersComponent {
         })
       };
     }
+  }
+
+
+  //***************** upload multiple file in order page *******************//
+  fileUpload(event: any, type: 'poPhoto' | 'completionPhoto' | 'credentialPhoto'){
+    this.FileOrg = event.target.files;
+    if (this.FileOrg) {
+      const formData = new FormData();
+     
+      for (let i = 0; i < this.FileOrg.length; i++) {
+        const file = this.FileOrg[i];
+        formData.append('files[]', file, file.name);
+      }
+      this.rest.multipleFileUpload(formData).subscribe(
+        (res: any) => {
+          if (res.success) {
+            this.common.showAlertMessage(res.message, this.common.succContent);
+            if(type == 'poPhoto') {
+              let tempAssignmentDocAll: string[] = [];
+              for (var i = 0; i < res.response.length; i++) {
+                // this.FileOrgAll = this.FileOrgAll ? this.FileOrgAll + "," + res.response[i].originalFilename : res.response[i].originalFilename;
+                tempAssignmentDocAll.push(res.response[i].newFileName);
+              }
+              this.po_Photo = this.po_Photo ? this.po_Photo.concat(tempAssignmentDocAll) : tempAssignmentDocAll;
+              console.log('>>>', this.po_Photo)
+            } else if (type == 'completionPhoto') {
+              let tempAssignmentDocAll: string[] = [];
+              for (var i = 0; i < res.response.length; i++) {
+                // this.FileOrgAll = this.FileOrgAll ? this.FileOrgAll + "," + res.response[i].originalFilename : res.response[i].originalFilename;
+                tempAssignmentDocAll.push(res.response[i].newFilename);
+              }
+              this.completion_Photo = this.po_Photo ? this.po_Photo.concat(tempAssignmentDocAll) : tempAssignmentDocAll;
+            } else if (type == 'credentialPhoto') {
+              let tempAssignmentDocAll: string[] = [];
+              for (var i = 0; i < res.response.length; i++) {
+                // this.FileOrgAll = this.FileOrgAll ? this.FileOrgAll + "," + res.response[i].originalFilename : res.response[i].originalFilename;
+                tempAssignmentDocAll.push(res.response[i].newFilename);
+              }
+              this.credential_Photo = this.po_Photo ? this.po_Photo.concat(tempAssignmentDocAll) : tempAssignmentDocAll;
+            }
+          }
+        },
+        (error: any) => {
+          console.error('Error uploading file:', error);
+        }
+      );
+    }
+  }
+
+
+  viewFile(id: any){
+    const viewFile = this.filePath + id;
+    window.open(viewFile, "_blank");
+  }
+
+  viewDoc(id: any){
+    const viewFile = this.filePath + id;
+    window.open(viewFile, "_blank");
+  }
+
+  removeFile(id: any){
+    this.fileDocAll.splice(id,1);
   }
 
 

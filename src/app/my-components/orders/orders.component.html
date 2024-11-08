@@ -65,7 +65,7 @@
                         <div class="">
                             <label>SI offer Reff No. </label>
                             <div class="form_select_div">
-                                <input type="text" class="form-control"  [(ngModel)]="reffNumber" disabled>
+                                <input type="text" class="form-control" [(ngModel)]="reffNumber" disabled>
                             </div>
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- <div class="col-sm-6 col-md-3">
                         <div class="form_select_div">
                             <label>mentor</label>
@@ -204,44 +204,53 @@
                             <div class="row" *ngIf="productRowEnquiry">
                                 <div class="col-md-4">
                                     <label>product</label>
-                                    <textarea type="text" class="form-control" [(ngModel)]="productProduct" disabled></textarea>   
+                                    <textarea type="text" class="form-control" [(ngModel)]="productProduct"
+                                        disabled></textarea>
                                 </div>
                                 <div class="col-md-4">
                                     <label>description</label>
-                                    <textarea type="text" class="form-control" [(ngModel)]="productDescription" disabled></textarea>  
+                                    <textarea type="text" class="form-control" [(ngModel)]="productDescription"
+                                        disabled></textarea>
                                 </div>
                                 <div class="col-md-4">
                                     <label>brand</label>
-                                    <textarea type="text" class="form-control" [(ngModel)]="productBrand" disabled></textarea> 
+                                    <textarea type="text" class="form-control" [(ngModel)]="productBrand"
+                                        disabled></textarea>
                                 </div>
                             </div>
                             <div class="row" *ngIf="sitcRowEnquiry">
                                 <div class="col-md-4">
-                                    <label>description</label>                                     
-                                    <textarea type="text" class="form-control" [(ngModel)]="sitcDescriptionEnquiry" disabled></textarea> 
+                                    <label>description</label>
+                                    <textarea type="text" class="form-control" [(ngModel)]="sitcDescriptionEnquiry"
+                                        disabled></textarea>
                                 </div>
                             </div>
                             <div class="row g-2" *ngIf="csRowEnquiry">
                                 <div class="col-md-2">
-                                    <label>cable assembly</label>                                     
-                                    <textarea type="text" class="form-control" [(ngModel)]="csCableEnquiry" disabled></textarea>   
+                                    <label>cable assembly</label>
+                                    <textarea type="text" class="form-control" [(ngModel)]="csCableEnquiry"
+                                        disabled></textarea>
                                 </div>
                                 <div class="col-md-2">
-                                    <label>panel</label>                                     
-                                    <textarea type="text" class="form-control" [(ngModel)]="csPanelEnquiry" disabled ></textarea>   
+                                    <label>panel</label>
+                                    <textarea type="text" class="form-control" [(ngModel)]="csPanelEnquiry"
+                                        disabled></textarea>
 
                                 </div>
                                 <div class="col-md-2">
-                                    <label>welding receptable</label>                                     
-                                    <textarea type="text" class="form-control" [(ngModel)]="csWeldingEnquiry" disabled></textarea> 
+                                    <label>welding receptable</label>
+                                    <textarea type="text" class="form-control" [(ngModel)]="csWeldingEnquiry"
+                                        disabled></textarea>
                                 </div>
                                 <div class="col-md-2">
-                                    <label>HSA BOX</label>                              
-                                    <textarea type="text" class="form-control" [(ngModel)]="csHsaBoxEnquiry" disabled></textarea>  
+                                    <label>HSA BOX</label>
+                                    <textarea type="text" class="form-control" [(ngModel)]="csHsaBoxEnquiry"
+                                        disabled></textarea>
                                 </div>
                                 <div class="col-md-4">
-                                    <label> others</label>                              
-                                    <textarea type="text" class="form-control" [(ngModel)]="csOthersEnquiry" disabled></textarea>   
+                                    <label> others</label>
+                                    <textarea type="text" class="form-control" [(ngModel)]="csOthersEnquiry"
+                                        disabled></textarea>
                                 </div>
                             </div>
                         </div>
@@ -328,7 +337,7 @@
         </div> -->
 
 
-    
+
 
 
         <div class="info_div mt-5">
@@ -357,7 +366,7 @@
                         <div class="">
                             <label>SI offer Reff No. </label>
                             <div class="form_select_div">
-                                <input type="text" class="form-control"  [(ngModel)]="reffNumber" disabled>
+                                <input type="text" class="form-control" [(ngModel)]="reffNumber" disabled>
                             </div>
                         </div>
                     </div>
@@ -455,19 +464,21 @@
                             <div class="row" *ngIf="supplyRow">
                                 <div class="col-md-4">
                                     <label>product <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
-                                    <textarea  type="text" class="form-control mb-0" [(ngModel)]="supplyProduct"></textarea>
+                                    <textarea type="text" class="form-control mb-0"
+                                        [(ngModel)]="supplyProduct"></textarea>
                                     <!-- <input type="text" class="form-control" [(ngModel)]="supplyProduct"> -->
                                 </div>
                                 <div class="col-md-4">
-                                    <label>description <span [hidden]="isOthersChecked"
-                                            style="color: red;">*</span>
+                                    <label>description <span [hidden]="isOthersChecked" style="color: red;">*</span>
                                     </label>
-                                     <textarea type="text" class="form-control mb-0" [(ngModel)]="supplyDescription"></textarea>   
+                                    <textarea type="text" class="form-control mb-0"
+                                        [(ngModel)]="supplyDescription"></textarea>
                                     <!-- <input type="text" class="form-control" [(ngModel)]="supplyDescription"> -->
                                 </div>
                                 <div class="col-md-4">
                                     <label>brand <span [hidden]="isOthersChecked" style="color: red;">*</span></label>
-                                    <textarea type="text" class="form-control mb-0" [(ngModel)]="supplyBrand"></textarea>   
+                                    <textarea type="text" class="form-control mb-0"
+                                        [(ngModel)]="supplyBrand"></textarea>
                                     <!-- <input type="text" class="form-control" [(ngModel)]="supplyBrand"> -->
                                 </div>
                             </div>
@@ -475,7 +486,8 @@
                                 <div class="col-md-4">
                                     <label>description <span [hidden]="isOthersChecked"
                                             style="color: red;">*</span></label>
-                                     <textarea type="text" class="form-control mb-0" [(ngModel)]="sitcDescription"></textarea>   
+                                    <textarea type="text" class="form-control mb-0"
+                                        [(ngModel)]="sitcDescription"></textarea>
                                     <!-- <input type="text" class="form-control" [(ngModel)]="sitcDescription"> -->
                                 </div>
                             </div>
@@ -484,7 +496,7 @@
                                 <div class="col-md-2">
                                     <label>cable assembly </label>
                                     <textarea type="text" class="form-control mb-0" [(ngModel)]="csCable"
-                                    [disabled]="isOthersChecked"></textarea>   
+                                        [disabled]="isOthersChecked"></textarea>
 
                                     <!-- <input type="text" class="form-control" [(ngModel)]="csCable"
                                         [disabled]="isOthersChecked"> -->
@@ -493,7 +505,7 @@
                                 <div class="col-md-2">
                                     <label>panel </label>
                                     <textarea type="text" class="form-control mb-0" [(ngModel)]="csPanel"
-                                    [disabled]="isOthersChecked"></textarea>   
+                                        [disabled]="isOthersChecked"></textarea>
 
                                     <!-- <input type="text" class="form-control" [(ngModel)]="csPanel"
                                         [disabled]="isOthersChecked"> -->
@@ -502,7 +514,7 @@
                                 <div class="col-md-2">
                                     <label>welding receptable </label>
                                     <textarea type="text" class="form-control mb-0" [(ngModel)]="csWelding"
-                                    [disabled]="isOthersChecked"></textarea>   
+                                        [disabled]="isOthersChecked"></textarea>
 
                                     <!-- <input type="text" class="form-control" [(ngModel)]="csWelding"
                                         [disabled]="isOthersChecked"> -->
@@ -511,7 +523,7 @@
                                 <div class="col-md-2">
                                     <label>HSA BOX</label>
                                     <textarea type="text" class="form-control mb-0" [(ngModel)]="csHsaBox"
-                                    [disabled]="isOthersChecked"></textarea>   
+                                        [disabled]="isOthersChecked"></textarea>
 
                                     <!-- <input type="text" class="form-control" [(ngModel)]="csHsaBox"
                                         [disabled]="isOthersChecked"> -->
@@ -521,8 +533,8 @@
                                         (change)="onCheckboxChange($event)">
                                     <label> others <span [hidden]="isOthersDisabled"
                                             style="color: red;">*</span></label>
-                                     <textarea type="text" class="form-control mb-0" [(ngModel)]="csOthers"
-                                     [disabled]="isOthersDisabled" [required]="isOthersChecked" ></textarea>   
+                                    <textarea type="text" class="form-control mb-0" [(ngModel)]="csOthers"
+                                        [disabled]="isOthersDisabled" [required]="isOthersChecked"></textarea>
 
                                     <!-- <input type="text" class="form-control" [(ngModel)]="csOthers"
                                         [disabled]="isOthersDisabled" [required]="isOthersChecked"> -->
@@ -533,83 +545,193 @@
 
 
                     <div class="col-md-4">
-                        <div class="">
+                        <!-- <div class="">
                             <label for="formFile1">PO upload</label>
                             <input type="file" class="form-control" [(ngModel)]="poUpload" id="formFile1"
                                 (change)="uploadFile('poPhoto')">
+                        </div> -->
+
+                        <div class="upload_file_area mt-3">
+                            <div style="position: relative; margin-bottom: 10px;">
+                                <input type="file" id="fileInput" name="files[]" (change)="fileUpload($event, 'poPhoto')"
+                                    multiple style="position: absolute;">
+                                    <label for="fileInput" id="fileLabel" *ngIf="isFileDiv" style="padding: 10px 12px;background: #030371;color: white;position: relative;border-radius: 4px;
+                                    cursor: pointer;width: 100%;text-align: center;">
+                                        <i class="fas fa-upload "></i>
+                                        <span style="margin-left: 4px;">PO upload</span>
+                                    </label>
+                            </div>
+                            <div class="screenshot_div d-flex flex-wrap " >
+                                <div class="upload_doc" style="position: relative;"
+                                    style="position: relative; margin: 16px 14px 8px 0;"
+                                    *ngFor="let item of po_Photo;let i=index;">
+                                    <img class="assignImg"
+                                        [src]="item.includes('.pdf') ? 'assets/images/pdf.webp': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/xlsx.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : 'assets/images/doc.jpg'"
+                                        alt="" loading="lazy" (click)="viewFile(item)"
+                                        style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
+                                            <span *ngIf="po_Photo.length>0" (click)="removeFile(i)" class="fas fa-times"
+                                        style="position: absolute;top: -6px;
+                                        right: 0px;
+                                        color: red;
+                                        padding: 2px 4px;
+                                        background: white;
+                                        cursor: pointer;
+                                        border-radius: 50%;">
+                                    </span>
+                                </div>
+                            </div>
+
+
 
                         </div>
-                    </div>                   
+                    </div> 
                     <div class="col-md-4">
-                        <div class="">
+                        <!-- <div class="">
                             <label for="formFile3">credential upload</label>
                             <input type="file" class="form-control" [(ngModel)]="credentialUpload" id="formFile3"
                                 (change)="uploadFile('credentialPhoto')">
-                        </div>
+                        </div> -->
+
+
+
+                        <!-- <div class="upload_file_area mt-3">
+                            <div style="position: relative; margin-bottom: 10px;">
+                                <input type="file" id="fileInput2" name="files[]" (change)="fileUpload($event, 'credentialPhoto')"
+                                    multiple style="position: absolute;">
+                                <label for="fileInput2" id="fileLabel2" *ngIf="isFileDiv" style="padding: 10px 12px;background: #030371;color: white;position: relative;border-radius: 4px;
+                                    cursor: pointer;width: 100%;text-align: center;">
+                                    <i class="fas fa-upload "></i>
+                                    <span style="margin-left: 4px;">credential upload</span>
+                                    
+                                    <br>
+                                </label>
+                            </div>
+
+                            <div class="screenshot_div d-flex flex-wrap">
+                                <div class="upload_doc" style="position: relative;"
+                                    style="position: relative; margin: 16px 12px 8px 0;"
+                                    *ngFor="let item of credential_Photo;let i=index;">
+                                    <img class="assignImg"
+                                        [src]="item.includes('.pdf') ? 'assets/images/pdf.webp': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/xlsx.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : 'assets/images/doc.jpg'"
+                                        alt="" loading="lazy" (click)="viewFile(item)"
+                                        style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
+                                    <span *ngIf="po_Photo.length>0" (click)="removeFile(i)" class="fas fa-times"
+                                        style="position: absolute;top: -6px;
+                                        right: 0px;
+                                        color: red;
+                                        padding: 2px 4px;
+                                        background: white;
+                                        cursor: pointer;
+                                        border-radius: 50%;">
+                                    </span>
+                                </div>
+                            </div>
+                        </div> -->
+
                     </div>
                     <div class="col-md-4">
-                        <div class="">
+
+                        <!-- <div class="upload_file_area mt-3">
+                            <div style="position: relative; margin-bottom: 10px;">
+                            <input type="file" id="fileInput3" name="files[]" (change)="fileUpload($event, 'completionPhoto')"
+                                multiple style="position: absolute;">
+                            <label for="fileInput3" id="fileLabel3" *ngIf="isFileDiv" style="padding: 10px 12px;background: #030371;color: white;position: relative;border-radius: 4px;
+                                    cursor: pointer;width: 100%;text-align: center;">
+                                <i class="fas fa-upload "></i>
+                                <span style="margin-left: 4px;">completion upload</span>
+                                
+                                <br>
+                            </label>
+                        </div>
+
+
+                            <div class="screenshot_div d-flex flex-wrap">
+                                <div class="upload_doc" style="position: relative;"
+                                    style="position: relative; margin: 16px 12px 8px 0;"
+                                    *ngFor="let item of completion_Photo;let i=index;">
+                                    <img class="assignImg"
+                                        [src]="item.includes('.pdf') ? 'assets/images/pdf.webp': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/xlsx.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : 'assets/images/doc.jpg'"
+                                        alt="" loading="lazy" (click)="viewFile(item)"
+                                        style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
+                                    <span *ngIf="po_Photo.length>0" (click)="removeFile(i)" class="fas fa-times"
+                                        style="position: absolute;top: -6px;
+                                        right: 0px;
+                                        color: red;
+                                        padding: 2px 4px;
+                                        background: white;
+                                        cursor: pointer;
+                                        border-radius: 50%;">
+                                    </span>
+                                </div>
+                            </div>
+                        </div> -->
+
+
+
+                        <!-- <div class="">
                             <label for="formFile2">completion upload</label>
                             <input type="file" class="form-control" [(ngModel)]="completionUpload" id="formFile2"
-                            (change)="uploadFile('completionPhoto')">   
-                        </div>                        
+                                (change)="uploadFile('completionPhoto')">
+                        </div> -->
                     </div>
-                </div>               
+                   
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <ng-container>
+                    <button mat-flat-button class="btn1" *ngIf="!this.isEdit; else editButton"
+                        (click)="createOrder()">submit</button>
+                </ng-container>
+                <ng-template #editButton>
+                    <button mat-flat-button class="btn1" (click)="editOrder()">edit</button>
+                </ng-template>
+            </div>
+
+        </div>
+
+
+
+
+        <div class="row align-items-end mt-5">
+            <div class="col-md-3">
+                <strong style="text-transform: capitalize;">filter by</strong>
+                <div class="form_select_div mt-3">
+                    <select class="form-control" [(ngModel)]="filterByKeyword" (change)="getFilterOrdersByCategory()">
+                        <option value="" disabled>-- choose category --</option>
+                        <option value="enquiry_id">enquiry number</option>
+                        <option value="customer">customer</option>
+                        <option value="po_number">PO number</option>
+                        <option value="po_date">PO date</option>
+                        <option value="po_type">PO type</option>
+                        <option value="basic_po_value">basic PO value</option>
+                        <option value="total_po_value">total PO value</option>
+                        <option value="scheduled_completion_date">schedule date of completion</option>
+                    </select>
+                    <span class="material-symbols-outlined">
+                        stat_minus_1
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <strong style="text-transform: capitalize;">select one</strong>
+                <div class="form_select_div mt-3">
+                    <select class="form-control" [(ngModel)]="ordersByFilter" (change)="getOrdersByFilter()">
+                        <option value="" disabled>-- choose one --</option>
+                        <option *ngFor="let item of filteredOrderListByCategory" [value]="item.name">{{isEnquiryIdFilter
+                            && item.name != null ? 'E000' + item.name + '/24-25' : isEnquiryIdFilter && item.name ==
+                            null ? 'Direct Order' : item.name}}</option>
+                    </select>
+                    <span class="material-symbols-outlined">
+                        stat_minus_1
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-5 ">
+                <h3 class="text-end" style="font-size: 20px;">total : {{ totalOrderCount }}</h3>
             </div>
         </div>
-        <div class="text-center mt-3">
-            <ng-container>
-                <button mat-flat-button class="btn1" *ngIf="!this.isEdit; else editButton"
-                    (click)="createOrder()">submit</button>
-            </ng-container>
-            <ng-template #editButton>
-                <button mat-flat-button class="btn1" (click)="editOrder()">edit</button>
-            </ng-template>
-        </div>
-
-    </div>
-
-
-
-
-    <div class="row align-items-end">
-        <div class="col-md-3">
-            <strong style="text-transform: capitalize;">filter by</strong>
-            <div class="form_select_div mt-3">
-                <select class="form-control" [(ngModel)]="filterByKeyword" (change)="getFilterOrdersByCategory()">
-                    <option value="" disabled>-- choose category --</option>
-                    <option value="enquiry_id">enquiry number</option>
-                    <option value="customer">customer</option>
-                    <option value="po_number">PO number</option>
-                    <option value="po_date">PO date</option>
-                    <option value="po_type">PO type</option>
-                    <option value="basic_po_value">basic PO value</option>
-                    <option value="total_po_value">total PO value</option>
-                    <option value="scheduled_completion_date">schedule date of completion</option>
-                </select>
-                <span class="material-symbols-outlined">
-                    stat_minus_1
-                </span>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <strong style="text-transform: capitalize;">select one</strong>
-            <div class="form_select_div mt-3">
-                <select class="form-control" [(ngModel)]="ordersByFilter" (change)="getOrdersByFilter()">
-                    <option value="" disabled>-- choose one --</option>
-                    <option *ngFor="let item of filteredOrderListByCategory" [value]="item.name">{{isEnquiryIdFilter && item.name != null ? 'E000' + item.name + '/24-25' : isEnquiryIdFilter && item.name == null ? 'Direct Order' : item.name}}</option>
-                </select>
-                <span class="material-symbols-outlined">
-                    stat_minus_1
-                </span>
-            </div>
-        </div>
-        <div class="col-md-5 ">
-            <h3 class="text-end" style="font-size: 20px;">total : {{ totalOrderCount }}</h3>
-        </div>
-    </div>
-    <div class="customer_table ">
-        <!-- <div class="listing_div"> -->
+        <div class="customer_table ">
+            <!-- <div class="listing_div"> -->
             <table class="listing_table ">
                 <tr class="table_head sticky-top">
                     <th>sl no.</th>
@@ -661,7 +783,7 @@
                 </tr>
 
             </table>
-        <!-- </div> -->
-    </div>
+            <!-- </div> -->
+        </div>
 
-</div>
+    </div>

@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 
@@ -12,6 +12,7 @@ export class CommonService {
    succContent = 'Ok';
    errContent = 'Error';
   private duration = 4000;
+  filePath = "https://sarthakcomponents.com/upload/files/";
   
 
   showAlertMessage(message: string, action: string) {
