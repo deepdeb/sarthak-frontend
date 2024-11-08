@@ -770,7 +770,7 @@ export class OrdersComponent {
     this.totalOrderCount = 0
     const data = {
       filter_by: this.filterByKeyword,
-      filter_by_value: this.ordersByFilter,
+      filter_by_value: this.ordersByFilter
     }
     this.rest.getOrdersByFilter_rest(data).subscribe((res: any) => {
       if (res.success) {

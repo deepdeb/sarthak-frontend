@@ -376,7 +376,7 @@
                 <tr *ngFor="let item of enquiryList; let i = index">
                     <td>{{ i+1 }}</td>
                     <td>E000{{ item.enquiry_id }}/24-25</td>
-                    <td>{{ item.reff_number }}</td>
+                    <td>{{ item.reff_number ? item.reff_number : 'NA' }}</td>
                     <td>{{ item.sales_person_name }}</td>
                     <td>{{ item.customer}}</td>
                     <td>{{ item.enquiry_date }}</td>
