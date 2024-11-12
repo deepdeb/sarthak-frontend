@@ -52,7 +52,7 @@
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-                <button mat-menu-item>
+                <button mat-menu-item (click)="goToMyProfile()">
                     <i class="fas fa-user-circle"></i>
                     <span class="myProfile"> My Profile</span>
                 </button>

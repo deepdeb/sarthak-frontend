@@ -1,0 +1,119 @@
+<app-header></app-header>
+<div class="container-fluid">
+    <div class="page_heading">
+        <div class="row align-items-center">
+            <div class="col-md-9">
+                <div class="page_name">
+                    <img src="assets/images/customer.png" alt="" loading="lazy">
+                    <h1 class="page_top_heading mb-0">my profile</h1>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="main_body mt-2 mb-5 ">
+        <div class="info_div">
+            <div class="page_info_heading">
+                personal info
+            </div>
+            <form class="my_form">
+                <div class="row g-2">
+                    <div class="col-md-3">
+                        <div class="form_select_div">
+                            <label>SBU</label>
+                            <input type="text" class="form-control" name="name" [(ngModel)]="sbu_id"  />
+                            <!-- <div class="form_select_div">
+                                <select class="form-control" name="sbu" [(ngModel)]="sbu_id" [disabled]="isEdit">
+                                    <option *ngFor="let item of SBUList" [value]="item.sbu_id">{{ item.sbu_name }}
+                                    </option>
+                                </select>
+                                <span class="material-symbols-outlined">
+                                    stat_minus_1
+                                </span>
+                            </div> -->
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form_select_div">
+                            <label>function</label>
+                            <input type="text" class="form-control" name="name" [(ngModel)]="functionId" />
+                            <!-- <div class="form_select_div">
+                                <select class="form-control" name="function" [(ngModel)]="functionId">
+                                    <option>-- choose function --</option>
+                                    <option *ngFor="let item of functionList" [value]="item.function_id">{{
+                                        item.function_name }}</option>
+                                </select>
+                                <span class="material-symbols-outlined">
+                                    stat_minus_1
+                                </span>
+                            </div> -->
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form_select_div ">
+                            <label>name</label>
+                            <input type="text" class="form-control" name="name" [(ngModel)]="salesPersonName" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form_select_div">
+                            <label>designation</label>
+                            <input type="text" class="form-control" name="name" [(ngModel)]="designationId" />
+
+                            <!-- <div class="form_select_div">
+                                <select class="form-control" name="designation" [(ngModel)]="designationId">
+                                    <option>--choose designation--</option>
+                                    <option *ngFor="let item of designationList" [value]="item.designation_id">{{
+                                        item.designation_name }}</option>
+                                </select>
+                                <span class="material-symbols-outlined">
+                                    stat_minus_1
+                                </span>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form_select_div">
+                            <label>mobile no.</label>
+                            <input type="text" class="form-control" name="mobile_no" maxlength="10" [(ngModel)]="mobNum"
+                                (keypress)="restrictPhone($event)">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="">
+                            <label>date of birth</label>
+                            <input type="date" class="form-control" name="dob" [(ngModel)]="DOB">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form_select_div">
+                            <label>email id</label>
+                            <input type="email" class="form-control text-lowercase" name="email_id"
+                                [(ngModel)]="emailId" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class=" ">
+                            <label>password</label>
+                            <div class="view_div view_dropdown_div">
+                                <input class="form-control text-lowercase" value="password"
+                                    [type]="hide ? 'password' : 'text'" name="password" [(ngModel)]="passWord"
+                                    autocomplete="off">
+                                <span [ngClass]="hide ? 'fa fa-eye' : 'fa fa-eye-slash'" (click)="hide = !hide"></span>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-3">
+                    <button mat-flat-button type="submit" class="btn1" >submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

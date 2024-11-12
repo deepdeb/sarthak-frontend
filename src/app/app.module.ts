@@ -30,6 +30,7 @@ import { ReportsComponent } from './my-components/reports/reports.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DetailsPageComponent } from './my-components/details-page/details-page.component';
 import { FollowUpComponent } from './my-components/follow-up/follow-up.component';
+import { MyProfileComponent } from './my-components/my-profile/my-profile.component';
 
 
 
@@ -50,7 +51,8 @@ import { FollowUpComponent } from './my-components/follow-up/follow-up.component
     PresentationComponent,
     ReportsComponent,
     DetailsPageComponent,
-    FollowUpComponent
+    FollowUpComponent,
+    MyProfileComponent
   ],
   imports: [
     BrowserModule,

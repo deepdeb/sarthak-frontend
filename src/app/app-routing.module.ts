@@ -12,6 +12,7 @@ import { PresentationComponent } from './my-components/presentation/presentation
 import { ReportsComponent } from './my-components/reports/reports.component';
 import { DetailsPageComponent } from './my-components/details-page/details-page.component';
 import { FollowUpComponent } from './my-components/follow-up/follow-up.component';
+import { MyProfileComponent } from './my-components/my-profile/my-profile.component';
 
 // import { CompanyMasterComponent } from './my-components/company-master/company-master.component';
 // import { DoctorMasterComponent } from './my-components/doctor-master/doctor-master.component';
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'reports',component:ReportsComponent },
   { path: 'detailsPage', component: DetailsPageComponent },
   { path: 'followUp', component:FollowUpComponent },
+  { path: 'myProfile', component:MyProfileComponent },
 ];
 
 @NgModule({
