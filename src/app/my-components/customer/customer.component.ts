@@ -234,7 +234,6 @@ export class CustomerComponent {
       alt_mobile: this.alt_mob_no,
       email: this.emailId,
       alt_email: this.alt_emailId,
-      // product_category_id: this.prdtCategoryId,
       product_category_id: selectedCategoryIds,
       other_product_category: this.isOthersChecked ? this.otherProductCategory : '',
       street_no: this.street_no,
@@ -351,7 +350,6 @@ export class CustomerComponent {
       }
     })
   }
-
 
   getSubSubSegmentList() {
     this.subSubSegmentList = [];

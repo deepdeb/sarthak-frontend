@@ -1,0 +1,160 @@
+<app-header></app-header>
+<div class="container-fluid">
+    <div class="page_heading">
+        <div class="row align-items-center">
+            <div class="col-md-9">
+                <div class="page_name">
+                    <img src="assets/images/reports.png" alt="" loading="lazy">
+                    <h1 class="page_top_heading mb-0">report generate</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main_body mt-4">
+        <div class="info_div mb-4">
+            <h2 style="padding-bottom: 4px;border-bottom: 1px dotted #006efdb7;">customer wise enquiry report</h2>
+            <!-- <h2 style="padding-bottom: 4px;border-bottom: 1px dotted #006efdb7;">customer wise order report</h2> -->
+
+            <div class="my_form ">
+                <div class="row g-2 align-items-center ">
+                    <div class="col-md-3">
+                        <div class="">
+                            <label>choose customer</label>
+                            <div class="form_select_div">
+                                <select class="form-control">
+                                    <option>--choose customer--</option>
+                                    <option>all customer</option>
+                                    <option value="">customer 1</option>
+                                    <option value="">customer 2</option>
+                                    <option value="">customer 3</option>
+                                    <option value="">customer 4</option>
+                                    <option value="">customer 5</option>
+
+                                </select>
+                                <span class="material-symbols-outlined">
+                                    stat_minus_1
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 col-md-3">
+                        <div class="">
+                            <label>From Date</label>
+                            <div class="form_select_div">
+                                <input type="date" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 col-md-3">
+                        <div class="">
+                            <label>To Date</label>
+                            <div class="form_select_div">
+                                <input type="date" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 col-md-3">
+                        <div class="">
+                            <label>Run Date</label>
+                            <div class="form_select_div">
+                                <input type="date" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button mat-flat-button class="btn1">generate report</button>
+                </div>
+            </div>
+
+            <div class="table-responsive mt-5">
+                <table class="table table-success table-striped table-bordered">
+                    <thead style="text-transform: capitalize;">
+                        <tr>
+                            <th scope="col">sl no</th>
+                            <th scope="col">Enquiry Date</th>
+                            <th scope="col">Source</th>
+                            <th scope="col">sub-Source</th>
+                            <th scope="col">Customer</th>
+                            <th scope="col">Principal House</th>
+                            <th scope="col">Offer Date</th>
+                            <th scope="col">Basic Value</th>
+                            <th scope="col">Date of Finalization </th>
+                            <th scope="col">Follow Up Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>1</th>
+                            <td>13/11/2024</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>TATA</td>
+                            <td>test</td>
+                            <td>23/12/2024</td>
+                            <td>1,00,000</td>
+                            <td>31/12/2024</td>
+                            <td>test</td>
+                        </tr>
+                        <tr>
+                            <th>2</th>
+                            <td>13/11/2024</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>TATA</td>
+                            <td>test</td>
+                            <td>23/12/2024</td>
+                            <td>1,00,000</td>
+                            <td>31/12/2024</td>
+                            <td>test</td>
+                        </tr>
+                        <tr>
+                            <th>3</th>
+                            <td>13/11/2024</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>TATA</td>
+                            <td>test</td>
+                            <td>23/12/2024</td>
+                            <td>1,00,000</td>
+                            <td>31/12/2024</td>
+                            <td>test</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-4 text-start">
+                <button class="btn1" style="display: flex;"  routerLink="/reports">
+                    <span class="material-symbols-outlined" style="font-size: 20px;">arrow_back_ios</span>
+                    back
+                </button>
+            </div>
+            <div class="col-md-4 text-center">
+                <button class="btn1" style="cursor: pointer;">
+                    <i class="fas fa-table"></i> <span style="margin-left: 6px;">export to excel</span>
+                </button>
+            </div>
+            <div class="col-md-4 text-end">
+                <nav class="" aria-label="Page navigation example">
+                    <ul class="pagination justify-content-end">
+                        <li class="page-item active">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            
+           
+            
+        </div>
+    </div>
+</div>

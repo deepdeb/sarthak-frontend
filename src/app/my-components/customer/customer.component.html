@@ -352,11 +352,9 @@
             <div class="col-md-3">
                 <strong style="text-transform: capitalize;">filter by</strong>
                 <div class="form_select_div mt-3">
-                    <!-- <label class="test-capitalize mb-2" style="font-size: 16px; font-weight: 500;">choose segment</label>  -->
                     <select class="form-control" [(ngModel)]="filterByKeyword" (change)="getFilterListByCategory()">
                         <option value="" disabled>-- choose category --</option>
                         <option value="salesperson">Sales Incharge</option>
-                        <!-- <option value="mentor">Mentor</option> -->
                         <option value="customer">customer</option>                        
                         <option value="segment">segment</option>
                         <option value="state">state</option>

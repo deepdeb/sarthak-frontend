@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { RestService } from 'src/app/my-services/rest.service';
+import { CommonService } from 'src/app/my-services/common.service';
 
 @Component({
   selector: 'app-reports',
@@ -6,5 +9,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./reports.component.css']
 })
 export class ReportsComponent {
+
+  
+
+  
+
+  constructor(private router: Router, private rest: RestService, private common: CommonService) { }
+
+
+  ngOnInit(): void {
+
+  }
+
+  goToReportDetails(){
+    this.router.navigate(['reportDetails'])
+  }
+
+
+
 
 }
