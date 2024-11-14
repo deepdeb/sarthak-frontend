@@ -362,9 +362,6 @@ export class OrdersComponent {
     if (file.length > 0) {
       const reader = new FileReader();
       reader.readAsDataURL(file[0]);
-
-      // console.log("file[0]", file[0])
-
       reader.onload = () => {
         const fileData = new FormData();
         // console.log("fileData", fileData)

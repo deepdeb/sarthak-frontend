@@ -556,7 +556,7 @@
                                 <input type="file" id="fileInput" name="files[]" (change)="fileUpload($event, 'poPhoto')"
                                     multiple style="position: absolute;">
                                     <label for="fileInput" id="fileLabel" *ngIf="isFileDiv" style="padding: 10px 12px;background: #030371;color: white;position: relative;border-radius: 4px;
-                                    cursor: pointer;width: 100%;text-align: center;">
+                                      cursor: pointer;width: 100%;text-align: center;">
                                         <i class="fas fa-upload "></i>
                                         <span style="margin-left: 4px;">PO upload</span>
                                     </label>
@@ -570,13 +570,8 @@
                                         alt="" loading="lazy" (click)="viewFile(item)"
                                         style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
                                             <span *ngIf="po_Photo.length>0" (click)="removeFile(i)" class="fas fa-times"
-                                        style="position: absolute;top: -6px;
-                                        right: 0px;
-                                        color: red;
-                                        padding: 2px 4px;
-                                        background: white;
-                                        cursor: pointer;
-                                        border-radius: 50%;">
+                                        style="position: absolute;top: -6px;right: 0px;color: red;padding: 2px 4px;background: white;
+                                        cursor: pointer;border-radius: 50%;">
                                     </span>
                                 </div>
                             </div>
@@ -594,7 +589,7 @@
 
 
 
-                        <!-- <div class="upload_file_area mt-3">
+                        <div class="upload_file_area mt-3">
                             <div style="position: relative; margin-bottom: 10px;">
                                 <input type="file" id="fileInput2" name="files[]" (change)="fileUpload($event, 'credentialPhoto')"
                                     multiple style="position: absolute;">
@@ -626,12 +621,12 @@
                                     </span>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
 
                     </div>
                     <div class="col-md-4">
 
-                        <!-- <div class="upload_file_area mt-3">
+                        <div class="upload_file_area mt-3">
                             <div style="position: relative; margin-bottom: 10px;">
                             <input type="file" id="fileInput3" name="files[]" (change)="fileUpload($event, 'completionPhoto')"
                                 multiple style="position: absolute;">
@@ -664,7 +659,7 @@
                                     </span>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
 
 
 
@@ -686,9 +681,7 @@
                     <button mat-flat-button class="btn1" (click)="editOrder()">edit</button>
                 </ng-template>
             </div>
-
         </div>
-
 
 
 

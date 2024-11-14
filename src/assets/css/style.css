@@ -404,7 +404,9 @@ nav.navbar .navbar-brand{
   padding: 0 !important;
 }
 .cdk-overlay-connected-position-bounding-box{
-  top: 106px !important;
+  position: relative;
+  z-index: 111111;
+  top: 98px !important;
   height: auto !important;
   width: auto !important;
 }
