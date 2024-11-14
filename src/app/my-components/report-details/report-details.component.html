@@ -13,7 +13,7 @@
 
     <div class="main_body mt-4">
             <div class="text-end">
-                <p>Run Date : 13/11/2024</p>
+                <p>Run Date : {{formattedDate}}</p>
             </div>
         <div class="info_div mb-4">
             <h2 style="padding-bottom: 4px;border-bottom: 1px dotted #006efdb7;">customer wise enquiry report</h2>
@@ -27,7 +27,7 @@
                             <div class="form_select_div">
                                 <select class="form-control">
                                     <option>--choose customer--</option>
-                                    <option>all customer</option>
+                                    <option>all</option>
                                     <option value="">customer 1</option>
                                     <option value="">customer 2</option>
                                     <option value="">customer 3</option>
@@ -67,8 +67,8 @@
                 </div> -->
             </div>
 
-            
-            <div class="table-responsive mt-5">
+            <p style="font-weight: 600;font-size: 16px;text-transform: capitalize;margin-top: 25px;">report table :------</p>
+            <div class="table-responsive mt-2">
                 <table class="table table-success table-striped table-bordered">
                     <thead style="text-transform: capitalize;">
                         <tr>
@@ -81,7 +81,7 @@
                             <th scope="col">Offer Date</th>
                             <th scope="col">Basic Value</th>
                             <th scope="col">Date of Finalization </th>
-                            <th scope="col">Follow Up Details</th>
+                            <th scope="col">Follow Up Status</th>
                         </tr>
                     </thead>
                     <tbody>

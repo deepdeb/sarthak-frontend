@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class ReportDetailsComponent {
 
+  formattedDate = new Date().toLocaleDateString('en-GB');
+
+  
 }
