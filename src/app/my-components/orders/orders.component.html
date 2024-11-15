@@ -362,14 +362,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-5 col-md-2">
+                    <!-- <div class="col-sm-5 col-md-2">
                         <div class="">
                             <label>SI offer Reff No. </label>
                             <div class="form_select_div">
                                 <input type="text" class="form-control" [(ngModel)]="reffNumber" disabled>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-md-4">
                         <div class="">
                             <label>customer</label>
@@ -569,7 +569,7 @@
                                         [src]="item.includes('.pdf') ? 'assets/images/pdf.webp': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/xlsx.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : 'assets/images/doc.jpg'"
                                         alt="" loading="lazy" (click)="viewFile(item)"
                                         style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
-                                            <span *ngIf="po_Photo.length>0" (click)="removeFile(i)" class="fas fa-times"
+                                            <span *ngIf="po_Photo.length>0" (click)="removeFile(i, 'poPhoto')" class="fas fa-times"
                                         style="position: absolute;top: -6px;right: 0px;color: red;padding: 2px 4px;background: white;
                                         cursor: pointer;border-radius: 50%;">
                                     </span>
@@ -589,7 +589,7 @@
 
 
 
-                        <div class="upload_file_area mt-3">
+                        <!-- <div class="upload_file_area mt-3">
                             <div style="position: relative; margin-bottom: 10px;">
                                 <input type="file" id="fileInput2" name="files[]" (change)="fileUpload($event, 'credentialPhoto')"
                                     multiple style="position: absolute;">
@@ -610,7 +610,7 @@
                                         [src]="item.includes('.pdf') ? 'assets/images/pdf.webp': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/xlsx.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : 'assets/images/doc.jpg'"
                                         alt="" loading="lazy" (click)="viewFile(item)"
                                         style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
-                                    <span *ngIf="po_Photo.length>0" (click)="removeFile(i)" class="fas fa-times"
+                                    <span *ngIf="credential_Photo.length>0" (click)="removeFile(i, 'credentialPhoto')" class="fas fa-times"
                                         style="position: absolute;top: -6px;
                                         right: 0px;
                                         color: red;
@@ -621,12 +621,12 @@
                                     </span>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                     </div>
                     <div class="col-md-4">
 
-                        <div class="upload_file_area mt-3">
+                        <!-- <div class="upload_file_area mt-3">
                             <div style="position: relative; margin-bottom: 10px;">
                             <input type="file" id="fileInput3" name="files[]" (change)="fileUpload($event, 'completionPhoto')"
                                 multiple style="position: absolute;">
@@ -648,7 +648,7 @@
                                         [src]="item.includes('.pdf') ? 'assets/images/pdf.webp': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/xlsx.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : 'assets/images/doc.jpg'"
                                         alt="" loading="lazy" (click)="viewFile(item)"
                                         style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
-                                    <span *ngIf="po_Photo.length>0" (click)="removeFile(i)" class="fas fa-times"
+                                    <span *ngIf="completion_Photo.length>0" (click)="removeFile(i, 'completionPhoto')" class="fas fa-times"
                                         style="position: absolute;top: -6px;
                                         right: 0px;
                                         color: red;
@@ -659,7 +659,7 @@
                                     </span>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
 
 
@@ -678,7 +678,7 @@
                         (click)="createOrder()">submit</button>
                 </ng-container>
                 <ng-template #editButton>
-                    <button mat-flat-button class="btn1" (click)="editOrder()">edit</button>
+                    <button mat-flat-button class="btn1" (click)="editOrder()">submit</button>
                 </ng-template>
             </div>
         </div>

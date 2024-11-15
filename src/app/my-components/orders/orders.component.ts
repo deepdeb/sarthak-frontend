@@ -346,44 +346,43 @@ export class OrdersComponent {
 
 
 
-  //**************  upload files in order page **************//
-  uploadFile(type: 'poPhoto' | 'completionPhoto' | 'credentialPhoto'): void {
-    let banner1 = '' as any;
-    if (type == 'poPhoto') {
-      banner1 = document.getElementById('formFile1') as HTMLInputElement
-    } else if (type == 'completionPhoto') {
-      banner1 = document.getElementById('formFile2') as HTMLInputElement
-    } else {
-      banner1 = document.getElementById('formFile3') as HTMLInputElement
-    }
-    console.log("Banner 1", banner1)
-    const file: any = banner1.files;
+  //**************  upload single file in order page **************//
+  // uploadFile(type: 'poPhoto' | 'completionPhoto' | 'credentialPhoto'): void {
+  //   let banner1 = '' as any;
+  //   if (type == 'poPhoto') {
+  //     banner1 = document.getElementById('formFile1') as HTMLInputElement
+  //   } else if (type == 'completionPhoto') {
+  //     banner1 = document.getElementById('formFile2') as HTMLInputElement
+  //   } else {
+  //     banner1 = document.getElementById('formFile3') as HTMLInputElement
+  //   }
+  //   console.log("Banner 1", banner1)
+  //   const file: any = banner1.files;
 
-    if (file.length > 0) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file[0]);
-      reader.onload = () => {
-        const fileData = new FormData();
-        // console.log("fileData", fileData)
-        fileData.append('file', file[0]);
+  //   if (file.length > 0) {
+  //     const reader = new FileReader();
+  //     reader.readAsDataURL(file[0]);
+  //     reader.onload = () => {
+  //       const fileData = new FormData();
+  //       fileData.append('file', file[0]);
 
-        this.rest.uploadFile_rest(fileData).subscribe((res: any) => {
-          if (res.success) {
-            if (type == 'poPhoto') {
-              this.po_Photo = res.response.newFilename
-            } else if (type == 'completionPhoto') {
-              this.completion_Photo = res.response.newFilename
-            } else if (type == 'credentialPhoto') {
-              this.credential_Photo = res.response.newFilename
-            }
-            this.common.showAlertMessage(res.message, this.common.succContent);
-          } else {
-            this.common.showAlertMessage(res.message, this.common.errContent);
-          }
-        })
-      };
-    }
-  }
+  //       this.rest.uploadFile_rest(fileData).subscribe((res: any) => {
+  //         if (res.success) {
+  //           if (type == 'poPhoto') {
+  //             this.po_Photo = res.response.newFilename
+  //           } else if (type == 'completionPhoto') {
+  //             this.completion_Photo = res.response.newFilename
+  //           } else if (type == 'credentialPhoto') {
+  //             this.credential_Photo = res.response.newFilename
+  //           }
+  //           this.common.showAlertMessage(res.message, this.common.succContent);
+  //         } else {
+  //           this.common.showAlertMessage(res.message, this.common.errContent);
+  //         }
+  //       })
+  //     };
+  //   }
+  // }
 
 
   //***************** upload multiple file in order page *******************//
@@ -407,21 +406,20 @@ export class OrdersComponent {
                 tempAssignmentDocAll.push(res.response[i].newFileName);
               }
               this.po_Photo = this.po_Photo ? this.po_Photo.concat(tempAssignmentDocAll) : tempAssignmentDocAll;
-              console.log('>>>', this.po_Photo)
             } else if (type == 'completionPhoto') {
               let tempAssignmentDocAll: string[] = [];
               for (var i = 0; i < res.response.length; i++) {
                 // this.FileOrgAll = this.FileOrgAll ? this.FileOrgAll + "," + res.response[i].originalFilename : res.response[i].originalFilename;
                 tempAssignmentDocAll.push(res.response[i].newFilename);
               }
-              this.completion_Photo = this.po_Photo ? this.po_Photo.concat(tempAssignmentDocAll) : tempAssignmentDocAll;
+              this.completion_Photo = this.completion_Photo ? this.completion_Photo.concat(tempAssignmentDocAll) : tempAssignmentDocAll;
             } else if (type == 'credentialPhoto') {
               let tempAssignmentDocAll: string[] = [];
               for (var i = 0; i < res.response.length; i++) {
                 // this.FileOrgAll = this.FileOrgAll ? this.FileOrgAll + "," + res.response[i].originalFilename : res.response[i].originalFilename;
                 tempAssignmentDocAll.push(res.response[i].newFilename);
               }
-              this.credential_Photo = this.po_Photo ? this.po_Photo.concat(tempAssignmentDocAll) : tempAssignmentDocAll;
+              this.credential_Photo = this.credential_Photo ? this.credential_Photo.concat(tempAssignmentDocAll) : tempAssignmentDocAll;
             }
           }
         },
@@ -443,14 +441,25 @@ export class OrdersComponent {
     window.open(viewFile, "_blank");
   }
 
-  removeFile(id: any){
-    this.fileDocAll.splice(id,1);
+  removeFile(id: any, type: string){
+    if(type == 'poPhoto') {
+      this.po_Photo.splice(id,1);
+    } else if(type == 'completionPhoto') {
+      this.completion_Photo.splice(id, 1);
+    } else if(type == 'credentialPhoto') {
+      this.credential_Photo.splice(id, 1);
+    }
   }
 
 
 
   //*********** create orders ***********//
   createOrder() {
+
+    let tempPOPhoto = this.po_Photo.join(',');
+    let tempCompletionPhoto = this.completion_Photo.join(',');
+    let tempCredentialPhoto = this.credential_Photo.join(',');
+
     if (!this.salesPersonId) {
       this.common.showAlertMessage('Please Choose a sales incharge', this.common.errContent)
       return;
@@ -520,8 +529,8 @@ export class OrdersComponent {
     //   this.common.showAlertMessage('Please select actual completion date', this.common.errContent)
     //   return;
     // }
-    if (!this.poUpload) {
-      this.common.showAlertMessage('Please set file for PO', this.common.errContent)
+    if (!this.po_Photo) {
+      this.common.showAlertMessage('Please upload file for PO', this.common.errContent)
       return;
     }
     // if(!this.completionUpload){
@@ -546,9 +555,9 @@ export class OrdersComponent {
       total_po_value: this.totalPoValue,
       scheduled_completion_date: this.completionDate,
       actual_completion_date: this.actualCompletionDate,
-      purchase_order_file: this.po_Photo,
-      completion_file: this.completion_Photo,
-      credential_file: this.credential_Photo,
+      purchase_order_file: tempPOPhoto,
+      completion_file: tempCompletionPhoto,
+      credential_file: tempCredentialPhoto,
       product: this.supplyProduct,
       supply_description: this.supplyDescription,
       brand: this.supplyBrand,
@@ -573,7 +582,7 @@ export class OrdersComponent {
         this.totalPoValue = '';
         this.completionDate = '';
         this.actualCompletionDate = null;
-        this.po_Photo = '';
+        this.po_Photo = [];
         this.completion_Photo = '';
         this.credential_Photo = '';
         this.poUpload = '';
@@ -671,16 +680,17 @@ export class OrdersComponent {
           } else{
             this.common.showAlertMessage('This is a Direct Order', this.common.succContent)
           }
+          this.reffNumber = res.response[0].reff_number
           this.basicPoValue = res.response[0].basic_po_value
           this.totalPoValue = res.response[0].total_po_value
           this.completionDate = res.response[0].scheduled_completion_date
           this.actualCompletionDate = res.response[0].actual_completion_date
-          this.po_Photo = res.response[0].purchase_order_file
-          this.completion_Photo = res.response[0].completion_file
-          this.credential_Photo = res.response[0].credential_file
-          this.poUpload = res.response[0].purchase_order_file
-          this.completionUpload = res.response[0].completion_file
-          this.credentialUpload = res.response[0].credential_file
+          this.po_Photo = res.response[0].purchase_order_file ? res.response[0].purchase_order_file.split(',') : []
+          this.completion_Photo = res.response[0].completion_file ? res.response[0].completion_file.split(',') : []
+          this.credential_Photo = res.response[0].credential_file ? res.response[0].credential_file.split(',') : []
+          // this.poUpload = res.response[0].purchase_order_file
+          // this.completionUpload = res.response[0].completion_file
+          // this.credentialUpload = res.response[0].credential_file
           this.supplyProduct = res.response[0].product
           this.supplyDescription = res.response[0].supply_description
           this.supplyBrand = res.response[0].brand
@@ -698,6 +708,11 @@ export class OrdersComponent {
 
   //*********** create orders ***********//
   editOrder() {
+
+    let tempPOPhoto = this.po_Photo.join(',');
+    let tempCompletionPhoto = this.completion_Photo.join(',');
+    let tempCredentialPhoto = this.credential_Photo.join(',');
+
     if (!this.salesPersonId) {
       this.common.showAlertMessage('Please Choose a sales incharge', this.common.errContent)
       return;
@@ -738,8 +753,8 @@ export class OrdersComponent {
     //   this.common.showAlertMessage('Please select actual completion date', this.common.errContent)
     //   return;
     // }
-    if (!this.poUpload) {
-      this.common.showAlertMessage('Please set file for PO', this.common.errContent)
+    if (!this.po_Photo) {
+      this.common.showAlertMessage('Please upload file for PO', this.common.errContent)
       return;
     }
     // if(!this.completionUpload){
@@ -764,9 +779,9 @@ export class OrdersComponent {
       total_po_value: this.totalPoValue,
       scheduled_completion_date: this.completionDate,
       actual_completion_date: this.actualCompletionDate,
-      purchase_order_file: this.po_Photo,
-      completion_file: this.completion_Photo,
-      credential_file: this.credential_Photo,
+      purchase_order_file: tempPOPhoto,
+      completion_file: tempCompletionPhoto,
+      credential_file: tempCredentialPhoto,
       product: this.supplyProduct,
       supply_description: this.supplyDescription,
       brand: this.supplyBrand,
@@ -790,7 +805,7 @@ export class OrdersComponent {
         this.totalPoValue = '';
         this.completionDate = '';
         this.actualCompletionDate = null;
-        this.po_Photo = '';
+        this.po_Photo = [];
         this.completion_Photo = '';
         this.credential_Photo = '';
         this.poUpload = '';
@@ -922,6 +937,7 @@ export class OrdersComponent {
           }
           this.customerId = res.response[0].customer_id
           this.enquiryDate = res.response[0].enquiry_date
+          console.log('enq date', this.enquiryDate);
           this.enquirySource = res.response[0].enquiry_source
           this.principalHouse = res.response[0].principal_house
           this.enquiryTypeId = res.response[0].enquiry_type_id
