@@ -631,6 +631,7 @@ export class OrdersComponent {
   getOrderById(order_id: any) {
     this.isEdit = true
     this.orderId = order_id;
+    // enquiry_id: this.enquiryId,
     const data = {
       order_id: order_id,
     }
@@ -662,6 +663,13 @@ export class OrdersComponent {
               this.sitcRow = false;
               this.csRow = true;
             }
+          }
+          this.enquiryId = res.response[0].enquiry_id
+          if(this.enquiryId != null){
+            this.getEnquiryById(this.enquiryId);
+            // this.getEnquiryList();
+          } else{
+            this.common.showAlertMessage('This is a Direct Order', this.common.succContent)
           }
           this.basicPoValue = res.response[0].basic_po_value
           this.totalPoValue = res.response[0].total_po_value
@@ -862,6 +870,7 @@ export class OrdersComponent {
       check_designation_id: localStorage.getItem('designation_id'),
       sbu_id: localStorage.getItem('sbu_id'),
       sales_person_id: localStorage.getItem('sales_person_id')
+      
     }
     this.rest.getEnquiryList_rest(data).subscribe((res: any) => {
       if (res.success) {
