@@ -404,6 +404,7 @@ export class OrdersComponent {
               for (var i = 0; i < res.response.length; i++) {
                 // this.FileOrgAll = this.FileOrgAll ? this.FileOrgAll + "," + res.response[i].originalFilename : res.response[i].originalFilename;
                 tempAssignmentDocAll.push(res.response[i].newFileName);
+                console.log('temp>>>', tempAssignmentDocAll);
               }
               this.po_Photo = this.po_Photo ? this.po_Photo.concat(tempAssignmentDocAll) : tempAssignmentDocAll;
             } else if (type == 'completionPhoto') {
@@ -411,6 +412,7 @@ export class OrdersComponent {
               for (var i = 0; i < res.response.length; i++) {
                 // this.FileOrgAll = this.FileOrgAll ? this.FileOrgAll + "," + res.response[i].originalFilename : res.response[i].originalFilename;
                 tempAssignmentDocAll.push(res.response[i].newFilename);
+                console.log('temp>>>', tempAssignmentDocAll);
               }
               this.completion_Photo = this.completion_Photo ? this.completion_Photo.concat(tempAssignmentDocAll) : tempAssignmentDocAll;
             } else if (type == 'credentialPhoto') {
@@ -418,9 +420,14 @@ export class OrdersComponent {
               for (var i = 0; i < res.response.length; i++) {
                 // this.FileOrgAll = this.FileOrgAll ? this.FileOrgAll + "," + res.response[i].originalFilename : res.response[i].originalFilename;
                 tempAssignmentDocAll.push(res.response[i].newFilename);
+                console.log('temp', tempAssignmentDocAll);
               }
               this.credential_Photo = this.credential_Photo ? this.credential_Photo.concat(tempAssignmentDocAll) : tempAssignmentDocAll;
             }
+
+            // console.log('po>>>', this.po_Photo)
+            // console.log('completion>>>', this.completion_Photo)
+            // console.log('credential>>>', this.credential_Photo)
           }
         },
         (error: any) => {
