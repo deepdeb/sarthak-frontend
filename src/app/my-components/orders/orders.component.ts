@@ -941,7 +941,6 @@ export class OrdersComponent {
           }
           this.customerId = res.response[0].customer_id
           this.enquiryDate = res.response[0].enquiry_date
-          console.log('enq date', this.enquiryDate);
           this.enquirySource = res.response[0].enquiry_source
           this.principalHouse = res.response[0].principal_house
           this.enquiryTypeId = res.response[0].enquiry_type_id

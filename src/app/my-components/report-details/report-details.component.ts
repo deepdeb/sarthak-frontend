@@ -61,7 +61,6 @@ export class ReportDetailsComponent {
         if (res.response) {
           if (res.response.length > 0) {
             this.reportList = res.response;
-            console.log('report list >>>', this.reportList)
           }
         }
       }
@@ -72,6 +71,7 @@ export class ReportDetailsComponent {
   //************ export enquiry report ************//
 
   exportEnquiryReport(type: string) {
+    this.reportType = type;
     const data = {
       customer_id: this.customerId,
       start_date: this.startDate,
