@@ -398,36 +398,30 @@ export class OrdersComponent {
       this.rest.multipleFileUpload(formData).subscribe(
         (res: any) => {
           if (res.success) {
+
             this.common.showAlertMessage(res.message, this.common.succContent);
             if(type == 'poPhoto') {
               let tempAssignmentDocAll: string[] = [];
               for (var i = 0; i < res.response.length; i++) {
                 // this.FileOrgAll = this.FileOrgAll ? this.FileOrgAll + "," + res.response[i].originalFilename : res.response[i].originalFilename;
                 tempAssignmentDocAll.push(res.response[i].newFileName);
-                console.log('temp>>>', tempAssignmentDocAll);
               }
               this.po_Photo = this.po_Photo ? this.po_Photo.concat(tempAssignmentDocAll) : tempAssignmentDocAll;
             } else if (type == 'completionPhoto') {
               let tempAssignmentDocAll: string[] = [];
               for (var i = 0; i < res.response.length; i++) {
                 // this.FileOrgAll = this.FileOrgAll ? this.FileOrgAll + "," + res.response[i].originalFilename : res.response[i].originalFilename;
-                tempAssignmentDocAll.push(res.response[i].newFilename);
-                console.log('temp>>>', tempAssignmentDocAll);
+                tempAssignmentDocAll.push(res.response[i].newFileName);
               }
               this.completion_Photo = this.completion_Photo ? this.completion_Photo.concat(tempAssignmentDocAll) : tempAssignmentDocAll;
             } else if (type == 'credentialPhoto') {
               let tempAssignmentDocAll: string[] = [];
               for (var i = 0; i < res.response.length; i++) {
                 // this.FileOrgAll = this.FileOrgAll ? this.FileOrgAll + "," + res.response[i].originalFilename : res.response[i].originalFilename;
-                tempAssignmentDocAll.push(res.response[i].newFilename);
-                console.log('temp', tempAssignmentDocAll);
+                tempAssignmentDocAll.push(res.response[i].newFileName);
               }
               this.credential_Photo = this.credential_Photo ? this.credential_Photo.concat(tempAssignmentDocAll) : tempAssignmentDocAll;
             }
-
-            // console.log('po>>>', this.po_Photo)
-            // console.log('completion>>>', this.completion_Photo)
-            // console.log('credential>>>', this.credential_Photo)
           }
         },
         (error: any) => {
@@ -463,9 +457,9 @@ export class OrdersComponent {
   //*********** create orders ***********//
   createOrder() {
 
-    let tempPOPhoto = this.po_Photo.join(',');
-    let tempCompletionPhoto = this.completion_Photo.join(',');
-    let tempCredentialPhoto = this.credential_Photo.join(',');
+    let tempPOPhoto = this.po_Photo.length > 0 ? this.po_Photo.join(',') : '';
+    let tempCompletionPhoto = this.completion_Photo.length > 0 ? this.completion_Photo.join(',') : '';
+    let tempCredentialPhoto = this.credential_Photo.length > 0 ? this.credential_Photo.join(',') : '';
 
     if (!this.salesPersonId) {
       this.common.showAlertMessage('Please Choose a sales incharge', this.common.errContent)
@@ -590,8 +584,8 @@ export class OrdersComponent {
         this.completionDate = '';
         this.actualCompletionDate = null;
         this.po_Photo = [];
-        this.completion_Photo = '';
-        this.credential_Photo = '';
+        this.completion_Photo = [];
+        this.credential_Photo = [];
         this.poUpload = '';
         this.completionUpload = '';
         this.credentialUpload = '';
@@ -607,6 +601,7 @@ export class OrdersComponent {
         this.isOthersChecked = false;
         this.csOthers = '';
         this.isOthersDisabled = true;
+        this.isDirectOrder = false;
         this.common.showAlertMessage(res.message, this.common.succContent);
         this.isDivShow = false;
         this.getOrderList();
@@ -645,6 +640,7 @@ export class OrdersComponent {
 
   //*********** Get order by ID for edit *************/
   getOrderById(order_id: any) {
+    this.enquiryId = null;
     this.isEdit = true
     this.orderId = order_id;
     // enquiry_id: this.enquiryId,
@@ -683,8 +679,8 @@ export class OrdersComponent {
           this.enquiryId = res.response[0].enquiry_id
           if(this.enquiryId != null){
             this.getEnquiryById(this.enquiryId);
-            // this.getEnquiryList();
           } else{
+            this.isDirectOrder = true;
             this.common.showAlertMessage('This is a Direct Order', this.common.succContent)
           }
           this.reffNumber = res.response[0].reff_number
@@ -716,9 +712,9 @@ export class OrdersComponent {
   //*********** create orders ***********//
   editOrder() {
 
-    let tempPOPhoto = this.po_Photo.join(',');
-    let tempCompletionPhoto = this.completion_Photo.join(',');
-    let tempCredentialPhoto = this.credential_Photo.join(',');
+    let tempPOPhoto = this.po_Photo ? this.po_Photo.join(',') : '';
+    let tempCompletionPhoto = this.completion_Photo ? this.completion_Photo.join(',') : '';
+    let tempCredentialPhoto = this.credential_Photo ? this.credential_Photo.join(',') : '';
 
     if (!this.salesPersonId) {
       this.common.showAlertMessage('Please Choose a sales incharge', this.common.errContent)
@@ -813,8 +809,8 @@ export class OrdersComponent {
         this.completionDate = '';
         this.actualCompletionDate = null;
         this.po_Photo = [];
-        this.completion_Photo = '';
-        this.credential_Photo = '';
+        this.completion_Photo = [];
+        this.credential_Photo = [];
         this.poUpload = '';
         this.completionUpload = '';
         this.credentialUpload = '';
@@ -828,6 +824,7 @@ export class OrdersComponent {
         this.csClamps = '';
         this.csHsaBox = '';
         this.isOthersChecked = false;
+        this.isDirectOrder = false;
         this.csOthers = '';
         this.isOthersDisabled = true;
         this.isEdit = false;

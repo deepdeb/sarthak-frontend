@@ -564,7 +564,7 @@
                             <div class="screenshot_div d-flex flex-wrap " >
                                 <div class="upload_doc" style="position: relative;"
                                     style="position: relative; margin: 16px 14px 8px 0;"
-                                    *ngFor="let item of po_Photo;let i=index;"> <span>{{item}}</span>
+                                    *ngFor="let item of po_Photo;let i=index;">
                                     <img class="assignImg"
                                         [src]="item.includes('.pdf') ? 'assets/images/pdf.webp': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/xlsx.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : 'assets/images/doc.jpg'"
                                         alt="" loading="lazy" (click)="viewFile(item)"
@@ -605,7 +605,7 @@
                             <div class="screenshot_div d-flex flex-wrap">
                                 <div class="upload_doc" style="position: relative;"
                                     style="position: relative; margin: 16px 12px 8px 0;"
-                                    *ngFor="let item of credential_Photo;let i=index;"> <span>{{item}}</span>
+                                    *ngFor="let item of credential_Photo;let i=index;">
                                     <img class="assignImg"
                                         [src]="item.includes('.pdf') ? 'assets/images/pdf.webp': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/xlsx.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : 'assets/images/doc.jpg'"
                                         alt="" loading="lazy" (click)="viewFile(item)"
@@ -643,7 +643,7 @@
                             <div class="screenshot_div d-flex flex-wrap">
                                 <div class="upload_doc" style="position: relative;"
                                     style="position: relative; margin: 16px 12px 8px 0;"
-                                    *ngFor="let item of completion_Photo;let i=index;"> <span>{{item}}</span>
+                                    *ngFor="let item of completion_Photo;let i=index;">
                                     <img class="assignImg"
                                         [src]="item.includes('.pdf') ? 'assets/images/pdf.webp': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/xlsx.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : 'assets/images/doc.jpg'"
                                         alt="" loading="lazy" (click)="viewFile(item)"
