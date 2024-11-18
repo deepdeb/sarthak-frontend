@@ -27,7 +27,7 @@
                             <div class="form_select_div">
                                 <select class="form-control" [(ngModel)]="customerId">
                                     <option value="" disabled>--choose customer--</option>
-                                    <option value="">all</option>
+                                    <option value=0>all</option>
                                     <option *ngFor="let item of customerList" [value]="item.customer_id">{{
                                         item.customer }}</option>
                                 </select>

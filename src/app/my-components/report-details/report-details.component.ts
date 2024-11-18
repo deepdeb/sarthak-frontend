@@ -38,8 +38,17 @@ export class ReportDetailsComponent {
         this.customerList = [];
         if (res.response) {
           if (res.response.length > 0) {
-            this.customerList = res.response;
-            // this.totalCustomerCount = res.total_count;
+            this.customerList = res.response.sort((a: any, b: any) => {
+              if(a.customer < b.customer) {
+                return -1;
+              }
+              if(a.customer > b.customer) {
+                return 1;
+              }
+              return 0;
+            })
+
+            console.log('>>>', this.customerList)
           }
         }
       }
