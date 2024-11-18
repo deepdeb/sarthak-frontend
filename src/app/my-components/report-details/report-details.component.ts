@@ -47,8 +47,6 @@ export class ReportDetailsComponent {
               }
               return 0;
             })
-
-            console.log('>>>', this.customerList)
           }
         }
       }
