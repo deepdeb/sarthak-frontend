@@ -291,4 +291,15 @@ export class RestService {
     return this.http.post(this.API_ROOT + 'common/multipleFileUpload', data);
   }
 
+  //********** show Enquiry Report function **********//
+  showEnquiryReport_rest(data: any){
+    return this.http.post(this.API_ROOT + 'common/getEnquiryReport', data, httpOptions);
+  }
+
+  //********** export enquiry report function **********//
+  exportEnquiryReport_rest(data: any): Observable<any> {
+    const options = { responseType: 'blob' as 'json' };
+    return this.http.post(this.API_ROOT + 'common/getEnquiryReport', data, options);
+  }
+
 }

@@ -21,19 +21,15 @@
 
             <div class="my_form ">
                 <div class="row g-2 align-items-center ">
-                    <div class="col-md-3">
+                    <div class="col-md-5">
                         <div class="">
                             <label>choose customer</label>
                             <div class="form_select_div">
-                                <select class="form-control">
-                                    <option>--choose customer--</option>
-                                    <option>all</option>
-                                    <option value="">customer 1</option>
-                                    <option value="">customer 2</option>
-                                    <option value="">customer 3</option>
-                                    <option value="">customer 4</option>
-                                    <option value="">customer 5</option>
-
+                                <select class="form-control" [(ngModel)]="customerId">
+                                    <option value="" disabled>--choose customer--</option>
+                                    <option value="">all</option>
+                                    <option *ngFor="let item of customerList" [value]="item.customer_id">{{
+                                        item.customer }}</option>
                                 </select>
                                 <span class="material-symbols-outlined">
                                     stat_minus_1
@@ -41,24 +37,24 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-5 col-md-3">
+                    <div class="col-sm-5 col-md-2">
                         <div class="">
                             <label>From Date</label>
                             <div class="form_select_div">
-                                <input type="date" class="form-control">
+                                <input type="date" class="form-control" [(ngModel)]="startDate">
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-5 col-md-3">
+                    <div class="col-sm-5 col-md-2">
                         <div class="">
                             <label>To Date</label>
                             <div class="form_select_div">
-                                <input type="date" class="form-control">
+                                <input type="date" class="form-control" [(ngModel)]="endDate">
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <button mat-flat-button class="btn1">show report</button>
+                        <button mat-flat-button class="btn1" (click)="showEnquiryReport('show')">show report</button>
                     </div>
                    
                 </div>
@@ -75,7 +71,7 @@
                             <th scope="col">sl no</th>
                             <th scope="col">Enquiry Date</th>
                             <th scope="col">Source</th>
-                            <th scope="col">sub-Source</th>
+                            <th scope="col">sub-type</th>
                             <th scope="col">Customer</th>
                             <th scope="col">Principal House</th>
                             <th scope="col">Offer Date</th>
@@ -85,41 +81,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th>1</th>
-                            <td>13/11/2024</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>TATA</td>
-                            <td>test</td>
-                            <td>23/12/2024</td>
-                            <td>1,00,000</td>
-                            <td>31/12/2024</td>
-                            <td>test</td>
-                        </tr>
-                        <tr>
-                            <th>2</th>
-                            <td>13/11/2024</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>TATA</td>
-                            <td>test</td>
-                            <td>23/12/2024</td>
-                            <td>1,00,000</td>
-                            <td>31/12/2024</td>
-                            <td>test</td>
-                        </tr>
-                        <tr>
-                            <th>3</th>
-                            <td>13/11/2024</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>TATA</td>
-                            <td>test</td>
-                            <td>23/12/2024</td>
-                            <td>1,00,000</td>
-                            <td>31/12/2024</td>
-                            <td>test</td>
+                        <tr *ngFor="let item of reportList; let i = index">
+                            <th>{{ i+1 }}</th>
+                            <td>{{ item.enquiry_date }}</td>
+                            <td>{{ item.enquiry_source }}</td>
+                            <td>{{ item.enquiry_sub_type_name }}</td>
+                            <td>{{ item.customer }}</td>
+                            <td>{{ item.principal_house }}</td>
+                            <td>{{ item.offer_date }}</td>
+                            <td>{{ item.basic_value }}</td>
+                            <td>{{ item.tentative_finalization_month && item.tentative_finalization_year ? item.tentative_finalization_month + '/' + item.tentative_finalization_year : '' }}</td>
+                            <td>{{ item.status }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -133,7 +105,7 @@
                 </button>
             </div>
             <div class="col-md-4 text-center">
-                <button class="btn1" style="cursor: pointer;">
+                <button class="btn1" style="cursor: pointer;" (click)="exportEnquiryReport('export')">
                     <i class="fas fa-table"></i> <span style="margin-left: 6px;">export to excel</span>
                 </button>
             </div>
