@@ -56,6 +56,19 @@ export class ReportDetailsComponent {
 
   //************ show enquiry report ************//
   showEnquiryReport(type: string) {
+    if(!this.customerId) {
+      this.common.showAlertMessage('Select Customer', this.common.errContent);
+      return;
+    }
+    if(!this.startDate) {
+      this.common.showAlertMessage('Select Start Date', this.common.errContent);
+      return;
+    }
+    if(!this.endDate) {
+      this.common.showAlertMessage('Select End Date', this.common.errContent)
+      return
+    }
+    this.reportList = [];
     this.reportType = type;
     const data = {
       customer_id: this.customerId,
@@ -78,6 +91,18 @@ export class ReportDetailsComponent {
   //************ export enquiry report ************//
 
   exportEnquiryReport(type: string) {
+    if(!this.customerId) {
+      this.common.showAlertMessage('Select Customer', this.common.errContent)
+      return
+    }
+    if(!this.startDate) {
+      this.common.showAlertMessage('Select Start Date', this.common.errContent)
+      return
+    }
+    if(!this.endDate) {
+      this.common.showAlertMessage('Select End Date', this.common.errContent)
+      return
+    }
     this.reportType = type;
     const data = {
       customer_id: this.customerId,

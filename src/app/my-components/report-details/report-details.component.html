@@ -12,9 +12,9 @@
     </div>
 
     <div class="main_body mt-4">
-            <div class="text-end">
-                <p>Run Date : {{formattedDate}}</p>
-            </div>
+        <div class="text-end">
+            <p>Run Date : {{formattedDate}}</p>
+        </div>
         <div class="info_div mb-4">
             <h2 style="padding-bottom: 4px;border-bottom: 1px dotted #006efdb7;">customer wise enquiry report</h2>
             <!-- <h2 style="padding-bottom: 4px;border-bottom: 1px dotted #006efdb7;">customer wise order report</h2> -->
@@ -56,14 +56,15 @@
                     <div class="col-md-3">
                         <button mat-flat-button class="btn1" (click)="showEnquiryReport('show')">show report</button>
                     </div>
-                   
+
                 </div>
                 <!-- <div class="text-center">
                     <button mat-flat-button class="btn1">generate report</button>
                 </div> -->
             </div>
 
-            <p style="font-weight: 600;font-size: 16px;text-transform: capitalize;margin-top: 25px;">report table :------</p>
+            <p style="font-weight: 600;font-size: 16px;text-transform: capitalize;margin-top: 25px;">report table
+                :------</p>
             <div class="table-responsive mt-2">
                 <table class="table table-success table-striped table-bordered">
                     <thead style="text-transform: capitalize;">
@@ -81,8 +82,11 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr *ngIf="reportList.length === 0">
+                            <td colspan="12" class="text-center">No records found</td>
+                        </tr>
                         <tr *ngFor="let item of reportList; let i = index">
-                            <th>{{ i+1 }}</th>
+                            <td>{{ i+1 }}</td>
                             <td>{{ item.enquiry_date }}</td>
                             <td>{{ item.enquiry_source }}</td>
                             <td>{{ item.enquiry_sub_type_name }}</td>
@@ -90,7 +94,9 @@
                             <td>{{ item.principal_house }}</td>
                             <td>{{ item.offer_date }}</td>
                             <td>{{ item.basic_value }}</td>
-                            <td>{{ item.tentative_finalization_month && item.tentative_finalization_year ? item.tentative_finalization_month + '/' + item.tentative_finalization_year : '' }}</td>
+                            <td>{{ item.tentative_finalization_month && item.tentative_finalization_year ?
+                                item.tentative_finalization_month + '/' + item.tentative_finalization_year : '' }}
+                            </td>
                             <td>{{ item.status }}</td>
                         </tr>
                     </tbody>
@@ -99,7 +105,7 @@
         </div>
         <div class="row mb-4">
             <div class="col-md-4 text-start">
-                <button class="btn1" style="display: flex;"  routerLink="/reports">
+                <button class="btn1" style="display: flex;" routerLink="/reports">
                     <span class="material-symbols-outlined" style="font-size: 20px;">arrow_back_ios</span>
                     back
                 </button>
@@ -124,9 +130,9 @@
                     </ul>
                 </nav>
             </div>
-            
-           
-            
+
+
+
         </div>
     </div>
 </div>
