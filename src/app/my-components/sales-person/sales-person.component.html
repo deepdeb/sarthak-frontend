@@ -48,6 +48,9 @@
 
 
     <div class="main_body mt-2 mb-5 ">
+        <div class="text-start mb-4" [hidden]="!isEdit" *ngIf="checkDesignationId != 4">
+            <button class="new_btn " (click)="newForm()" style="font-size: 0 !important; display: flex;"><span class="material-symbols-outlined" style="font-size: 18px;">arrow_back_ios</span></button>
+        </div>
         <div class="info_div">
             <div class="page_info_heading">
                 personal info

@@ -267,4 +267,9 @@ export class SalesPersonComponent implements OnInit {
   //     this.isMentorVisible = true;
   //   }
   // }
+
+   // **************** new form logic  ********************//
+   newForm() {
+    window.location.reload()
+  }
 }

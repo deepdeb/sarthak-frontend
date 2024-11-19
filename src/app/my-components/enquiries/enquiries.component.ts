@@ -620,6 +620,7 @@ export class EnquiriesComponent {
       }
     })
   }
+  
 }
 
 
