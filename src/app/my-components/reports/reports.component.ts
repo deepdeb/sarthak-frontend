@@ -22,8 +22,8 @@ export class ReportsComponent {
 
   }
 
-  goToReportDetails(){
-    this.router.navigate(['reportDetails'])
+  goToReportDetails(reportNavigationType : any){
+    this.router.navigate(['reportDetails'], { queryParams: { reportNavigationType: reportNavigationType }});
   }
 
 

@@ -12,7 +12,7 @@
     </div>
 
     <!--------- customer wise enquiry report start -------------->
-    <div class="main_body mt-4">
+    <div *ngIf="reportNavigationType == 'enquiry'" class="main_body mt-4">
         <div class="text-end">
             <p>Run Date : {{formattedDate}}</p>
         </div>
@@ -139,8 +139,8 @@
 
 
 
-    <!----------------- customer wise order report start ------------->
-    <div class="main_body mt-4">
+    <!-- --------------- customer wise order report start ----------- -->
+    <div *ngIf="reportNavigationType == 'order'" class="main_body mt-4">
         <div class="text-end">
             <p>Run Date : {{formattedDate}}</p>
         </div>
@@ -182,7 +182,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <button mat-flat-button class="btn1" (click)="showEnquiryReport('show')">show report</button>
+                        <button mat-flat-button class="btn1" (click)="showOrderReport('show')">show report</button>
                     </div>
                 </div>
             </div>
@@ -211,17 +211,15 @@
                         </tr>
                         <tr *ngFor="let item of reportList; let i = index">
                             <td>{{ i+1 }}</td>
-                            <td>{{ item.enquiry_date }}</td>
-                            <td>{{ item.enquiry_source }}</td>
-                            <td>{{ item.enquiry_sub_type_name }}</td>
                             <td>{{ item.customer }}</td>
-                            <td>{{ item.principal_house }}</td>
-                            <td>{{ item.offer_date }}</td>
-                            <td>{{ item.basic_value }}</td>
-                            <td>{{ item.tentative_finalization_month && item.tentative_finalization_year ?
-                                item.tentative_finalization_month + '/' + item.tentative_finalization_year : '' }}
-                            </td>
-                            <td>{{ item.status }}</td>
+                            <td>{{ item.po_date }}</td>
+                            <td>{{ item.po_number }}</td>
+                            <td>{{ item.po_type_name }}</td>
+                            <td>{{ item.po_subtype_name }}</td>
+                            <td>{{ item.basic_po_value }}</td>
+                            <td>{{ item.total_po_value }}</td>
+                            <td>{{ item.scheduled_completion_date }}</td>
+                            <td>{{ item.actual_completion_date }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -235,7 +233,7 @@
                 </button>
             </div>
             <div class="col-md-4 text-center">
-                <button class="btn1" style="cursor: pointer;" (click)="exportEnquiryReport('export')">
+                <button class="btn1" style="cursor: pointer;" (click)="exportOrderReport('export')">
                     <i class="fas fa-table"></i> <span style="margin-left: 6px;">export to excel</span>
                 </button>
             </div>

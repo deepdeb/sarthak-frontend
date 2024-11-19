@@ -120,8 +120,8 @@ export class RestService {
 
 
   //*************** for mentor list start ************//
-  getMentorList_rest(data :any): Observable<any>{
-    return this.http.post(this.API_ROOT + 'director/getMentorList',data, httpOptions)
+  getMentorList_rest(data: any): Observable<any> {
+    return this.http.post(this.API_ROOT + 'director/getMentorList', data, httpOptions)
   }
 
 
@@ -194,21 +194,21 @@ export class RestService {
 
 
   //********** edit & show details for only one enquiry start **********//
-  getEnquiryById_rest(data: any): Observable<any>{
+  getEnquiryById_rest(data: any): Observable<any> {
     return this.http.post(this.API_ROOT + 'common/getEnquiryById', data, httpOptions)
   }
 
 
 
   // for customer filter //
-  getFilterListByCategory_rest(data: any): Observable<any>{
-    return this.http.post(this.API_ROOT + 'common/filterListByCategory',data,httpOptions)
+  getFilterListByCategory_rest(data: any): Observable<any> {
+    return this.http.post(this.API_ROOT + 'common/filterListByCategory', data, httpOptions)
   }
 
 
   // for customer filter //
-  getCustomersByFilter_rest(data: any): Observable<any>{
-    return this.http.post(this.API_ROOT + 'common/getCustomersByFilter',data,httpOptions)
+  getCustomersByFilter_rest(data: any): Observable<any> {
+    return this.http.post(this.API_ROOT + 'common/getCustomersByFilter', data, httpOptions)
   }
 
 
@@ -216,19 +216,19 @@ export class RestService {
 
   // follow up creation //
 
-  createFollowUp_rest(data: any): Observable<any>{
-    return this.http.post(this.API_ROOT + 'common/createFollowUp', data,httpOptions)
+  createFollowUp_rest(data: any): Observable<any> {
+    return this.http.post(this.API_ROOT + 'common/createFollowUp', data, httpOptions)
   }
 
   //************* get follow-up *************//
-  getFollowUpById_rest(data: any):Observable<any>{
+  getFollowUpById_rest(data: any): Observable<any> {
     return this.http.post(this.API_ROOT + 'common/getFollowUpById', data, httpOptions)
   }
 
 
 
   //*********** get PO-type list ***********//
-  getPOtypeList_rest(): Observable<any>{
+  getPOtypeList_rest(): Observable<any> {
     return this.http.get(this.API_ROOT + 'common/getPOTypeList', httpOptions)
   }
 
@@ -240,59 +240,59 @@ export class RestService {
 
 
   //*********** upload file ***********//
-  uploadFile_rest(data: any): Observable<any>{
-    return this.http.post(this.API_ROOT + 'common/fileUpload',data )
+  uploadFile_rest(data: any): Observable<any> {
+    return this.http.post(this.API_ROOT + 'common/fileUpload', data)
   }
 
 
   //************* create order *************//
-  createOrder_rest(data: any): Observable<any>{
+  createOrder_rest(data: any): Observable<any> {
     return this.http.post(this.API_ROOT + 'common/createOrder', data, httpOptions)
   }
 
   //************* edit order **************//
-  editOrder_rest(data: any): Observable<any>{
+  editOrder_rest(data: any): Observable<any> {
     return this.http.post(this.API_ROOT + 'common/editOrder', data, httpOptions)
   }
 
   //************ order listing ************//
-  getOrderList_rest(data :any): Observable<any>{
+  getOrderList_rest(data: any): Observable<any> {
     return this.http.post(this.API_ROOT + 'common/getOrderList', data, httpOptions)
   }
   //************ order details by ID ************//
-  getOrderById_rest(data: any): Observable<any>{
+  getOrderById_rest(data: any): Observable<any> {
     return this.http.post(this.API_ROOT + 'common/getOrderById', data, httpOptions)
   }
 
 
   //************ for enquiry filter *************//
-  getFilterEnquiryByCategory_rest(data: any): Observable<any>{
+  getFilterEnquiryByCategory_rest(data: any): Observable<any> {
     return this.http.post(this.API_ROOT + 'common/filterEnquiryCategory', data, httpOptions)
   }
 
   //************ for enquiry filter ************//
-  getEnquiriesByFilter_rest(data: any): Observable<any>{
+  getEnquiriesByFilter_rest(data: any): Observable<any> {
     return this.http.post(this.API_ROOT + 'common/getEnquiriesByFilter', data, httpOptions)
   }
 
   //************ for order filter *************/
-  getFilterOrdersByCategory_rest(data: any): Observable<any>{
+  getFilterOrdersByCategory_rest(data: any): Observable<any> {
     return this.http.post(this.API_ROOT + 'common/filterOrderCategory', data, httpOptions)
   }
 
   //************ for order filter *************/
-  getOrdersByFilter_rest(data: any): Observable<any>{
+  getOrdersByFilter_rest(data: any): Observable<any> {
     return this.http.post(this.API_ROOT + '/common/getOrdersByFilter', data, httpOptions)
   }
 
 
 
-  multipleFileUpload(data: any){
+  multipleFileUpload(data: any) {
     return this.http.post(this.API_ROOT + 'common/multipleFileUpload', data);
   }
 
   //********** show Enquiry Report function **********//
-  showEnquiryReport_rest(data: any){
+  showEnquiryReport_rest(data: any) {
     return this.http.post(this.API_ROOT + 'common/getEnquiryReport', data, httpOptions);
   }
 
@@ -300,6 +300,17 @@ export class RestService {
   exportEnquiryReport_rest(data: any): Observable<any> {
     const options = { responseType: 'blob' as 'json' };
     return this.http.post(this.API_ROOT + 'common/getEnquiryReport', data, options);
+  }
+
+  //********** show Order Report function **********//
+  showOrderReport_rest(data: any) {
+    return this.http.post(this.API_ROOT + 'common/getOrderReport', data, httpOptions);
+  }
+
+  //********** export enquiry report function **********//
+  exportOrderReport_rest(data: any): Observable<any> {
+    const options = { responseType: 'blob' as 'json' };
+    return this.http.post(this.API_ROOT + 'common/getOrderReport', data, options);
   }
 
 }
