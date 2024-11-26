@@ -22,9 +22,12 @@ export class ReportDetailsComponent {
   reportType: string = '';
   reportList: any = [];
   reportNavigationType: string = '';
+  maxDate = '' as any;
 
   constructor(private router: Router, private rest: RestService, private common: CommonService, private route: ActivatedRoute) { 
     this.dateFormat = new Date();
+    const today = new Date();
+    this.maxDate = today.toISOString().split('T')[0];
   }
 
   ngOnInit(): void {

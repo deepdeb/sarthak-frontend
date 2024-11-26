@@ -50,7 +50,7 @@
                         <div class="">
                             <label>To Date</label>
                             <div class="form_select_div">
-                                <input type="date" class="form-control" [(ngModel)]="endDate">
+                                <input type="date" class="form-control" [max]="maxDate" [(ngModel)]="endDate">
                             </div>
                         </div>
                     </div>
