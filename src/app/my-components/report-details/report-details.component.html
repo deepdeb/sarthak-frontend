@@ -64,8 +64,10 @@
                 </div> -->
             </div>
 
-            <p style="font-weight: 600;font-size: 16px;text-transform: capitalize;margin-top: 25px;">report table
-                :------</p>
+
+            <p *ngIf="customerId && startDate && endDate" style="font-weight: 600;font-size: 16px;margin: 25px 0 16px;text-align: center;">
+                Customer wise Enquiry Report {{ startDate | date: 'dd'}}/{{ startDate | date: 'MM'}}/{{ startDate | date: 'yyyy'}} to {{ endDate | date: 'dd'}}/{{ endDate | date: 'MM'}}/{{ endDate | date: 'yyyy'}}</p>
+           
             <div class="table-responsive mt-2">
                 <table class="table table-success table-striped table-bordered">
                     <thead style="text-transform: capitalize;">
@@ -116,7 +118,7 @@
                     <i class="fas fa-table"></i> <span style="margin-left: 6px;">export to excel</span>
                 </button>
             </div>
-            <div class="col-md-4 text-end">
+            <!-- <div class="col-md-4 text-end">
                 <nav class="" aria-label="Page navigation example">
                     <ul class="pagination justify-content-end">
                         <li class="page-item active">
@@ -130,7 +132,7 @@
                         </li>
                     </ul>
                 </nav>
-            </div>
+            </div> -->
 
 
 
@@ -187,8 +189,8 @@
                 </div>
             </div>
 
-            <p style="font-weight: 600;font-size: 16px;text-transform: capitalize;margin-top: 25px;">report table
-                :------</p>
+            <p *ngIf="customerId && startDate && endDate" style="font-weight: 600;font-size: 16px;text-transform: capitalize;margin: 25px 0 16px;text-align: center;">
+                customer wise Order Report {{ startDate }} to {{ endDate }}</p>
             <div class="table-responsive mt-2">
                 <table class="table table-success table-striped table-bordered">
                     <thead style="text-transform: capitalize;">
@@ -237,7 +239,7 @@
                     <i class="fas fa-table"></i> <span style="margin-left: 6px;">export to excel</span>
                 </button>
             </div>
-            <div class="col-md-4 text-end">
+            <!-- <div class="col-md-4 text-end">
                 <nav class="" aria-label="Page navigation example">
                     <ul class="pagination justify-content-end">
                         <li class="page-item active">
@@ -251,7 +253,7 @@
                         </li>
                     </ul>
                 </nav>
-            </div>
+            </div> -->
 
 
 

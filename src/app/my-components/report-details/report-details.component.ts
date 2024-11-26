@@ -16,13 +16,16 @@ export class ReportDetailsComponent {
 
   customerList: any = [];
   customerId = '' as any;
-  startDate: any;
-  endDate: any;
+  startDate = '' as any;
+  endDate = '' as any;
+  dateFormat = '' as any;
   reportType: string = '';
   reportList: any = [];
   reportNavigationType: string = '';
 
-  constructor(private router: Router, private rest: RestService, private common: CommonService, private route: ActivatedRoute) { }
+  constructor(private router: Router, private rest: RestService, private common: CommonService, private route: ActivatedRoute) { 
+    this.dateFormat = new Date();
+  }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -62,12 +65,12 @@ export class ReportDetailsComponent {
   //************ show enquiry report ************//
   showEnquiryReport(type: string) {
     if (!this.customerId) {
-      this.common.showAlertMessage('Select Customer', this.common.errContent);
-      return;
+      this.common.showAlertMessage('Select Customer', this.common.errContent)
+      return
     }
     if (!this.startDate) {
-      this.common.showAlertMessage('Select Start Date', this.common.errContent);
-      return;
+      this.common.showAlertMessage('Select Start Date', this.common.errContent)
+      return
     }
     if (!this.endDate) {
       this.common.showAlertMessage('Select End Date', this.common.errContent)
