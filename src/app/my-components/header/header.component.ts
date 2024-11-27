@@ -25,9 +25,14 @@ export class HeaderComponent implements OnInit {
     
   }
   goToMyProfile(){
-    this.router.navigate(['myProfile'])
-    
+    this.router.navigate(['myProfile'])    
   }
+
+  goToAddCompany(){
+    this.router.navigate(['addCompany'])
+  }
+
+
   // goToDashboard(){
   //   this.router.navigate(['dashboard']) 
   // }

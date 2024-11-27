@@ -32,6 +32,7 @@ import { DetailsPageComponent } from './my-components/details-page/details-page.
 import { FollowUpComponent } from './my-components/follow-up/follow-up.component';
 import { MyProfileComponent } from './my-components/my-profile/my-profile.component';
 import { ReportDetailsComponent } from './my-components/report-details/report-details.component';
+import { AddCompanyComponent } from './my-components/add-company/add-company.component';
 
 
 
@@ -54,7 +55,8 @@ import { ReportDetailsComponent } from './my-components/report-details/report-de
     DetailsPageComponent,
     FollowUpComponent,
     MyProfileComponent,
-    ReportDetailsComponent
+    ReportDetailsComponent,
+    AddCompanyComponent
   ],
   imports: [
     BrowserModule,

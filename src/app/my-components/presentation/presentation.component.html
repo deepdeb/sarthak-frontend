@@ -31,7 +31,6 @@
                 <li (click)="company_profile_up()" [ngClass]="{'active': activeLinkUp === 'company_profile_up'}">company profile</li>
                 <li (click)="important_documents_up()" [ngClass]="{'active': activeLinkUp === 'important_documents_up'}">important documents</li>
                 <li (click)="principal_house_up()" [ngClass]="{'active': activeLinkUp === 'principal_house_up'}">principal house</li>
-                <li (click)="new_company_entry()" [ngClass]="{'active': activeLinkUp === 'new_company_entry'}">add company</li>
             </ul>
 
             <div class="upload_document_div company_profile" *ngIf="comp_pro_up">
@@ -199,75 +198,7 @@
                 </div>
             </div>
 
-            <div class="upload_document_div company_profile" *ngIf="new_comp_entry">
-                <div class="main_body ">
-                    <div class="my_form ">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="form_select_div">
-                                    <label>company name</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form_select_div">
-                                    <label>contact person</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form_select_div ">
-                                    <label>contact number</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form_select_div">
-                                    <label>email id</label>
-                                    <input type="email" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form_select_div">
-                                    <label>address</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form_select_div">
-                                    <label>city</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="">
-                                    <label>state</label>
-                                    <div class="form_select_div">
-                                        <select class="form-control" name="cars" id="cars">
-                                            <option>--choose state--</option>
-                                            <option value="Sarthak Components">Sarthak Components</option>
-                                            <option value="Sarthak Power">Sarthak Power</option>
-                                        </select>
-                                        <span class="material-symbols-outlined">
-                                            stat_minus_1
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="">
-                                    <label>PIN</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-center mt-3">
-                        <button mat-flat-button class="btn1 me-2">submit</button>
-                        <button mat-flat-button class="btn1">edit</button>
-                    </div>
-                </div>
-            </div>
+         
         </div>
     </div>
 
@@ -282,7 +213,7 @@
                 <li (click)="company_profile_down()" [ngClass]="{'active': activeLinkDown === 'company_profile_down'}">company profile</li>
                 <li (click)="important_documents_down()" [ngClass]="{'active': activeLinkDown === 'important_documents_down'}">important documents</li>
                 <li (click)="principal_house_down()" [ngClass]="{'active': activeLinkDown === 'principal_house_down'}">principal house</li>
-                <li (click)="new_company_show()" [ngClass]="{'active': activeLinkDown === 'new_company_show'}">new company</li>
+                
             </ul>
 
             <div class="listing_div" style="width: 30%;" *ngIf="comp_pro_down">
@@ -438,71 +369,7 @@
                 </table>
             </div>
 
-            <div class="listing_div" *ngIf="new_comp_show">
-                <div class="main_body " >
-                    <div class="my_form ">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="form_select_div">
-                                    <label>company name</label>
-                                    <input type="text" class="form-control" readonly>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form_select_div">
-                                    <label>contact person</label>
-                                    <input type="text" class="form-control" readonly>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form_select_div ">
-                                    <label>contact number</label>
-                                    <input type="text" class="form-control" readonly>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form_select_div">
-                                    <label>email id</label>
-                                    <input type="email" class="form-control" readonly>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form_select_div">
-                                    <label>address</label>
-                                    <input type="text" class="form-control" readonly>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form_select_div">
-                                    <label>city</label>
-                                    <input type="text" class="form-control" readonly>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="">
-                                    <label>state</label>
-                                    <div class="form_select_div">
-                                        <select class="form-control" name="cars" id="cars">
-                                            <option>--choose state--</option>
-                                            <option value="Sarthak Components">Sarthak Components</option>
-                                            <option value="Sarthak Power">Sarthak Power</option>
-                                        </select>
-                                        <span class="material-symbols-outlined">
-                                            stat_minus_1
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="">
-                                    <label>PIN</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           
         </div>
     </div>
 

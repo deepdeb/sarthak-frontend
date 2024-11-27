@@ -23,9 +23,12 @@ export class ReportDetailsComponent {
   reportList: any = [];
   reportNavigationType: string = '';
   maxDate = '' as any;
+  isNoRecord = false as boolean;
+
 
   constructor(private router: Router, private rest: RestService, private common: CommonService, private route: ActivatedRoute) { 
     this.dateFormat = new Date();
+    
     const today = new Date();
     this.maxDate = today.toISOString().split('T')[0];
   }
@@ -90,8 +93,12 @@ export class ReportDetailsComponent {
     this.rest.showEnquiryReport_rest(data).subscribe((res: any) => {
       if (res.success) {
         if (res.response) {
+          if(res.response.length == 0){
+            this.isNoRecord = true
+          }
           if (res.response.length > 0) {
             this.reportList = res.response;
+            this.isNoRecord = false;
           }
         }
       }
@@ -161,8 +168,12 @@ export class ReportDetailsComponent {
     this.rest.showOrderReport_rest(data).subscribe((res: any) => {
       if (res.success) {
         if (res.response) {
+          if(res.response.length == 0){
+            this.isNoRecord = true
+          }
           if (res.response.length > 0) {
             this.reportList = res.response;
+            this.isNoRecord = false
           }
         }
       }
