@@ -37,17 +37,18 @@ export class ReportDetailsComponent {
     this.route.queryParams.subscribe(params => {
       this.reportNavigationType = params['reportNavigationType'];
     })
-    this.getCustomerList()
+    this.getCustomerListForEnquiryOrder()
   }
 
   //********** For get Customer List **********//
-  getCustomerList() {
+  getCustomerListForEnquiryOrder() {
     const data = {
       check_designation_id: localStorage.getItem('designation_id'),
       sbu_id: localStorage.getItem('sbu_id'),
-      sales_person_id: localStorage.getItem('sales_person_id')
+      sales_person_id: localStorage.getItem('sales_person_id'),
+      report_navigation_type: this.reportNavigationType
     };
-    this.rest.getCustomerList_rest(data).subscribe((res: any) => {
+    this.rest.getCustomerListForEnquiryOrder_rest(data).subscribe((res: any) => {
       if (res.success) {
         this.customerList = [];
         if (res.response) {

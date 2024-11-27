@@ -141,6 +141,10 @@ export class RestService {
   // ************* for customer listing start **************//
 
 
+  // ************* for customer list for enquiry order ***************//
+  getCustomerListForEnquiryOrder_rest(data: any): Observable<any> {
+    return this.http.post(this.API_ROOT + 'common/getCustomerListForEnquiryOrder', data, httpOptions)
+  }
 
   // ************* for customer list by salesperson start ***********//
   getCustomerListBySalesperson_rest(data: any): Observable<any> {
