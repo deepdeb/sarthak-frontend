@@ -66,7 +66,7 @@
 
 
             <p *ngIf="customerId && startDate && endDate" style="font-weight: 600;font-size: 16px;margin: 25px 0 16px;text-align: center;">
-                Customer wise Enquiry Report {{ startDate | date: 'dd'}}/{{ startDate | date: 'MM'}}/{{ startDate | date: 'yyyy'}} to {{ endDate | date: 'dd'}}/{{ endDate | date: 'MM'}}/{{ endDate | date: 'yyyy'}}</p>
+                Customer wise Enquiry Report for the period {{ startDate | date: 'dd'}}/{{ startDate | date: 'MM'}}/{{ startDate | date: 'yyyy'}} to {{ endDate | date: 'dd'}}/{{ endDate | date: 'MM'}}/{{ endDate | date: 'yyyy'}}</p>
            
             <div class="table-responsive mt-2">
                 <table class="table table-success table-striped table-bordered">
@@ -190,7 +190,7 @@
             </div>
 
             <p *ngIf="customerId && startDate && endDate" style="font-weight: 600;font-size: 16px;text-transform: capitalize;margin: 25px 0 16px;text-align: center;">
-                customer wise Order Report {{ startDate | date: 'dd'}}/{{ startDate | date: 'MM'}}/{{ startDate | date: 'yyyy'}} to {{ endDate | date: 'dd'}}/{{ endDate | date: 'MM'}}/{{ endDate | date: 'yyyy'}}</p>
+                customer wise Order Report for the period {{ startDate | date: 'dd'}}/{{ startDate | date: 'MM'}}/{{ startDate | date: 'yyyy'}} to {{ endDate | date: 'dd'}}/{{ endDate | date: 'MM'}}/{{ endDate | date: 'yyyy'}}</p>
             <div class="table-responsive mt-2">
                 <table class="table table-success table-striped table-bordered">
                     <thead style="text-transform: capitalize;">
