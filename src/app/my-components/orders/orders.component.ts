@@ -113,6 +113,8 @@ export class OrdersComponent {
   FileOrg : any;
   FileOrgAll : any;
   fileDocAll : any;
+
+  searchCriteria : string = '';
   
   constructor(private router: Router, private rest: RestService, private common: CommonService) { 
   }
@@ -605,6 +607,7 @@ export class OrdersComponent {
         this.common.showAlertMessage(res.message, this.common.succContent);
         this.isDivShow = false;
         this.getOrderList();
+
       }
     })
 
@@ -617,7 +620,8 @@ export class OrdersComponent {
     this.orderList = [];
     const data = {
       sbu_id: localStorage.getItem('sbu_id'),
-      sales_person_id: localStorage.getItem('sales_person_id')
+      sales_person_id: localStorage.getItem('sales_person_id'),
+      search_criteria: this.searchCriteria,
     }
     this.rest.getOrderList_rest(data).subscribe((res: any) => {
       if (res.success) {
@@ -798,6 +802,8 @@ export class OrdersComponent {
     }
     this.rest.editOrder_rest(data).subscribe((res: any) => {
       if (res.success) {
+        
+       
         this.sbuId = this.checkSbuId != 0 ? this.checkSbuId : '';
         this.salesPersonId = this.checkSbuId != 0 ? localStorage.getItem('sales_person_id') : '';
         this.customerId = '';
@@ -829,7 +835,13 @@ export class OrdersComponent {
         this.isOthersDisabled = true;
         this.isEdit = false;
         this.common.showAlertMessage(res.message, this.common.succContent);
-        this.getOrderList();
+        // this.getOrderList();
+
+        if(this.filterByKeyword && this.ordersByFilter){
+          this.getFilterOrdersByCategory();
+        } else{
+          this.getOrderList();
+        }
       }
     })
 

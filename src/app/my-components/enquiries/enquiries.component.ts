@@ -68,7 +68,7 @@ export class EnquiriesComponent {
   isOthersChecked: boolean = false;
   orderId: any;
 
-
+  searchCriteria : string = '';
 
   // ************ static months & years **************//
   months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
@@ -412,7 +412,8 @@ export class EnquiriesComponent {
     const data = {
       check_designation_id: localStorage.getItem('designation_id'),
       sbu_id: localStorage.getItem('sbu_id'),
-      sales_person_id: localStorage.getItem('sales_person_id')
+      sales_person_id: localStorage.getItem('sales_person_id'),
+      search_criteria: this.searchCriteria,
     }
     this.rest.getEnquiryList_rest(data).subscribe((res: any) => {
       if (res.success) {

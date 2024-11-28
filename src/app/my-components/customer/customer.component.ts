@@ -72,6 +72,7 @@ export class CustomerComponent {
   filteredListByCategory: any = [];
   customersByFilter: string = '';
   selectedCategoryIds: any = [];
+  searchCriteria : string = '';
 
   constructor(private router: Router, private rest: RestService, private common: CommonService) { }
 
@@ -249,6 +250,11 @@ export class CustomerComponent {
     this.isButtonDisabled = true;
     this.rest.createCustomer_rest(data, this.isEdit).subscribe((res: any) => {
       if (res.success) {
+        if(this.filterByKeyword && this.customersByFilter){
+          this.getFilterListByCategory();
+        } else{
+          this.getCustomerList();
+        }
         this.sbuId = this.checkSbuId != 0 ? this.checkSbuId : '';
         this.salesPersonId = this.checkSbuId != 0 ? this.checkSalesPersonId : '';
         this.customerCreateDate = new Date().toISOString().split('T')[0];
@@ -278,8 +284,9 @@ export class CustomerComponent {
         this.selectedCategoryIds = []
         this.common.showAlertMessage(res.message, this.common.succContent);
         this.isButtonDisabled = false;
-        this.getCustomerList();
         this.isEdit = false;
+       
+
       }
     })
 
@@ -292,7 +299,8 @@ export class CustomerComponent {
     const data = {
       check_designation_id: localStorage.getItem('designation_id'),
       sbu_id: localStorage.getItem('sbu_id'),
-      sales_person_id: localStorage.getItem('sales_person_id')
+      sales_person_id: localStorage.getItem('sales_person_id'),
+      search_criteria: this.searchCriteria,
     };
     this.rest.getCustomerList_rest(data).subscribe((res: any) => {
       if (res.success) {

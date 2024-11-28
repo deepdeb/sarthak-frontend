@@ -338,7 +338,7 @@
             </div>
             <div class="col-md-3 text-end">
                 <div class="page_search mb-4">
-                    <input type="text" class="search_form">
+                    <input type="text" class="search_form" [(ngModel)]="searchCriteria" (keyup)="getEnquiryList()">
                     <button type="button" class="search_btn">
                         <span class="material-symbols-outlined">
                             search
