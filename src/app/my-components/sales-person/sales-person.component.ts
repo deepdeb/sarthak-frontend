@@ -26,6 +26,9 @@ export class SalesPersonComponent implements OnInit {
   DOB: any;
   emailId: any;
   mobNum: any;
+  searchCriteria : string = '';
+  // search_criteria: any;
+  // sales : any;
 
   isEdit: boolean = false;
   salesPersonId: any = localStorage.getItem('sales_person_id');
@@ -109,7 +112,8 @@ export class SalesPersonComponent implements OnInit {
     const data = {
       check_designation_id: this.checkDesignationId,
       sbu_id: localStorage.getItem('sbu_id'),
-      sales_person_id: localStorage.getItem('sales_person_id')
+      sales_person_id: localStorage.getItem('sales_person_id'),
+      search_criteria: this.searchCriteria,
     };
     this.rest.getSalesPersonList_rest(data).subscribe((res: any) => {
       if (res.success) {
@@ -206,6 +210,11 @@ export class SalesPersonComponent implements OnInit {
   }
   //*********** phone number validation end *********//
 
+
+  //************** global search start **************//
+  search_element(event: any){
+    this.getSalesPersonList();
+  }
 
 
 
