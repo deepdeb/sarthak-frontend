@@ -68,7 +68,7 @@ export class EnquiriesComponent {
   isOthersChecked: boolean = false;
   orderId: any;
 
-  searchCriteria : string = '';
+searchCriteria : string = '';
 
   // ************ static months & years **************//
   months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
