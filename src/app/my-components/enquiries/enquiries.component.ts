@@ -268,7 +268,6 @@ searchCriteria : string = '';
 
   //************* Create Enquiry start *************//
   createEnquiry() {
-    console.log('>>>', this.lastEnquiryNumber , '>>>>', this.enquiryNumber);
     if (!this.sbuId) {
       this.common.showAlertMessage('Please choose SBU', this.common.errContent);
       return;
@@ -401,7 +400,7 @@ searchCriteria : string = '';
           this.enquiryRemarks = ''
           this.enquirySupport = ''
           this.common.showAlertMessage(res.message, this.common.succContent)
-          this.getEnquiryList();
+          this.filterByKeyword && this.enquiriesByFilter ? this.getEnquiriesByFilter() : this.getEnquiryList()
           this.isDivShow = false;
           this.isEdit = false;
           this.supplyRow = false;
