@@ -5,7 +5,8 @@
             <div class="col-md-3">
                 <div *ngIf="checkSbuId()" class="view_div view_dropdown_div ">
                     <select class="form-control" [(ngModel)]="sbuId" (change)="filterUnit()">
-                        <!-- <option>-- choose unit name --</option> -->
+                        <!-- <option value="" disabled>-- choose unit name --</option> -->
+                        <option value=0>all</option>
                         <option *ngFor="let item of SBUList" [value]="item.sbu_id">{{item.sbu_name}}</option>
                         <!-- <option value=1>Sarthak Components</option>
                         <option value=2>Sarthak Power</option> -->

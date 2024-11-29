@@ -644,6 +644,7 @@ export class OrdersComponent {
 
   //*********** Get order by ID for edit *************/
   getOrderById(order_id: any) {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
     this.enquiryId = null;
     this.isEdit = true
     this.orderId = order_id;

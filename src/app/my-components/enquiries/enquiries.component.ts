@@ -48,6 +48,7 @@ export class EnquiriesComponent {
   filterByKeyword: string = ''
   enquiriesByFilter: string = ''
   lastEnquiryNumber: number = 0
+  enquiryNumber: string = ''
 
   productProduct: string = '';
   productDescription: string = '';
@@ -267,6 +268,7 @@ searchCriteria : string = '';
 
   //************* Create Enquiry start *************//
   createEnquiry() {
+    console.log('>>>', this.lastEnquiryNumber , '>>>>', this.enquiryNumber);
     if (!this.sbuId) {
       this.common.showAlertMessage('Please choose SBU', this.common.errContent);
       return;
@@ -340,6 +342,7 @@ searchCriteria : string = '';
       sbu_id: this.sbuId,
       mentor_id: this.mentorId,
       sales_person_id: this.salesPersonId,
+      enquiry_number: this.enquiryNumber,
       reff_number: this.reffNumber,
       customer_id: this.customerId,
       enquiry_date: this.enquiryDate,
@@ -370,6 +373,7 @@ searchCriteria : string = '';
         if (res.response) {
           // this.sbuId = ''
           this.salesPersonId = ''
+          this.enquiryNumber = ''
           this.reffNumber = ''
           this.mentorId = ''
           this.customerId = ''
@@ -400,6 +404,9 @@ searchCriteria : string = '';
           this.getEnquiryList();
           this.isDivShow = false;
           this.isEdit = false;
+          this.supplyRow = false;
+          this.sitcRow = false;
+          this.csRow = false;
         }
       }
     })
@@ -423,6 +430,7 @@ searchCriteria : string = '';
             this.enquiryList = res.response;
             this.totalCount = res.total_count;
             this.lastEnquiryNumber = res.last_enquiry_id;
+            this.enquiryNumber = 'E000' + (this.lastEnquiryNumber + 1) + '/24-25'
           }
         }
       }
@@ -446,8 +454,10 @@ searchCriteria : string = '';
 
 
   getEnquiryById(enquiry_id: any) {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
     this.enquiryId = enquiry_id;
     this.isEdit = true;
+    this.isDivShow = true;
     const data = {
       sbu_id: this.sbuId,
       enquiry_id: enquiry_id
@@ -473,6 +483,24 @@ searchCriteria : string = '';
           this.principalHouse = res.response[0].principal_house
           this.enquiryTypeId = res.response[0].enquiry_type_id
           this.enquirySubTypeId = res.response[0].enquiry_sub_type_id
+          this.productProduct = res.response[0].product
+          this.productDescription = res.response[0].product_description
+          this.productBrand = res.response[0].brand
+          this.sitcDescription = res.response[0].sitc_description
+          this.csCable = res.response[0].cable_assembly
+          this.csPanel = res.response[0].panel
+          this.csWelding = res.response[0].welding_receptable
+          this.csHsaBox = res.response[0].hsa_box
+          this.csOthers = res.response[0].others
+
+          if(this.enquirySubTypeId == 1) {
+            this.supplyRow = true;
+          } else if(this.enquirySubTypeId == 2) {
+            this.sitcRow = true;
+          } else if(this.enquirySubTypeId == 3) {
+            this.csRow = true;
+          }
+
           this.basicValue = res.response[0].basic_value
           this.offerDate = res.response[0].offer_date
           this.yearFinal = res.response[0].tentative_finalization_year
