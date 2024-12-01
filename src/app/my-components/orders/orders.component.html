@@ -1,6 +1,7 @@
 <app-header></app-header>
 
 <div class="container-fluid">
+    <button (click)="show()">test</button>
     <div class="page_heading">
         <div class="row align-items-center">
             <div class="col-md-9">
@@ -25,12 +26,12 @@
     <div class="main_body sec_gapping">
         <div class=" d-flex mb-4">
             <div style="font-size: 1.2em; padding: 5px">
-                <input type="radio" id="radio_2" name="radioBtn" checked (click)="makeIsDirectFalse()">
+                <input type="radio" id="radio_2" name="radioBtn" [checked]="!isDirectOrder" (click)="makeIsDirectFalse()">
                 <label> Based on Enquiry</label>
             </div>
 
             <div class="me-2" style="font-size: 1.2em; padding: 5px">
-                <input type="radio" id="radio_1" name="radioBtn" (click)="makeIsDirectTrue()">
+                <input type="radio" id="radio_1" name="radioBtn" [checked]="isDirectOrder" (click)="makeIsDirectTrue()">
                 <label> Direct Order</label>
             </div>
 
@@ -39,8 +40,7 @@
         <div class="form_select_div" style="width: 20%;" *ngIf="!isDirectOrder">
             <select class="form-control" [(ngModel)]="enquiryId" (change)="getEnquiryById(enquiryId)">
                 <option value="" disabled>--Select Enquiry Id--</option>
-                <option *ngFor="let item of enquiryList" [value]="item.enquiry_id">{{'E000' + item.enquiry_id +
-                    '/24-25'}}</option>
+                <option *ngFor="let item of enquiryList" [value]="item.enquiry_id">{{ item.enquiry_number }}</option>
             </select>
             <span class="material-symbols-outlined">
                 stat_minus_1
@@ -57,8 +57,9 @@
                         <div class="form_select_div ">
                             <label>enquiry no.</label>
                             <!-- <input type="text" class="form-control" [ngModel]="enquiryId" disabled> -->
-                            <input type="text" class="form-control"
-                                [value]="enquiryId ? 'E000' + enquiryId + '/24-25': ''" disabled>
+                            <input type="text" class="form-control" [(ngModel)]="enquiryNumber" disabled>
+                                <!-- <input type="text" class="form-control"
+                                [value]="enquiryId ? 'E000' + enquiryId + '/24-25': ''" disabled> -->
                         </div>
                     </div>
                     <div class="col-sm-5 col-md-2">
@@ -566,7 +567,7 @@
                                     style="position: relative; margin: 16px 14px 8px 0;"
                                     *ngFor="let item of po_Photo;let i=index;">
                                     <img class="assignImg"
-                                        [src]="item.includes('.pdf') ? 'assets/images/pdf.webp': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/xlsx.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : 'assets/images/doc.jpg'"
+                                        [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : 'assets/images/jpg.png'"
                                         alt="" loading="lazy" (click)="viewFile(item)"
                                         style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
                                             <span *ngIf="po_Photo.length>0" (click)="removeFile(i, 'poPhoto')" class="fas fa-times"
@@ -607,7 +608,7 @@
                                     style="position: relative; margin: 16px 12px 8px 0;"
                                     *ngFor="let item of credential_Photo;let i=index;">
                                     <img class="assignImg"
-                                        [src]="item.includes('.pdf') ? 'assets/images/pdf.webp': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/xlsx.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : 'assets/images/doc.jpg'"
+                                        [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : 'assets/images/jpg.png'"
                                         alt="" loading="lazy" (click)="viewFile(item)"
                                         style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
                                     <span *ngIf="credential_Photo.length>0" (click)="removeFile(i, 'credentialPhoto')" class="fas fa-times"
@@ -645,7 +646,7 @@
                                     style="position: relative; margin: 16px 12px 8px 0;"
                                     *ngFor="let item of completion_Photo;let i=index;">
                                     <img class="assignImg"
-                                        [src]="item.includes('.pdf') ? 'assets/images/pdf.webp': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/xlsx.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : 'assets/images/doc.jpg'"
+                                        [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : 'assets/images/jpg.png'"
                                         alt="" loading="lazy" (click)="viewFile(item)"
                                         style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
                                     <span *ngIf="completion_Photo.length>0" (click)="removeFile(i, 'completionPhoto')" class="fas fa-times"
@@ -756,6 +757,7 @@
                 <tr *ngFor="let item of orderList; let i = index">
                     <td>{{ i+1 }}</td>
                     <td>{{ item.enquiry_id ? 'E000' + item.enquiry_id + '/24-25' : 'Direct Order'}}</td>
+                     <!-- <td>{{ item.enquiry_number }}</td> -->
                     <!-- <td></td> -->
                     <td>{{ item.customer }}</td>
                     <td>{{ item.po_number }}</td>

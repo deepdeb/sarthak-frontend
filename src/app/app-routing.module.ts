@@ -20,20 +20,20 @@ import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '',component:LoginComponent},
-  { path: 'header',component:HeaderComponent },
-  { path: 'dashboard',component:DashboardComponent},
-  { path: 'customer',component:CustomerComponent},
-  { path: 'sales-person',component:SalesPersonComponent},
-  { path: 'segment',component:SegmentComponent},
-  { path: 'enquiries',component:EnquiriesComponent },
-  { path: 'orders',component:OrdersComponent },
-  { path: 'presentation',component:PresentationComponent },
-  { path: 'reports',component:ReportsComponent },
-  { path: 'detailsPage', component: DetailsPageComponent },
-  { path: 'followUp', component:FollowUpComponent },
-  { path: 'myProfile', component:MyProfileComponent },
-  { path: 'reportDetails', component:ReportDetailsComponent },
-  { path: 'addCompany', component:AddCompanyComponent }
+  { path: 'header',component:HeaderComponent, canActivate:[AuthGuard] },
+  { path: 'dashboard',component:DashboardComponent, canActivate:[AuthGuard] },
+  { path: 'customer',component:CustomerComponent, canActivate:[AuthGuard] },
+  { path: 'sales-person',component:SalesPersonComponent, canActivate:[AuthGuard] },
+  { path: 'segment',component:SegmentComponent, canActivate:[AuthGuard]},
+  { path: 'enquiries',component:EnquiriesComponent, canActivate:[AuthGuard]},
+  { path: 'orders',component:OrdersComponent, canActivate:[AuthGuard] },
+  { path: 'presentation',component:PresentationComponent, canActivate:[AuthGuard] },
+  { path: 'reports',component:ReportsComponent, canActivate:[AuthGuard] },
+  { path: 'detailsPage', component: DetailsPageComponent, canActivate:[AuthGuard] },
+  { path: 'followUp', component:FollowUpComponent, canActivate:[AuthGuard] },
+  { path: 'myProfile', component:MyProfileComponent, canActivate:[AuthGuard] },
+  { path: 'reportDetails', component:ReportDetailsComponent, canActivate:[AuthGuard] },
+  { path: 'addCompany', component:AddCompanyComponent, canActivate:[AuthGuard] }
 ];
 
 @NgModule({

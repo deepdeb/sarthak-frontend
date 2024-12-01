@@ -73,7 +73,8 @@ export class OrdersComponent {
 
   //**************** enquiry related variables start *****************/
   enquiryList: any = [];
-  enquiryId: any;
+  enquiryId: any = '';
+  enquiryNumber: string = '';
   enquiryDate: any;
   enquirySource = '' as string;
   enquiryTypeId: any = '';
@@ -547,6 +548,7 @@ export class OrdersComponent {
 
     const data = {
       enquiry_id: this.enquiryId,
+      enquiry_number: this.enquiryNumber ? this.enquiryNumber : 'direct order',
       sales_person_id: this.salesPersonId,
       sbu_id: this.sbuId,
       customer_id: this.customerId,
@@ -575,6 +577,7 @@ export class OrdersComponent {
     this.rest.createOrder_rest(data).subscribe((res: any) => {
       if (res.success) {
         this.enquiryId = '';
+        this.enquiryNumber = '';
         this.sbuId = this.checkSbuId != 0 ? this.checkSbuId : '';
         this.salesPersonId = this.checkSbuId != 0 ? localStorage.getItem('sales_person_id') : '';
         this.customerId = '';
@@ -612,6 +615,143 @@ export class OrdersComponent {
     })
 
   }
+
+
+
+
+    //*********** create orders ***********//
+    editOrder() {
+
+      let tempPOPhoto = this.po_Photo ? this.po_Photo.join(',') : '';
+      let tempCompletionPhoto = this.completion_Photo ? this.completion_Photo.join(',') : '';
+      let tempCredentialPhoto = this.credential_Photo ? this.credential_Photo.join(',') : '';
+  
+      if (!this.salesPersonId) {
+        this.common.showAlertMessage('Please Choose a sales incharge', this.common.errContent)
+        return;
+      }
+      if (!this.customerId) {
+        this.common.showAlertMessage('Please Choose a customer', this.common.errContent)
+        return;
+      }
+      if (!this.poNumber) {
+        this.common.showAlertMessage('Please enter PO number', this.common.errContent)
+        return;
+      }
+      if (!this.poDate) {
+        this.common.showAlertMessage('Please select a PO date', this.common.errContent)
+        return;
+      }
+      if (!this.poTypeId) {
+        this.common.showAlertMessage('Please Choose a PO Type', this.common.errContent)
+        return;
+      }
+      // if (!this.poSubTypeId) {
+      //   this.common.showAlertMessage('Please Choose a PO sub type', this.common.errContent)
+      //   return;
+      // }
+      if (!this.basicPoValue) {
+        this.common.showAlertMessage('Please enter Basic PO Value', this.common.errContent)
+        return;
+      }
+      if (!this.totalPoValue) {
+        this.common.showAlertMessage('Please enter Total PO Value', this.common.errContent)
+        return;
+      }
+      if (!this.completionDate) {
+        this.common.showAlertMessage('Please select completion date', this.common.errContent)
+        return;
+      }
+      // if(!this.actualCompletionDate){
+      //   this.common.showAlertMessage('Please select actual completion date', this.common.errContent)
+      //   return;
+      // }
+      if (!this.po_Photo) {
+        this.common.showAlertMessage('Please upload file for PO', this.common.errContent)
+        return;
+      }
+      // if(!this.completionUpload){
+      //   this.common.showAlertMessage('Please set file for completion', this.common.errContent)
+      //   return;
+      // }
+      // if(!this.credentialUpload){
+      //   this.common.showAlertMessage('Please set file for credential', this.common.errContent)
+      //   return;
+      // }
+  
+      const data = {
+        order_id: this.orderId,
+        sales_person_id: this.salesPersonId,
+        sbu_id: this.sbuId,
+        customer_id: this.customerId,
+        po_number: this.poNumber,
+        po_date: this.poDate,
+        po_type_id: this.poTypeId,
+        // po_subtype_id: this.poSubTypeId,
+        basic_po_value: this.basicPoValue,
+        total_po_value: this.totalPoValue,
+        scheduled_completion_date: this.completionDate,
+        actual_completion_date: this.actualCompletionDate,
+        purchase_order_file: tempPOPhoto,
+        completion_file: tempCompletionPhoto,
+        credential_file: tempCredentialPhoto,
+        product: this.supplyProduct,
+        supply_description: this.supplyDescription,
+        brand: this.supplyBrand,
+        sitc_description: this.sitcDescription,
+        cable_assembly: this.csCable,
+        panel: this.csPanel,
+        welding_receptable: this.csWelding,
+        clamps: this.csClamps,
+        hsa_box: this.csHsaBox,
+        others: this.csOthers,
+      }
+      this.rest.editOrder_rest(data).subscribe((res: any) => {
+        if (res.success) {
+          
+         
+          this.sbuId = this.checkSbuId != 0 ? this.checkSbuId : '';
+          this.salesPersonId = this.checkSbuId != 0 ? localStorage.getItem('sales_person_id') : '';
+          this.customerId = '';
+          this.poNumber = '';
+          this.poDate = '';
+          this.poTypeId = '';
+          this.basicPoValue = '';
+          this.totalPoValue = '';
+          this.completionDate = '';
+          this.actualCompletionDate = null;
+          this.po_Photo = [];
+          this.completion_Photo = [];
+          this.credential_Photo = [];
+          this.poUpload = '';
+          this.completionUpload = '';
+          this.credentialUpload = '';
+          this.supplyProduct = '';
+          this.supplyDescription = '';
+          this.supplyBrand = '';
+          this.sitcDescription = '';
+          this.csCable = '';
+          this.csPanel = '';
+          this.csWelding = '';
+          this.csClamps = '';
+          this.csHsaBox = '';
+          this.isOthersChecked = false;
+          this.isDirectOrder = false;
+          this.csOthers = '';
+          this.isOthersDisabled = true;
+          this.isEdit = false;
+          this.common.showAlertMessage(res.message, this.common.succContent);
+          // this.getOrderList();
+  
+          if(this.filterByKeyword && this.ordersByFilter){
+            this.getFilterOrdersByCategory();
+          } else{
+            this.getOrderList();
+          }
+        }
+      })
+  
+    }
 
 
 
@@ -682,7 +822,7 @@ export class OrdersComponent {
             }
           }
           this.enquiryId = res.response[0].enquiry_id
-          if(this.enquiryId != null){
+          if(this.enquiryId){
             this.getEnquiryById(this.enquiryId);
           } else{
             this.isDirectOrder = true;
@@ -714,139 +854,6 @@ export class OrdersComponent {
     })
   }
 
-  //*********** create orders ***********//
-  editOrder() {
-
-    let tempPOPhoto = this.po_Photo ? this.po_Photo.join(',') : '';
-    let tempCompletionPhoto = this.completion_Photo ? this.completion_Photo.join(',') : '';
-    let tempCredentialPhoto = this.credential_Photo ? this.credential_Photo.join(',') : '';
-
-    if (!this.salesPersonId) {
-      this.common.showAlertMessage('Please Choose a sales incharge', this.common.errContent)
-      return;
-    }
-    if (!this.customerId) {
-      this.common.showAlertMessage('Please Choose a customer', this.common.errContent)
-      return;
-    }
-    if (!this.poNumber) {
-      this.common.showAlertMessage('Please enter PO number', this.common.errContent)
-      return;
-    }
-    if (!this.poDate) {
-      this.common.showAlertMessage('Please select a PO date', this.common.errContent)
-      return;
-    }
-    if (!this.poTypeId) {
-      this.common.showAlertMessage('Please Choose a PO Type', this.common.errContent)
-      return;
-    }
-    // if (!this.poSubTypeId) {
-    //   this.common.showAlertMessage('Please Choose a PO sub type', this.common.errContent)
-    //   return;
-    // }
-    if (!this.basicPoValue) {
-      this.common.showAlertMessage('Please enter Basic PO Value', this.common.errContent)
-      return;
-    }
-    if (!this.totalPoValue) {
-      this.common.showAlertMessage('Please enter Total PO Value', this.common.errContent)
-      return;
-    }
-    if (!this.completionDate) {
-      this.common.showAlertMessage('Please select completion date', this.common.errContent)
-      return;
-    }
-    // if(!this.actualCompletionDate){
-    //   this.common.showAlertMessage('Please select actual completion date', this.common.errContent)
-    //   return;
-    // }
-    if (!this.po_Photo) {
-      this.common.showAlertMessage('Please upload file for PO', this.common.errContent)
-      return;
-    }
-    // if(!this.completionUpload){
-    //   this.common.showAlertMessage('Please set file for completion', this.common.errContent)
-    //   return;
-    // }
-    // if(!this.credentialUpload){
-    //   this.common.showAlertMessage('Please set file for credential', this.common.errContent)
-    //   return;
-    // }
-
-    const data = {
-      order_id: this.orderId,
-      sales_person_id: this.salesPersonId,
-      sbu_id: this.sbuId,
-      customer_id: this.customerId,
-      po_number: this.poNumber,
-      po_date: this.poDate,
-      po_type_id: this.poTypeId,
-      // po_subtype_id: this.poSubTypeId,
-      basic_po_value: this.basicPoValue,
-      total_po_value: this.totalPoValue,
-      scheduled_completion_date: this.completionDate,
-      actual_completion_date: this.actualCompletionDate,
-      purchase_order_file: tempPOPhoto,
-      completion_file: tempCompletionPhoto,
-      credential_file: tempCredentialPhoto,
-      product: this.supplyProduct,
-      supply_description: this.supplyDescription,
-      brand: this.supplyBrand,
-      sitc_description: this.sitcDescription,
-      cable_assembly: this.csCable,
-      panel: this.csPanel,
-      welding_receptable: this.csWelding,
-      clamps: this.csClamps,
-      hsa_box: this.csHsaBox,
-      others: this.csOthers,
-    }
-    this.rest.editOrder_rest(data).subscribe((res: any) => {
-      if (res.success) {
-        
-       
-        this.sbuId = this.checkSbuId != 0 ? this.checkSbuId : '';
-        this.salesPersonId = this.checkSbuId != 0 ? localStorage.getItem('sales_person_id') : '';
-        this.customerId = '';
-        this.poNumber = '';
-        this.poDate = '';
-        this.poTypeId = '';
-        this.basicPoValue = '';
-        this.totalPoValue = '';
-        this.completionDate = '';
-        this.actualCompletionDate = null;
-        this.po_Photo = [];
-        this.completion_Photo = [];
-        this.credential_Photo = [];
-        this.poUpload = '';
-        this.completionUpload = '';
-        this.credentialUpload = '';
-        this.supplyProduct = '';
-        this.supplyDescription = '';
-        this.supplyBrand = '';
-        this.sitcDescription = '';
-        this.csCable = '';
-        this.csPanel = '';
-        this.csWelding = '';
-        this.csClamps = '';
-        this.csHsaBox = '';
-        this.isOthersChecked = false;
-        this.isDirectOrder = false;
-        this.csOthers = '';
-        this.isOthersDisabled = true;
-        this.isEdit = false;
-        this.common.showAlertMessage(res.message, this.common.succContent);
-        // this.getOrderList();
-
-        if(this.filterByKeyword && this.ordersByFilter){
-          this.getFilterOrdersByCategory();
-        } else{
-          this.getOrderList();
-        }
-      }
-    })
-
-  }
 
   // ******************** filter orders list by category ******************** //
   getFilterOrdersByCategory() {
@@ -941,6 +948,7 @@ export class OrdersComponent {
     this.rest.getEnquiryById_rest(data).subscribe((res: any) => {
       if (res.success) {
         if (res.response) {
+          this.enquiryNumber = res.response[0].enquiry_number
           this.sbuId = res.response[0].sbu_id
           // if(this.sbuId){
             // this.getMentorList();
@@ -981,4 +989,10 @@ export class OrdersComponent {
       }
     })
   }
+
+
+  show() {
+    console.log(this.enquiryNumber)
+  }
+
 }
