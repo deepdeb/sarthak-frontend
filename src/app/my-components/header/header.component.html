@@ -42,7 +42,7 @@
                     <li class="nav-item">
                         <a class="nav-link " routerLink="/presentation" routerLinkActive="active">presentation</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item"  *ngIf="sbuId == 0">
                         <a class="nav-link " routerLink="/reports" routerLinkActive="active">reports</a>
                     </li>
                 </ul>
