@@ -122,7 +122,7 @@ export class ReportDetailsComponent {
       this.common.showAlertMessage('Select End Date', this.common.errContent)
       return
     }
-    this.reportList = [];
+    // this.reportList = [];
     this.reportType = type;
     const data = {
       customer_id: this.customerId,
@@ -175,9 +175,6 @@ export class ReportDetailsComponent {
       a.click();
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
-      this.customerId = ''
-      this.startDate= ''
-      this.endDate= ''
     }, error => {
       console.error('Error:', error);
     });
@@ -197,7 +194,7 @@ export class ReportDetailsComponent {
       this.common.showAlertMessage('Select End Date', this.common.errContent)
       return
     }
-    this.reportList = [];
+    // this.reportList = [];
     this.reportType = type;
     const data = {
       customer_id: this.customerId,
@@ -250,9 +247,6 @@ export class ReportDetailsComponent {
       a.click();
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
-      this.customerId = ''
-      this.startDate= ''
-      this.endDate= ''
     }, error => {
       console.error('Error:', error);
     });
@@ -324,9 +318,6 @@ export class ReportDetailsComponent {
       a.click();
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
-      this.salesPersonId = ''
-      this.startDate= ''
-      this.endDate= ''
     }, error => {
       console.error('Error:', error);
     });
@@ -397,9 +388,6 @@ export class ReportDetailsComponent {
       a.click();
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
-      this.salesPersonId = ''
-      this.startDate= ''
-      this.endDate= ''
     }, error => {
       console.error('Error:', error);
     });

@@ -75,16 +75,16 @@
                 <table class="table table-success table-striped table-bordered">
                     <thead style="text-transform: capitalize;">
                         <tr>
-                            <th scope="col">sl no</th>
-                            <th scope="col">Enquiry Date</th>
+                            <th scope="col" style="width: 4%;">sl no</th>
+                            <th scope="col" style="width: 8%;">Enquiry Date</th>
                             <th scope="col">Source</th>
                             <th scope="col">sub-type</th>
-                            <th scope="col">Customer</th>
-                            <th scope="col">Principal House</th>
-                            <th scope="col">Offer Date</th>
+                            <th scope="col" style="width: 13%;">Customer</th>
+                            <th scope="col" style="width: 12%;">Principal House</th>
+                            <th scope="col" style="width: 8%;">Offer Date</th>
                             <th scope="col">Basic Value</th>
-                            <th scope="col">Date of Finalization </th>
-                            <th scope="col">Follow Up Status</th>
+                            <th scope="col" style="width: 10%;">Date of Finalization </th>
+                            <th scope="col" style="width: 10%;">Follow Up Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -92,7 +92,7 @@
                             <td colspan="12" class="text-center">No records found</td>
                         </tr>
                         <tr *ngFor="let item of reportList; let i = index">
-                            <td>{{ i+1 }}</td>
+                            <td style="text-align: center;">{{ i+1 }}</td>
                             <td>{{ item.enquiry_date }}</td>
                             <td>{{ item.enquiry_source }}</td>
                             <td>{{ item.enquiry_sub_type_name }}</td>
@@ -201,9 +201,9 @@
                 <table class="table table-success table-striped table-bordered">
                     <thead style="text-transform: capitalize;">
                         <tr>
-                            <th scope="col">sl no</th>
-                            <th scope="col">Customer</th>
-                            <th scope="col">PO Date</th>
+                            <th scope="col" style="width: 4%;">sl no</th>
+                            <th scope="col"style="width: 13%;">Customer</th>
+                            <th scope="col"style="width: 8%;">PO Date</th>
                             <th scope="col">PO number</th>
                             <th scope="col">PO type</th>
                             <th scope="col">PO Sub type</th>
@@ -218,7 +218,7 @@
                             <td colspan="12" class="text-center">No records found</td>
                         </tr>
                         <tr *ngFor="let item of reportList; let i = index">
-                            <td>{{ i+1 }}</td>
+                            <td style="text-align: center;">{{ i+1 }}</td>
                             <td>{{ item.customer }}</td>
                             <td>{{ item.po_date }}</td>
                             <td>{{ item.po_number }}</td>
@@ -326,17 +326,17 @@
                 <table class="table table-success table-striped table-bordered">
                     <thead style="text-transform: capitalize;">
                         <tr>
-                            <th scope="col">sl no</th>
+                            <th scope="col" style="width: 4%;">sl no</th>
                             <th scope="col">sales person</th>
-                            <th scope="col">Enquiry Date</th>
+                            <th scope="col" style="width: 8%;">Enquiry Date</th>
                             <th scope="col">Source</th>
                             <th scope="col">sub-type</th>
-                            <th scope="col">Customer</th>
-                            <th scope="col">Principal House</th>
-                            <th scope="col">Offer Date</th>
+                            <th scope="col" style="width: 13%;">Customer</th>
+                            <th scope="col" style="width: 12%;">Principal House</th>
+                            <th scope="col" style="width: 8%;">Offer Date</th>
                             <th scope="col">Basic Value</th>
-                            <th scope="col">Date of Finalization </th>
-                            <th scope="col">Follow Up Status</th>
+                            <th scope="col" style="width: 10%;">Date of Finalization </th>
+                            <th scope="col" style="width: 10%;">Follow Up Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -344,7 +344,7 @@
                             <td colspan="12" class="text-center">No records found</td>
                         </tr>
                         <tr *ngFor="let item of reportList; let i = index">
-                            <td>{{ i+1 }}</td>
+                            <td style="text-align: center;">{{ i+1 }}</td>
                             <td>{{ item.sales_person_name }}</td>
                             <td>{{ item.enquiry_date }}</td>
                             <td>{{ item.enquiry_source }}</td>
@@ -454,10 +454,10 @@
                 <table class="table table-success table-striped table-bordered">
                     <thead style="text-transform: capitalize;">
                         <tr>
-                            <th scope="col">sl no</th>
+                            <th scope="col" style="width: 4%;">sl no</th>
                             <th scope="col">sales person</th>
-                            <th scope="col">Customer</th>
-                            <th scope="col">PO Date</th>
+                            <th scope="col" style="width: 13%;">Customer</th>
+                            <th scope="col" style="width: 8%;">PO Date</th>
                             <th scope="col">PO number</th>
                             <th scope="col">PO type</th>
                             <th scope="col">PO Sub type</th>
@@ -472,7 +472,7 @@
                             <td colspan="12" class="text-center">No records found</td>
                         </tr>
                         <tr *ngFor="let item of reportList; let i = index">
-                            <td>{{ i+1 }}</td>             
+                            <td  style="text-align: center;">{{ i+1 }}</td>             
                             <td>{{ item.sales_person_name }}</td>
                             <td>{{ item.customer }}</td>
                             <td>{{ item.po_date }}</td>

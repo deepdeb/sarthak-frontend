@@ -71,6 +71,10 @@ select,select option, input, table td {
 table tr td{
   font-size: 11px;
 }
+table thead tr th{
+  /* white-space: nowrap; */
+  font-size: 12px;
+}
 .btn1{
   background: var(--secondary) !important;
   border-radius: 4px !important;
@@ -895,9 +899,10 @@ tr:nth-child(even),tr:hover {
 
 /*************** reports page css start *************/
 .customer_wise_report_ul{
-  padding-left: 40px;
+  padding-left: 0;
   columns: 2;
   margin-bottom: 0;
+ 
 }
 .customer_wise_report_ul li{
   cursor: pointer;
@@ -908,13 +913,18 @@ tr:nth-child(even),tr:hover {
   margin-bottom: 20px;
   list-style-type: disc;
   transition: all 0.5s ease-in-out;
-  
+  list-style-type: none ;
 }
-.customer_wise_report_ul li::marker{
+.customer_wise_report_ul li i{
   color: var(--primary);
+  margin-right: 8px;
 }
 .customer_wise_report_ul li:hover{
-  /* color: var(--primary); */
   color: black;
-  padding-left: 6px;
+}
+.customer_wise_report_ul li span{
+  transition: all 0.5s ease-in-out;
+}
+.customer_wise_report_ul li:hover span{
+  padding-left: 8px;
 }
