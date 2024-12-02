@@ -50,6 +50,11 @@ export class RestService {
   //************ FOR SALES-PERSON end ************//
 
 
+  // ************* for salesperson list for enquiry order ***************//
+  getSalesPersonListForEnquiryOrder_rest(data: any): Observable<any> {
+    return this.http.post(this.API_ROOT + 'common/getSalespersonListForEnquiryOrder', data, httpOptions);
+  }
+
 
   //************ FOR DASHBOARD start ************//
   getDashBoardCount(data: any): Observable<any> {
@@ -317,4 +322,23 @@ export class RestService {
     return this.http.post(this.API_ROOT + 'common/getOrderReport', data, options);
   }
 
+
+  //********** show Sales Enquiry Report function **********//
+  showSalesEnquiryReport_rest(data: any) {
+    return this.http.post(this.API_ROOT + 'common/getEnquiryReportSalesperson', data, httpOptions);
+  }
+
+  exportSalesEnquiryReport_rest(data: any): Observable<any> {
+    const options = { responseType: 'blob' as 'json' };
+    return this.http.post(this.API_ROOT + 'common/getEnquiryReportSalesperson', data, options);
+  }
+
+  //********** show Sales Order Report function **********//
+  showSalesOrderReport_rest(data: any) {
+    return this.http.post(this.API_ROOT + 'common/getOrderReportSalesperson', data, httpOptions);
+  }
+  exportSalesOrderReport_rest(data: any): Observable<any> {
+    const options = { responseType: 'blob' as 'json' };
+    return this.http.post(this.API_ROOT + 'common/getOrderReportSalesperson', data, options);
+  }
 }

@@ -219,7 +219,7 @@ table tr td{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background: #ffffffb8;
+  background: #ffffff57;
 
 }
 .login_formDiv{
@@ -896,6 +896,8 @@ tr:nth-child(even),tr:hover {
 /*************** reports page css start *************/
 .customer_wise_report_ul{
   padding-left: 40px;
+  columns: 2;
+  margin-bottom: 0;
 }
 .customer_wise_report_ul li{
   cursor: pointer;
@@ -908,7 +910,11 @@ tr:nth-child(even),tr:hover {
   transition: all 0.5s ease-in-out;
   
 }
-.customer_wise_report_ul li:hover{
+.customer_wise_report_ul li::marker{
   color: var(--primary);
+}
+.customer_wise_report_ul li:hover{
+  /* color: var(--primary); */
+  color: black;
   padding-left: 6px;
 }
