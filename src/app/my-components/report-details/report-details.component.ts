@@ -267,7 +267,7 @@ export class ReportDetailsComponent {
       this.common.showAlertMessage('Select End Date', this.common.errContent)
       return
     }
-    this.reportList = [];
+    // this.reportList = [];
     this.reportType = type;
     const data = {
       sales_person_id: this.salesPersonId,
@@ -301,7 +301,7 @@ export class ReportDetailsComponent {
       this.common.showAlertMessage('Select End Date', this.common.errContent)
       return
     }
-    this.reportList = [];
+    // this.reportList = [];
     this.reportType = type;
     const data = {
       sales_person_id: this.salesPersonId,
@@ -337,7 +337,7 @@ export class ReportDetailsComponent {
       this.common.showAlertMessage('Select End Date', this.common.errContent)
       return
     }
-    this.reportList = [];
+    // this.reportList = [];
     this.reportType = type;
     const data = {
       sales_person_id: this.salesPersonId,
@@ -371,7 +371,7 @@ export class ReportDetailsComponent {
       this.common.showAlertMessage('Select End Date', this.common.errContent)
       return
     }
-    this.reportList = [];
+    // this.reportList = [];
     this.reportType = type;
     const data = {
       sales_person_id: this.salesPersonId,
