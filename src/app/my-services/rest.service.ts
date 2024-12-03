@@ -341,4 +341,10 @@ export class RestService {
     const options = { responseType: 'blob' as 'json' };
     return this.http.post(this.API_ROOT + 'common/getOrderReportSalesperson', data, options);
   }
+
+
+  //*********** create company ***********//
+  createCompany_rest(data: any): Observable<any>{
+    return this.http.post(this.API_ROOT + 'director/addNewCompany', data, httpOptions)
+  }
 }

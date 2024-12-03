@@ -26,47 +26,48 @@
                         <div class="col-md-3">
                             <div class="form_select_div">
                                 <label>company name</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" [(ngModel)]="companyName">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form_select_div">
                                 <label>contact person</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" [(ngModel)]="contactPerson">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form_select_div ">
                                 <label>contact number</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" maxlength="10" [(ngModel)]="mobNo"
+                                (keypress)="restrictPhone($event)">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form_select_div">
                                 <label>email id</label>
-                                <input type="email" class="form-control">
+                                <input type="email" class="form-control" [(ngModel)]="emailId">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form_select_div">
                                 <label>address</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" [(ngModel)]="addreSS">
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form_select_div">
                                 <label>city</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" [(ngModel)]="cityName">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="">
                                 <label>state</label>
                                 <div class="form_select_div">
-                                    <select class="form-control" name="cars" id="cars">
+                                    <select class="form-control" [(ngModel)]="stateId">
                                         <option>--choose state--</option>
-                                        <option value="Sarthak Components">Sarthak Components</option>
-                                        <option value="Sarthak Power">Sarthak Power</option>
+                                        <option *ngFor="let item of stateList" [value]="item.state_id">{{item.state_name}}
+                                        </option>
                                     </select>
                                     <span class="material-symbols-outlined">
                                         stat_minus_1
@@ -77,16 +78,57 @@
                         <div class="col-md-3">
                             <div class="">
                                 <label>PIN</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" [(ngModel)]="pinNo">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="text-center mt-3">
-                    <button mat-flat-button class="btn1 me-2">submit</button>
-                    <button mat-flat-button class="btn1">edit</button>
+                    <button mat-flat-button class="btn1 me-2" (click)="createCompany()">submit</button>
+                    <!-- <button mat-flat-button class="btn1">edit</button> -->
                 </div>
             </div>
+
+            <div class="listing_div" style="margin: 40px auto;" >
+                <table class="listing_table">
+                    <tr class="table_head">
+                        <th>sl no.</th>
+                        <th>company name</th>
+                        <th>contact person</th>
+                        <th>contact number</th>
+                        <th>email id</th>
+                        <th>address</th>
+                        <th>city</th>
+                        <th>state</th>
+                        <th>PIN</th>
+                        <th>view</th>
+                        <th>edit</th>
+                    </tr>
+
+                    <tr *ngFor="let item of SBUList; let i = index">
+                        <td>{{ i+1 }}</td>
+                        <td>{{item.sbu_name }}</td>
+                        <td>{{ item.contact_person }}</td>
+                        <td>{{ item.contact_number }}</td>
+                        <td  class="text-lowercase">{{ item.email }}</td>
+                        <td>{{ item.address }}</td>
+                        <td>{{ item.city }}</td>
+                        <td>{{ item.state_name }}</td>
+                        <td>{{ item.pin }}</td>
+                        <td>
+                            <span class="material-symbols-outlined" style="color:#006FFD;">
+                            visibility
+                        </span>
+                        </td>
+                        <td>
+                            <span class="material-symbols-outlined" style="color: #00BF58;">
+                            edit_square
+                        </span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
         </div>
     </div>
 </div>
