@@ -536,9 +536,6 @@
                                             style="color: red;">*</span></label>
                                     <textarea type="text" class="form-control mb-0" [(ngModel)]="csOthers"
                                         [disabled]="isOthersDisabled" [required]="isOthersChecked"></textarea>
-
-                                    <!-- <input type="text" class="form-control" [(ngModel)]="csOthers"
-                                        [disabled]="isOthersDisabled" [required]="isOthersChecked"> -->
                                 </div>
                             </div>
                         </div>
@@ -546,11 +543,6 @@
 
 
                     <div class="col-md-4">
-                        <!-- <div class="">
-                            <label for="formFile1">PO upload</label>
-                            <input type="file" class="form-control" [(ngModel)]="poUpload" id="formFile1"
-                                (change)="uploadFile('poPhoto')">
-                        </div> -->
 
                         <div class="upload_file_area mt-3">
                             <div style="position: relative; margin-bottom: 10px;">
@@ -582,14 +574,6 @@
                         </div>
                     </div> 
                     <div class="col-md-4">
-                        <!-- <div class="">
-                            <label for="formFile3">credential upload</label>
-                            <input type="file" class="form-control" [(ngModel)]="credentialUpload" id="formFile3"
-                                (change)="uploadFile('credentialPhoto')">
-                        </div> -->
-
-
-
                         <div class="upload_file_area mt-3">
                             <div style="position: relative; margin-bottom: 10px;">
                                 <input type="file" id="fileInput2" name="files[]" (change)="fileUpload($event, 'credentialPhoto')"
@@ -597,8 +581,7 @@
                                 <label for="fileInput2" id="fileLabel2" *ngIf="isFileDiv" style="padding: 10px 12px;background: #030371;color: white;position: relative;border-radius: 4px;
                                     cursor: pointer;width: 100%;text-align: center;">
                                     <i class="fas fa-upload "></i>
-                                    <span style="margin-left: 4px;">credential upload</span>
-                                    
+                                    <span style="margin-left: 4px;">credential upload</span>                                    
                                     <br>
                                 </label>
                             </div>
@@ -634,8 +617,7 @@
                             <label for="fileInput3" id="fileLabel3" *ngIf="isFileDiv" style="padding: 10px 12px;background: #030371;color: white;position: relative;border-radius: 4px;
                                     cursor: pointer;width: 100%;text-align: center;">
                                 <i class="fas fa-upload "></i>
-                                <span style="margin-left: 4px;">completion upload</span>
-                                
+                                <span style="margin-left: 4px;">completion upload</span>                                
                                 <br>
                             </label>
                         </div>
@@ -661,25 +643,16 @@
                                 </div>
                             </div>
                         </div>
-
-
-
-                        <!-- <div class="">
-                            <label for="formFile2">completion upload</label>
-                            <input type="file" class="form-control" [(ngModel)]="completionUpload" id="formFile2"
-                                (change)="uploadFile('completionPhoto')">
-                        </div> -->
                     </div>
                    
                 </div>
             </div>
             <div class="text-center mt-3">
                 <ng-container>
-                    <button mat-flat-button class="btn1" *ngIf="!this.isEdit; else editButton"
-                        (click)="createOrder()">submit</button>
+                  <button mat-flat-button class="btn1" *ngIf="!this.isEdit; else editButton" (click)="createOrder()">submit</button>
                 </ng-container>
                 <ng-template #editButton>
-                    <button mat-flat-button class="btn1" (click)="editOrder()">submit</button>
+                  <button mat-flat-button class="btn1" (click)="editOrder()">submit</button>
                 </ng-template>
             </div>
         </div>
@@ -741,6 +714,7 @@
                     <th>sl no.</th>
                     <th>enquiry no.</th>
                     <th>customer</th>
+                    <th>product</th>
                     <th>PO number</th>
                     <th>PO date</th>
                     <th>PO type</th>
@@ -760,6 +734,7 @@
                      <!-- <td>{{ item.enquiry_number }}</td> -->
                     <!-- <td></td> -->
                     <td>{{ item.customer }}</td>
+                    <td>{{ item.product }}</td>
                     <td>{{ item.po_number }}</td>
                     <td>{{ item.po_date }}</td>
                     <td>{{ item.po_type_name }}</td>

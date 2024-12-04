@@ -13,6 +13,13 @@ import { CommonService } from 'src/app/my-services/common.service';
   styleUrls: ['./presentation.component.css']
 })
 export class PresentationComponent {
+
+  FileOrg : any;
+  products_upload: any = [];
+  projects_upload: any = [];
+
+
+
   comp_pro_up: boolean = true;
   imp_doc_up: boolean = false;
   princi_house_up: boolean = false;
@@ -51,17 +58,6 @@ export class PresentationComponent {
     this.new_comp_entry = false;
   } 
 
-  new_company_entry(){
-    this.activeLinkUp = 'new_company_entry'
-    this.comp_pro_up =  false;
-    this.imp_doc_up = false;
-    this.princi_house_up = false;
-    this.new_comp_entry = true;
-  }
-
-
-
-
   company_profile_down(){
     this.activeLinkDown = 'company_profile_down'
     this.comp_pro_down =  true;
@@ -85,17 +81,47 @@ export class PresentationComponent {
     this.princi_house_down = true;
     this.new_comp_show = false;
   } 
-  
-  new_company_show(){
-    this.activeLinkDown = 'new_company_show'
-    this.comp_pro_down =  false;
-    this.imp_doc_down = false;
-    this.princi_house_down = false;
-    this.new_comp_show = true;
-  }
+
   
   constructor(private router: Router, private rest: RestService, private common:CommonService){}
   ngOnInit(): void{
 
   }
+
+
+
+
+  //*********** file upload function start ***********//
+  fileUpload(event: any, type: 'products' | 'projects'){
+    this.FileOrg = event.target.files;
+    if (this.FileOrg) {
+      const formData = new FormData();
+     
+      for (let i = 0; i < this.FileOrg.length; i++) {
+        const file = this.FileOrg[i];
+        formData.append('files[]', file, file.name);
+      }
+
+      this.rest.multipleDocumentUpload_rest(formData).subscribe((res:any) => {
+        if (res.success) {
+          this.common.showAlertMessage(res.message, this.common.succContent);
+          if(type == 'products') {
+            let tempAssignmentDocAll: string[] = [];
+            for (var i = 0; i < res.response.length; i++) { 
+              tempAssignmentDocAll.push(res.response[i].newFileName);
+            }
+            this.products_upload = this.products_upload ? this.products_upload.concat(tempAssignmentDocAll) : tempAssignmentDocAll;
+          } else if (type == 'projects') {
+            let tempAssignmentDocAll: string[] = [];
+            for (var i = 0; i < res.response.length; i++) {
+              tempAssignmentDocAll.push(res.response[i].newFileName);
+            }
+            this.projects_upload = this.projects_upload ? this.projects_upload.concat(tempAssignmentDocAll) : tempAssignmentDocAll;
+          }
+        }
+      })
+    }
+  }
+
+
 }

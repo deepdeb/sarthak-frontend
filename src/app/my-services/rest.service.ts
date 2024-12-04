@@ -294,8 +294,7 @@ export class RestService {
     return this.http.post(this.API_ROOT + '/common/getOrdersByFilter', data, httpOptions)
   }
 
-
-
+  //************* order file upload *************//
   multipleFileUpload(data: any) {
     return this.http.post(this.API_ROOT + 'common/multipleFileUpload', data);
   }
@@ -348,15 +347,13 @@ export class RestService {
      const API_Endpoint = isEdit ? 'director/editCompany' : 'director/addNewCompany'
     return this.http.post(this.API_ROOT + API_Endpoint, data, httpOptions)
   }
-
-
-  // createCustomer_rest(data: any, isEdit: any): Observable<any> {
-  //   const API_Endpoint = isEdit ? 'common/editCustomer' : 'common/createCustomer'
-  //   return this.http.post(this.API_ROOT + API_Endpoint, data, httpOptions)
-  // }
   //************ view company ************//
   getCompanyById_rest(data:any): Observable<any> {
     return this.http.post(this.API_ROOT + 'director/getCompanyById', data, httpOptions)
   }
 
+
+  multipleDocumentUpload_rest(data:any): Observable<any>{
+    return this.http.post(this.API_ROOT + 'common/multipleFileUpload', data);
+  }
 }

@@ -37,13 +37,13 @@
                 <div class="upload_document">
                     <h3 style="width: 10%;">Products</h3>
                     <div class="form_ctrl_file">
-                        <input type="file" class="form-control">
+                        <input type="file" class="form-control" name="files[]" (change)="fileUpload($event, 'products')">
                     </div>
                 </div>
 
                 <div class="upload_document">
                     <h3 style="width: 10%;">Projects</h3>
-                    <input type="file" class="form-control">
+                    <input type="file" class="form-control" name="files[]" (change)="fileUpload($event, 'projects')">
                 </div>
             </div>
 
@@ -204,7 +204,7 @@
 
 
 
-    <div class="main_body ">
+    <!-- <div class="main_body ">
         <div class="info_div">
             <div class="page_info_heading">
                 download documents
@@ -370,7 +370,7 @@
 
            
         </div>
-    </div>
+    </div> -->
 
 
 

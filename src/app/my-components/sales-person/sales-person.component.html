@@ -12,44 +12,15 @@
                     </ng-template> -->
                 </div>
             </div>
-            <!-- <div class="col-md-3">
-                <div class="view_div view_dropdown_div ">
-                    <select class="form-control">
-                        <option>-- choose unit name --</option>
-                        <option value=0>Admin</option>
-                        <option value=1>Sarthak Components</option>
-                        <option value=2>Sarthak Power</option>
-                    </select>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-            </div> -->
-            <!-- <div class="col-md-3 text-end">
-                <div class="page_search">
-                    <input type="text" class="search_form">
-                    <button type="button" class="search_btn">
-                        <span class="material-symbols-outlined">
-                            search
-                        </span>
-                    </button>
-                </div>
-            </div> -->
         </div>
     </div>
-    <div *ngIf="checkDesignationId == 4">
-        <div class="sales_edit_view_div">
-            <!-- <span class="material-symbols-outlined " style="background:#006FFD; " (click)="goToDetailsPage(item.sales_person_id)">
-                visibility
-            </span> -->
-            <!-- <span class="material-symbols-outlined" style="background: #00BF58;">
-                edit_square
-            </span> -->
-        </div>
-    </div>
+
 
 
     <div class="main_body mt-2 mb-5 ">
         <div class="text-start mb-4" [hidden]="!isEdit" *ngIf="checkDesignationId != 4">
-            <button class="new_btn " (click)="newForm()" style="font-size: 0 !important; display: flex;"><span class="material-symbols-outlined" style="font-size: 18px;">arrow_back_ios</span></button>
+            <button class="new_btn " (click)="newForm()" style="font-size: 0 !important; display: flex;"><span
+                    class="material-symbols-outlined" style="font-size: 18px;">arrow_back_ios</span></button>
         </div>
         <div class="info_div">
             <div class="page_info_heading">
@@ -139,7 +110,7 @@
                             </div>
                         </div>
                     </div> -->
-                    
+
 
 
                     <div class="col-md-3">
@@ -177,7 +148,7 @@
                     </div>
                 </div>
                 <div class="text-center mt-3">
-                    <button mat-flat-button type="submit" class="btn1" [disabled]="isDisabled" >submit</button>
+                    <button mat-flat-button type="submit" class="btn1" [disabled]="isDisabled">submit</button>
                 </div>
             </form>
         </div>
@@ -201,11 +172,11 @@
                 <h3 class="text-end" style="font-size: 20px;">total : {{total_count}}</h3>
             </div>
         </div>
-        <div class="table-responsive" >
+        <div class="table-responsive">
             <table class="listing_table">
                 <tr class="table_head">
                     <th>sl no.</th>
-                    <th style="text-align: left;">SBU</th>                
+                    <th style="text-align: left;">SBU</th>
                     <th style="text-align: left;">name</th>
                     <th style="text-align: left;">designation</th>
                     <th>function</th>

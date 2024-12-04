@@ -557,16 +557,9 @@ searchCriteria : string = '';
   }
 
   getMentorSalesList() {
-    // this.getMentorList();
     this.getSalesPersonList();
 
   }
-  // showMentorList(){
-  //   if(this.designationId == 4){
-  //     this.isMentorVisible = true;
-  //   }
-  // }
-
 
   //************** Filter enquiry list by category **************/
   getFilterEnquiryByCategory() {

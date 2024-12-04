@@ -173,7 +173,6 @@ export class SalesPersonComponent implements OnInit {
       function_id: this.functionId,
       sales_person_name: form.value.name,
       designation_id: form.value.designation,
-      // mentor_id: mentorId,
       mobile: form.value.mobile_no,
       email: form.value.email_id,
       dob: form.value.dob,
@@ -230,9 +229,7 @@ export class SalesPersonComponent implements OnInit {
       if (res.success) {
         if (res.response) {
           this.sbu_id = res.response.sbu_id;
-          // this.getMentorList();
           this.functionId = res.response.function_id;
-          // this.mentorId = res.response.mentor_id ? res.response.mentor_id : '';
           this.salesPersonName = res.response.sales_person_name
           this.designationId = res.response.designation_id
           this.emailId = res.response.email

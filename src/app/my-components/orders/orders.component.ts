@@ -392,36 +392,30 @@ export class OrdersComponent {
   fileUpload(event: any, type: 'poPhoto' | 'completionPhoto' | 'credentialPhoto'){
     this.FileOrg = event.target.files;
     if (this.FileOrg) {
-      const formData = new FormData();
-     
+      const formData = new FormData();     
       for (let i = 0; i < this.FileOrg.length; i++) {
         const file = this.FileOrg[i];
         formData.append('files[]', file, file.name);
       }
-      this.rest.multipleFileUpload(formData).subscribe(
-        (res: any) => {
+      this.rest.multipleFileUpload(formData).subscribe((res: any) => {
           if (res.success) {
-
             this.common.showAlertMessage(res.message, this.common.succContent);
             if(type == 'poPhoto') {
               let tempAssignmentDocAll: string[] = [];
-              for (var i = 0; i < res.response.length; i++) {
-                // this.FileOrgAll = this.FileOrgAll ? this.FileOrgAll + "," + res.response[i].originalFilename : res.response[i].originalFilename;
+              for (var i = 0; i < res.response.length; i++) { 
                 tempAssignmentDocAll.push(res.response[i].newFileName);
               }
               this.po_Photo = this.po_Photo ? this.po_Photo.concat(tempAssignmentDocAll) : tempAssignmentDocAll;
             } else if (type == 'completionPhoto') {
               let tempAssignmentDocAll: string[] = [];
               for (var i = 0; i < res.response.length; i++) {
-                // this.FileOrgAll = this.FileOrgAll ? this.FileOrgAll + "," + res.response[i].originalFilename : res.response[i].originalFilename;
                 tempAssignmentDocAll.push(res.response[i].newFileName);
               }
               this.completion_Photo = this.completion_Photo ? this.completion_Photo.concat(tempAssignmentDocAll) : tempAssignmentDocAll;
             } else if (type == 'credentialPhoto') {
               let tempAssignmentDocAll: string[] = [];
               for (var i = 0; i < res.response.length; i++) {
-                // this.FileOrgAll = this.FileOrgAll ? this.FileOrgAll + "," + res.response[i].originalFilename : res.response[i].originalFilename;
-                tempAssignmentDocAll.push(res.response[i].newFileName);
+                 tempAssignmentDocAll.push(res.response[i].newFileName);
               }
               this.credential_Photo = this.credential_Photo ? this.credential_Photo.concat(tempAssignmentDocAll) : tempAssignmentDocAll;
             }
