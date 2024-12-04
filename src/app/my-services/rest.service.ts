@@ -344,7 +344,19 @@ export class RestService {
 
 
   //*********** create company ***********//
-  createCompany_rest(data: any): Observable<any>{
-    return this.http.post(this.API_ROOT + 'director/addNewCompany', data, httpOptions)
+  createCompany_rest(data: any, isEdit: any): Observable<any> {
+     const API_Endpoint = isEdit ? 'director/editCompany' : 'director/addNewCompany'
+    return this.http.post(this.API_ROOT + API_Endpoint, data, httpOptions)
   }
+
+
+  // createCustomer_rest(data: any, isEdit: any): Observable<any> {
+  //   const API_Endpoint = isEdit ? 'common/editCustomer' : 'common/createCustomer'
+  //   return this.http.post(this.API_ROOT + API_Endpoint, data, httpOptions)
+  // }
+  //************ view company ************//
+  getCompanyById_rest(data:any): Observable<any> {
+    return this.http.post(this.API_ROOT + 'director/getCompanyById', data, httpOptions)
+  }
+
 }

@@ -141,10 +141,6 @@ export class CustomerComponent {
       this.common.showAlertMessage('Please Choose a sales incharge', this.common.errContent)
       return;
     }
-    // if (!this.customerCreateDate) {
-    //   this.common.showAlertMessage('Please select date', this.common.errContent)
-    //   return;
-    // }
     if (!this.customer_name) {
       this.common.showAlertMessage('Please enter customer name', this.common.errContent)
       return;
@@ -173,10 +169,6 @@ export class CustomerComponent {
       this.common.showAlertMessage('Please enter a email id', this.common.errContent)
       return;
     }
-    // if (!this.prdtCategoryId) {
-    //   this.common.showAlertMessage('Please choose a product category', this.common.errContent);
-    //   return;
-    // }
     if (!this.street_no) {
       this.common.showAlertMessage('Please enter street no.', this.common.errContent)
       return;
@@ -209,7 +201,6 @@ export class CustomerComponent {
       this.common.showAlertMessage('Please enter pin', this.common.errContent);
       return;
     }
-
     if(this.selectedCategoryIds.includes(4)) {
       if(!this.otherProductCategory) {
         this.common.showAlertMessage('Please enter product category', this.common.errContent)
@@ -397,8 +388,6 @@ export class CustomerComponent {
       }
     })
   }
-
-
 
   //**************** get state list function start ************//
   getStateList() {

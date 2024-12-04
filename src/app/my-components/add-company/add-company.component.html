@@ -14,11 +14,17 @@
     </div>
 
     <div class="main_body mt-2 mb-5 ">
+
+        <div class="text-start mb-4" [hidden]="!isEdit">
+            <button class="new_btn " (click)="newForm()" style="font-size: 0 !important;display: flex;">
+                <span class="material-symbols-outlined" style="font-size: 18px;">arrow_back_ios</span>
+            </button>
+        </div>
+
         <div class="info_div">
             <div class="page_info_heading">
                 company
             </div>
-           
 
             <div class="main_body ">
                 <div class="my_form ">
@@ -39,13 +45,13 @@
                             <div class="form_select_div ">
                                 <label>contact number</label>
                                 <input type="text" class="form-control" maxlength="10" [(ngModel)]="mobNo"
-                                (keypress)="restrictPhone($event)">
+                                    (keypress)="restrictPhone($event)">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form_select_div">
                                 <label>email id</label>
-                                <input type="email" class="form-control" [(ngModel)]="emailId">
+                                <input type="email" class="form-control text-lowercase" [(ngModel)]="emailId">
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -66,7 +72,8 @@
                                 <div class="form_select_div">
                                     <select class="form-control" [(ngModel)]="stateId">
                                         <option>--choose state--</option>
-                                        <option *ngFor="let item of stateList" [value]="item.state_id">{{item.state_name}}
+                                        <option *ngFor="let item of stateList" [value]="item.state_id">
+                                            {{item.state_name}}
                                         </option>
                                     </select>
                                     <span class="material-symbols-outlined">
@@ -78,7 +85,8 @@
                         <div class="col-md-3">
                             <div class="">
                                 <label>PIN</label>
-                                <input type="text" class="form-control" [(ngModel)]="pinNo">
+                                <input type="text" class="form-control" [(ngModel)]="pinNo"  maxlength="6"
+                                    (keypress)="restrictPhone($event)">
                             </div>
                         </div>
                     </div>
@@ -89,7 +97,7 @@
                 </div>
             </div>
 
-            <div class="listing_div" style="margin: 40px auto;" >
+            <div class="listing_div" style="margin: 40px auto;">
                 <table class="listing_table">
                     <tr class="table_head">
                         <th>sl no.</th>
@@ -103,6 +111,7 @@
                         <th>PIN</th>
                         <th>view</th>
                         <th>edit</th>
+                        <th>delete</th>
                     </tr>
 
                     <tr *ngFor="let item of SBUList; let i = index">
@@ -110,25 +119,32 @@
                         <td>{{item.sbu_name }}</td>
                         <td>{{ item.contact_person }}</td>
                         <td>{{ item.contact_number }}</td>
-                        <td  class="text-lowercase">{{ item.email }}</td>
+                        <td class="text-lowercase">{{ item.email }}</td>
                         <td>{{ item.address }}</td>
                         <td>{{ item.city }}</td>
                         <td>{{ item.state_name }}</td>
                         <td>{{ item.pin }}</td>
                         <td>
-                            <span class="material-symbols-outlined" style="color:#006FFD;">
-                            visibility
-                        </span>
+                            <span class="material-symbols-outlined" style="color:#006FFD;"
+                                (click)="goToDetailsPage(item.sbu_id)">
+                                visibility
+                            </span>
                         </td>
                         <td>
-                            <span class="material-symbols-outlined" style="color: #00BF58;">
-                            edit_square
-                        </span>
+                            <span class="material-symbols-outlined" style="color: #00BF58;"
+                                (click)="getCompanyById(item.sbu_id)">
+                                edit_square
+                            </span>
+                        </td>
+                        <td>
+                            <span class="material-symbols-outlined" style="color: #A8226A;" >
+                                delete
+                            </span>
                         </td>
                     </tr>
                 </table>
             </div>
-            
+
         </div>
     </div>
 </div>

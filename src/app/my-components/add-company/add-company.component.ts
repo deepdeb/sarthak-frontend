@@ -16,11 +16,12 @@ export class AddCompanyComponent {
   SBUList: any = [];
   companyName: string = '';
   contactPerson: string = '';
-  mobNo: any;  
-  emailId: string = '';  
+  mobNo: any;
+  emailId: string = '';
   addreSS: string = '';
   cityName: string = '';
   stateId = '' as any;
+  stateName: string = '';
   stateList: any = [];
   pinNo: any;
   isEdit: boolean = false;
@@ -37,24 +38,25 @@ export class AddCompanyComponent {
   onPageLoadCommonAPI() {
     this.getStateList();
     this.getSBUList();
+    // this.getCompanyById();
   }
 
- // ************* get SBU List ************** //
- getSBUList() {
-  const data = {
-    sbu_id: this.sbuId
-  }
-  this.rest.getSBUList_rest(data).subscribe((res: any) => {
-    if (res.success) {
-      if (res.response) {
-        if (res.response.length > 0) {
-          this.SBUList = [];
-          this.SBUList = res.response;
+  // ************* get SBU List ************** //
+  getSBUList() {
+    const data = {
+      sbu_id: localStorage.getItem('sbu_id')
+    }
+    this.rest.getSBUList_rest(data).subscribe((res: any) => {
+      if (res.success) {
+        if (res.response) {
+          if (res.response.length > 0) {
+            this.SBUList = [];
+            this.SBUList = res.response;
+          }
         }
       }
-    }
-  })
-}
+    })
+  }
 
   //**************** get state list function start ************//
   getStateList() {
@@ -78,38 +80,44 @@ export class AddCompanyComponent {
       return;
     }
   }
+  
+  // **************** new form logic  ********************//
+  newForm() {
+    window.location.reload()
+  }
+
 
   //************** create Company function start **************//
-  createCompany(){
-    if(!this.companyName){
+  createCompany() {
+    if (!this.companyName) {
       this.common.showAlertMessage('Please enter Company Name', this.common.errContent)
       return;
     }
-    if(!this.contactPerson){
+    if (!this.contactPerson) {
       this.common.showAlertMessage('Please enter Contact Person', this.common.errContent)
       return;
     }
-    if(!this.mobNo){
+    if (!this.mobNo) {
       this.common.showAlertMessage('Please enter Contact No.', this.common.errContent)
       return;
     }
-    if(!this.emailId){
-      this.common.showAlertMessage('Please enter Email Id', this.common.errContent)
+    if (!this.emailId.includes('@')) {
+      this.common.showAlertMessage('Please enter valid Email Id', this.common.errContent)
       return;
     }
-    if(!this.addreSS){
+    if (!this.addreSS) {
       this.common.showAlertMessage('Please enter Address', this.common.errContent)
       return;
     }
-    if(!this.cityName){
+    if (!this.cityName) {
       this.common.showAlertMessage('Please enter City', this.common.errContent)
       return;
     }
-    if(!this.stateId){
+    if (!this.stateId) {
       this.common.showAlertMessage('Please choose your State', this.common.errContent)
       return;
     }
-    if(!this.pinNo){
+    if (!this.pinNo) {
       this.common.showAlertMessage('Please enter PIN No', this.common.errContent)
       return;
     }
@@ -122,21 +130,59 @@ export class AddCompanyComponent {
       city: this.cityName,
       state_id: this.stateId,
       pin: this.pinNo,
+      ...(this.isEdit && { sbu_id: this.sbuId })
     }
-    this.rest.createCompany_rest(data).subscribe((res: any) => {
+    this.rest.createCompany_rest(data, this.isEdit).subscribe((res: any) => {
       if (res.success) {
-        this.companyName ='';
-        this.contactPerson = '';
-        this.mobNo = '';
-        this.emailId = '';
-        this.addreSS = '';
-        this.cityName = '';
-        this.stateId = '';
-        this.pinNo = '';
+        if(res.response){
+          this.companyName = '';
+          this.contactPerson = '';
+          this.mobNo = '';
+          this.emailId = '';
+          this.addreSS = '';
+          this.cityName = '';
+          this.stateId = '';
+          this.pinNo = '';
+          this.getSBUList();
+          this.common.showAlertMessage(res.message, this.common.succContent);
+          this.isEdit = false;
+        }
       }
     })
   }
   //************** create Company function end **************//
 
+
+
+
+  getCompanyById(sbu_id: any) {
+    this.isEdit = true;
+    this.sbuId = sbu_id;
+    const data = {      
+      sbu_id: this.sbuId
+    }
+    this.rest.getCompanyById_rest(data).subscribe((res: any) => {
+      if (res.success) {
+        if (res.response) {
+          this.companyName = res.response[0].sbu_name
+          this.contactPerson = res.response[0].contact_person
+          this.mobNo = res.response[0].contact_number
+          this.emailId = res.response[0].email
+          this.addreSS = res.response[0].address
+          this.cityName = res.response[0].city
+          this.stateId = res.response[0].state_id
+          this.stateName = res.response[0].state_name
+          this.pinNo = res.response[0].pin
+        }
+      }
+    })
+  }
+
+
+  //********* for view details page start *********//
+  goToDetailsPage(sbu_id: any) {
+    this.router.navigate(['detailsPage'], { queryParams: { view: 'addCompany', id: sbu_id } })
+  }
+  //********* for view details page end *********//
 
 }

@@ -24,17 +24,19 @@
                         <img src="assets/images/manager.png" alt="" loading="lazy">
                         <h1 class="page_top_heading mb-0">sales person details</h1>
                     </div>
-                </div>
-                <!-- <div class="col-md-3 text-end">
-                    <div class="page_search">
-                        <input type="text" class="search_form">
-                        <button type="button" class="search_btn">
-                            <span class="material-symbols-outlined">
-                                search
-                            </span>
-                        </button>
+                    <div class="page_name" *ngIf="view === 'enquiry'">
+                        <img src="assets/images/enquiry.png" alt="" loading="lazy" >
+                        <h1 class="page_top_heading mb-0">enquiry details</h1>                        
                     </div>
-                </div> -->
+                    <div class="page_name" *ngIf="view === 'orders'">                            
+                        <img src="assets/images/received.png" alt="" loading="lazy">
+                        <h1 class="page_top_heading mb-0">order details</h1>
+                    </div>
+                    <div class="page_name" *ngIf="view === 'addcompany'">                            
+                        <img src="assets/images/enterprise.png" alt="" loading="lazy">
+                        <h1 class="page_top_heading mb-0">company details</h1>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -52,7 +54,9 @@
                 <h4 class="details_heading"  *ngIf="view === 'orders'">
                     order info
                  </h4>
-
+                 <h4 class="details_heading"  *ngIf="view === 'addcompany'">
+                    company info
+                 </h4>
 
                 <div class="row g-2" >
                     <div class="col-md-3" *ngIf="view === 'customer'">
@@ -67,11 +71,11 @@
                             <p class="details_content">{{functionName}}</p>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3" *ngIf="view === 'salesperson' || view === 'orders' || view === 'customer' || view === 'enquiry'">
                         <div class="details_content_div">
                             <label *ngIf="view === 'customer' || view === 'enquiry'">sales incharge :</label>
                             <label *ngIf="view === 'salesperson' || view === 'orders'">name :</label>
-                            <p class="details_content">{{salesIncharge}}</p>
+                            <p class="details_content" >{{salesIncharge}}</p>
                         </div>
                     </div>
                     <div class="col-md-3" *ngIf="view === 'enquiry' || view === 'orders'">
@@ -194,7 +198,6 @@
                             <p class="details_content">{{enquiryDate}}</p>
                         </div>
                     </div>
-
                     <div class="col-md-3"  *ngIf="view === 'enquiry'">
                         <div class="details_content_div">
                             <label>source of enquiry :</label>
@@ -308,12 +311,59 @@
                             <p class="details_content">{{ altMobileNumber }}</p>
                         </div>
                     </div>
-                   
-                    
                     <div class="col-md-3" *ngIf="view === 'customer'">
                         <div class="details_content_div">
                             <label>alternative email id :</label>
                             <p class="details_content text-lowercase">{{ altEmailAddress }}</p>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3" *ngIf="view === 'addCompany'">
+                        <div class="details_content_div">
+                            <label>company Name :</label>
+                            <p class="details_content ">{{ companyName }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'addCompany'">
+                        <div class="details_content_div">
+                            <label>contact person :</label>
+                            <p class="details_content ">{{ contactPerson }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'addCompany'">
+                        <div class="details_content_div">
+                            <label>contact number :</label>
+                            <p class="details_content ">{{ mobNo }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'addCompany'">
+                        <div class="details_content_div">
+                            <label>email id :</label>
+                            <p class="details_content text-lowercase">{{ emailId }}</p>
+                        </div>
+                    </div> <div class="col-md-3" *ngIf="view === 'addCompany'">
+                        <div class="details_content_div">
+                            <label>address :</label>
+                            <p class="details_content ">{{ addreSS }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'addCompany'">
+                        <div class="details_content_div">
+                            <label>city :</label>
+                            <p class="details_content ">{{ cityName }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'addCompany'">
+                        <div class="details_content_div">
+                            <label>state :</label>
+                            <p class="details_content ">{{ stateName }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="view === 'addCompany'">
+                        <div class="details_content_div">
+                            <label>PIN :</label>
+                            <p class="details_content ">{{ pinNo }}</p>
                         </div>
                     </div>
                 </div>
@@ -407,6 +457,10 @@
                 back
             </button>
             <button class="btn1"  *ngIf="view === 'orders'" style="display: flex;align-items: center;" routerLink="/orders">
+                <span class="material-symbols-outlined" style="font-size: 20px;">arrow_back_ios</span>
+                back
+            </button>
+            <button class="btn1"  *ngIf="view === 'addCompany'" style="display: flex;align-items: center;" routerLink="/addCompany">
                 <span class="material-symbols-outlined" style="font-size: 20px;">arrow_back_ios</span>
                 back
             </button>

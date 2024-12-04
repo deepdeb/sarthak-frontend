@@ -73,9 +73,22 @@ export class DetailsPageComponent {
   csClamps: string = '';
   csHsaBox: string = '';
   csOthers: string = '';
+  sbuId: any = localStorage.getItem('sbu_id');
+  // SBUList: any = [];
   // credential_Photo: string = '';
   // completion_Photo: string = '';
   // po_Photo: string = '';
+
+  companyName: string = '';
+  contactPerson: string = '';
+  mobNo: any;
+  emailId: string = '';
+  addreSS: string = '';
+  stateId = '' as any;
+  pinNo: any;
+
+
+
 
   constructor(private rest: RestService, private route: ActivatedRoute) { }
 
@@ -84,7 +97,7 @@ export class DetailsPageComponent {
       this.details_id = params['id'];
       this.view = params['view'];
     })
-    this.view == 'customer' ? this.getCustomerDetailsById(this.details_id) : this.view == 'salesperson' ? this.getSalespersonById(this.details_id) : this.view == 'orders' ? this.getOrderById(this.details_id) : this.getEnquiryById(this.details_id);
+    this.view == 'customer' ? this.getCustomerDetailsById(this.details_id) : this.view == 'salesperson' ? this.getSalespersonById(this.details_id) : this.view == 'orders' ? this.getOrderById(this.details_id) : this.view == 'addCompany' ? this.getCompanyById(this.details_id) : this.getEnquiryById(this.details_id);
   }
 
 
@@ -199,13 +212,6 @@ export class DetailsPageComponent {
           this.totalPoValue = res.response[0].total_po_value
           this.completionDate = res.response[0].scheduled_completion_date
           this.actualCompletionDate = res.response[0].actual_completion_date
-          // this.po_Photo = res.response[0]
-          // this.completion_Photo = res.response[0]
-          // this.credential_Photo = res.response[0]
-
-          // this.poUpload = res.response[0]
-          // this.completionUpload = res.response[0]
-          // this.credentialUpload = res.response[0]
           this.supplyProduct = res.response[0].product
           this.supplyDescription = res.response[0].supply_description
           this.supplyBrand = res.response[0].brand
@@ -216,6 +222,29 @@ export class DetailsPageComponent {
           this.csClamps = res.response[0].clamps
           this.csHsaBox = res.response[0].hsa_box
           this.csOthers = res.response[0].others
+        }
+      }
+    })
+  }
+
+  // ************* company view details ************** //
+
+  getCompanyById(company_details_id: any) {
+    const data = {
+      
+      sbu_id: company_details_id
+    }
+    this.rest.getCompanyById_rest(data).subscribe((res: any) => {
+      if (res.success) {
+        if (res.response) {
+          this.companyName = res.response[0].sbu_name
+          this.contactPerson = res.response[0].contact_person
+          this.mobNo = res.response[0].contact_number
+          this.emailId = res.response[0].email
+          this.addreSS = res.response[0].address
+          this.cityName = res.response[0].city
+          this.stateName = res.response[0].state_name
+          this.pinNo = res.response[0].pin
         }
       }
     })
