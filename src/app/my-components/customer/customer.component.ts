@@ -74,6 +74,8 @@ export class CustomerComponent {
   selectedCategoryIds: any = [];
   searchCriteria : string = '';
 
+  customerOffset : number =  0;
+
   constructor(private router: Router, private rest: RestService, private common: CommonService) { }
 
   ngOnInit(): void {
@@ -91,6 +93,16 @@ export class CustomerComponent {
     this.getSegmentList();
     this.getStateList();
     this.getPrdtCategoryList();
+  }
+
+
+  previousList(){
+    this.customerOffset = this.customerOffset > 0 ? this.customerOffset - 10 : 0;
+    this.getCustomerList();
+  }
+  nextList(){
+    this.customerOffset =  this.customerOffset + 10 ;
+    this.getCustomerList();
   }
 
   //********** For get sales person List **********//
@@ -292,6 +304,7 @@ export class CustomerComponent {
       sbu_id: localStorage.getItem('sbu_id'),
       sales_person_id: localStorage.getItem('sales_person_id'),
       search_criteria: this.searchCriteria,
+      customer_offset : this.customerOffset
     };
     this.rest.getCustomerList_rest(data).subscribe((res: any) => {
       if (res.success) {

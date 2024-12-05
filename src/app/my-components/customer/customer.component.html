@@ -398,7 +398,19 @@
                 <h3 class="text-end" style="font-size: 20px;">total : {{totalCustomerCount}}</h3>
             </div>
         </div>
-
+        <ul class="pagination_ul">
+            <li class="page-item ">
+                <button (click)="previousList()" [disabled] = "customerOffset == 0">
+                    <i class="fas fa-angle-left"></i>
+                </button>
+            </li>
+            
+            <li class="page-item">
+                <button  (click)="nextList()" [disabled] = "customerList.length < 10 || totalCustomerCount <= 10">
+                    <i class="fas fa-angle-right"></i>
+                </button>
+            </li>
+        </ul>
         <div class="customer_table" >
             <table class="listing_table" >
                 <tr class="table_head sticky-top">
@@ -427,7 +439,7 @@
                 </tr>
 
                 <tr *ngFor="let item of customerList; let i = index">
-                    <td>{{ i+1 }}</td>
+                    <td>{{ (i + customerOffset) + 1 }}</td>
                     <td>{{ item.customer_create_date }}</td>
                     <!-- <td>{{ item.sbu_name }}</td> -->
                     <td>{{ item.sales_person_name }}</td>
@@ -467,18 +479,6 @@
 
             </table>
         </div>
-        <div>
-            <ul >
-                <li class="page-item active">
-                    <a class="page-link" href="#" ><i class="far fa-arrow-alt-circle-left"></i></a>
-                    
-                </li>
-               
-                <li class="page-item">
-                    <a class="page-link" href="#"><i class="far fa-arrow-alt-circle-right"></i></a>
-                </li>
-            </ul>
-        </div>
-
+       
     </div>
 </div>

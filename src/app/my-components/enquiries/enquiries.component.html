@@ -353,6 +353,22 @@
                 <h3 class="text-end" style="font-size: 20px;">total : {{totalCount}}</h3>
             </div>
         </div>
+
+        <ul class="pagination_ul">
+            <li class="page-item ">
+                <button (click)="previousList()" [disabled] = "enquiryOffset == 0">
+                    <i class="fas fa-angle-left"></i>
+                </button>
+            </li>
+            
+            <li class="page-item">
+                <button  (click)="nextList()" [disabled] = "enquiryList.length < 10 || totalCount <= 10">
+                    <i class="fas fa-angle-right"></i>
+                </button>
+            </li>
+        </ul>
+
+
         <div class="table-responsive customer_table">
             <table class="listing_table">
                 <tr class="table_head sticky-top">
@@ -377,7 +393,7 @@
                 </tr>
 
                 <tr *ngFor="let item of enquiryList; let i = index">
-                    <td>{{ i+1 }}</td>
+                    <td>{{ (i + enquiryOffset) + 1 }}</td>
                     <td>E000{{ item.enquiry_id }}/24-25</td>
                     <td>{{ item.reff_number ? item.reff_number : 'NA' }}</td>
                     <td>{{ item.sales_person_name }}</td>

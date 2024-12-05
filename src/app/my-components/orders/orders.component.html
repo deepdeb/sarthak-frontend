@@ -707,6 +707,19 @@
                 <h3 class="text-end" style="font-size: 20px;">total : {{ totalOrderCount }}</h3>
             </div>
         </div>
+        <ul class="pagination_ul">
+            <li class="page-item ">
+                <button (click)="previousList()" [disabled] = "orderOffset == 0">
+                    <i class="fas fa-angle-left"></i>
+                </button>
+            </li>
+            
+            <li class="page-item">
+                <button  (click)="nextList()" [disabled] = "orderList.length < 10 || totalOrderCount <= 10">
+                    <i class="fas fa-angle-right"></i>
+                </button>
+            </li>
+        </ul>
         <div class="customer_table ">
             <!-- <div class="listing_div"> -->
             <table class="listing_table ">
@@ -729,7 +742,7 @@
                 </tr>
 
                 <tr *ngFor="let item of orderList; let i = index">
-                    <td>{{ i+1 }}</td>
+                    <td>{{ (i + orderOffset) + 1 }}</td>
                     <td>{{ item.enquiry_id ? 'E000' + item.enquiry_id + '/24-25' : 'Direct Order'}}</td>
                      <!-- <td>{{ item.enquiry_number }}</td> -->
                     <!-- <td></td> -->

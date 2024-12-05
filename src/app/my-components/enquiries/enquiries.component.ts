@@ -69,7 +69,8 @@ export class EnquiriesComponent {
   isOthersChecked: boolean = false;
   orderId: any;
 
-searchCriteria : string = '';
+  searchCriteria: string = '';
+  enquiryOffset : number =  0;
 
   // ************ static months & years **************//
   months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
@@ -89,6 +90,16 @@ searchCriteria : string = '';
     if (this.sbuId != 0) {
       this.getMentorSalesList();
     }
+  }
+
+
+  previousList(){
+    this.enquiryOffset = this.enquiryOffset > 0 ? this.enquiryOffset - 10 : 0;
+    this.getEnquiryList();
+  }
+  nextList(){
+    this.enquiryOffset =  this.enquiryOffset + 10 ;
+    this.getEnquiryList();
   }
 
 
@@ -420,6 +431,8 @@ searchCriteria : string = '';
       sbu_id: localStorage.getItem('sbu_id'),
       sales_person_id: localStorage.getItem('sales_person_id'),
       search_criteria: this.searchCriteria,
+      enquiry_offset : this.enquiryOffset
+
     }
     this.rest.getEnquiryList_rest(data).subscribe((res: any) => {
       if (res.success) {
@@ -492,11 +505,11 @@ searchCriteria : string = '';
           this.csHsaBox = res.response[0].hsa_box
           this.csOthers = res.response[0].others
 
-          if(this.enquirySubTypeId == 1) {
+          if (this.enquirySubTypeId == 1) {
             this.supplyRow = true;
-          } else if(this.enquirySubTypeId == 2) {
+          } else if (this.enquirySubTypeId == 2) {
             this.sitcRow = true;
-          } else if(this.enquirySubTypeId == 3) {
+          } else if (this.enquirySubTypeId == 3) {
             this.csRow = true;
           }
 
@@ -586,7 +599,7 @@ searchCriteria : string = '';
                 "JAN": 10,
                 "FEB": 11,
                 "MAR": 12
-              };              
+              };
 
               this.filteredEnquiryListByCategory.forEach((item: any) => {
                 if (!item.name) {
@@ -641,7 +654,7 @@ searchCriteria : string = '';
       }
     })
   }
-  
+
 }
 
 

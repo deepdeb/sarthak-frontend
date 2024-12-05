@@ -172,6 +172,21 @@
                 <h3 class="text-end" style="font-size: 20px;">total : {{total_count}}</h3>
             </div>
         </div>
+
+        <ul class="pagination_ul">
+            <li class="page-item ">
+                <button (click)="previousList()" [disabled] = "salesPersonOffset == 0">
+                    <i class="fas fa-angle-left"></i>
+                </button>
+            </li>
+            
+            <li class="page-item">
+                <button  (click)="nextList()" [disabled] = "salesPersonList.length < 10 || total_count <= 10">
+                    <i class="fas fa-angle-right"></i>
+                </button>
+            </li>
+        </ul>
+
         <div class="table-responsive">
             <table class="listing_table">
                 <tr class="table_head">
@@ -189,7 +204,7 @@
                 </tr>
 
                 <tr *ngFor="let item of salesPersonList; let i = index">
-                    <td>{{ i+1 }}</td>
+                    <td>{{ (i + salesPersonOffset) + 1 }}</td>
                     <td style="text-align: left;">{{ item.sbu_name}}</td>
                     <td style="text-align: left;">{{ item.sales_person_name}}</td>
                     <td style="text-align: left;">{{ item.designation_name}}</td>

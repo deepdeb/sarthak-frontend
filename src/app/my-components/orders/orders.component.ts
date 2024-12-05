@@ -116,6 +116,7 @@ export class OrdersComponent {
   fileDocAll : any;
 
   searchCriteria : string = '';
+  orderOffset : number =  0;
   
   constructor(private router: Router, private rest: RestService, private common: CommonService) { 
   }
@@ -136,6 +137,16 @@ export class OrdersComponent {
     this.getOrderList();
     this.getEnquiryList();
   }
+
+  previousList(){
+    this.orderOffset = this.orderOffset > 0 ? this.orderOffset - 10 : 0;
+    this.getOrderList();
+  }
+  nextList(){
+    this.orderOffset =  this.orderOffset + 10 ;
+    this.getOrderList();
+  }
+
 
   //************ show new follow up form **************//
   showNewFollowUpForm(){
@@ -756,6 +767,8 @@ export class OrdersComponent {
       sbu_id: localStorage.getItem('sbu_id'),
       sales_person_id: localStorage.getItem('sales_person_id'),
       search_criteria: this.searchCriteria,
+      order_offset : this.orderOffset
+
     }
     this.rest.getOrderList_rest(data).subscribe((res: any) => {
       if (res.success) {

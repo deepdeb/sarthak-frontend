@@ -37,6 +37,9 @@ export class SalesPersonComponent implements OnInit {
   mentorList: any = [];
   // mentorId: any = ''; 
 
+
+  salesPersonOffset : number =  0;
+
   constructor(private router: Router, private rest: RestService, private common: CommonService) { }
 
   ngOnInit(): void {
@@ -47,6 +50,15 @@ export class SalesPersonComponent implements OnInit {
     if (this.checkDesignationId == 4) {
       this.getSalespersonById(this.salesPersonId);
     }
+  }
+
+  previousList(){
+    this.salesPersonOffset = this.salesPersonOffset > 0 ? this.salesPersonOffset - 10 : 0;
+    this.getSalesPersonList();
+  }
+  nextList(){
+    this.salesPersonOffset =  this.salesPersonOffset + 10 ;
+    this.getSalesPersonList();
   }
 
 
@@ -114,6 +126,7 @@ export class SalesPersonComponent implements OnInit {
       sbu_id: localStorage.getItem('sbu_id'),
       sales_person_id: localStorage.getItem('sales_person_id'),
       search_criteria: this.searchCriteria,
+      sales_person_offset: this.salesPersonOffset
     };
     this.rest.getSalesPersonList_rest(data).subscribe((res: any) => {
       if (res.success) {
