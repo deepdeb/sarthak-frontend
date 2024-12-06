@@ -568,9 +568,6 @@
                                     </span>
                                 </div>
                             </div>
-
-
-
                         </div>
                     </div> 
                     <div class="col-md-4">
@@ -594,15 +591,15 @@
                                         [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : 'assets/images/jpg.png'"
                                         alt="" loading="lazy" (click)="viewFile(item)"
                                         style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
-                                    <span *ngIf="credential_Photo.length>0" (click)="removeFile(i, 'credentialPhoto')" class="fas fa-times"
-                                        style="position: absolute;top: -6px;
-                                        right: 0px;
-                                        color: red;
-                                        padding: 2px 4px;
-                                        background: white;
-                                        cursor: pointer;
-                                        border-radius: 50%;">
-                                    </span>
+                                        <span *ngIf="credential_Photo.length>0" (click)="removeFile(i, 'credentialPhoto')" class="fas fa-times"
+                                            style="position: absolute;top: -6px;
+                                            right: 0px;
+                                            color: red;
+                                            padding: 2px 4px;
+                                            background: white;
+                                            cursor: pointer;
+                                            border-radius: 50%;">
+                                        </span>
                                 </div>
                             </div>
                         </div>

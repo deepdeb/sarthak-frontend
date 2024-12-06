@@ -105,20 +105,20 @@ export class OrdersComponent {
   productRowEnquiry: boolean = false;
   csRowEnquiry: boolean = false;
   sitcRowEnquiry: boolean = false;
-  isCreateNew: boolean =false;
+  isCreateNew: boolean = false;
   isEnquiryIdFilter: boolean = false;
 
   filePath: any = this.common.filePath
 
   isFileDiv: boolean = true;
-  FileOrg : any;
-  FileOrgAll : any;
-  fileDocAll : any;
+  FileOrg: any;
+  FileOrgAll: any;
+  fileDocAll: any;
 
-  searchCriteria : string = '';
-  orderOffset : number =  0;
-  
-  constructor(private router: Router, private rest: RestService, private common: CommonService) { 
+  searchCriteria: string = '';
+  orderOffset: number = 0;
+
+  constructor(private router: Router, private rest: RestService, private common: CommonService) {
   }
   ngOnInit(): void {
     this.getSalesPersonList();
@@ -129,7 +129,7 @@ export class OrdersComponent {
 
     // this.getCustomerListBySalesperson();
     // this.getPoSubTypeListByPOtype();
-    if(this.checkSbuId != 0) {
+    if (this.checkSbuId != 0) {
       this.salesPersonId = localStorage.getItem('sales_person_id');
       this.sbuId = localStorage.getItem('sbu_id')
       this.getCustomerListBySalesperson();
@@ -138,47 +138,41 @@ export class OrdersComponent {
     this.getEnquiryList();
   }
 
-  previousList(){
+  previousList() {
     this.orderOffset = this.orderOffset > 0 ? this.orderOffset - 10 : 0;
     this.getOrderList();
   }
-  nextList(){
-    this.orderOffset =  this.orderOffset + 10 ;
+  nextList() {
+    this.orderOffset = this.orderOffset + 10;
     this.getOrderList();
   }
 
-
   //************ show new follow up form **************//
-  showNewFollowUpForm(){
+  showNewFollowUpForm() {
     this.isCreateNew = true
   }
 
-
- // ************* get SBU List start **************//
- getSBUList() {
-  const data = {
-    sbu_id: this.sbuId
-  }
-  this.rest.getSBUList_rest(data).subscribe((res: any) => {
-    if (res.success) {
-      if (res.response) {
-        if (res.response.length > 0) {
-          this.SBUList = [];
-          this.SBUList = res.response;
+  // ************* get SBU List start **************//
+  getSBUList() {
+    const data = {
+      sbu_id: this.sbuId
+    }
+    this.rest.getSBUList_rest(data).subscribe((res: any) => {
+      if (res.success) {
+        if (res.response) {
+          if (res.response.length > 0) {
+            this.SBUList = [];
+            this.SBUList = res.response;
+          }
         }
       }
-    }
-  })
-}
-// ************* get SBU List end **************//
-
+    })
+  }
+  // ************* get SBU List end **************//
 
   getMentorSalesList() {
-    // this.getMentorList();
     this.getSalesPersonList();
-
   }
-
 
   //*********** get enquiry sub type list start *********//
   getEnquirySubTypeList() {
@@ -199,16 +193,16 @@ export class OrdersComponent {
   years = ['2024', '2025'];
 
   decimalBasicPO() {
-    if(this.basicPoValue){
-      if(!this.basicPoValue.includes('.')) {
+    if (this.basicPoValue) {
+      if (!this.basicPoValue.includes('.')) {
         this.basicPoValue = this.basicPoValue + '.00'
       }
     }
   }
 
   decimalTotalPO() {
-    if(this.totalPoValue){
-      if(!this.totalPoValue.includes('.')) {
+    if (this.totalPoValue) {
+      if (!this.totalPoValue.includes('.')) {
         this.totalPoValue = this.totalPoValue + '.00'
       }
     }
@@ -221,7 +215,6 @@ export class OrdersComponent {
       return;
     }
   }
-
 
   //********* Set SBU ID for create order ************/
   setSBUId(sales_person_id: any) {
@@ -253,7 +246,7 @@ export class OrdersComponent {
   getCustomerListBySalesperson() {
     this.customerBySalespersonList = []
     this.customerId = ''
-    if(this.sbuId == 0) {
+    if (this.sbuId == 0) {
       this.setSBUId(this.salesPersonId);
     }
     const data = {
@@ -322,7 +315,7 @@ export class OrdersComponent {
 
   //******************* get Enquiry Sub type details */
   getEnquirySubtypeDetails(enquiry_sub_type_id: any) {
-    
+
     if (enquiry_sub_type_id == 1) {
       this.isDivShowEnquiry = true;
       this.productRowEnquiry = true;
@@ -350,11 +343,11 @@ export class OrdersComponent {
       this.csCable = '';
       this.csPanel = '';
       this.csWelding = '';
-      this.csHsaBox = '';    
+      this.csHsaBox = '';
     } else {
       this.isOthersDisabled = true;
       this.csOthers = '';
-      
+
     }
   }
 
@@ -400,38 +393,38 @@ export class OrdersComponent {
 
 
   //***************** upload multiple file in order page *******************//
-  fileUpload(event: any, type: 'poPhoto' | 'completionPhoto' | 'credentialPhoto'){
+  fileUpload(event: any, type: 'poPhoto' | 'completionPhoto' | 'credentialPhoto') {
     this.FileOrg = event.target.files;
     if (this.FileOrg) {
-      const formData = new FormData();     
+      const formData = new FormData();
       for (let i = 0; i < this.FileOrg.length; i++) {
         const file = this.FileOrg[i];
         formData.append('files[]', file, file.name);
       }
       this.rest.multipleFileUpload(formData).subscribe((res: any) => {
-          if (res.success) {
-            this.common.showAlertMessage(res.message, this.common.succContent);
-            if(type == 'poPhoto') {
-              let tempAssignmentDocAll: string[] = [];
-              for (var i = 0; i < res.response.length; i++) { 
-                tempAssignmentDocAll.push(res.response[i].newFileName);
-              }
-              this.po_Photo = this.po_Photo ? this.po_Photo.concat(tempAssignmentDocAll) : tempAssignmentDocAll;
-            } else if (type == 'completionPhoto') {
-              let tempAssignmentDocAll: string[] = [];
-              for (var i = 0; i < res.response.length; i++) {
-                tempAssignmentDocAll.push(res.response[i].newFileName);
-              }
-              this.completion_Photo = this.completion_Photo ? this.completion_Photo.concat(tempAssignmentDocAll) : tempAssignmentDocAll;
-            } else if (type == 'credentialPhoto') {
-              let tempAssignmentDocAll: string[] = [];
-              for (var i = 0; i < res.response.length; i++) {
-                 tempAssignmentDocAll.push(res.response[i].newFileName);
-              }
-              this.credential_Photo = this.credential_Photo ? this.credential_Photo.concat(tempAssignmentDocAll) : tempAssignmentDocAll;
+        if (res.success) {
+          this.common.showAlertMessage(res.message, this.common.succContent);
+          if (type == 'poPhoto') {
+            let tempAssignmentDocAll: string[] = [];
+            for (var i = 0; i < res.response.length; i++) {
+              tempAssignmentDocAll.push(res.response[i].newFileName);
             }
+            this.po_Photo = this.po_Photo ? this.po_Photo.concat(tempAssignmentDocAll) : tempAssignmentDocAll;
+          } else if (type == 'completionPhoto') {
+            let tempAssignmentDocAll: string[] = [];
+            for (var i = 0; i < res.response.length; i++) {
+              tempAssignmentDocAll.push(res.response[i].newFileName);
+            }
+            this.completion_Photo = this.completion_Photo ? this.completion_Photo.concat(tempAssignmentDocAll) : tempAssignmentDocAll;
+          } else if (type == 'credentialPhoto') {
+            let tempAssignmentDocAll: string[] = [];
+            for (var i = 0; i < res.response.length; i++) {
+              tempAssignmentDocAll.push(res.response[i].newFileName);
+            }
+            this.credential_Photo = this.credential_Photo ? this.credential_Photo.concat(tempAssignmentDocAll) : tempAssignmentDocAll;
           }
-        },
+        }
+      },
         (error: any) => {
           console.error('Error uploading file:', error);
         }
@@ -440,22 +433,22 @@ export class OrdersComponent {
   }
 
 
-  viewFile(id: any){
+  viewFile(id: any) {
     const viewFile = this.filePath + id;
     window.open(viewFile, "_blank");
   }
 
-  viewDoc(id: any){
+  viewDoc(id: any) {
     const viewFile = this.filePath + id;
     window.open(viewFile, "_blank");
   }
 
-  removeFile(id: any, type: string){
-    if(type == 'poPhoto') {
-      this.po_Photo.splice(id,1);
-    } else if(type == 'completionPhoto') {
+  removeFile(id: any, type: string) {
+    if (type == 'poPhoto') {
+      this.po_Photo.splice(id, 1);
+    } else if (type == 'completionPhoto') {
       this.completion_Photo.splice(id, 1);
-    } else if(type == 'credentialPhoto') {
+    } else if (type == 'credentialPhoto') {
       this.credential_Photo.splice(id, 1);
     }
   }
@@ -514,14 +507,12 @@ export class OrdersComponent {
         this.common.showAlertMessage('Please enter anyone of cable assembly, panel, welding receptable , HSA Box ', this.common.errContent)
         return;
       }
-    } else if(this.poTypeId == 3 && this.isOthersChecked){
-      if(!this.csOthers){
+    } else if (this.poTypeId == 3 && this.isOthersChecked) {
+      if (!this.csOthers) {
         this.common.showAlertMessage('Please enter Others', this.common.errContent)
         return;
       }
     }
-
-
     if (!this.basicPoValue) {
       this.common.showAlertMessage('Please enter Basic PO Value', this.common.errContent)
       return;
@@ -534,23 +525,10 @@ export class OrdersComponent {
       this.common.showAlertMessage('Please select completion date', this.common.errContent)
       return;
     }
-    // if(!this.actualCompletionDate){
-    //   this.common.showAlertMessage('Please select actual completion date', this.common.errContent)
-    //   return;
-    // }
     if (!this.po_Photo) {
       this.common.showAlertMessage('Please upload file for PO', this.common.errContent)
       return;
     }
-    // if(!this.completionUpload){
-    //   this.common.showAlertMessage('Please set file for completion', this.common.errContent)
-    //   return;
-    // }
-    // if(!this.credentialUpload){
-    //   this.common.showAlertMessage('Please set file for credential', this.common.errContent)
-    //   return;
-    // }
-
     const data = {
       enquiry_id: this.enquiryId,
       enquiry_number: this.enquiryNumber ? this.enquiryNumber : 'direct order',
@@ -560,7 +538,6 @@ export class OrdersComponent {
       po_number: this.poNumber,
       po_date: this.poDate,
       po_type_id: this.poTypeId,
-      // po_subtype_id: this.poSubTypeId,
       basic_po_value: this.basicPoValue,
       total_po_value: this.totalPoValue,
       scheduled_completion_date: this.completionDate,
@@ -624,139 +601,139 @@ export class OrdersComponent {
 
 
 
-    //*********** create orders ***********//
-    editOrder() {
+  //*********** create orders ***********//
+  editOrder() {
 
-      let tempPOPhoto = this.po_Photo ? this.po_Photo.join(',') : '';
-      let tempCompletionPhoto = this.completion_Photo ? this.completion_Photo.join(',') : '';
-      let tempCredentialPhoto = this.credential_Photo ? this.credential_Photo.join(',') : '';
-  
-      if (!this.salesPersonId) {
-        this.common.showAlertMessage('Please Choose a sales incharge', this.common.errContent)
-        return;
-      }
-      if (!this.customerId) {
-        this.common.showAlertMessage('Please Choose a customer', this.common.errContent)
-        return;
-      }
-      if (!this.poNumber) {
-        this.common.showAlertMessage('Please enter PO number', this.common.errContent)
-        return;
-      }
-      if (!this.poDate) {
-        this.common.showAlertMessage('Please select a PO date', this.common.errContent)
-        return;
-      }
-      if (!this.poTypeId) {
-        this.common.showAlertMessage('Please Choose a PO Type', this.common.errContent)
-        return;
-      }
-      // if (!this.poSubTypeId) {
-      //   this.common.showAlertMessage('Please Choose a PO sub type', this.common.errContent)
-      //   return;
-      // }
-      if (!this.basicPoValue) {
-        this.common.showAlertMessage('Please enter Basic PO Value', this.common.errContent)
-        return;
-      }
-      if (!this.totalPoValue) {
-        this.common.showAlertMessage('Please enter Total PO Value', this.common.errContent)
-        return;
-      }
-      if (!this.completionDate) {
-        this.common.showAlertMessage('Please select completion date', this.common.errContent)
-        return;
-      }
-      // if(!this.actualCompletionDate){
-      //   this.common.showAlertMessage('Please select actual completion date', this.common.errContent)
-      //   return;
-      // }
-      if (!this.po_Photo) {
-        this.common.showAlertMessage('Please upload file for PO', this.common.errContent)
-        return;
-      }
-      // if(!this.completionUpload){
-      //   this.common.showAlertMessage('Please set file for completion', this.common.errContent)
-      //   return;
-      // }
-      // if(!this.credentialUpload){
-      //   this.common.showAlertMessage('Please set file for credential', this.common.errContent)
-      //   return;
-      // }
-  
-      const data = {
-        order_id: this.orderId,
-        sales_person_id: this.salesPersonId,
-        sbu_id: this.sbuId,
-        customer_id: this.customerId,
-        po_number: this.poNumber,
-        po_date: this.poDate,
-        po_type_id: this.poTypeId,
-        // po_subtype_id: this.poSubTypeId,
-        basic_po_value: this.basicPoValue,
-        total_po_value: this.totalPoValue,
-        scheduled_completion_date: this.completionDate,
-        actual_completion_date: this.actualCompletionDate,
-        purchase_order_file: tempPOPhoto,
-        completion_file: tempCompletionPhoto,
-        credential_file: tempCredentialPhoto,
-        product: this.supplyProduct,
-        supply_description: this.supplyDescription,
-        brand: this.supplyBrand,
-        sitc_description: this.sitcDescription,
-        cable_assembly: this.csCable,
-        panel: this.csPanel,
-        welding_receptable: this.csWelding,
-        clamps: this.csClamps,
-        hsa_box: this.csHsaBox,
-        others: this.csOthers,
-      }
-      this.rest.editOrder_rest(data).subscribe((res: any) => {
-        if (res.success) {
-          
-         
-          this.sbuId = this.checkSbuId != 0 ? this.checkSbuId : '';
-          this.salesPersonId = this.checkSbuId != 0 ? localStorage.getItem('sales_person_id') : '';
-          this.customerId = '';
-          this.poNumber = '';
-          this.poDate = '';
-          this.poTypeId = '';
-          this.basicPoValue = '';
-          this.totalPoValue = '';
-          this.completionDate = '';
-          this.actualCompletionDate = null;
-          this.po_Photo = [];
-          this.completion_Photo = [];
-          this.credential_Photo = [];
-          this.poUpload = '';
-          this.completionUpload = '';
-          this.credentialUpload = '';
-          this.supplyProduct = '';
-          this.supplyDescription = '';
-          this.supplyBrand = '';
-          this.sitcDescription = '';
-          this.csCable = '';
-          this.csPanel = '';
-          this.csWelding = '';
-          this.csClamps = '';
-          this.csHsaBox = '';
-          this.isOthersChecked = false;
-          this.isDirectOrder = false;
-          this.csOthers = '';
-          this.isOthersDisabled = true;
-          this.isEdit = false;
-          this.common.showAlertMessage(res.message, this.common.succContent);
-          // this.getOrderList();
-  
-          if(this.filterByKeyword && this.ordersByFilter){
-            this.getFilterOrdersByCategory();
-          } else{
-            this.getOrderList();
-          }
-        }
-      })
-  
+    let tempPOPhoto = this.po_Photo ? this.po_Photo.join(',') : '';
+    let tempCompletionPhoto = this.completion_Photo ? this.completion_Photo.join(',') : '';
+    let tempCredentialPhoto = this.credential_Photo ? this.credential_Photo.join(',') : '';
+
+    if (!this.salesPersonId) {
+      this.common.showAlertMessage('Please Choose a sales incharge', this.common.errContent)
+      return;
     }
+    if (!this.customerId) {
+      this.common.showAlertMessage('Please Choose a customer', this.common.errContent)
+      return;
+    }
+    if (!this.poNumber) {
+      this.common.showAlertMessage('Please enter PO number', this.common.errContent)
+      return;
+    }
+    if (!this.poDate) {
+      this.common.showAlertMessage('Please select a PO date', this.common.errContent)
+      return;
+    }
+    if (!this.poTypeId) {
+      this.common.showAlertMessage('Please Choose a PO Type', this.common.errContent)
+      return;
+    }
+    // if (!this.poSubTypeId) {
+    //   this.common.showAlertMessage('Please Choose a PO sub type', this.common.errContent)
+    //   return;
+    // }
+    if (!this.basicPoValue) {
+      this.common.showAlertMessage('Please enter Basic PO Value', this.common.errContent)
+      return;
+    }
+    if (!this.totalPoValue) {
+      this.common.showAlertMessage('Please enter Total PO Value', this.common.errContent)
+      return;
+    }
+    if (!this.completionDate) {
+      this.common.showAlertMessage('Please select completion date', this.common.errContent)
+      return;
+    }
+    // if(!this.actualCompletionDate){
+    //   this.common.showAlertMessage('Please select actual completion date', this.common.errContent)
+    //   return;
+    // }
+    if (!this.po_Photo) {
+      this.common.showAlertMessage('Please upload file for PO', this.common.errContent)
+      return;
+    }
+    // if(!this.completionUpload){
+    //   this.common.showAlertMessage('Please set file for completion', this.common.errContent)
+    //   return;
+    // }
+    // if(!this.credentialUpload){
+    //   this.common.showAlertMessage('Please set file for credential', this.common.errContent)
+    //   return;
+    // }
+
+    const data = {
+      order_id: this.orderId,
+      sales_person_id: this.salesPersonId,
+      sbu_id: this.sbuId,
+      customer_id: this.customerId,
+      po_number: this.poNumber,
+      po_date: this.poDate,
+      po_type_id: this.poTypeId,
+      // po_subtype_id: this.poSubTypeId,
+      basic_po_value: this.basicPoValue,
+      total_po_value: this.totalPoValue,
+      scheduled_completion_date: this.completionDate,
+      actual_completion_date: this.actualCompletionDate,
+      purchase_order_file: tempPOPhoto,
+      completion_file: tempCompletionPhoto,
+      credential_file: tempCredentialPhoto,
+      product: this.supplyProduct,
+      supply_description: this.supplyDescription,
+      brand: this.supplyBrand,
+      sitc_description: this.sitcDescription,
+      cable_assembly: this.csCable,
+      panel: this.csPanel,
+      welding_receptable: this.csWelding,
+      clamps: this.csClamps,
+      hsa_box: this.csHsaBox,
+      others: this.csOthers,
+    }
+    this.rest.editOrder_rest(data).subscribe((res: any) => {
+      if (res.success) {
+
+
+        this.sbuId = this.checkSbuId != 0 ? this.checkSbuId : '';
+        this.salesPersonId = this.checkSbuId != 0 ? localStorage.getItem('sales_person_id') : '';
+        this.customerId = '';
+        this.poNumber = '';
+        this.poDate = '';
+        this.poTypeId = '';
+        this.basicPoValue = '';
+        this.totalPoValue = '';
+        this.completionDate = '';
+        this.actualCompletionDate = null;
+        this.po_Photo = [];
+        this.completion_Photo = [];
+        this.credential_Photo = [];
+        this.poUpload = '';
+        this.completionUpload = '';
+        this.credentialUpload = '';
+        this.supplyProduct = '';
+        this.supplyDescription = '';
+        this.supplyBrand = '';
+        this.sitcDescription = '';
+        this.csCable = '';
+        this.csPanel = '';
+        this.csWelding = '';
+        this.csClamps = '';
+        this.csHsaBox = '';
+        this.isOthersChecked = false;
+        this.isDirectOrder = false;
+        this.csOthers = '';
+        this.isOthersDisabled = true;
+        this.isEdit = false;
+        this.common.showAlertMessage(res.message, this.common.succContent);
+        // this.getOrderList();
+
+        if (this.filterByKeyword && this.ordersByFilter) {
+          this.getFilterOrdersByCategory();
+        } else {
+          this.getOrderList();
+        }
+      }
+    })
+
+  }
 
 
 
@@ -767,7 +744,7 @@ export class OrdersComponent {
       sbu_id: localStorage.getItem('sbu_id'),
       sales_person_id: localStorage.getItem('sales_person_id'),
       search_criteria: this.searchCriteria,
-      order_offset : this.orderOffset
+      order_offset: this.orderOffset
 
     }
     this.rest.getOrderList_rest(data).subscribe((res: any) => {
@@ -829,9 +806,9 @@ export class OrdersComponent {
             }
           }
           this.enquiryId = res.response[0].enquiry_id
-          if(this.enquiryId){
+          if (this.enquiryId) {
             this.getEnquiryById(this.enquiryId);
-          } else{
+          } else {
             this.isDirectOrder = true;
             this.common.showAlertMessage('This is a Direct Order', this.common.succContent)
           }
@@ -866,16 +843,16 @@ export class OrdersComponent {
   getFilterOrdersByCategory() {
     this.isEnquiryIdFilter = false;
     this.filteredOrderListByCategory = [];
-    if(this.filterByKeyword == 'enquiry_id') {
+    if (this.filterByKeyword == 'enquiry_id') {
       this.isEnquiryIdFilter = true;
     }
     const data = {
       filterby_keyword: this.filterByKeyword
     }
     this.rest.getFilterOrdersByCategory_rest(data).subscribe((res: any) => {
-      if(res.success) {
-        if(res.response) {
-          if(res.response.length > 0) {
+      if (res.success) {
+        if (res.response) {
+          if (res.response.length > 0) {
             this.filteredOrderListByCategory = res.response;
           }
         }
@@ -902,11 +879,11 @@ export class OrdersComponent {
     })
   }
 
-  makeIsDirectFalse(){
+  makeIsDirectFalse() {
     this.isDirectOrder = false;
   }
 
-  makeIsDirectTrue(){
+  makeIsDirectTrue() {
     this.isDirectOrder = true;
   }
 
@@ -916,7 +893,7 @@ export class OrdersComponent {
       check_designation_id: localStorage.getItem('designation_id'),
       sbu_id: localStorage.getItem('sbu_id'),
       sales_person_id: localStorage.getItem('sales_person_id')
-      
+
     }
     this.rest.getEnquiryList_rest(data).subscribe((res: any) => {
       if (res.success) {
@@ -930,22 +907,22 @@ export class OrdersComponent {
     })
   }
 
-    //*********** get enquiry type list start *********//
-    getEnquiryTypeList() {
-      this.rest.getEnquiryTypeList_rest().subscribe((res: any) => {
-        if (res.success) {
-          if (res.response) {
-            if (res.response.length > 0) {
-              this.enquiryTypeList = [];
-              this.enquiryTypeList = res.response;
-            }
+  //*********** get enquiry type list start *********//
+  getEnquiryTypeList() {
+    this.rest.getEnquiryTypeList_rest().subscribe((res: any) => {
+      if (res.success) {
+        if (res.response) {
+          if (res.response.length > 0) {
+            this.enquiryTypeList = [];
+            this.enquiryTypeList = res.response;
           }
         }
-      })
-    }
+      }
+    })
+  }
 
   //******************* get enquiry details by ID **************//
-  getEnquiryById(enquiry_id: any) {    
+  getEnquiryById(enquiry_id: any) {
     this.enquiryId = enquiry_id;
     this.enquirySubTypeId = '';
     const data = {
@@ -958,7 +935,7 @@ export class OrdersComponent {
           this.enquiryNumber = res.response[0].enquiry_number
           this.sbuId = res.response[0].sbu_id
           // if(this.sbuId){
-            // this.getMentorList();
+          // this.getMentorList();
           //   this.getSalesPersonList();
           // }
           // this.mentorId = res.response[0].mentor_id
@@ -982,7 +959,7 @@ export class OrdersComponent {
           this.csWeldingEnquiry = res.response[0].welding_receptable
           this.csHsaBoxEnquiry = res.response[0].hsa_box
           this.csOthersEnquiry = res.response[0].others
-          if(this.enquirySubTypeId) {
+          if (this.enquirySubTypeId) {
             this.getEnquirySubtypeDetails(this.enquirySubTypeId);
           }
           this.basicValue = res.response[0].basic_value

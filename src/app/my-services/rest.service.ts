@@ -352,8 +352,20 @@ export class RestService {
     return this.http.post(this.API_ROOT + 'director/getCompanyById', data, httpOptions)
   }
 
-
+  //*********** Multiple Document Upload for presentation page ***********//
   multipleDocumentUpload_rest(data:any): Observable<any>{
     return this.http.post(this.API_ROOT + 'common/multipleFileUpload', data);
   }
+
+
+  //*********** Multiple Document subbmission for presentation page ***********//
+  presentationDocumentUpload_rest(data: any):Observable<any>{
+    return this.http.post(this.API_ROOT + 'director/uploadCompanyDocument', data, httpOptions)
+  }
+
+// show documents //
+getCompanyDocDetailsById_2_rest(data: any):Observable<any>{
+  return this.http.post(this.API_ROOT + 'director/getCompanyDocumentDetailsById',data,httpOptions)
+}
+
 }

@@ -648,7 +648,7 @@ tr:nth-child(even),tr:hover {
   color: var(--black);
 }
 .presentation_tabs li.active{
-  background: var(--primary);
+  background: var(--secondary);
   color: white;
 }
 .upload_document_div .upload_document{
@@ -687,7 +687,13 @@ tr:nth-child(even),tr:hover {
 .upload_document_div .upload_document p .material-symbols-outlined{
   color: var(--golden-yellow);
 }
-
+.presentation_ul .page-item button{
+  box-shadow: none !important;
+}
+.presentation_ul .page-item button i{
+  line-height: normal !important;
+  font-size: 16px !important;
+}
 
 
 
