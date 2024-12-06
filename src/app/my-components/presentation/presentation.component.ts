@@ -15,6 +15,7 @@ import { CommonService } from 'src/app/my-services/common.service';
 export class PresentationComponent {
   checkSbuId: any = localStorage.getItem('sbu_id');
   sbuId: any = localStorage.getItem('sbu_id');
+  sbuIdForList: number = 0;
   isFileDiv: boolean = true;
   SBUList: any = [];
 
@@ -37,6 +38,7 @@ export class PresentationComponent {
   msme_upload: any = [];
   presentation_upload: any = [];
   credentials_upload: any = [];
+
 
   products_upload_2: any = [];
   projects_upload_2: any = [];
@@ -132,6 +134,7 @@ export class PresentationComponent {
 
   // ************* get SBU List start **************//
   getSBUList() {
+    this.SBUList = [];
     const data = {
       sbu_id: this.sbuId
     }
@@ -139,7 +142,6 @@ export class PresentationComponent {
       if (res.success) {
         if (res.response) {
           if (res.response.length > 0) {
-            this.SBUList = [];
             this.SBUList = res.response;
           }
         }
@@ -277,17 +279,6 @@ export class PresentationComponent {
     }
   }
 
-
-  //******** previous documents in presentation ********//
-  back() {
-
-  }
-
-  //******** next documents in presentation ********//
-  next() {
-
-  }
-
   //******** submit documents in presentation ********//
   presentationDocumentUpload() {
     let tempProductDocs = this.products_upload.length > 0 ? this.products_upload.join(',') : '';
@@ -332,25 +323,26 @@ export class PresentationComponent {
     }
     this.rest.presentationDocumentUpload_rest(data).subscribe((res: any) => {
       if (res.success) {
-        this.products_upload = '';
-        this.projects_upload = '';
-        this.incorporation_upload = '';
-        this.moa_upload = '';
-        this.aoa_upload = '';
-        this.trade_licence_upload = '';
-        this.admin_licence_upload = '';
-        this.electrical_licence_upload = '';
-        this.bank_details_upload = '';
-        this.cancelled_cheque_upload = '';
-        this.balance_sheet_upload = '';
-        this.pan_upload = '';
-        this.tan_upload = '';
-        this.gst_upload = '';
-        this.iso_upload = '';
-        this.msme_upload = '';
-        this.presentation_upload = '';
-        this.credentials_upload = '';
         this.common.showAlertMessage(res.message, this.common.succContent);
+        this.products_upload = [];
+        this.projects_upload = [];
+        this.incorporation_upload = [];
+        this.moa_upload = [];
+        this.aoa_upload = [];
+        this.trade_licence_upload = [];
+        this.admin_licence_upload = [];
+        this.electrical_licence_upload = [];
+        this.bank_details_upload = [];
+        this.cancelled_cheque_upload = [];
+        this.balance_sheet_upload = [];
+        this.pan_upload = [];
+        this.tan_upload = [];
+        this.gst_upload = [];
+        this.iso_upload = [];
+        this.msme_upload = [];
+        this.presentation_upload = [];
+        this.credentials_upload = [];
+        this.sbuId = 0;
       }
     })
   }
@@ -358,119 +350,163 @@ export class PresentationComponent {
 
   // show documents //
   getCompanyDocDetailsById() {
-    this.products_upload = '';
-    this.projects_upload = '';
-    this.incorporation_upload = '';
-    this.moa_upload = '';
-    this.aoa_upload = '';
-    this.trade_licence_upload = '';
-    this.admin_licence_upload = '';
-    this.electrical_licence_upload = '';
-    this.bank_details_upload = '';
-    this.cancelled_cheque_upload = '';
-    this.balance_sheet_upload = '';
-    this.pan_upload = '';
-    this.tan_upload = '';
-    this.gst_upload = '';
-    this.iso_upload = '';
-    this.msme_upload = '';
-    this.presentation_upload = '';
-    this.credentials_upload = '';
+    this.products_upload = [];
+    this.projects_upload = [];
+    this.incorporation_upload = [];
+    this.moa_upload = [];
+    this.aoa_upload = [];
+    this.trade_licence_upload = [];
+    this.admin_licence_upload = [];
+    this.electrical_licence_upload = [];
+    this.bank_details_upload = [];
+    this.cancelled_cheque_upload = [];
+    this.balance_sheet_upload = [];
+    this.pan_upload = [];
+    this.tan_upload = [];
+    this.gst_upload = [];
+    this.iso_upload = [];
+    this.msme_upload = [];
+    this.presentation_upload = [];
+    this.credentials_upload = [];
     const data = {
       sbu_id: this.sbuId
     }
-    this.rest.getCompanyDocDetailsById_2_rest(data).subscribe((res: any) => {
+    this.rest.getCompanyDocDetailsById_rest(data).subscribe((res: any) => {
       if (res.success) {
         if (res.response) {
-          this.products_upload = res.response[0].product_file.split(',');
-          this.projects_upload = res.response[0].project_file.split(',');
-          this.incorporation_upload = res.response[0].incorporation_cert_file.split(',');
-          this.moa_upload = res.response[0].moa_file.split(',');
-          this.aoa_upload = res.response[0].aoa_file.split(',');
-          this.trade_licence_upload = res.response[0].trade_license_file.split(',');
-          this.admin_licence_upload = res.response[0].admin_license_file.split(',');
-          this.electrical_licence_upload = res.response[0].electrical_contractor_license.split(',');
-          this.bank_details_upload = res.response[0].bank_details_file.split(',');
-          this.cancelled_cheque_upload = res.response[0].cancelled_cheque_file.split(',');
-          this.balance_sheet_upload = res.response[0].balance_sheets_file.split(',');
-          this.pan_upload = res.response[0].pan_card_file.split(',');
-          this.tan_upload = res.response[0].tan_file.split(',');
-          this.gst_upload = res.response[0].gst_cert_file.split(',');
-          this.iso_upload = res.response[0].iso_cert_file.split(',');
-          this.msme_upload = res.response[0].msme_udyam_cert.split(',');
-          this.presentation_upload = res.response[0].presentation_file.split(',');
-          this.credentials_upload = res.response[0].credential_file.split(',');
+          this.products_upload = res.response[0].product_file ? res.response[0].product_file.split(',') : [];
+          this.projects_upload = res.response[0].project_file ? res.response[0].project_file.split(',') : [];
+          this.incorporation_upload = res.response[0].incorporation_cert_file ? res.response[0].incorporation_cert_file.split(',') : [];
+          this.moa_upload = res.response[0].moa_file ? res.response[0].moa_file.split(',') : [];
+          this.aoa_upload = res.response[0].aoa_file ? res.response[0].aoa_file.split(',') : [];
+          this.trade_licence_upload = res.response[0].trade_license_file ? res.response[0].trade_license_file.split(',') : [];
+          this.admin_licence_upload = res.response[0].admin_license_file ? res.response[0].admin_license_file.split(',') : [];
+          this.electrical_licence_upload = res.response[0].electrical_contractor_license ? res.response[0].electrical_contractor_license.split(',') : [];
+          this.bank_details_upload = res.response[0].bank_details_file ? res.response[0].bank_details_file.split(',') : [];
+          this.cancelled_cheque_upload = res.response[0].cancelled_cheque_file ? res.response[0].cancelled_cheque_file.split(',') : [];
+          this.balance_sheet_upload = res.response[0].balance_sheets_file ? res.response[0].balance_sheets_file.split(',') : [];
+          this.pan_upload = res.response[0].pan_card_file ? res.response[0].pan_card_file.split(',') : [];
+          this.tan_upload = res.response[0].tan_file ? res.response[0].tan_file.split(',') : [];
+          this.gst_upload = res.response[0].gst_cert_file ? res.response[0].gst_cert_file.split(',') : [];
+          this.iso_upload = res.response[0].iso_cert_file ? res.response[0].iso_cert_file.split(',') : [];
+          this.msme_upload = res.response[0].msme_udyam_cert ? res.response[0].msme_udyam_cert.split(',') : [];
+          this.presentation_upload = res.response[0].presentation_file ? res.response[0].presentation_file.split(',') : [];
+          this.credentials_upload = res.response[0].credential_file ? res.response[0].credential_file.split(',') : [];
         }
       }
     })
   }
 
 
-
-  // show documents //
-  getCompanyDocDetailsById_2() {
-    this.products_upload_2 = '';
-    this.projects_upload_2 = '';
-    this.incorporation_upload_2 = '';
-    this.moa_upload_2 = '';
-    this.aoa_upload_2 = '';
-    this.trade_licence_upload_2 = '';
-    this.admin_licence_upload_2 = '';
-    this.electrical_licence_upload_2 = '';
-    this.bank_details_upload_2 = '';
-    this.cancelled_cheque_upload_2 = '';
-    this.balance_sheet_upload_2 = '';
-    this.pan_upload_2 = '';
-    this.tan_upload_2 = '';
-    this.gst_upload_2 = '';
-    this.iso_upload_2 = '';
-    this.msme_upload_2 = '';
-    this.presentation_upload_2 = '';
-    this.credentials_upload_2 = '';
+  getCompanyDocDetailsById2() {
+    this.products_upload_2 = [];
+    this.projects_upload_2 = [];
+    this.incorporation_upload_2 = [];
+    this.moa_upload_2 = [];
+    this.aoa_upload_2 = [];
+    this.trade_licence_upload_2 = [];
+    this.admin_licence_upload_2 = [];
+    this.electrical_licence_upload_2 = [];
+    this.bank_details_upload_2 = [];
+    this.cancelled_cheque_upload_2 = [];
+    this.balance_sheet_upload_2 = [];
+    this.pan_upload_2 = [];
+    this.tan_upload_2 = [];
+    this.gst_upload_2 = [];
+    this.iso_upload_2 = [];
+    this.msme_upload_2 = [];
+    this.presentation_upload_2 = [];
+    this.credentials_upload_2 = [];
     const data = {
-      sbu_id: this.sbuId
+      sbu_id: this.sbuIdForList
     }
-    this.rest.getCompanyDocDetailsById_2_rest(data).subscribe((res: any) => {
+    this.rest.getCompanyDocDetailsById_rest(data).subscribe((res: any) => {
       if (res.success) {
         if (res.response) {
-          this.products_upload_2 = res.response[0].product_file.split(',');
-          this.projects_upload_2 = res.response[0].project_file.split(',');
-          this.incorporation_upload_2 = res.response[0].incorporation_cert_file.split(',');
-          this.moa_upload_2 = res.response[0].moa_file.split(',');
-          this.aoa_upload_2 = res.response[0].aoa_file.split(',');
-          this.trade_licence_upload_2 = res.response[0].trade_license_file.split(',');
-          this.admin_licence_upload_2 = res.response[0].admin_license_file.split(',');
-          this.electrical_licence_upload_2 = res.response[0].electrical_contractor_license.split(',');
-          this.bank_details_upload_2 = res.response[0].bank_details_file.split(',');
-          this.cancelled_cheque_upload_2 = res.response[0].cancelled_cheque_file.split(',');
-          this.balance_sheet_upload_2 = res.response[0].balance_sheets_file.split(',');
-          this.pan_upload_2 = res.response[0].pan_card_file.split(',');
-          this.tan_upload_2 = res.response[0].tan_file.split(',');
-          this.gst_upload_2 = res.response[0].gst_cert_file.split(',');
-          this.iso_upload_2 = res.response[0].iso_cert_file.split(',');
-          this.msme_upload_2 = res.response[0].msme_udyam_cert.split(',');
-          this.presentation_upload_2 = res.response[0].presentation_file.split(',');
-          this.credentials_upload_2 = res.response[0].credential_file.split(',');
+          this.products_upload_2 = res.response[0].product_file ? res.response[0].product_file.split(',') : [];
+          this.projects_upload_2 = res.response[0].project_file ? res.response[0].project_file.split(',') : [];
+          this.incorporation_upload_2 = res.response[0].incorporation_cert_file ? res.response[0].incorporation_cert_file.split(',') : [];
+          this.moa_upload_2 = res.response[0].moa_file ? res.response[0].moa_file.split(',') : [];
+          this.aoa_upload_2 = res.response[0].aoa_file ? res.response[0].aoa_file.split(',') : [];
+          this.trade_licence_upload_2 = res.response[0].trade_license_file ? res.response[0].trade_license_file.split(',') : [];
+          this.admin_licence_upload_2 = res.response[0].admin_license_file ? res.response[0].admin_license_file.split(',') : [];
+          this.electrical_licence_upload_2 = res.response[0].electrical_contractor_license ? res.response[0].electrical_contractor_license.split(',') : [];
+          this.bank_details_upload_2 = res.response[0].bank_details_file ? res.response[0].bank_details_file.split(',') : [];
+          this.cancelled_cheque_upload_2 = res.response[0].cancelled_cheque_file ? res.response[0].cancelled_cheque_file.split(',') : [];
+          this.balance_sheet_upload_2 = res.response[0].balance_sheets_file ? res.response[0].balance_sheets_file.split(',') : [];
+          this.pan_upload_2 = res.response[0].pan_card_file ? res.response[0].pan_card_file.split(',') : [];
+          this.tan_upload_2 = res.response[0].tan_file ? res.response[0].tan_file.split(',') : [];
+          this.gst_upload_2 = res.response[0].gst_cert_file ? res.response[0].gst_cert_file.split(',') : [];
+          this.iso_upload_2 = res.response[0].iso_cert_file ? res.response[0].iso_cert_file.split(',') : [];
+          this.msme_upload_2 = res.response[0].msme_udyam_cert ? res.response[0].msme_udyam_cert.split(',') : [];
+          this.presentation_upload_2 = res.response[0].presentation_file ? res.response[0].presentation_file.split(',') : [];
+          this.credentials_upload_2 = res.response[0].credential_file ? res.response[0].credential_file.split(',') : [];
         }
       }
     })
   }
-
-
 
 
   viewFile(id: any) {
     const viewFile = this.filePath + id;
     window.open(viewFile, "_blank");
   }
+
+
   removeFile(id: any, type: string) {
     if (type == 'products') {
       this.products_upload.splice(id, 1);
     }
     else if (type == 'projects') {
       this.projects_upload.splice(id, 1);
-    } else if (type == 'incorporation') {
+    } 
+    else if (type == 'incorporation') {
       this.incorporation_upload.splice(id, 1);
+    }
+    else if (type == 'moa') {
+      this.moa_upload.splice(id, 1);
+    }
+    else if (type == 'aoa') {
+      this.aoa_upload.splice(id, 1);
+    }
+    else if (type == 'trade_licence') {
+      this.trade_licence_upload.splice(id, 1);
+    }
+    else if (type == 'admin_licence') {
+      this.admin_licence_upload.splice(id, 1);
+    }
+    else if (type == 'electrical_licence') {
+      this.electrical_licence_upload.splice(id, 1);
+    }
+    else if (type == 'bank_details') {
+      this.bank_details_upload.splice(id, 1);
+    }
+    else if (type == 'cancelled_cheque') {
+      this.cancelled_cheque_upload.splice(id, 1);
+    }
+    else if (type == 'balance_sheet') {
+      this.balance_sheet_upload.splice(id, 1);
+    }
+    else if (type == 'pan') {
+      this.pan_upload.splice(id, 1);
+    }
+    else if (type == 'tan') {
+      this.tan_upload.splice(id, 1); 
+    }
+    else if (type == 'gst') {
+      this.gst_upload.splice(id, 1); 
+    }
+    else if (type == 'iso') {
+      this.iso_upload.splice(id, 1); 
+    }
+    else if (type == 'msme') {
+      this.msme_upload.splice(id, 1); 
+    }
+    else if (type == 'presentation') {
+      this.presentation_upload.splice(id, 1); 
+    }
+    else if (type == 'credentials') {
+      this.credentials_upload.splice(id, 1); 
     }
   }
 }

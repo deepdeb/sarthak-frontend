@@ -12,8 +12,9 @@ export class CommonService {
    succContent = 'Ok';
    errContent = 'Error';
   private duration = 4000;
+
   filePath = "https://sarthakcomponents.com/upload/files/";
-  
+  // filePath = "http://localhost:3000/upload/files/"
 
   showAlertMessage(message: string, action: string) {
     this._snackBar.open(message, action, {verticalPosition:"top", horizontalPosition: "center", duration: this.duration});

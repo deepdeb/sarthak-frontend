@@ -344,28 +344,28 @@ export class RestService {
 
   //*********** create company ***********//
   createCompany_rest(data: any, isEdit: any): Observable<any> {
-     const API_Endpoint = isEdit ? 'director/editCompany' : 'director/addNewCompany'
+    const API_Endpoint = isEdit ? 'director/editCompany' : 'director/addNewCompany'
     return this.http.post(this.API_ROOT + API_Endpoint, data, httpOptions)
   }
   //************ view company ************//
-  getCompanyById_rest(data:any): Observable<any> {
+  getCompanyById_rest(data: any): Observable<any> {
     return this.http.post(this.API_ROOT + 'director/getCompanyById', data, httpOptions)
   }
 
   //*********** Multiple Document Upload for presentation page ***********//
-  multipleDocumentUpload_rest(data:any): Observable<any>{
+  multipleDocumentUpload_rest(data: any): Observable<any> {
     return this.http.post(this.API_ROOT + 'common/multipleFileUpload', data);
   }
 
 
   //*********** Multiple Document subbmission for presentation page ***********//
-  presentationDocumentUpload_rest(data: any):Observable<any>{
+  presentationDocumentUpload_rest(data: any): Observable<any> {
     return this.http.post(this.API_ROOT + 'director/uploadCompanyDocument', data, httpOptions)
   }
 
-// show documents //
-getCompanyDocDetailsById_2_rest(data: any):Observable<any>{
-  return this.http.post(this.API_ROOT + 'director/getCompanyDocumentDetailsById',data,httpOptions)
-}
+  //*********** show documents for presentation page ***********//
+  getCompanyDocDetailsById_rest(data: any): Observable<any> {
+    return this.http.post(this.API_ROOT + 'director/getCompanyDocumentDetailsById', data, httpOptions)
+  }
 
 }
