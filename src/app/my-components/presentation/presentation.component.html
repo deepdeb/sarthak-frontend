@@ -610,7 +610,7 @@
 
 
     <!--------------------------------------------------------- document listing ---------------------------------------------------->
-    <div class="main_body sec_gapping" *ngIf="checkSbuId ==0">
+    <div class="main_body sec_gapping">
         <div class="info_div">
             <div class="page_info_heading">
                 document list
@@ -633,7 +633,7 @@
             </div>
 
             <label *ngIf="products_upload_2.length > 0 && sbuIdForList != 0">Products</label>
-            <div class="screenshot_div d-flex flex-wrap ">
+            <div *ngIf="products_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
                 <div class="upload_doc" style="position: relative;" style="position: relative; margin: 16px 14px 8px 0;"
                     *ngFor="let item of products_upload_2;let i=index;">
                     <img class="assignImg"
@@ -643,7 +643,7 @@
                 </div>
             </div>
             <label *ngIf="projects_upload_2.length > 0 && sbuIdForList != 0">Projects</label>
-            <div class="screenshot_div d-flex flex-wrap ">
+            <div *ngIf="projects_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
                 <div class="upload_doc" style="position: relative;" style="position: relative; margin: 16px 14px 8px 0;"
                     *ngFor="let item of projects_upload_2;let i=index;">
                     <img class="assignImg"
@@ -653,7 +653,7 @@
                 </div>
             </div>
             <label *ngIf="incorporation_upload_2.length > 0 && sbuIdForList != 0">Certificate of Incorporation</label>
-            <div class="screenshot_div d-flex flex-wrap ">
+            <div *ngIf="incorporation_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
                 <div class="upload_doc" style="position: relative;"
                     style="position: relative; margin: 16px 14px 8px 0;"
                     *ngFor="let item of incorporation_upload_2;let i=index;">
@@ -664,7 +664,7 @@
                 </div>
             </div>
             <label *ngIf="moa_upload_2.length > 0 && sbuIdForList != 0">MoA</label>
-            <div class="screenshot_div d-flex flex-wrap ">
+            <div *ngIf="moa_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
                 <div class="upload_doc" style="position: relative;"
                     style="position: relative; margin: 16px 14px 8px 0;"
                     *ngFor="let item of moa_upload_2;let i=index;">
@@ -675,7 +675,7 @@
                 </div>
             </div>
             <label *ngIf="aoa_upload_2.length > 0 && sbuIdForList != 0">AoA</label>
-            <div class="screenshot_div d-flex flex-wrap ">
+            <div *ngIf="aoa_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
                 <div class="upload_doc" style="position: relative;"
                     style="position: relative; margin: 16px 14px 8px 0;"
                     *ngFor="let item of aoa_upload_2;let i=index;">
@@ -686,7 +686,7 @@
                 </div>
             </div>
             <label *ngIf="trade_licence_upload_2.length > 0 && sbuIdForList != 0">Trade Licence</label>
-            <div class="screenshot_div d-flex flex-wrap ">
+            <div *ngIf="trade_licence_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
                 <div class="upload_doc" style="position: relative;"
                     style="position: relative; margin: 16px 14px 8px 0;"
                     *ngFor="let item of trade_licence_upload_2;let i=index;">
@@ -697,7 +697,7 @@
                 </div>
             </div>
             <label *ngIf="admin_licence_upload_2.length > 0 && sbuIdForList != 0">Admin Licence</label>
-            <div class="screenshot_div d-flex flex-wrap ">
+            <div *ngIf="admin_licence_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
                 <div class="upload_doc" style="position: relative;"
                     style="position: relative; margin: 16px 14px 8px 0;"
                     *ngFor="let item of admin_licence_upload_2;let i=index;">
@@ -708,7 +708,7 @@
                 </div>
             </div>
             <label *ngIf="electrical_licence_upload_2.length > 0 && sbuIdForList != 0">Electrical Contractor Licence</label>
-            <div class="screenshot_div d-flex flex-wrap ">
+            <div *ngIf="electrical_licence_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
                 <div class="upload_doc" style="position: relative;"
                     style="position: relative; margin: 16px 14px 8px 0;"
                     *ngFor="let item of electrical_licence_upload_2;let i=index;">
@@ -719,7 +719,7 @@
                 </div>
             </div>
             <label *ngIf="bank_details_upload_2.length > 0 && sbuIdForList != 0">Bank details</label>
-            <div class="screenshot_div d-flex flex-wrap ">
+            <div *ngIf="bank_details_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
                 <div class="upload_doc" style="position: relative;"
                     style="position: relative; margin: 16px 14px 8px 0;"
                     *ngFor="let item of bank_details_upload_2;let i=index;">
@@ -730,7 +730,7 @@
                 </div>
             </div>
             <label *ngIf="cancelled_cheque_upload_2.length > 0 && sbuIdForList != 0">Cancelled Cheque</label>
-            <div class="screenshot_div d-flex flex-wrap ">
+            <div *ngIf="cancelled_cheque_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
                 <div class="upload_doc" style="position: relative;"
                     style="position: relative; margin: 16px 14px 8px 0;"
                     *ngFor="let item of cancelled_cheque_upload_2;let i=index;">
@@ -741,7 +741,7 @@
                 </div>
             </div>
             <label *ngIf="balance_sheet_upload_2.length > 0 && sbuIdForList != 0">Balance Sheets</label>
-            <div class="screenshot_div d-flex flex-wrap ">
+            <div *ngIf="balance_sheet_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
                 <div class="upload_doc" style="position: relative;"
                     style="position: relative; margin: 16px 14px 8px 0;"
                     *ngFor="let item of balance_sheet_upload_2;let i=index;">
@@ -752,7 +752,7 @@
                 </div>
             </div>
             <label *ngIf="pan_upload_2.length > 0 && sbuIdForList != 0">PAN Card</label>
-            <div class="screenshot_div d-flex flex-wrap ">
+            <div *ngIf="pan_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
                 <div class="upload_doc" style="position: relative;"
                     style="position: relative; margin: 16px 14px 8px 0;"
                     *ngFor="let item of pan_upload_2;let i=index;">
@@ -763,7 +763,7 @@
                 </div>
             </div>
             <label *ngIf="tan_upload_2.length > 0 && sbuIdForList != 0">TAN</label>
-            <div class="screenshot_div d-flex flex-wrap ">
+            <div *ngIf="tan_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
                 <div class="upload_doc" style="position: relative;"
                     style="position: relative; margin: 16px 14px 8px 0;"
                     *ngFor="let item of tan_upload_2;let i=index;">
@@ -774,7 +774,7 @@
                 </div>
             </div>
             <label *ngIf="gst_upload_2.length > 0 && sbuIdForList != 0">GST Certificate</label>
-            <div class="screenshot_div d-flex flex-wrap ">
+            <div *ngIf="gst_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
                 <div class="upload_doc" style="position: relative;"
                     style="position: relative; margin: 16px 14px 8px 0;"
                     *ngFor="let item of gst_upload_2;let i=index;">
@@ -785,7 +785,7 @@
                 </div>
             </div>
             <label *ngIf="iso_upload_2.length > 0 && sbuIdForList != 0">ISO Certificate</label>
-            <div class="screenshot_div d-flex flex-wrap ">
+            <div *ngIf="iso_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
                 <div class="upload_doc" style="position: relative;"
                     style="position: relative; margin: 16px 14px 8px 0;"
                     *ngFor="let item of iso_upload_2;let i=index;">
@@ -796,7 +796,7 @@
                 </div>
             </div>
             <label *ngIf="msme_upload_2.length > 0 && sbuIdForList != 0">MSME Udyam Certificate</label>
-            <div class="screenshot_div d-flex flex-wrap ">
+            <div *ngIf="msme_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
                 <div class="upload_doc" style="position: relative;"
                     style="position: relative; margin: 16px 14px 8px 0;"
                     *ngFor="let item of msme_upload_2;let i=index;">
@@ -807,7 +807,7 @@
                 </div>
             </div>
             <label *ngIf="presentation_upload_2.length > 0 && sbuIdForList != 0">Presentation</label>
-            <div class="screenshot_div d-flex flex-wrap ">
+            <div *ngIf="presentation_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
                 <div class="upload_doc" style="position: relative;"
                     style="position: relative; margin: 16px 14px 8px 0;"
                     *ngFor="let item of presentation_upload_2;let i=index;">
@@ -818,7 +818,7 @@
                 </div>
             </div>
             <label *ngIf="credentials_upload_2.length > 0 && sbuIdForList != 0">Credentials</label>
-            <div class="screenshot_div d-flex flex-wrap ">
+            <div *ngIf="credentials_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
                 <div class="upload_doc" style="position: relative;"
                     style="position: relative; margin: 16px 14px 8px 0;"
                     *ngFor="let item of credentials_upload_2;let i=index;">

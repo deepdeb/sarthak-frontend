@@ -350,6 +350,7 @@ export class PresentationComponent {
 
   // show documents //
   getCompanyDocDetailsById() {
+    this.sbuIdForList = 0;
     this.products_upload = [];
     this.projects_upload = [];
     this.incorporation_upload = [];
@@ -399,6 +400,7 @@ export class PresentationComponent {
 
 
   getCompanyDocDetailsById2() {
+    this.sbuId = 0;
     this.products_upload_2 = [];
     this.projects_upload_2 = [];
     this.incorporation_upload_2 = [];
