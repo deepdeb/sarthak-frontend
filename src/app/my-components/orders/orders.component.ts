@@ -974,9 +974,4 @@ export class OrdersComponent {
     })
   }
 
-
-  show() {
-    console.log(this.enquiryNumber)
-  }
-
 }
