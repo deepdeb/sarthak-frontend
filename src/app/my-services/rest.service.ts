@@ -10,9 +10,9 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class RestService {
-  
-  // API_ROOT = "https://sarthakcomponents.com/";
-  API_ROOT = "http://localhost:3000/";
+
+  API_ROOT = "https://sarthakcomponents.com/";
+  // API_ROOT = "http://localhost:3000/";
 
   constructor(private http: HttpClient) { }
 
