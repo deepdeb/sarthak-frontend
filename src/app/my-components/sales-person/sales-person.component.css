@@ -1,0 +1,68 @@
+.request_modal {
+    padding: 20px;
+    position: relative;
+  }
+  
+  .request_modal h4 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ff761e;
+  }
+  
+  .request_modal .card {
+    padding: 10px;
+  }
+
+  .request_modal .close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    border: 1px solid;
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-content: center;
+    background: #ff7c28;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .request_body {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(236px, 1fr));
+    gap: 15px;
+  }
+  
+  .request_body h6 {
+    font-weight: 400;
+    font-size: 13px;
+  }
+  
+  .request_body h6 span {
+    font-weight: 500;
+  }
+
+  .request_delete {
+    background: #900000;
+    display: table;
+    padding: 10px;
+    color: #fff;
+    border-radius: 3px;
+    margin-top: 20px;
+    /* margin-left: auto; */
+    font-size: 13px;
+    cursor: pointer;
+  }
+
+  .request_edit {
+    background: #1B1464;
+    display: table;
+    padding: 10px;
+    color: #fff;
+    border-radius: 3px;
+    margin-top: 20px;
+    /* margin-left: auto; */
+    font-size: 13px;
+    cursor: pointer;
+  }
+  

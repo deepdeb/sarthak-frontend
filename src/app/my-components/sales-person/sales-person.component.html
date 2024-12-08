@@ -175,13 +175,13 @@
 
         <ul class="pagination_ul">
             <li class="page-item ">
-                <button (click)="previousList()" [disabled] = "salesPersonOffset == 0">
+                <button (click)="previousList()" [disabled]="salesPersonOffset == 0">
                     <i class="fas fa-angle-left"></i>
                 </button>
             </li>
-            
+
             <li class="page-item">
-                <button  (click)="nextList()" [disabled] = "salesPersonList.length < 10 || total_count <= 10">
+                <button (click)="nextList()" [disabled]="salesPersonList.length < 10 || total_count <= 10">
                     <i class="fas fa-angle-right"></i>
                 </button>
             </li>
@@ -200,7 +200,7 @@
                     <th>DOB</th>
                     <th>view</th>
                     <th>edit</th>
-                    <th>delete</th>
+                    <th>deactivate</th>
                 </tr>
 
                 <tr *ngFor="let item of salesPersonList; let i = index">
@@ -225,13 +225,28 @@
                         </span>
                     </td>
                     <td>
-                        <span class="material-symbols-outlined" style="color: #A8226A;">
-                            delete
+                        <span class="material-symbols-outlined" style="color: #A8226A;" (click)="openModal(item.sales_person_id)">
+                            cancel
                         </span>
                     </td>
                 </tr>
-
             </table>
         </div>
     </div>
 </div>
+
+<ng-template #deactivateModal>
+    <div class="request_modal" style="position:relative;">
+        <div class="text-center" style="margin-top: 20px;">
+            Confirm deactivate salesperson ?
+        </div>
+        <button class="close" (click)="closeModal()"
+            style="position: absolute; top: 10px; right: 10px; border: none; background: transparent; font-size: 24px; color: #A8226A; cursor: pointer; padding: 0; outline: none;">
+            &times;
+        </button>
+        <div style="display: flex; gap:10px; justify-content:center; margin-top:10px;">
+            <button class="btn btn-danger" (click)="deactivateSalesperson()">Deactivate</button>
+            <button class="btn btn-primary" (click)="closeModal()">Cancel</button>
+        </div>
+    </div>
+</ng-template>

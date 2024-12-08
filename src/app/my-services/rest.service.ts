@@ -41,7 +41,7 @@ export class RestService {
 
 
 
-  //************ FOR SALES-PERSON start ************//
+  //************ FOR SALES-PERSON listing start ************//
   getSalesPersonList_rest(data: any): Observable<any> {
     return this.http.post(this.API_ROOT + 'director/getSalespersonList', data, httpOptions);
   }
@@ -49,12 +49,18 @@ export class RestService {
     const API_Endpoint = isEdit ? 'director/editSalesperson' : 'director/createSalesperson'
     return this.http.post(this.API_ROOT + API_Endpoint, data, httpOptions);
   }
-  //************ FOR SALES-PERSON end ************//
+  //************ FOR SALES-PERSON listing end ************//
 
 
   // ************* for salesperson list for enquiry order ***************//
   getSalesPersonListForEnquiryOrder_rest(data: any): Observable<any> {
     return this.http.post(this.API_ROOT + 'common/getSalespersonListForEnquiryOrder', data, httpOptions);
+  }
+
+
+  // ************* for salesperson deactivate ***************//
+  deactivateSalesperson_rest(data: any): Observable<any> {
+    return this.http.post(this.API_ROOT + 'director/deactivateSalesperson', data, httpOptions);
   }
 
 

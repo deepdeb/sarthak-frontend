@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { RestService } from 'src/app/my-services/rest.service';
 import { NgForm } from '@angular/forms';
 import { CommonService } from 'src/app/my-services/common.service';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-sales-person',
@@ -26,7 +27,7 @@ export class SalesPersonComponent implements OnInit {
   DOB: any;
   emailId: any;
   mobNum: any;
-  searchCriteria : string = '';
+  searchCriteria: string = '';
   // search_criteria: any;
   // sales : any;
 
@@ -35,12 +36,14 @@ export class SalesPersonComponent implements OnInit {
   checkDesignationId: any = localStorage.getItem('designation_id');
   isMentorVisible: boolean = false;
   mentorList: any = [];
-  // mentorId: any = ''; 
+  // mentorId: any = '';
+  isModalOpen: boolean = false
 
+  salesPersonOffset: number = 0;
 
-  salesPersonOffset : number =  0;
+  @ViewChild('deactivateModal') deactivateModal!: TemplateRef<any>;
 
-  constructor(private router: Router, private rest: RestService, private common: CommonService) { }
+  constructor(private router: Router, private rest: RestService, private common: CommonService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getSalesPersonList();
@@ -52,12 +55,12 @@ export class SalesPersonComponent implements OnInit {
     }
   }
 
-  previousList(){
+  previousList() {
     this.salesPersonOffset = this.salesPersonOffset > 0 ? this.salesPersonOffset - 10 : 0;
     this.getSalesPersonList();
   }
-  nextList(){
-    this.salesPersonOffset =  this.salesPersonOffset + 10 ;
+  nextList() {
+    this.salesPersonOffset = this.salesPersonOffset + 10;
     this.getSalesPersonList();
   }
 
@@ -224,7 +227,7 @@ export class SalesPersonComponent implements OnInit {
 
 
   //************** global search start **************//
-  search_element(event: any){
+  search_element(event: any) {
     this.getSalesPersonList();
   }
 
@@ -287,8 +290,39 @@ export class SalesPersonComponent implements OnInit {
   //   }
   // }
 
-   // **************** new form logic  ********************//
-   newForm() {
+  // **************** new form logic  ********************//
+  newForm() {
     window.location.reload()
+  }
+
+  // **************** deactivate salesperson  ********************//
+  deactivateSalesperson() {
+    const data = {
+      sales_person_id : this.salesPersonId
+    }
+    this.rest.deactivateSalesperson_rest(data).subscribe((res: any) => {
+      if(res.success) {
+        if(res.response) {
+          this.common.showAlertMessage(res.message, this.common.succContent);
+          this.closeModal();
+          this.getSalesPersonList();
+        }
+      }
+    })
+  }
+  // **************** deactivate salesperson  ********************//
+
+  openModal(sales_person_id : any) {
+    this.salesPersonId = sales_person_id;
+    const dialogRef = this.dialog.open(this.deactivateModal, {
+      width: '300px'
+    })
+    dialogRef.afterClosed().subscribe({
+
+    });
+  }
+
+  closeModal() {
+    this.dialog.closeAll();
   }
 }
