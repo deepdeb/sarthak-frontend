@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { RestService } from 'src/app/my-services/rest.service';
 import { NgForm } from '@angular/forms';
 import { CommonService } from 'src/app/my-services/common.service';
-import { MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-sales-person',
@@ -41,7 +41,7 @@ export class SalesPersonComponent implements OnInit {
 
   salesPersonOffset: number = 0;
 
-  @ViewChild('deactivateModal') deactivateModal!: TemplateRef<any>;
+  @ViewChild('deactivateModal') deactivateModal: any;
 
   constructor(private router: Router, private rest: RestService, private common: CommonService, private dialog: MatDialog) { }
 
@@ -315,7 +315,7 @@ export class SalesPersonComponent implements OnInit {
   openModal(sales_person_id : any) {
     this.salesPersonId = sales_person_id;
     const dialogRef = this.dialog.open(this.deactivateModal, {
-      width: '300px'
+      width: '300px',
     })
     dialogRef.afterClosed().subscribe({
 

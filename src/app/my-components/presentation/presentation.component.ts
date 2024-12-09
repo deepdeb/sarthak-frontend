@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { RestService } from 'src/app/my-services/rest.service';
 import { CommonService } from 'src/app/my-services/common.service';
-
+import { MatDialog } from '@angular/material/dialog';
 
 
 
@@ -75,7 +75,10 @@ export class PresentationComponent {
   activeLinkUp: string = 'company_profile_up'
   activeLinkDown: string = 'company_profile_down'
 
+  deleteId: string = ''
+  deleteType: string = ''
 
+  @ViewChild('deleteFileModal') deleteFileModal: any;
 
   company_profile_up() {
     this.activeLinkUp = 'company_profile_up'
@@ -126,7 +129,7 @@ export class PresentationComponent {
   }
 
 
-  constructor(private router: Router, private rest: RestService, private common: CommonService) { }
+  constructor(private router: Router, private rest: RestService, private common: CommonService, private dialog: MatDialog) { }
   ngOnInit(): void {
     this.getSBUList();
   }
@@ -348,6 +351,77 @@ export class PresentationComponent {
   }
 
 
+
+    //******** submit documents in presentation ********//
+    presentationDocumentUploadAfterRemove() {
+      let tempProductDocs = this.products_upload.length > 0 ? this.products_upload.join(',') : '';
+      let tempProjectDocs = this.projects_upload.length > 0 ? this.projects_upload.join(',') : '';
+      let tempIncorporationDocs = this.incorporation_upload.length > 0 ? this.incorporation_upload.join(',') : '';
+      let tempMoaDocs = this.moa_upload.length > 0 ? this.moa_upload.join(',') : '';
+      let tempAoaDocs = this.aoa_upload.length > 0 ? this.aoa_upload.join(',') : '';
+      let tempTradeLicenceDocs = this.trade_licence_upload.length > 0 ? this.trade_licence_upload.join(',') : '';
+      let tempAdminLicenceDocs = this.admin_licence_upload.length > 0 ? this.admin_licence_upload.join(',') : '';
+      let tempElectricalLicenceDocs = this.electrical_licence_upload.length > 0 ? this.electrical_licence_upload.join(',') : '';
+      let tempBankDetailsDocs = this.bank_details_upload.length > 0 ? this.bank_details_upload.join(',') : '';
+      let tempCancelledChequeDocs = this.cancelled_cheque_upload.length > 0 ? this.cancelled_cheque_upload.join(',') : '';
+      let tempBalanceSheetDocs = this.balance_sheet_upload.length > 0 ? this.balance_sheet_upload.join(',') : '';
+      let tempPanDocs = this.pan_upload.length > 0 ? this.pan_upload.join(',') : '';
+      let tempTanDocs = this.tan_upload.length > 0 ? this.tan_upload.join(',') : '';
+      let tempGstDocs = this.gst_upload.length > 0 ? this.gst_upload.join(',') : '';
+      let tempIsoDocs = this.iso_upload.length > 0 ? this.iso_upload.join(',') : '';
+      let tempMsmeDocs = this.msme_upload.length > 0 ? this.msme_upload.join(',') : '';
+      let tempPresentationDocs = this.presentation_upload.length > 0 ? this.presentation_upload.join(',') : '';
+      let tempCredentialDocs = this.credentials_upload.length > 0 ? this.credentials_upload.join(',') : '';
+  
+      const data = {
+        sbu_id: this.sbuId,
+        product_file: tempProductDocs,
+        project_file: tempProjectDocs,
+        incorporation_cert_file: tempIncorporationDocs,
+        moa_file: tempMoaDocs,
+        aoa_file: tempAoaDocs,
+        trade_license_file: tempTradeLicenceDocs,
+        admin_license_file: tempAdminLicenceDocs,
+        electrical_contractor_license: tempElectricalLicenceDocs,
+        bank_details_file: tempBankDetailsDocs,
+        cancelled_cheque_file: tempCancelledChequeDocs,
+        balance_sheets_file: tempBalanceSheetDocs,
+        pan_card_file: tempPanDocs,
+        tan_file: tempTanDocs,
+        gst_cert_file: tempGstDocs,
+        iso_cert_file: tempIsoDocs,
+        msme_udyam_cert: tempMsmeDocs,
+        presentation_file: tempPresentationDocs,
+        credential_file: tempCredentialDocs,
+      }
+      this.rest.presentationDocumentUpload_rest(data).subscribe((res: any) => {
+        if (res.success) {
+          this.common.showAlertMessage(res.message, this.common.succContent);
+          // this.products_upload = [];
+          // this.projects_upload = [];
+          // this.incorporation_upload = [];
+          // this.moa_upload = [];
+          // this.aoa_upload = [];
+          // this.trade_licence_upload = [];
+          // this.admin_licence_upload = [];
+          // this.electrical_licence_upload = [];
+          // this.bank_details_upload = [];
+          // this.cancelled_cheque_upload = [];
+          // this.balance_sheet_upload = [];
+          // this.pan_upload = [];
+          // this.tan_upload = [];
+          // this.gst_upload = [];
+          // this.iso_upload = [];
+          // this.msme_upload = [];
+          // this.presentation_upload = [];
+          // this.credentials_upload = [];
+        }
+      })
+    }
+
+
+
+
   // show documents //
   getCompanyDocDetailsById() {
     this.sbuIdForList = 0;
@@ -455,60 +529,99 @@ export class PresentationComponent {
   }
 
 
-  removeFile(id: any, type: string) {
-    if (type == 'products') {
-      this.products_upload.splice(id, 1);
+  removeFile() {
+    if (this.deleteType == 'products') {
+      this.products_upload.splice(this.deleteId, 1);
+      this.presentationDocumentUpload();
     }
-    else if (type == 'projects') {
-      this.projects_upload.splice(id, 1);
+    else if (this.deleteType == 'projects') {
+      this.projects_upload.splice(this.deleteId, 1);
+      this.presentationDocumentUpload();
     } 
-    else if (type == 'incorporation') {
-      this.incorporation_upload.splice(id, 1);
+    else if (this.deleteType == 'incorporation') {
+      this.incorporation_upload.splice(this.deleteId, 1);
+      this.presentationDocumentUpload();
     }
-    else if (type == 'moa') {
-      this.moa_upload.splice(id, 1);
+    else if (this.deleteType == 'moa') {
+      this.moa_upload.splice(this.deleteId, 1);
+      this.presentationDocumentUpload();
     }
-    else if (type == 'aoa') {
-      this.aoa_upload.splice(id, 1);
+    else if (this.deleteType == 'aoa') {
+      this.aoa_upload.splice(this.deleteId, 1);
+      this.presentationDocumentUpload();
     }
-    else if (type == 'trade_licence') {
-      this.trade_licence_upload.splice(id, 1);
+    else if (this.deleteType == 'trade_licence') {
+      this.trade_licence_upload.splice(this.deleteId, 1);
+      this.presentationDocumentUpload();
     }
-    else if (type == 'admin_licence') {
-      this.admin_licence_upload.splice(id, 1);
+    else if (this.deleteType == 'admin_licence') {
+      this.admin_licence_upload.splice(this.deleteId, 1);
+      this.presentationDocumentUpload();
     }
-    else if (type == 'electrical_licence') {
-      this.electrical_licence_upload.splice(id, 1);
+    else if (this.deleteType == 'electrical_licence') {
+      this.electrical_licence_upload.splice(this.deleteId, 1);
+      this.presentationDocumentUpload();
     }
-    else if (type == 'bank_details') {
-      this.bank_details_upload.splice(id, 1);
+    else if (this.deleteType == 'bank_details') {
+      this.bank_details_upload.splice(this.deleteId, 1);
+      this.presentationDocumentUpload();
     }
-    else if (type == 'cancelled_cheque') {
-      this.cancelled_cheque_upload.splice(id, 1);
+    else if (this.deleteType == 'cancelled_cheque') {
+      this.cancelled_cheque_upload.splice(this.deleteId, 1);
+      this.presentationDocumentUpload();
     }
-    else if (type == 'balance_sheet') {
-      this.balance_sheet_upload.splice(id, 1);
+    else if (this.deleteType == 'balance_sheet') {
+      this.balance_sheet_upload.splice(this.deleteId, 1);
+      this.presentationDocumentUpload();
     }
-    else if (type == 'pan') {
-      this.pan_upload.splice(id, 1);
+    else if (this.deleteType == 'pan') {
+      this.pan_upload.splice(this.deleteId, 1);
+      this.presentationDocumentUpload();
     }
-    else if (type == 'tan') {
-      this.tan_upload.splice(id, 1); 
+    else if (this.deleteType == 'tan') {
+      this.tan_upload.splice(this.deleteId, 1);
+      this.presentationDocumentUpload();
     }
-    else if (type == 'gst') {
-      this.gst_upload.splice(id, 1); 
+    else if (this.deleteType == 'gst') {
+      this.gst_upload.splice(this.deleteId, 1);
+      this.presentationDocumentUpload();
     }
-    else if (type == 'iso') {
-      this.iso_upload.splice(id, 1); 
+    else if (this.deleteType == 'iso') {
+      this.iso_upload.splice(this.deleteId, 1);
+      this.presentationDocumentUpload();
     }
-    else if (type == 'msme') {
-      this.msme_upload.splice(id, 1); 
+    else if (this.deleteType == 'msme') {
+      this.msme_upload.splice(this.deleteId, 1);
+      this.presentationDocumentUpload();
     }
-    else if (type == 'presentation') {
-      this.presentation_upload.splice(id, 1); 
+    else if (this.deleteType == 'presentation') {
+      this.presentation_upload.splice(this.deleteId, 1);
+      this.presentationDocumentUpload();
     }
-    else if (type == 'credentials') {
-      this.credentials_upload.splice(id, 1); 
+    else if (this.deleteType == 'credentials') {
+      this.credentials_upload.splice(this.deleteId, 1);
+      this.presentationDocumentUpload();
     }
+  }
+
+  closeModal() {
+    this.dialog.closeAll();
+  }
+
+  openModal(id: any, type: string) {
+    this.deleteId = id
+    this.deleteType = type
+    const dialogRef = this.dialog.open(this.deleteFileModal, {
+      width: '300px'
+    })
+    dialogRef.afterClosed().subscribe({
+
+    });
+  }
+
+  formatName(name: any) {
+    const splitName = name.split('_');
+    const formattedName = splitName.slice(1).join('_')
+    return formattedName;
   }
 }

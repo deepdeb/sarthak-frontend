@@ -29,6 +29,7 @@ export class ReportDetailsComponent {
   sbuId: any = localStorage.getItem('sbu_id');
   checkDesignationId: any = localStorage.getItem('designation_id');
   totalBasicPOValue: string = ''
+  totalTotalPOValue: string = ''
   // checkSbuId: any = localStorage.getItem('sbu_id')
 
 
@@ -213,6 +214,7 @@ export class ReportDetailsComponent {
           if (res.response.length > 0) {
             this.reportList = res.response;
             this.totalBasicPOValue = res.total_basic_po_value
+            this.totalTotalPOValue = res.total_total_po_value
             this.isNoRecord = false
           }
         }
@@ -357,6 +359,7 @@ export class ReportDetailsComponent {
         if (res.response.length > 0) {
           this.reportList = res.response;
           this.totalBasicPOValue = res.total_basic_po_value
+          this.totalTotalPOValue = res.total_total_po_value
           this.isNoRecord = false;
         }
       }
