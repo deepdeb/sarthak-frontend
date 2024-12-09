@@ -71,7 +71,7 @@
                                 <div class="upload_doc" style="position: relative;"
                                     style="position: relative; margin: 16px 14px 8px 0;"
                                     *ngFor="let item of products_upload;let i=index;">
-                                    <img *ngIf="products_upload.length > 0" class="assignImg"
+                                    <img class="assignImg"
                                         [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
                                         alt="" loading="lazy" (click)="viewFile(item)"
                                         style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
@@ -609,8 +609,20 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
     <!--------------------------------------------------------- document listing ---------------------------------------------------->
-    <div class="main_body sec_gapping">
+    <div class="main_body sec_gapping" *ngIf="checkSbuId ==0">
         <div class="info_div">
             <div class="page_info_heading">
                 document list
@@ -621,7 +633,6 @@
                     <label>Select SBU to view uploaded documents</label>
                     <div class="form_select_div">
                         <select class="form-control" [(ngModel)]="sbuIdForList" (change)="getCompanyDocDetailsById2()">
-                            <!-- <option *ngIf="sbuId==0" value='' disabled>-- choose SBU --</option> -->
                             <option *ngFor="let item of SBUList" [value]="item.sbu_id">{{ item.sbu_name }}
                             </option>
                         </select>
@@ -632,203 +643,547 @@
                 </div>
             </div>
 
-            <label *ngIf="products_upload_2.length > 0 && sbuIdForList != 0">Products</label>
-            <div *ngIf="products_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
-                <div class="upload_doc" style="position: relative;" style="position: relative; margin: 16px 14px 8px 0;"
-                    *ngFor="let item of products_upload_2;let i=index;">
-                    <img class="assignImg"
-                        [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
-                        alt="" loading="lazy" (click)="viewFile(item)"
-                        style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
+            <ul class="presentation_tabs" *ngIf="sbuIdForList != 0">
+                <li (click)="company_profile_down()" [ngClass]="{'active': activeLinkDown === 'company_profile_down'}">company
+                    profile</li>
+                <li (click)="important_documents_down()" [ngClass]="{'active': activeLinkDown === 'important_documents_down'}">
+                    important documents</li>
+                <li (click)="principal_house_down()" [ngClass]="{'active': activeLinkDown === 'principal_house_down'}">
+                    principal house</li>
+            </ul>
+
+            <div class="upload_document_div company_profile" *ngIf="comp_pro_down && sbuIdForList != 0">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="upload_file_area mt-3">
+                            <!-- <div style="position: relative; margin-bottom: 10px;">
+                                <input type="file" id="fileInput1" name="files[]"
+                                    (change)="fileUpload($event, 'products')" multiple style="position: absolute;">
+                            </div> -->
+                            <label for="fileInput1" id="fileLabel1" *ngIf="comp_pro_down" style="padding: 10px 12px;background: #030371;color: white;position: relative;border-radius: 4px;
+                            cursor: pointer;width: 100%;text-align: center;">
+                                <span style="margin-left: 8px;">products</span>
+                            </label>
+                            <div class="screenshot_div d-flex flex-wrap ">
+                                <div class="upload_doc" style="position: relative;"
+                                    style="position: relative; margin: 16px 14px 8px 0;"
+                                    *ngFor="let item of products_upload_2;let i=index;">
+                                    <img class="assignImg"
+                                        [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
+                                        alt="" loading="lazy" (click)="viewFile(item)"
+                                        style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
+                                    <!-- <span *ngIf="products_upload.length>0" (click)="removeFile(i, 'products')"
+                                        class="fas fa-times" style="position: absolute;top: -6px;right: 0px;color: red;padding: 2px 4px;background: white;
+                                        cursor: pointer;border-radius: 50%;">
+                                    </span> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="upload_file_area mt-3">
+                            <!-- <div style="position: relative; margin-bottom: 10px;">
+                                <input type="file" id="fileInput2" name="files[]"
+                                    (change)="fileUpload($event, 'projects')" multiple style="position: absolute;">
+                            </div> -->
+                            <label for="fileInput2" id="fileLabel2" *ngIf="comp_pro_down" style="padding: 10px 12px;background: #030371;color: white;position: relative;border-radius: 4px;
+                            cursor: pointer;width: 100%;text-align: center;">
+                                <span style="margin-left: 8px;">projects</span>
+                            </label>
+                            <div class="screenshot_div d-flex flex-wrap ">
+                                <div class="upload_doc" style="position: relative;"
+                                    style="position: relative; margin: 16px 14px 8px 0;"
+                                    *ngFor="let item of projects_upload_2;let i=index;">
+                                    <img class="assignImg"
+                                        [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
+                                        alt="" loading="lazy" (click)="viewFile(item)"
+                                        style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
+                                    <!-- <span *ngIf="projects_upload.length>0" (click)="removeFile(i, 'projects')"
+                                        class="fas fa-times" style="position: absolute;top: -6px;right: 0px;color: red;padding: 2px 4px;background: white;
+                                        cursor: pointer;border-radius: 50%;">
+                                    </span> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <ul class="pagination_ul presentation_ul">
+                    <li class="page-item">
+                        <button class="btn1" (click)="next()">
+                            <span>Next</span>
+                            <i class="fas fa-angle-right"></i>
+                        </button>
+                    </li>
+                </ul> -->
+            </div>
+
+            <div class="upload_document_div important_document" *ngIf="imp_doc_down && sbuIdForList != 0">
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- <div class="upload_file_area mt-3">
+                            <div style="position: relative; margin-bottom: 10px;">
+                                <input type="file" id="fileInput3" name="files[]"
+                                    (change)="fileUpload($event, 'incorporation')" multiple style="position: absolute;">
+                            </div> -->
+                        <label for="fileInput3" id="fileLabel3" *ngIf="imp_doc_down" style="padding: 10px 12px;background: #030371;color: white;position: relative;border-radius: 4px;
+                            cursor: pointer;width: 100%;text-align: center;">
+                            <span style="margin-left: 8px;">Certificate of Incorporation</span>
+                        </label>
+                        <div class="screenshot_div d-flex flex-wrap ">
+                            <div class="upload_doc" style="position: relative;"
+                                style="position: relative; margin: 16px 14px 8px 0;"
+                                *ngFor="let item of incorporation_upload_2;let i=index;">
+                                <img class="assignImg"
+                                    [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
+                                    alt="" loading="lazy" (click)="viewFile(item)"
+                                    style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
+                                <!-- <span *ngIf="incorporation_upload.length>0" (click)="removeFile(i, 'incorporation')"
+                                        class="fas fa-times" style="position: absolute;top: -6px;right: 0px;color: red;padding: 2px 4px;background: white;
+                                        cursor: pointer;border-radius: 50%;">
+                                    </span> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="upload_file_area mt-3">
+                        <!-- <div style="position: relative; margin-bottom: 10px;">
+                                <input type="file" id="fileInput4" name="files[]" (change)="fileUpload($event, 'moa')"
+                                    multiple style="position: absolute;">
+                            </div> -->
+                        <label for="fileInput4" id="fileLabel4" *ngIf="imp_doc_down" style="padding: 10px 12px;background: #030371;color: white;position: relative;border-radius: 4px;
+                            cursor: pointer;width: 100%;text-align: center;">
+                            <span style="margin-left: 8px;">MoA</span>
+                        </label>
+                        <div class="screenshot_div d-flex flex-wrap ">
+                            <div class="upload_doc" style="position: relative;"
+                                style="position: relative; margin: 16px 14px 8px 0;"
+                                *ngFor="let item of moa_upload_2;let i=index;">
+                                <img class="assignImg"
+                                    [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
+                                    alt="" loading="lazy" (click)="viewFile(item)"
+                                    style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
+                                <!-- <span *ngIf="moa_upload.length>0" (click)="removeFile(i, 'moa')"
+                                        class="fas fa-times" style="position: absolute;top: -6px;right: 0px;color: red;padding: 2px 4px;background: white;
+                                        cursor: pointer;border-radius: 50%;">
+                                    </span> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="upload_file_area mt-3">
+                        <!-- <div style="position: relative; margin-bottom: 10px;">
+                                <input type="file" id="fileInput5" name="files[]" (change)="fileUpload($event, 'aoa')"
+                                    multiple style="position: absolute;">
+                            </div> -->
+                        <label for="fileInput5" id="fileLabel5" *ngIf="imp_doc_down" style="padding: 10px 12px;background: #030371;color: white;position: relative;border-radius: 4px;
+                            cursor: pointer;width: 100%;text-align: center;">
+                            <span style="margin-left: 8px;">AoA</span>
+                        </label>
+                        <div class="screenshot_div d-flex flex-wrap ">
+                            <div class="upload_doc" style="position: relative;"
+                                style="position: relative; margin: 16px 14px 8px 0;"
+                                *ngFor="let item of aoa_upload_2;let i=index;">
+                                <img class="assignImg"
+                                    [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
+                                    alt="" loading="lazy" (click)="viewFile(item)"
+                                    style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
+                                <!-- <span *ngIf="aoa_upload.length>0" (click)="removeFile(i, 'aoa')"
+                                        class="fas fa-times" style="position: absolute;top: -6px;right: 0px;color: red;padding: 2px 4px;background: white;
+                                        cursor: pointer;border-radius: 50%;">
+                                    </span> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="upload_file_area mt-3">
+                        <!-- <div style="position: relative; margin-bottom: 10px;">
+                                <input type="file" id="fileInput6" name="files[]"
+                                    (change)="fileUpload($event, 'trade_licence')" multiple style="position: absolute;">
+                            </div> -->
+                        <label for="fileInput6" id="fileLabel6" *ngIf="imp_doc_down" style="padding: 10px 12px;background: #030371;color: white;position: relative;border-radius: 4px;
+                            cursor: pointer;width: 100%;text-align: center;">
+                            <span style="margin-left: 8px;">Trade Licence</span>
+                        </label>
+                        <div class="screenshot_div d-flex flex-wrap ">
+                            <div class="upload_doc" style="position: relative;"
+                                style="position: relative; margin: 16px 14px 8px 0;"
+                                *ngFor="let item of trade_licence_upload_2;let i=index;">
+                                <img class="assignImg"
+                                    [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
+                                    alt="" loading="lazy" (click)="viewFile(item)"
+                                    style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
+                                <!-- <span *ngIf="trade_licence_upload.length>0" (click)="removeFile(i, 'trade_licence')"
+                                        class="fas fa-times" style="position: absolute;top: -6px;right: 0px;color: red;padding: 2px 4px;background: white;
+                                        cursor: pointer;border-radius: 50%;">
+                                    </span> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="upload_file_area mt-3">
+                        <!-- <div style="position: relative; margin-bottom: 10px;">
+                                <input type="file" id="fileInput7" name="files[]"
+                                    (change)="fileUpload($event, 'admin_licence')" multiple style="position: absolute;">
+                            </div> -->
+                        <label for="fileInput7" id="fileLabel7" *ngIf="imp_doc_down" style="padding: 10px 12px;background: #030371;color: white;position: relative;border-radius: 4px;
+                            cursor: pointer;width: 100%;text-align: center;">
+                            <span style="margin-left: 8px;">admin licence</span>
+                        </label>
+                        <div class="screenshot_div d-flex flex-wrap ">
+                            <div class="upload_doc" style="position: relative;"
+                                style="position: relative; margin: 16px 14px 8px 0;"
+                                *ngFor="let item of admin_licence_upload_2;let i=index;">
+                                <img class="assignImg"
+                                    [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
+                                    alt="" loading="lazy" (click)="viewFile(item)"
+                                    style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
+                                <!-- <span *ngIf="admin_licence_upload.length>0" (click)="removeFile(i, 'admin_licence')"
+                                        class="fas fa-times" style="position: absolute;top: -6px;right: 0px;color: red;padding: 2px 4px;background: white;
+                                        cursor: pointer;border-radius: 50%;">
+                                    </span> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="upload_file_area mt-3">
+                        <!-- <div style="position: relative; margin-bottom: 10px;">
+                                <input type="file" id="fileInput8" name="files[]"
+                                    (change)="fileUpload($event, 'electrical_licence')" multiple
+                                    style="position: absolute;">
+                            </div> -->
+                        <label for="fileInput8" id="fileLabel8" *ngIf="imp_doc_down" style="padding: 10px 12px;background: #030371;color: white;position: relative;border-radius: 4px;
+                            cursor: pointer;width: 100%;text-align: center;">
+                            <span style="margin-left: 8px;">electrical contractor licence</span>
+                        </label>
+                        <div class="screenshot_div d-flex flex-wrap ">
+                            <div class="upload_doc" style="position: relative;"
+                                style="position: relative; margin: 16px 14px 8px 0;"
+                                *ngFor="let item of electrical_licence_upload_2;let i=index;">
+                                <img class="assignImg"
+                                    [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
+                                    alt="" loading="lazy" (click)="viewFile(item)"
+                                    style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
+                                <!-- <span *ngIf="electrical_licence_upload.length>0"
+                                        (click)="removeFile(i, 'electrical_licence')" class="fas fa-times" style="position: absolute;top: -6px;right: 0px;color: red;padding: 2px 4px;background: white;
+                                        cursor: pointer;border-radius: 50%;">
+                                    </span> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="upload_file_area mt-3">
+                        <!-- <div style="position: relative; margin-bottom: 10px;">
+                                <input type="file" id="fileInput9" name="files[]"
+                                    (change)="fileUpload($event, 'bank_details')" multiple style="position: absolute;">
+                            </div> -->
+                        <label for="fileInput9" id="fileLabel9" *ngIf="imp_doc_down" style="padding: 10px 12px;background: #030371;color: white;position: relative;border-radius: 4px;
+                            cursor: pointer;width: 100%;text-align: center;">
+                            <span style="margin-left: 8px;">bank details</span>
+                        </label>
+                        <div class="screenshot_div d-flex flex-wrap ">
+                            <div class="upload_doc" style="position: relative;"
+                                style="position: relative; margin: 16px 14px 8px 0;"
+                                *ngFor="let item of bank_details_upload_2;let i=index;">
+                                <img class="assignImg"
+                                    [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
+                                    alt="" loading="lazy" (click)="viewFile(item)"
+                                    style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
+                                <!-- <span *ngIf="bank_details_upload.length>0" (click)="removeFile(i, 'bank_details')"
+                                        class="fas fa-times" style="position: absolute;top: -6px;right: 0px;color: red;padding: 2px 4px;background: white;
+                                        cursor: pointer;border-radius: 50%;">
+                                    </span> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="upload_file_area mt-3">
+                        <!-- <div style="position: relative; margin-bottom: 10px;">
+                                <input type="file" id="fileInput10" name="files[]"
+                                    (change)="fileUpload($event, 'cancelled_cheque')" multiple
+                                    style="position: absolute;">
+                            </div> -->
+                        <label for="fileInput10" id="fileLabel10" *ngIf="imp_doc_down" style="padding: 10px 12px;background: #030371;color: white;position: relative;border-radius: 4px;
+                            cursor: pointer;width: 100%;text-align: center;">
+                            <span style="margin-left: 8px;">cancelled cheque</span>
+                        </label>
+                        <div class="screenshot_div d-flex flex-wrap ">
+                            <div class="upload_doc" style="position: relative;"
+                                style="position: relative; margin: 16px 14px 8px 0;"
+                                *ngFor="let item of cancelled_cheque_upload_2;let i=index;">
+                                <img class="assignImg"
+                                    [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
+                                    alt="" loading="lazy" (click)="viewFile(item)"
+                                    style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
+                                <!-- <span *ngIf="cancelled_cheque_upload.length>0"
+                                        (click)="removeFile(i, 'cancelled_cheque')" class="fas fa-times" style="position: absolute;top: -6px;right: 0px;color: red;padding: 2px 4px;background: white;
+                                        cursor: pointer;border-radius: 50%;">
+                                    </span> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="upload_file_area mt-3">
+                        <!-- <div style="position: relative; margin-bottom: 10px;">
+                                <input type="file" id="fileInput11" name="files[]"
+                                    (change)="fileUpload($event, 'balance_sheet')" multiple style="position: absolute;">
+                            </div> -->
+                        <label for="fileInput11" id="fileLabel11" *ngIf="imp_doc_down" style="padding: 10px 12px;background: #030371;color: white;position: relative;border-radius: 4px;
+                            cursor: pointer;width: 100%;text-align: center;">
+                            <span style="margin-left: 8px;">balance sheets</span>
+                        </label>
+                        <div class="screenshot_div d-flex flex-wrap ">
+                            <div class="upload_doc" style="position: relative;"
+                                style="position: relative; margin: 16px 14px 8px 0;"
+                                *ngFor="let item of balance_sheet_upload_2;let i=index;">
+                                <img class="assignImg"
+                                    [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
+                                    alt="" loading="lazy" (click)="viewFile(item)"
+                                    style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
+                                <!-- <span *ngIf="balance_sheet_upload.length>0" (click)="removeFile(i, 'balance_sheet')"
+                                        class="fas fa-times" style="position: absolute;top: -6px;right: 0px;color: red;padding: 2px 4px;background: white;
+                                        cursor: pointer;border-radius: 50%;">
+                                    </span> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="upload_file_area mt-3">
+                        <!-- <div style="position: relative; margin-bottom: 10px;">
+                                <input type="file" id="fileInput12" name="files[]" (change)="fileUpload($event, 'pan')"
+                                    multiple style="position: absolute;">
+                            </div> -->
+                        <label for="fileInput12" id="fileLabel12" *ngIf="imp_doc_down" style="padding: 10px 12px;background: #030371;color: white;position: relative;border-radius: 4px;
+                            cursor: pointer;width: 100%;text-align: center;">
+                            <span style="margin-left: 8px;">PAN card</span>
+                        </label>
+                        <div class="screenshot_div d-flex flex-wrap ">
+                            <div class="upload_doc" style="position: relative;"
+                                style="position: relative; margin: 16px 14px 8px 0;"
+                                *ngFor="let item of pan_upload_2;let i=index;">
+                                <img class="assignImg"
+                                    [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
+                                    alt="" loading="lazy" (click)="viewFile(item)"
+                                    style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
+                                <!-- <span *ngIf="pan_upload.length>0" (click)="removeFile(i, 'pan')"
+                                        class="fas fa-times" style="position: absolute;top: -6px;right: 0px;color: red;padding: 2px 4px;background: white;
+                                        cursor: pointer;border-radius: 50%;">
+                                    </span> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="upload_file_area mt-3">
+                        <!-- <div style="position: relative; margin-bottom: 10px;">
+                                <input type="file" id="fileInput13" name="files[]" (change)="fileUpload($event, 'tan')"
+                                    multiple style="position: absolute;">
+                            </div> -->
+                        <label for="fileInput13" id="fileLabel13" *ngIf="imp_doc_down" style="padding: 10px 12px;background: #030371;color: white;position: relative;border-radius: 4px;
+                            cursor: pointer;width: 100%;text-align: center;">
+                            <span style="margin-left: 8px;">TAN</span>
+                        </label>
+                        <div class="screenshot_div d-flex flex-wrap ">
+                            <div class="upload_doc" style="position: relative;"
+                                style="position: relative; margin: 16px 14px 8px 0;"
+                                *ngFor="let item of tan_upload_2;let i=index;">
+                                <img class="assignImg"
+                                    [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
+                                    alt="" loading="lazy" (click)="viewFile(item)"
+                                    style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
+                                <!-- <span *ngIf="tan_upload.length>0" (click)="removeFile(i, 'tan')"
+                                        class="fas fa-times" style="position: absolute;top: -6px;right: 0px;color: red;padding: 2px 4px;background: white;
+                                        cursor: pointer;border-radius: 50%;">
+                                    </span> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="upload_file_area mt-3">
+                        <!-- <div style="position: relative; margin-bottom: 10px;">
+                                <input type="file" id="fileInput14" name="files[]" (change)="fileUpload($event, 'gst')"
+                                    multiple style="position: absolute;">
+                            </div> -->
+                        <label for="fileInput14" id="fileLabel14" *ngIf="imp_doc_down" style="padding: 10px 12px;background: #030371;color: white;position: relative;border-radius: 4px;
+                            cursor: pointer;width: 100%;text-align: center;">
+                            <span style="margin-left: 8px;">GST certificate</span>
+                        </label>
+                        <div class="screenshot_div d-flex flex-wrap ">
+                            <div class="upload_doc" style="position: relative;"
+                                style="position: relative; margin: 16px 14px 8px 0;"
+                                *ngFor="let item of gst_upload_2;let i=index;">
+                                <img class="assignImg"
+                                    [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
+                                    alt="" loading="lazy" (click)="viewFile(item)"
+                                    style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
+                                <!-- <span *ngIf="gst_upload.length>0" (click)="removeFile(i, 'gst')"
+                                        class="fas fa-times" style="position: absolute;top: -6px;right: 0px;color: red;padding: 2px 4px;background: white;
+                                        cursor: pointer;border-radius: 50%;">
+                                    </span> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="upload_file_area mt-3">
+                        <!-- <div style="position: relative; margin-bottom: 10px;">
+                                <input type="file" id="fileInput15" name="files[]" (change)="fileUpload($event, 'iso')"
+                                    multiple style="position: absolute;">
+                            </div> -->
+                        <label for="fileInput15" id="fileLabel15" *ngIf="imp_doc_down" style="padding: 10px 12px;background: #030371;color: white;position: relative;border-radius: 4px;
+                            cursor: pointer;width: 100%;text-align: center;">
+                            <span style="margin-left: 8px;">ISO certificate</span>
+                        </label>
+                        <div class="screenshot_div d-flex flex-wrap ">
+                            <div class="upload_doc" style="position: relative;"
+                                style="position: relative; margin: 16px 14px 8px 0;"
+                                *ngFor="let item of iso_upload_2;let i=index;">
+                                <img class="assignImg"
+                                    [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
+                                    alt="" loading="lazy" (click)="viewFile(item)"
+                                    style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
+                                <!-- <span *ngIf="iso_upload.length>0" (click)="removeFile(i, 'iso')"
+                                        class="fas fa-times" style="position: absolute;top: -6px;right: 0px;color: red;padding: 2px 4px;background: white;
+                                        cursor: pointer;border-radius: 50%;">
+                                    </span> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="upload_file_area mt-3">
+                        <!-- <div style="position: relative; margin-bottom: 10px;">
+                                <input type="file" id="fileInput16" name="files[]" (change)="fileUpload($event, 'msme')"
+                                    multiple style="position: absolute;">
+                            </div> -->
+                        <label for="fileInput16" id="fileLabel16" *ngIf="imp_doc_down" style="padding: 10px 12px;background: #030371;color: white;position: relative;border-radius: 4px;
+                            cursor: pointer;width: 100%;text-align: center;">
+                            <span style="margin-left: 8px;">MSME Udyam certificate</span>
+                        </label>
+                        <div class="screenshot_div d-flex flex-wrap ">
+                            <div class="upload_doc" style="position: relative;"
+                                style="position: relative; margin: 16px 14px 8px 0;"
+                                *ngFor="let item of msme_upload_2;let i=index;">
+                                <img class="assignImg"
+                                    [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
+                                    alt="" loading="lazy" (click)="viewFile(item)"
+                                    style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
+                                <!-- <span *ngIf="msme_upload.length>0" (click)="removeFile(i, 'msme')"
+                                        class="fas fa-times" style="position: absolute;top: -6px;right: 0px;color: red;padding: 2px 4px;background: white;
+                                        cursor: pointer;border-radius: 50%;">
+                                    </span> -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <label *ngIf="projects_upload_2.length > 0 && sbuIdForList != 0">Projects</label>
-            <div *ngIf="projects_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
-                <div class="upload_doc" style="position: relative;" style="position: relative; margin: 16px 14px 8px 0;"
-                    *ngFor="let item of projects_upload_2;let i=index;">
-                    <img class="assignImg"
-                        [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
-                        alt="" loading="lazy" (click)="viewFile(item)"
-                        style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
-                </div>
-            </div>
-            <label *ngIf="incorporation_upload_2.length > 0 && sbuIdForList != 0">Certificate of Incorporation</label>
-            <div *ngIf="incorporation_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
-                <div class="upload_doc" style="position: relative;"
-                    style="position: relative; margin: 16px 14px 8px 0;"
-                    *ngFor="let item of incorporation_upload_2;let i=index;">
-                    <img class="assignImg"
-                        [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
-                        alt="" loading="lazy" (click)="viewFile(item)"
-                        style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
-                </div>
-            </div>
-            <label *ngIf="moa_upload_2.length > 0 && sbuIdForList != 0">MoA</label>
-            <div *ngIf="moa_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
-                <div class="upload_doc" style="position: relative;"
-                    style="position: relative; margin: 16px 14px 8px 0;"
-                    *ngFor="let item of moa_upload_2;let i=index;">
-                    <img class="assignImg"
-                        [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
-                        alt="" loading="lazy" (click)="viewFile(item)"
-                        style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
-                </div>
-            </div>
-            <label *ngIf="aoa_upload_2.length > 0 && sbuIdForList != 0">AoA</label>
-            <div *ngIf="aoa_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
-                <div class="upload_doc" style="position: relative;"
-                    style="position: relative; margin: 16px 14px 8px 0;"
-                    *ngFor="let item of aoa_upload_2;let i=index;">
-                    <img class="assignImg"
-                        [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
-                        alt="" loading="lazy" (click)="viewFile(item)"
-                        style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
-                </div>
-            </div>
-            <label *ngIf="trade_licence_upload_2.length > 0 && sbuIdForList != 0">Trade Licence</label>
-            <div *ngIf="trade_licence_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
-                <div class="upload_doc" style="position: relative;"
-                    style="position: relative; margin: 16px 14px 8px 0;"
-                    *ngFor="let item of trade_licence_upload_2;let i=index;">
-                    <img class="assignImg"
-                        [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
-                        alt="" loading="lazy" (click)="viewFile(item)"
-                        style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
-                </div>
-            </div>
-            <label *ngIf="admin_licence_upload_2.length > 0 && sbuIdForList != 0">Admin Licence</label>
-            <div *ngIf="admin_licence_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
-                <div class="upload_doc" style="position: relative;"
-                    style="position: relative; margin: 16px 14px 8px 0;"
-                    *ngFor="let item of admin_licence_upload_2;let i=index;">
-                    <img class="assignImg"
-                        [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
-                        alt="" loading="lazy" (click)="viewFile(item)"
-                        style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
-                </div>
-            </div>
-            <label *ngIf="electrical_licence_upload_2.length > 0 && sbuIdForList != 0">Electrical Contractor Licence</label>
-            <div *ngIf="electrical_licence_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
-                <div class="upload_doc" style="position: relative;"
-                    style="position: relative; margin: 16px 14px 8px 0;"
-                    *ngFor="let item of electrical_licence_upload_2;let i=index;">
-                    <img class="assignImg"
-                        [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
-                        alt="" loading="lazy" (click)="viewFile(item)"
-                        style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
-                </div>
-            </div>
-            <label *ngIf="bank_details_upload_2.length > 0 && sbuIdForList != 0">Bank details</label>
-            <div *ngIf="bank_details_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
-                <div class="upload_doc" style="position: relative;"
-                    style="position: relative; margin: 16px 14px 8px 0;"
-                    *ngFor="let item of bank_details_upload_2;let i=index;">
-                    <img class="assignImg"
-                        [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
-                        alt="" loading="lazy" (click)="viewFile(item)"
-                        style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
-                </div>
-            </div>
-            <label *ngIf="cancelled_cheque_upload_2.length > 0 && sbuIdForList != 0">Cancelled Cheque</label>
-            <div *ngIf="cancelled_cheque_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
-                <div class="upload_doc" style="position: relative;"
-                    style="position: relative; margin: 16px 14px 8px 0;"
-                    *ngFor="let item of cancelled_cheque_upload_2;let i=index;">
-                    <img class="assignImg"
-                        [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
-                        alt="" loading="lazy" (click)="viewFile(item)"
-                        style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
-                </div>
-            </div>
-            <label *ngIf="balance_sheet_upload_2.length > 0 && sbuIdForList != 0">Balance Sheets</label>
-            <div *ngIf="balance_sheet_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
-                <div class="upload_doc" style="position: relative;"
-                    style="position: relative; margin: 16px 14px 8px 0;"
-                    *ngFor="let item of balance_sheet_upload_2;let i=index;">
-                    <img class="assignImg"
-                        [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
-                        alt="" loading="lazy" (click)="viewFile(item)"
-                        style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
-                </div>
-            </div>
-            <label *ngIf="pan_upload_2.length > 0 && sbuIdForList != 0">PAN Card</label>
-            <div *ngIf="pan_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
-                <div class="upload_doc" style="position: relative;"
-                    style="position: relative; margin: 16px 14px 8px 0;"
-                    *ngFor="let item of pan_upload_2;let i=index;">
-                    <img class="assignImg"
-                        [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
-                        alt="" loading="lazy" (click)="viewFile(item)"
-                        style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
-                </div>
-            </div>
-            <label *ngIf="tan_upload_2.length > 0 && sbuIdForList != 0">TAN</label>
-            <div *ngIf="tan_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
-                <div class="upload_doc" style="position: relative;"
-                    style="position: relative; margin: 16px 14px 8px 0;"
-                    *ngFor="let item of tan_upload_2;let i=index;">
-                    <img class="assignImg"
-                        [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
-                        alt="" loading="lazy" (click)="viewFile(item)"
-                        style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
-                </div>
-            </div>
-            <label *ngIf="gst_upload_2.length > 0 && sbuIdForList != 0">GST Certificate</label>
-            <div *ngIf="gst_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
-                <div class="upload_doc" style="position: relative;"
-                    style="position: relative; margin: 16px 14px 8px 0;"
-                    *ngFor="let item of gst_upload_2;let i=index;">
-                    <img class="assignImg"
-                        [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
-                        alt="" loading="lazy" (click)="viewFile(item)"
-                        style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
-                </div>
-            </div>
-            <label *ngIf="iso_upload_2.length > 0 && sbuIdForList != 0">ISO Certificate</label>
-            <div *ngIf="iso_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
-                <div class="upload_doc" style="position: relative;"
-                    style="position: relative; margin: 16px 14px 8px 0;"
-                    *ngFor="let item of iso_upload_2;let i=index;">
-                    <img class="assignImg"
-                        [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
-                        alt="" loading="lazy" (click)="viewFile(item)"
-                        style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
-                </div>
-            </div>
-            <label *ngIf="msme_upload_2.length > 0 && sbuIdForList != 0">MSME Udyam Certificate</label>
-            <div *ngIf="msme_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
-                <div class="upload_doc" style="position: relative;"
-                    style="position: relative; margin: 16px 14px 8px 0;"
-                    *ngFor="let item of msme_upload_2;let i=index;">
-                    <img class="assignImg"
-                        [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
-                        alt="" loading="lazy" (click)="viewFile(item)"
-                        style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
-                </div>
-            </div>
-            <label *ngIf="presentation_upload_2.length > 0 && sbuIdForList != 0">Presentation</label>
-            <div *ngIf="presentation_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
-                <div class="upload_doc" style="position: relative;"
-                    style="position: relative; margin: 16px 14px 8px 0;"
-                    *ngFor="let item of presentation_upload_2;let i=index;">
-                    <img class="assignImg"
-                        [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
-                        alt="" loading="lazy" (click)="viewFile(item)"
-                        style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
-                </div>
-            </div>
-            <label *ngIf="credentials_upload_2.length > 0 && sbuIdForList != 0">Credentials</label>
-            <div *ngIf="credentials_upload_2.length > 0 && sbuIdForList != 0" class="screenshot_div d-flex flex-wrap ">
-                <div class="upload_doc" style="position: relative;"
-                    style="position: relative; margin: 16px 14px 8px 0;"
-                    *ngFor="let item of credentials_upload_2;let i=index;">
-                    <img class="assignImg"
-                        [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
-                        alt="" loading="lazy" (click)="viewFile(item)"
-                        style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
-                </div>
-            </div>
+
+            <!-- <ul class="pagination_ul presentation_ul">
+                    <li class="page-item ">
+                        <button class="btn1" (click)="back()">
+                            <i class="fas fa-angle-left"></i>
+                        </button>
+                    </li>
+
+                    <li class="page-item">
+                        <button class="btn1" (click)="next()">
+                            <i class="fas fa-angle-right"></i>
+                        </button>
+                    </li>
+                </ul> -->
+
         </div>
+
+        <div class="upload_document_div principal_house" *ngIf="princi_house_down && sbuIdForList != 0">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="upload_file_area mt-3">
+                        <!-- <div style="position: relative; margin-bottom: 10px;">
+                                <input type="file" id="fileInput17" name="files[]"
+                                    (change)="fileUpload($event, 'presentation')" multiple style="position: absolute;">
+                            </div> -->
+                        <label for="fileInput17" id="fileLabel17" *ngIf="princi_house_down" style="padding: 10px 12px;background: #030371;color: white;position: relative;border-radius: 4px;
+                            cursor: pointer;width: 100%;text-align: center;">
+                            <span style="margin-left: 4px;">presentation</span>
+                        </label>
+                        <div class="screenshot_div d-flex flex-wrap ">
+                            <div class="upload_doc" style="position: relative;"
+                                style="position: relative; margin: 16px 14px 8px 0;"
+                                *ngFor="let item of presentation_upload_2;let i=index;">
+                                <img class="assignImg"
+                                    [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
+                                    alt="" loading="lazy" (click)="viewFile(item)"
+                                    style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
+                                <!-- <span *ngIf="presentation_upload.length>0" (click)="removeFile(i, 'presentation')"
+                                        class="fas fa-times" style="position: absolute;top: -6px;right: 0px;color: red;padding: 2px 4px;background: white;
+                                        cursor: pointer;border-radius: 50%;">
+                                    </span> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="upload_file_area mt-3">
+                        <!-- <div style="position: relative; margin-bottom: 10px;">
+                                <input type="file" id="fileInput18" name="files[]"
+                                    (change)="fileUpload($event, 'credentials')" multiple style="position: absolute;">
+                            </div> -->
+                        <label for="fileInput18" id="fileLabel18" *ngIf="princi_house_down" style="padding: 10px 12px;background: #030371;color: white;position: relative;border-radius: 4px;
+                            cursor: pointer;width: 100%;text-align: center;">
+                            <span style="margin-left: 4px;">credentials</span>
+                        </label>
+                        <div class="screenshot_div d-flex flex-wrap ">
+                            <div class="upload_doc" style="position: relative;"
+                                style="position: relative; margin: 16px 14px 8px 0;"
+                                *ngFor="let item of credentials_upload_2;let i=index;">
+                                <img class="assignImg"
+                                    [src]="item.includes('.pdf') ? 'assets/images/pdf.png': item.includes('.xlsx') || item.includes('.xls')? 'assets/images/excel.png' : item.includes('.png') || item.includes('.jpg') || item.includes('.webp') || item.includes('.jpeg') || item.includes('.svg') || item.includes('.CR2') ? filePath + item : ''"
+                                    alt="" loading="lazy" (click)="viewFile(item)"
+                                    style="padding: 6px;background: #e6e6ff;cursor: pointer;position: relative;height: 60px !important; width: 70px !important; object-fit: cover !important;">
+                                <!-- <span *ngIf="credentials_upload.length>0" (click)="removeFile(i, 'credentials')"
+                                        class="fas fa-times" style="position: absolute;top: -6px;right: 0px;color: red;padding: 2px 4px;background: white;
+                                        cursor: pointer;border-radius: 50%;">
+                                    </span> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <ul class="pagination_ul presentation_ul">
+                    <li class="page-item ">
+                        <button class="btn1" (click)="back()">
+                            <i class="fas fa-angle-left"></i>
+                            <span>Back</span>
+                        </button>
+                    </li>
+
+                    <li class="page-item">
+                        <button class="btn1" (click)="presentationDocumentUpload()">submit</button>
+                    </li>
+                </ul> -->
+
+        </div>
+        <!-- <div class="text-center">
+            <button class="btn1" (click)="presentationDocumentUpload()">submit</button>
+        </div> -->
     </div>
 
 </div>
