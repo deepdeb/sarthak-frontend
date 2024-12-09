@@ -28,6 +28,7 @@ export class ReportDetailsComponent {
   salesPersonList: any = [];
   sbuId: any = localStorage.getItem('sbu_id');
   checkDesignationId: any = localStorage.getItem('designation_id');
+  totalBasicPOValue: string = ''
   // checkSbuId: any = localStorage.getItem('sbu_id')
 
 
@@ -138,6 +139,7 @@ export class ReportDetailsComponent {
           }
           if (res.response.length > 0) {
             this.reportList = res.response;
+            this.totalBasicPOValue = res.total_basic_po_value
             this.isNoRecord = false;
           }
         }
@@ -210,6 +212,7 @@ export class ReportDetailsComponent {
           }
           if (res.response.length > 0) {
             this.reportList = res.response;
+            this.totalBasicPOValue = res.total_basic_po_value
             this.isNoRecord = false
           }
         }
@@ -282,6 +285,7 @@ export class ReportDetailsComponent {
         }
         if (res.response.length > 0) {
           this.reportList = res.response;
+          this.totalBasicPOValue = res.total_basic_po_value
           this.isNoRecord = false;
         }
       }
@@ -309,7 +313,7 @@ export class ReportDetailsComponent {
       end_date: this.endDate,
       type: this.reportType,
     }
-     this.rest.exportSalesEnquiryReport_rest(data).subscribe((blob: Blob) => {
+    this.rest.exportSalesEnquiryReport_rest(data).subscribe((blob: Blob) => {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
@@ -352,6 +356,7 @@ export class ReportDetailsComponent {
         }
         if (res.response.length > 0) {
           this.reportList = res.response;
+          this.totalBasicPOValue = res.total_basic_po_value
           this.isNoRecord = false;
         }
       }
@@ -379,7 +384,7 @@ export class ReportDetailsComponent {
       end_date: this.endDate,
       type: this.reportType,
     }
-     this.rest.exportSalesOrderReport_rest(data).subscribe((blob: Blob) => {
+    this.rest.exportSalesOrderReport_rest(data).subscribe((blob: Blob) => {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;

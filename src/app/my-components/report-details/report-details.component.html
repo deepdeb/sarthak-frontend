@@ -105,6 +105,9 @@
                             </td>
                             <td>{{ item.status }}</td>
                         </tr>
+                        <tr *ngIf="totalBasicPOValue">
+                            <td colspan="12" class="text-center">Total Basic Value: {{totalBasicPOValue}}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -228,6 +231,9 @@
                             <td>{{ item.total_po_value }}</td>
                             <td>{{ item.scheduled_completion_date }}</td>
                             <td>{{ item.actual_completion_date }}</td>
+                        </tr>
+                        <tr *ngIf="totalBasicPOValue">
+                            <td colspan="12" class="text-center">Total Basic Value: {{totalBasicPOValue}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -358,6 +364,9 @@
                             </td>
                             <td>{{ item.status }}</td>
                         </tr>
+                        <tr *ngIf="totalBasicPOValue">
+                            <td colspan="12" class="text-center">Total Basic Value: {{totalBasicPOValue}}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -483,6 +492,9 @@
                             <td>{{ item.total_po_value }}</td>
                             <td>{{ item.scheduled_completion_date }}</td>
                             <td>{{ item.actual_completion_date }}</td>
+                        </tr>
+                        <tr *ngIf="totalBasicPOValue">
+                            <td colspan="12" class="text-center">Total Basic Value: {{totalBasicPOValue}}</td>
                         </tr>
                     </tbody>
                 </table>
