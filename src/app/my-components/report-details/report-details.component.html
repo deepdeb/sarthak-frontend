@@ -99,7 +99,7 @@
                             <td>{{ item.customer }}</td>
                             <td>{{ item.principal_house }}</td>
                             <td>{{ item.offer_date }}</td>
-                            <td>{{ item.basic_value }}</td>
+                            <td style="text-align: right;">{{ item.basic_value | number:'1.2-2' }}</td>
                             <td>{{ item.tentative_finalization_month && item.tentative_finalization_year ?
                                 item.tentative_finalization_month + '/' + item.tentative_finalization_year : '' }}
                             </td>
@@ -107,15 +107,8 @@
                         </tr>
                         <tr *ngIf="totalBasicPOValue">
                             <td><strong>Total: </strong></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>{{totalBasicPOValue}}</td>
-                            <td></td>
-                            <td></td>
+                            <td style="text-align: right;" colspan="7">{{totalBasicPOValue | number:'1.2-2'}}</td>
+                            <td colspan="2"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -218,7 +211,15 @@
                             <th scope="col"style="width: 8%;">PO Date</th>
                             <th scope="col">PO number</th>
                             <th scope="col">PO type</th>
-                            <th scope="col">PO Sub type</th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Description (supply)</th>
+                            <th scope="col">Brand</th>
+                            <th scope="col">Description (SITC)</th>
+                            <th scope="col">Cable Assembly</th>
+                            <th scope="col">Panel</th>
+                            <th scope="col">Welding Receptable</th>
+                            <th scope="col">HSA Box</th>
+                            <th scope="col">Others</th>
                             <th scope="col">Basic PO Value</th>
                             <th scope="col">total PO value(GST)</th>
                             <th scope="col">Schedule Date of Completion </th>
@@ -235,23 +236,25 @@
                             <td>{{ item.po_date }}</td>
                             <td>{{ item.po_number }}</td>
                             <td>{{ item.po_type_name }}</td>
-                            <td>{{ item.po_subtype_name }}</td>
-                            <td>{{ item.basic_po_value }}</td>
-                            <td>{{ item.total_po_value }}</td>
+                            <td>{{ item.product }}</td>
+                            <td>{{ item.supply_description }}</td>
+                            <td>{{ item.brand }}</td>
+                            <td>{{ item.sitc_description }}</td>
+                            <td>{{ item.cable_assembly }}</td>
+                            <td>{{ item.panel }}</td>
+                            <td>{{ item.welding_receptable }}</td>
+                            <td>{{ item.hsa_box }}</td>
+                            <td>{{ item.others }}</td>
+                            <td style="text-align: right;">{{ item.basic_po_value | number:'1.2-2' }}</td>
+                            <td style="text-align: right;">{{ item.total_po_value | number:'1.2-2' }}</td>
                             <td>{{ item.scheduled_completion_date }}</td>
                             <td>{{ item.actual_completion_date }}</td>
                         </tr>
                         <tr *ngIf="totalBasicPOValue">
                             <td><strong>Total: </strong></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>{{totalBasicPOValue}}</td>
-                            <td>{{totalTotalPOValue}}</td>
-                            <td></td>
-                            <td></td>
+                            <td colspan="14" style="text-align: right;">{{totalBasicPOValue | number:'1.2-2'}}</td>
+                            <td style="text-align: right;">{{totalTotalPOValue | number:'1.2-2'}}</td>
+                            <td colspan="2"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -376,7 +379,7 @@
                             <td>{{ item.customer }}</td>
                             <td>{{ item.principal_house }}</td>
                             <td>{{ item.offer_date }}</td>
-                            <td>{{ item.basic_value }}</td>
+                            <td style="text-align: right;">{{ item.basic_value | number:'1.2-2' }}</td>
                             <td>{{ item.tentative_finalization_month && item.tentative_finalization_year ?
                                 item.tentative_finalization_month + '/' + item.tentative_finalization_year : '' }}
                             </td>
@@ -384,16 +387,8 @@
                         </tr>
                         <tr *ngIf="totalBasicPOValue">
                             <td><strong>Total: </strong></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>{{totalBasicPOValue}}</td>
-                            <td></td>
-                            <td></td>
+                            <td colspan="8" style="text-align: right;">{{totalBasicPOValue | number:'1.2-2'}}</td>
+                            <td colspan="2"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -497,7 +492,15 @@
                             <th scope="col" style="width: 8%;">PO Date</th>
                             <th scope="col">PO number</th>
                             <th scope="col">PO type</th>
-                            <th scope="col">PO Sub type</th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Description (supply)</th>
+                            <th scope="col">Brand</th>
+                            <th scope="col">Description (SITC)</th>
+                            <th scope="col">Cable Assembly</th>
+                            <th scope="col">Panel</th>
+                            <th scope="col">Welding Receptable</th>
+                            <th scope="col">HSA Box</th>
+                            <th scope="col">Others</th>
                             <th scope="col">Basic PO Value</th>
                             <th scope="col">total PO value(GST)</th>
                             <th scope="col">Schedule Date of Completion </th>
@@ -515,24 +518,25 @@
                             <td>{{ item.po_date }}</td>
                             <td>{{ item.po_number }}</td>
                             <td>{{ item.po_type_name }}</td>
-                            <td>{{ item.po_subtype_name }}</td>
-                            <td>{{ item.basic_po_value }}</td>
-                            <td>{{ item.total_po_value }}</td>
+                            <td>{{ item.product }}</td>
+                            <td>{{ item.supply_description }}</td>
+                            <td>{{ item.brand }}</td>
+                            <td>{{ item.sitc_description }}</td>
+                            <td>{{ item.cable_assembly }}</td>
+                            <td>{{ item.panel }}</td>
+                            <td>{{ item.welding_receptable }}</td>
+                            <td>{{ item.hsa_box }}</td>
+                            <td>{{ item.others }}</td>
+                            <td style="text-align: right;">{{ item.basic_po_value | number:'1.2-2' }}</td>
+                            <td style="text-align: right;">{{ item.total_po_value | number:'1.2-2' }}</td>
                             <td>{{ item.scheduled_completion_date }}</td>
                             <td>{{ item.actual_completion_date }}</td>
                         </tr>
                         <tr *ngIf="totalBasicPOValue">
                             <td><strong>Total: </strong></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>{{totalBasicPOValue}}</td>
-                            <td>{{totalTotalPOValue}}</td>
-                            <td></td>
-                            <td></td>
+                            <td colspan="15" style="text-align: right;">{{totalBasicPOValue | number:'1.2-2' }}</td>
+                            <td style="text-align: right;">{{totalTotalPOValue | number:'1.2-2' }}</td>
+                            <td colspan="2"></td>
                         </tr>
                     </tbody>
                 </table>

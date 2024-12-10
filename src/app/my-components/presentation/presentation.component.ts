@@ -77,6 +77,7 @@ export class PresentationComponent {
 
   deleteId: string = ''
   deleteType: string = ''
+  removeFlag: boolean = false;
 
   @ViewChild('deleteFileModal') deleteFileModal: any;
 
@@ -167,7 +168,6 @@ export class PresentationComponent {
 
       this.rest.multipleDocumentUpload_rest(formData).subscribe((res: any) => {
         if (res.success) {
-          this.common.showAlertMessage(res.message, this.common.succContent);
           if (type == 'products') {
             let tempAssignmentDocAll: string[] = [];
             for (var i = 0; i < res.response.length; i++) {
@@ -326,7 +326,11 @@ export class PresentationComponent {
     }
     this.rest.presentationDocumentUpload_rest(data).subscribe((res: any) => {
       if (res.success) {
-        this.common.showAlertMessage(res.message, this.common.succContent);
+        if(this.removeFlag) {
+          this.common.showAlertMessage('File deleted successfully', this.common.succContent);
+        } else {
+          this.common.showAlertMessage(res.message, this.common.succContent);
+        }
         this.products_upload = [];
         this.projects_upload = [];
         this.incorporation_upload = [];
@@ -346,6 +350,7 @@ export class PresentationComponent {
         this.presentation_upload = [];
         this.credentials_upload = [];
         this.sbuId = 0;
+        this.removeFlag = false;
       }
     })
   }
@@ -530,77 +535,97 @@ export class PresentationComponent {
 
 
   removeFile() {
+    this.removeFlag = true
     if (this.deleteType == 'products') {
-      this.products_upload.splice(this.deleteId, 1);
+      const removedItem = this.products_upload.splice(this.deleteId, 1)[0];
       this.presentationDocumentUpload();
+      this.dialog.closeAll();
+      this.unlinkSyncRemove(removedItem);
     }
     else if (this.deleteType == 'projects') {
       this.projects_upload.splice(this.deleteId, 1);
       this.presentationDocumentUpload();
+      this.dialog.closeAll();
     } 
     else if (this.deleteType == 'incorporation') {
       this.incorporation_upload.splice(this.deleteId, 1);
       this.presentationDocumentUpload();
+      this.dialog.closeAll();
     }
     else if (this.deleteType == 'moa') {
       this.moa_upload.splice(this.deleteId, 1);
       this.presentationDocumentUpload();
+      this.dialog.closeAll();
     }
     else if (this.deleteType == 'aoa') {
       this.aoa_upload.splice(this.deleteId, 1);
       this.presentationDocumentUpload();
+      this.dialog.closeAll();
     }
     else if (this.deleteType == 'trade_licence') {
       this.trade_licence_upload.splice(this.deleteId, 1);
       this.presentationDocumentUpload();
+      this.dialog.closeAll();
     }
     else if (this.deleteType == 'admin_licence') {
       this.admin_licence_upload.splice(this.deleteId, 1);
       this.presentationDocumentUpload();
+      this.dialog.closeAll();
     }
     else if (this.deleteType == 'electrical_licence') {
       this.electrical_licence_upload.splice(this.deleteId, 1);
       this.presentationDocumentUpload();
+      this.dialog.closeAll();
     }
     else if (this.deleteType == 'bank_details') {
       this.bank_details_upload.splice(this.deleteId, 1);
       this.presentationDocumentUpload();
+      this.dialog.closeAll();
     }
     else if (this.deleteType == 'cancelled_cheque') {
       this.cancelled_cheque_upload.splice(this.deleteId, 1);
       this.presentationDocumentUpload();
+      this.dialog.closeAll();
     }
     else if (this.deleteType == 'balance_sheet') {
       this.balance_sheet_upload.splice(this.deleteId, 1);
       this.presentationDocumentUpload();
+      this.dialog.closeAll();
     }
     else if (this.deleteType == 'pan') {
       this.pan_upload.splice(this.deleteId, 1);
       this.presentationDocumentUpload();
+      this.dialog.closeAll();
     }
     else if (this.deleteType == 'tan') {
       this.tan_upload.splice(this.deleteId, 1);
       this.presentationDocumentUpload();
+      this.dialog.closeAll();
     }
     else if (this.deleteType == 'gst') {
       this.gst_upload.splice(this.deleteId, 1);
       this.presentationDocumentUpload();
+      this.dialog.closeAll();
     }
     else if (this.deleteType == 'iso') {
       this.iso_upload.splice(this.deleteId, 1);
       this.presentationDocumentUpload();
+      this.dialog.closeAll();
     }
     else if (this.deleteType == 'msme') {
       this.msme_upload.splice(this.deleteId, 1);
       this.presentationDocumentUpload();
+      this.dialog.closeAll();
     }
     else if (this.deleteType == 'presentation') {
       this.presentation_upload.splice(this.deleteId, 1);
       this.presentationDocumentUpload();
+      this.dialog.closeAll();
     }
     else if (this.deleteType == 'credentials') {
       this.credentials_upload.splice(this.deleteId, 1);
       this.presentationDocumentUpload();
+      this.dialog.closeAll();
     }
   }
 
@@ -623,5 +648,18 @@ export class PresentationComponent {
     const splitName = name.split('_');
     const formattedName = splitName.slice(1).join('_')
     return formattedName;
+  }
+
+  unlinkSyncRemove(removed_item: any) {
+    const data = {
+      removed_item: removed_item
+    }
+    this.rest.unlinkSyncRemove_rest(data).subscribe((res: any) => {
+      if(res.success) {
+        console.log(res.message)
+      } else {
+        console.log(res.error)
+      }
+    })
   }
 }

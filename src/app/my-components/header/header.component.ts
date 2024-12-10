@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
   logged_person_name = localStorage.getItem('loggedPersonName');
   desig_name = localStorage.getItem('loggedPersonDesignation');
   formattedDate = new Date().toLocaleDateString('en-GB');
-  formattedTime12Hr = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: true});
+  formattedTime12Hr = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: true}).replace(/\s(am|pm)$/i, (match) => match.toUpperCase());
   sbuId: any = localStorage.getItem('sbu_id');
 
   constructor(private router: Router){}

@@ -376,4 +376,9 @@ export class RestService {
     return this.http.post(this.API_ROOT + 'director/getCompanyDocumentDetailsById', data, httpOptions)
   }
 
+
+  //*********** unlincSync permanently from server ***********//
+  unlinkSyncRemove_rest(data: any): Observable<any> {
+    return this.http.post(this.API_ROOT + 'director/unlinkSyncRemove', data, httpOptions)
+  }
 }
