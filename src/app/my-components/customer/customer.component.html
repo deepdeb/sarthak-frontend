@@ -368,23 +368,46 @@
                 </div>
                 <!-- </div> -->
             </div>
-            <div class="col-md-4">
+
+            <div class="col-md-3">
                 <!-- <div *ngIf="display_3 || display_4"> -->
                 <strong style="text-transform: capitalize;">select one</strong>
                 <div class="form_select_div mt-3">
                     <!-- <label class="test-capitalize mb-2" style="font-size: 16px; font-weight: 500;">choose sub-segment</label> -->
-                    <select class="form-control" [(ngModel)]="customersByFilter" (change)="getCustomersByFilter()">
+                    <select *ngIf="filterByKeyword != 'state'" class="form-control" [(ngModel)]="customersByFilter" (change)="getCustomersByFilter()">
                         <option value="" disabled>-- choose one --</option>
                         <option *ngFor="let item of filteredListByCategory" [value]="item.name">{{ item.name }}
                         </option>
                     </select>
+
+                    <select *ngIf="filterByKeyword == 'state'" class="form-control" [(ngModel)]="segmentByStateKeyword" (change)="getSegmentsByState()">
+                        <option value="" disabled>-- choose state --</option>
+                        <option *ngFor="let item of filteredListByCategory" [value]="item.state_id">{{ item.name }}
+                        </option>
+                    </select>
+
                     <span class="material-symbols-outlined">
                         stat_minus_1
                     </span>
                 </div>
                 <!-- </div> -->
             </div>
-            <div class="col-md-4">
+            
+            <div class="col-md-3" [hidden]="filterByKeyword != 'state'">
+                <strong style="text-transform: capitalize;">select segment</strong>
+                <div class="form_select_div mt-3">
+                    <select class="form-control" [(ngModel)]="customersByFilter" (change)="getCustomersBySegment()">
+                        <option value="" disabled>-- choose segment --</option>
+                        <option *ngFor="let item of filteredSegmentList" [value]="item.name">{{ item.name }}
+                        </option>
+                    </select>
+                    <span class="material-symbols-outlined">
+                        stat_minus_1
+                    </span>
+                </div>
+            </div>
+            
+            <div class="col-md-2">
                 <div class="page_search mb-4">
                     <input type="text" class="search_form" [(ngModel)]="searchCriteria" (keyup)="getCustomerList()">
                     <button type="button" class="search_btn">
@@ -397,6 +420,7 @@
             <div class="col-md-1">
                 <h3 class="text-end" style="font-size: 20px;">total : {{totalCustomerCount}}</h3>
             </div>
+
         </div>
         <ul class="pagination_ul">
             <li class="page-item ">

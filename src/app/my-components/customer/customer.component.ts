@@ -50,6 +50,7 @@ export class CustomerComponent {
   isHideInput: boolean = true;
   isOthersChecked: boolean = false;
   otherProductCategory: string = ''
+  segmentByStateKeyword: string = ''
 
   segmentId = 0 as number;
   segmentId_1 = 0 as number;
@@ -70,6 +71,7 @@ export class CustomerComponent {
 
   filterByKeyword: string = '';
   filteredListByCategory: any = [];
+  filteredSegmentList: any = [];
   customersByFilter: string = '';
   selectedCategoryIds: any = [];
   searchCriteria : string = '';
@@ -552,6 +554,39 @@ export class CustomerComponent {
     const data = {
       filter_by: this.filterByKeyword,
       filter_by_value: this.customersByFilter,
+    }
+    this.rest.getCustomersByFilter_rest(data).subscribe((res: any) => {
+      if (res.success) {
+        if (res.response) {
+          if (res.response.length > 0) {
+            this.customerList = res.response;
+            this.totalCustomerCount = res.total_count;
+          }
+        }
+      }
+    })
+  }
+
+
+  //*********** Get segment list by state **************//
+  getSegmentsByState() {
+    this.filteredSegmentList = []
+    const data = {
+      segment_by_state_keyword : this.segmentByStateKeyword
+    }
+    this.rest.getSegmentsByState_rest(data).subscribe((res: any) => {
+      this.filteredSegmentList = res.response
+    })
+  }
+
+  //************ Get customers list by segment *************//
+  getCustomersBySegment() {
+    this.customerList = [];
+    this.totalCustomerCount = 0;
+    const data = {
+      filter_by: 'segment',
+      filter_by_value: this.customersByFilter,
+      segment_by_state_keyword: this.segmentByStateKeyword
     }
     this.rest.getCustomersByFilter_rest(data).subscribe((res: any) => {
       if (res.success) {

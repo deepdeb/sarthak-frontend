@@ -11,8 +11,8 @@ const httpOptions = {
 })
 export class RestService {
 
-  API_ROOT = "https://sarthakcomponents.com/";
-  // API_ROOT = "http://localhost:3000/";
+  // API_ROOT = "https://sarthakcomponents.com/";
+  API_ROOT = "http://localhost:3000/";
 
   constructor(private http: HttpClient) { }
 
@@ -228,6 +228,12 @@ export class RestService {
     return this.http.post(this.API_ROOT + 'common/getCustomersByFilter', data, httpOptions)
   }
 
+
+
+  // for segment list by state filter //
+  getSegmentsByState_rest(data: any): Observable<any> {
+    return this.http.post(this.API_ROOT + 'common/getSegmentsByState', data, httpOptions)
+  }
 
 
 
