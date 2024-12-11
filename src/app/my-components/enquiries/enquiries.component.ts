@@ -37,6 +37,7 @@ export class EnquiriesComponent {
   totalCount: number = 0;
   isEdit: boolean = false;
 
+  checkSbuId: any = localStorage.getItem('sbu_id')
   checkSalesPersonId: any = localStorage.getItem('sales_person_id')
   checkDesignationId: any = localStorage.getItem('designation_id');
   customerBySalespersonList = [] as any;
@@ -578,7 +579,9 @@ export class EnquiriesComponent {
   getFilterEnquiryByCategory() {
     this.filteredEnquiryListByCategory = [];
     const data = {
-      filterby_keyword: this.filterByKeyword
+      filterby_keyword: this.filterByKeyword,
+      sbu_id: this.checkSbuId,
+      sales_person_id: this.checkSalesPersonId
     }
     this.rest.getFilterEnquiryByCategory_rest(data).subscribe((res: any) => {
       if (res.success) {
@@ -642,6 +645,8 @@ export class EnquiriesComponent {
     const data = {
       filter_by: this.filterByKeyword,
       filter_by_value: this.enquiriesByFilter,
+      sales_person_id: this.checkSalesPersonId,
+      sbu_id: this.checkSbuId
     }
     this.rest.getEnquiriesByFilter_rest(data).subscribe((res: any) => {
       if (res.success) {

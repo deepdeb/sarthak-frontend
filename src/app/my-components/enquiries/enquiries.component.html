@@ -311,7 +311,7 @@
                 <div class="form_select_div mt-3">
                     <select class="form-control" [(ngModel)]="filterByKeyword" (change)="getFilterEnquiryByCategory()">
                         <option value="" disabled>-- choose category --</option>
-                        <option value="salesperson">sales incharge</option>
+                        <option *ngIf="checkSbuId == 0" value="salesperson">sales incharge</option>
                         <option value="reff_number">reffered number</option>
                         <option value="enquiry_date">enquiry date</option>
                         <option value="enquiry_source">enquiry source</option>
