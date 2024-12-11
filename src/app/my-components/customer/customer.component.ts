@@ -535,7 +535,9 @@ export class CustomerComponent {
   getFilterListByCategory() {
     this.filteredListByCategory = [];
     const data = {
-      filterby_keyword: this.filterByKeyword
+      filterby_keyword: this.filterByKeyword,
+      sales_person_id: this.checkSalesPersonId,
+      sbu_id: this.checkSbuId
     }
     this.rest.getFilterListByCategory_rest(data).subscribe((res: any) => {
       if (res.success) {
@@ -554,6 +556,8 @@ export class CustomerComponent {
     const data = {
       filter_by: this.filterByKeyword,
       filter_by_value: this.customersByFilter,
+      sales_person_id: this.checkSalesPersonId,
+      sbu_id: this.checkSbuId
     }
     this.rest.getCustomersByFilter_rest(data).subscribe((res: any) => {
       if (res.success) {
@@ -572,7 +576,9 @@ export class CustomerComponent {
   getSegmentsByState() {
     this.filteredSegmentList = []
     const data = {
-      segment_by_state_keyword : this.segmentByStateKeyword
+      segment_by_state_keyword : this.segmentByStateKeyword,
+      sales_person_id : this.checkSalesPersonId,
+      sbu_id: this.checkSbuId
     }
     this.rest.getSegmentsByState_rest(data).subscribe((res: any) => {
       this.filteredSegmentList = res.response
@@ -586,7 +592,9 @@ export class CustomerComponent {
     const data = {
       filter_by: 'segment',
       filter_by_value: this.customersByFilter,
-      segment_by_state_keyword: this.segmentByStateKeyword
+      segment_by_state_keyword: this.segmentByStateKeyword,
+      sales_person_id: this.checkSalesPersonId,
+      sbu_id: this.checkSbuId
     }
     this.rest.getCustomersByFilter_rest(data).subscribe((res: any) => {
       if (res.success) {

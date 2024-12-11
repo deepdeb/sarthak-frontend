@@ -354,7 +354,7 @@
                 <div class="form_select_div mt-3">
                     <select class="form-control" [(ngModel)]="filterByKeyword" (change)="getFilterListByCategory()">
                         <option value="" disabled>-- choose category --</option>
-                        <option value="salesperson">Sales Incharge</option>
+                        <option *ngIf="checkSbuId == 0" value="salesperson">Sales Incharge</option>
                         <option value="customer">customer</option>                        
                         <option value="segment">segment</option>
                         <option value="state">state</option>
