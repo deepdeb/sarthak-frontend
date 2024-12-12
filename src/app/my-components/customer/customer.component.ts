@@ -574,6 +574,7 @@ export class CustomerComponent {
 
   //*********** Get segment list by state **************//
   getSegmentsByState() {
+    this.customersByFilter = ''
     this.filteredSegmentList = []
     const data = {
       segment_by_state_keyword : this.segmentByStateKeyword,
