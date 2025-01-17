@@ -38,7 +38,7 @@
                     <div class="col-sm-3 col-md-2">
                         <div class="form_select_div ">
                             <label>enquiry no.</label>
-                            <input [(ngModel)]="nextEnquiryNumber" *ngIf="!isEdit" type="text" class="form-control" disabled>
+                            <input [(ngModel)]="enquiryNumber" *ngIf="!isEdit" type="text" class="form-control" disabled>
                             <input *ngIf="isEdit" type="text" class="form-control" [value]="enquiryNumber" disabled>
                         </div>
                     </div>

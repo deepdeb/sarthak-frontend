@@ -446,9 +446,7 @@ export class EnquiriesComponent {
             this.totalCount = res.total_count;
             this.lastEnquiryNumber = res.last_enquiry_number;
             this.lastEnquiryNumberString = res.last_enquiry_number
-            // this.enquiryNumber = 'E000' + (this.lastEnquiryNumber + 1) + '/24-25'
-            this.nextEnquiryNumber = 'E000' + ((parseInt(this.lastEnquiryNumberString.split('/')[0].substring(1))) + 1) + '/24-25'
-            this.enquiryNumber = res.enquiry_number;
+            this.enquiryNumber = 'E000' + ((parseInt(this.lastEnquiryNumberString.split('/')[0].substring(1))) + 1) + '/24-25'
           }
         }
       }
