@@ -813,7 +813,6 @@ export class OrdersComponent {
             this.isDirectOrder = true;
             this.common.showAlertMessage('This is a Direct Order', this.common.succContent)
           }
-          this.reffNumber = res.response[0].reff_number
           this.basicPoValue = res.response[0].basic_po_value
           this.totalPoValue = res.response[0].total_po_value
           this.completionDate = res.response[0].scheduled_completion_date
@@ -938,6 +937,7 @@ export class OrdersComponent {
       if (res.success) {
         if (res.response) {
           this.enquiryNumber = res.response[0].enquiry_number
+          this.reffNumber = res.response[0].reff_number
           this.sbuId = res.response[0].sbu_id
           // if(this.sbuId){
           // this.getMentorList();
