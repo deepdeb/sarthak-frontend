@@ -50,6 +50,8 @@ export class EnquiriesComponent {
   enquiriesByFilter: string = ''
   lastEnquiryNumber: number = 0
   enquiryNumber: string = ''
+  lastEnquiryNumberString: string = ''
+  nextEnquiryNumber: string = ''
 
   productProduct: string = '';
   productDescription: string = '';
@@ -442,8 +444,11 @@ export class EnquiriesComponent {
             this.enquiryList = [];
             this.enquiryList = res.response;
             this.totalCount = res.total_count;
-            this.lastEnquiryNumber = res.last_enquiry_id;
-            this.enquiryNumber = 'E000' + (this.lastEnquiryNumber + 1) + '/24-25'
+            this.lastEnquiryNumber = res.last_enquiry_number;
+            this.lastEnquiryNumberString = res.last_enquiry_number
+            // this.enquiryNumber = 'E000' + (this.lastEnquiryNumber + 1) + '/24-25'
+            this.nextEnquiryNumber = 'E000' + ((parseInt(this.lastEnquiryNumberString.split('/')[0].substring(1))) + 1) + '/24-25'
+            this.enquiryNumber = res.enquiry_number;
           }
         }
       }
@@ -489,6 +494,7 @@ export class EnquiriesComponent {
             this.getCustomerListBySalesperson();
             // this.setSBUId(this.salesPersonId);
           }
+          this.enquiryNumber = res.response[0].enquiry_number
           this.reffNumber = res.response[0].reff_number
           this.customerId = res.response[0].customer_id
           this.enquiryDate = res.response[0].enquiry_date

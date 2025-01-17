@@ -38,8 +38,8 @@
                     <div class="col-sm-3 col-md-2">
                         <div class="form_select_div ">
                             <label>enquiry no.</label>
-                            <input [(ngModel)]="enquiryNumber" *ngIf="!isEdit" type="text" class="form-control" disabled>
-                            <input *ngIf="isEdit" type="text" class="form-control" [value]="'E000' + (enquiryId) + '/24-25'" disabled>
+                            <input [(ngModel)]="nextEnquiryNumber" *ngIf="!isEdit" type="text" class="form-control" disabled>
+                            <input *ngIf="isEdit" type="text" class="form-control" [value]="enquiryNumber" disabled>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-2">
@@ -393,7 +393,7 @@
 
                 <tr *ngFor="let item of enquiryList; let i = index">
                     <td>{{ (i + enquiryOffset) + 1 }}</td>
-                    <td>E000{{ item.enquiry_id }}/24-25</td>
+                    <td>{{ item.enquiry_number }}</td>
                     <td>{{ item.reff_number ? item.reff_number : 'NA' }}</td>
                     <td>{{ item.sales_person_name }}</td>
                     <td>{{ item.customer}}</td>
