@@ -39,8 +39,7 @@
                         <div class="form_select_div ">
                             <label>enquiry no.</label>
                             <input [(ngModel)]="enquiryNumber" *ngIf="!isEdit" type="text" class="form-control" disabled>
-                            <input *ngIf="isEdit" type="text" class="form-control"
-                                [value]="'E000' + (enquiryId) + '/24-25'" disabled>
+                            <input *ngIf="isEdit" type="text" class="form-control" [value]="'E000' + (enquiryId) + '/24-25'" disabled>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-2">
