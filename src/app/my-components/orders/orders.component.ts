@@ -251,6 +251,7 @@ export class OrdersComponent {
       this.setSBUId(this.salesPersonId);
     }
     const data = {
+      designation_id: localStorage.getItem('designation_id'),
       sales_person_id: this.salesPersonId
     }
     this.rest.getCustomerListBySalesperson_rest(data).subscribe((res: any) => {

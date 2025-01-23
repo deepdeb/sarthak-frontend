@@ -184,6 +184,7 @@ export class EnquiriesComponent {
     this.customerId = ''
     // this.setSBUId(this.salesPersonId);
     const data = {
+      designation_id: localStorage.getItem('designation_id'),
       sales_person_id: this.salesPersonId
     }
     this.rest.getCustomerListBySalesperson_rest(data).subscribe((res: any) => {
@@ -576,7 +577,8 @@ export class EnquiriesComponent {
 
   getMentorSalesList() {
     this.getSalesPersonList();
-
+    this.salesPersonId = localStorage.getItem('sales_person_id')
+    this.getCustomerListBySalesperson();
   }
 
   //************** Filter enquiry list by category **************/

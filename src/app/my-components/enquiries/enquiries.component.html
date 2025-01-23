@@ -60,7 +60,7 @@
                             <label>sales incharge</label>
                             <div class="form_select_div">
                                 <select class="form-control" [(ngModel)]="salesPersonId"
-                                    (change)="getCustomerListBySalesperson();">
+                                    (change)="getCustomerListBySalesperson();" [disabled]="checkDesignationId !=1">
                                     <option value='' disabled>--choose sales-incharge--</option>
                                     <option *ngFor="let item of salesPersonList" [value]="item.sales_person_id">{{
                                         item.sales_person_name }}</option>
