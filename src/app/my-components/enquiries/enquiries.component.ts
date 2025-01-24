@@ -577,8 +577,8 @@ export class EnquiriesComponent {
 
   getMentorSalesList() {
     this.getSalesPersonList();
-    this.salesPersonId = localStorage.getItem('sales_person_id')
-    this.getCustomerListBySalesperson();
+    // this.salesPersonId = localStorage.getItem('sales_person_id')
+    // this.getCustomerListBySalesperson();
   }
 
   //************** Filter enquiry list by category **************/
