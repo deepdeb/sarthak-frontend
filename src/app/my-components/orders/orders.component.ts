@@ -897,8 +897,8 @@ export class OrdersComponent {
     const data = {
       check_designation_id: localStorage.getItem('designation_id'),
       sbu_id: localStorage.getItem('sbu_id'),
-      sales_person_id: localStorage.getItem('sales_person_id')
-
+      sales_person_id: localStorage.getItem('sales_person_id'),
+      no_of_records: "all"
     }
     this.rest.getEnquiryList_rest(data).subscribe((res: any) => {
       if (res.success) {
