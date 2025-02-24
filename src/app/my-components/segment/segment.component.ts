@@ -13,7 +13,7 @@ import { CommonService } from 'src/app/my-services/common.service';
 export class SegmentComponent implements OnInit {
 
   isDisabled: boolean = false;
-  sbuId: any = localStorage.getItem('sbu_id');
+  sbuId: any = sessionStorage.getItem('sbu_id');
   segmentName: string = '';
   segmentId: any;
   segmentId_1: any;
@@ -34,9 +34,9 @@ export class SegmentComponent implements OnInit {
   subSubSegmentList: any = [];
   subSubSubSegmentList: any = [];
   sbuList: any = [];
-  designation_id: any = localStorage.getItem('designation_id');
+  designation_id: any = sessionStorage.getItem('designation_id');
   totalCount: number = 0;
-  salesPersonId: any = localStorage.getItem('sales_person_id');
+  salesPersonId: any = sessionStorage.getItem('sales_person_id');
   display_1: boolean = true;      //segment
   display_2: boolean = false;     //sub-segment
   display_3: boolean = false;     //sub sub-segment

@@ -15,8 +15,8 @@ export class CustomerComponent {
 
   customerCreateDate: any = new Date().toISOString().split('T')[0];
   salesPersonList: any = [];
-  salesPersonId = localStorage.getItem('sales_person_id');
-  checkSalesPersonId = localStorage.getItem('sales_person_id') as any;
+  salesPersonId = sessionStorage.getItem('sales_person_id');
+  checkSalesPersonId = sessionStorage.getItem('sales_person_id') as any;
   customer_name: string = '';
   mentor_name: string = '';
   contact_name: string = '';
@@ -39,12 +39,12 @@ export class CustomerComponent {
   prdtCategoryList: any = [];
   customerList: any = [];
   SBUList: any = [];
-  sbuId: any = localStorage.getItem('sbu_id');
+  sbuId: any = sessionStorage.getItem('sbu_id');
   isEdit: boolean = false;
   isButtonDisabled: boolean = false;
   customerId: any;
-  checkDesignationId: any = localStorage.getItem('designation_id');
-  checkSbuId: any = localStorage.getItem('sbu_id')
+  checkDesignationId: any = sessionStorage.getItem('designation_id');
+  checkSbuId: any = sessionStorage.getItem('sbu_id')
   // mentorId: any = '';
   mentorList: any = [];
   isHideInput: boolean = true;
@@ -114,7 +114,7 @@ export class CustomerComponent {
     const data = {
       check_designation_id: this.checkDesignationId,
       sbu_id: this.sbuId,
-      sales_person_id: localStorage.getItem('sales_person_id')
+      sales_person_id: sessionStorage.getItem('sales_person_id')
     };
     this.rest.getSalesPersonList_rest(data).subscribe((res: any) => {
       if (res.success) {
@@ -302,9 +302,9 @@ export class CustomerComponent {
 
   getCustomerList() {
     const data = {
-      check_designation_id: localStorage.getItem('designation_id'),
-      sbu_id: localStorage.getItem('sbu_id'),
-      sales_person_id: localStorage.getItem('sales_person_id'),
+      check_designation_id: sessionStorage.getItem('designation_id'),
+      sbu_id: sessionStorage.getItem('sbu_id'),
+      sales_person_id: sessionStorage.getItem('sales_person_id'),
       search_criteria: this.searchCriteria,
       customer_offset : this.customerOffset
     };

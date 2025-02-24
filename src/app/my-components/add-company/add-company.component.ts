@@ -12,7 +12,7 @@ import { CommonService } from 'src/app/my-services/common.service';
 })
 export class AddCompanyComponent {
 
-  sbuId: any = localStorage.getItem('sbu_id');
+  sbuId: any = sessionStorage.getItem('sbu_id');
   SBUList: any = [];
   companyName: string = '';
   contactPerson: string = '';
@@ -44,7 +44,7 @@ export class AddCompanyComponent {
   // ************* get SBU List ************** //
   getSBUList() {
     const data = {
-      sbu_id: localStorage.getItem('sbu_id')
+      sbu_id: sessionStorage.getItem('sbu_id')
     }
     this.rest.getSBUList_rest(data).subscribe((res: any) => {
       if (res.success) {

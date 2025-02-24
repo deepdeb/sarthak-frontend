@@ -46,7 +46,7 @@ export class FollowUpComponent {
   getEnquiryById() {
     const data = {
       enquiry_id: this.enquiryId,
-      sbu_id: localStorage.getItem('sbu_id')
+      sbu_id: sessionStorage.getItem('sbu_id')
     }
     this.rest.getEnquiryById_rest(data).subscribe((res: any) => {
       if(res.success) {

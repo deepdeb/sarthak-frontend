@@ -24,13 +24,13 @@ export class ReportDetailsComponent {
   reportNavigationType: string = '';
   maxDate = '' as any;
   isNoRecord = false as boolean;
-  salesPersonId = localStorage.getItem('sales_person_id');
+  salesPersonId = sessionStorage.getItem('sales_person_id');
   salesPersonList: any = [];
-  sbuId: any = localStorage.getItem('sbu_id');
-  checkDesignationId: any = localStorage.getItem('designation_id');
+  sbuId: any = sessionStorage.getItem('sbu_id');
+  checkDesignationId: any = sessionStorage.getItem('designation_id');
   totalBasicPOValue: string = ''
   totalTotalPOValue: string = ''
-  // checkSbuId: any = localStorage.getItem('sbu_id')
+  // checkSbuId: any = sessionStorage.getItem('sbu_id')
 
 
   constructor(private router: Router, private rest: RestService, private common: CommonService, private route: ActivatedRoute) {
@@ -54,9 +54,9 @@ export class ReportDetailsComponent {
   //********** For get Customer List **********//
   getCustomerListForEnquiryOrder() {
     const data = {
-      check_designation_id: localStorage.getItem('designation_id'),
-      sbu_id: localStorage.getItem('sbu_id'),
-      sales_person_id: localStorage.getItem('sales_person_id'),
+      check_designation_id: sessionStorage.getItem('designation_id'),
+      sbu_id: sessionStorage.getItem('sbu_id'),
+      sales_person_id: sessionStorage.getItem('sales_person_id'),
       report_navigation_type: this.reportNavigationType
     };
     this.rest.getCustomerListForEnquiryOrder_rest(data).subscribe((res: any) => {
@@ -86,7 +86,7 @@ export class ReportDetailsComponent {
     this.salesPersonId = ''
     const data = {
       sbu_id: this.sbuId,
-      sales_person_id: localStorage.getItem('sales_person_id'),
+      sales_person_id: sessionStorage.getItem('sales_person_id'),
       report_navigation_type: this.reportNavigationType,
     };
     this.rest.getSalesPersonListForEnquiryOrder_rest(data).subscribe((res: any) => {

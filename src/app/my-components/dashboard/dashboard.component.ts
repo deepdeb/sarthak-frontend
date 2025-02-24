@@ -10,14 +10,14 @@ import { RestService } from 'src/app/my-services/rest.service';
 })
 export class DashboardComponent implements OnInit {
 
-  sbuId = localStorage.getItem('sbu_id');
+  sbuId = sessionStorage.getItem('sbu_id');
   totalCustomers: number = 0;
   totalSalesperson: number = 0;
   totalSegments: number = 0;
   totalEnquiries: number = 0;
   totalOrders: number = 0;
-  checkDesignationId: any = localStorage.getItem('designation_id');
-  salesPersonId: any = localStorage.getItem('sales_person_id');
+  checkDesignationId: any = sessionStorage.getItem('designation_id');
+  salesPersonId: any = sessionStorage.getItem('sales_person_id');
   SBUList: any = [];
 
   constructor(private router: Router, private rest: RestService) { }
@@ -52,7 +52,7 @@ export class DashboardComponent implements OnInit {
   }
 
   checkSbuId() {
-    const sbu_id = localStorage.getItem('sbu_id');
+    const sbu_id = sessionStorage.getItem('sbu_id');
     if(sbu_id === '0') {
       return true
     } else {

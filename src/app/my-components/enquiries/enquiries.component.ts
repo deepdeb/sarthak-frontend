@@ -12,7 +12,7 @@ import { CommonService } from 'src/app/my-services/common.service';
 })
 export class EnquiriesComponent {
   customer_Name: string = '';
-  sbuId: any = localStorage.getItem('sbu_id');
+  sbuId: any = sessionStorage.getItem('sbu_id');
   salesPersonList: any = [];
   salesPersonId = '' as any;
   reffNumber: any;
@@ -37,9 +37,9 @@ export class EnquiriesComponent {
   totalCount: number = 0;
   isEdit: boolean = false;
 
-  checkSbuId: any = localStorage.getItem('sbu_id')
-  checkSalesPersonId: any = localStorage.getItem('sales_person_id')
-  checkDesignationId: any = localStorage.getItem('designation_id');
+  checkSbuId: any = sessionStorage.getItem('sbu_id')
+  checkSalesPersonId: any = sessionStorage.getItem('sales_person_id')
+  checkDesignationId: any = sessionStorage.getItem('designation_id');
   customerBySalespersonList = [] as any;
 
   mentorList: any = [];
@@ -109,9 +109,9 @@ export class EnquiriesComponent {
   //********** For get Customer List **********//
   getCustomerList() {
     const data = {
-      check_designation_id: localStorage.getItem('designation_id'),
-      sbu_id: localStorage.getItem('sbu_id'),
-      // sales_person_id: localStorage.getItem('sales_person_id')
+      check_designation_id: sessionStorage.getItem('designation_id'),
+      sbu_id: sessionStorage.getItem('sbu_id'),
+      // sales_person_id: sessionStorage.getItem('sales_person_id')
       sales_person_id: this.salesPersonId
     };
     this.rest.getCustomerList_rest(data).subscribe((res: any) => {
@@ -184,7 +184,7 @@ export class EnquiriesComponent {
     this.customerId = ''
     // this.setSBUId(this.salesPersonId);
     const data = {
-      designation_id: localStorage.getItem('designation_id'),
+      designation_id: sessionStorage.getItem('designation_id'),
       sales_person_id: this.salesPersonId
     }
     this.rest.getCustomerListBySalesperson_rest(data).subscribe((res: any) => {
@@ -236,7 +236,7 @@ export class EnquiriesComponent {
   getSalesPersonList() {
     const data = {
       sbu_id: this.sbuId,
-      sales_person_id: localStorage.getItem('sales_person_id')
+      sales_person_id: sessionStorage.getItem('sales_person_id')
     };
     this.rest.getSalesPersonList_rest(data).subscribe((res: any) => {
       if (res.success) {
@@ -431,9 +431,9 @@ export class EnquiriesComponent {
   //********** get enquiry listing start **********//
   getEnquiryList() {
     const data = {
-      check_designation_id: localStorage.getItem('designation_id'),
-      sbu_id: localStorage.getItem('sbu_id'),
-      sales_person_id: localStorage.getItem('sales_person_id'),
+      check_designation_id: sessionStorage.getItem('designation_id'),
+      sbu_id: sessionStorage.getItem('sbu_id'),
+      sales_person_id: sessionStorage.getItem('sales_person_id'),
       search_criteria: this.searchCriteria,
       enquiry_offset : this.enquiryOffset
 
@@ -577,7 +577,7 @@ export class EnquiriesComponent {
 
   getMentorSalesList() {
     this.getSalesPersonList();
-    // this.salesPersonId = localStorage.getItem('sales_person_id')
+    // this.salesPersonId = sessionStorage.getItem('sales_person_id')
     // this.getCustomerListBySalesperson();
   }
 

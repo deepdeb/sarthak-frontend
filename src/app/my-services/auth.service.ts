@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   isAuthenticated(): boolean {
     try {
-      const userId = localStorage.getItem('sales_person_id');
+      const userId = sessionStorage.getItem('sales_person_id');
       return userId ? true : false;
     }
     catch (error) {

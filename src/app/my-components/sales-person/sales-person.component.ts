@@ -16,7 +16,7 @@ export class SalesPersonComponent implements OnInit {
   isDisabled: boolean = false;
   total_count: number = 0;
   isListing: boolean = true;
-  sbu_id: any = localStorage.getItem('sbu_id');
+  sbu_id: any = sessionStorage.getItem('sbu_id');
   SBUList: any = [];
   salesPersonName: any;
   functionId: any;
@@ -32,8 +32,8 @@ export class SalesPersonComponent implements OnInit {
   // sales : any;
 
   isEdit: boolean = false;
-  salesPersonId: any = localStorage.getItem('sales_person_id');
-  checkDesignationId: any = localStorage.getItem('designation_id');
+  salesPersonId: any = sessionStorage.getItem('sales_person_id');
+  checkDesignationId: any = sessionStorage.getItem('designation_id');
   isMentorVisible: boolean = false;
   mentorList: any = [];
   // mentorId: any = '';
@@ -126,8 +126,8 @@ export class SalesPersonComponent implements OnInit {
   getSalesPersonList() {
     const data = {
       check_designation_id: this.checkDesignationId,
-      sbu_id: localStorage.getItem('sbu_id'),
-      sales_person_id: localStorage.getItem('sales_person_id'),
+      sbu_id: sessionStorage.getItem('sbu_id'),
+      sales_person_id: sessionStorage.getItem('sales_person_id'),
       search_criteria: this.searchCriteria,
       sales_person_offset: this.salesPersonOffset
     };

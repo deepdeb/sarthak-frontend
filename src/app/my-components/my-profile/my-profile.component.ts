@@ -12,12 +12,12 @@ import { CommonService } from 'src/app/my-services/common.service';
 })
 export class MyProfileComponent {
 
-  salesPersonId: any = localStorage.getItem('sales_person_id');
+  salesPersonId: any = sessionStorage.getItem('sales_person_id');
   salesPersonName: any;
   sbuName: any;
   functionName: any;
   designationName: any;
-  sbu_id: any = localStorage.getItem('sbu_id');
+  sbu_id: any = sessionStorage.getItem('sbu_id');
   functionId: any;
   designationId: any;
   passWord: any;

@@ -53,12 +53,12 @@ export class LoginComponent {
             return;
           }
           if(res.response.length > 0) {
-            localStorage.setItem('sbu_id', this.sbu_id);
-            localStorage.setItem('sbu_name', this.sbu_name);
-            localStorage.setItem('loggedPersonName', res.response[0].sales_person_name);
-            localStorage.setItem('loggedPersonDesignation', res.response[0].designation_name);
-            localStorage.setItem('designation_id', res.response[0].designation_id);
-            localStorage.setItem('sales_person_id', res.response[0].sales_person_id);
+            sessionStorage.setItem('sbu_id', this.sbu_id);
+            sessionStorage.setItem('sbu_name', this.sbu_name);
+            sessionStorage.setItem('loggedPersonName', res.response[0].sales_person_name);
+            sessionStorage.setItem('loggedPersonDesignation', res.response[0].designation_name);
+            sessionStorage.setItem('designation_id', res.response[0].designation_id);
+            sessionStorage.setItem('sales_person_id', res.response[0].sales_person_id);
             this.router.navigate(['dashboard'])
               this.common.showAlertMessage('Logged in successfully', this.common.succContent);
           } else {

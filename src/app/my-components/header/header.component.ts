@@ -8,11 +8,11 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   isCollapsed = true;
-  logged_person_name = localStorage.getItem('loggedPersonName');
-  desig_name = localStorage.getItem('loggedPersonDesignation');
+  logged_person_name = sessionStorage.getItem('loggedPersonName');
+  desig_name = sessionStorage.getItem('loggedPersonDesignation');
   formattedDate = new Date().toLocaleDateString('en-GB');
   formattedTime12Hr = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: true}).replace(/\s(am|pm)$/i, (match) => match.toUpperCase());
-  sbuId: any = localStorage.getItem('sbu_id');
+  sbuId: any = sessionStorage.getItem('sbu_id');
 
   constructor(private router: Router){}
  
@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
   }
 
   goToLogin(){
-    localStorage.clear(); 
+    sessionStorage.clear(); 
     this.router.navigate(['/'])
     
   }

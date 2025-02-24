@@ -73,7 +73,7 @@ export class DetailsPageComponent {
   csClamps: string = '';
   csHsaBox: string = '';
   csOthers: string = '';
-  sbuId: any = localStorage.getItem('sbu_id');
+  sbuId: any = sessionStorage.getItem('sbu_id');
   // SBUList: any = [];
   // credential_Photo: string = '';
   // completion_Photo: string = '';
@@ -167,7 +167,7 @@ export class DetailsPageComponent {
 
   getEnquiryById(enquiry_details_id: any) {
     const data = {
-      sbu_id: localStorage.getItem('sbu_id'),
+      sbu_id: sessionStorage.getItem('sbu_id'),
       enquiry_id: enquiry_details_id
     }
     this.rest.getEnquiryById_rest(data).subscribe((res: any) => {

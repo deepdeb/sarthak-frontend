@@ -13,8 +13,8 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./presentation.component.css']
 })
 export class PresentationComponent {
-  checkSbuId: any = localStorage.getItem('sbu_id');
-  sbuId: any = localStorage.getItem('sbu_id');
+  checkSbuId: any = sessionStorage.getItem('sbu_id');
+  sbuId: any = sessionStorage.getItem('sbu_id');
   sbuIdForList: number = 0;
   isFileDiv: boolean = true;
   SBUList: any = [];
