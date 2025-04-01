@@ -21,7 +21,8 @@ export class HeaderComponent implements OnInit {
   }
 
   goToLogin(){
-    sessionStorage.clear(); 
+    sessionStorage.clear();
+    localStorage.clear(); 
     this.router.navigate(['/'])
     
   }
