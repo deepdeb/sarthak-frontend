@@ -75,9 +75,11 @@ export class EnquiriesComponent {
   searchCriteria: string = '';
   enquiryOffset : number =  0;
 
+  currentFullYear = new Date().getFullYear()
+
   // ************ static months & years **************//
   months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-  years = ['2024', '2025'];
+  years = [this.currentFullYear.toString(), (this.currentFullYear + 1).toString()];
 
 
 
@@ -447,7 +449,7 @@ export class EnquiriesComponent {
             this.totalCount = res.total_count;
             this.lastEnquiryNumber = res.last_enquiry_number;
             this.lastEnquiryNumberString = res.last_enquiry_number
-            this.enquiryNumber = 'E000' + ((parseInt(this.lastEnquiryNumberString.split('/')[0].substring(1))) + 1) + '/24-25'
+            this.enquiryNumber = 'E000' + ((parseInt(this.lastEnquiryNumberString.split('/')[0].substring(1))) + 1) + `/${this.currentFullYear.toString().slice(-2)}-${(this.currentFullYear + 1).toString().slice(-2)}`
           }
         }
       }
